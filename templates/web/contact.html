@@ -1,0 +1,63 @@
+{% extends 'web/layouts/base.html' %}
+{% load staticfiles %}
+{% block content %}
+        <style>
+        .about-area {
+            padding: 58px 0px;
+            overflow: hidden;
+            background: url({% static "web/images/about/1.png" %}) no-repeat center center / cover;
+        }
+    </style>
+    <div class="breadcumb-area flex-style  black-opacity">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Our Products</h2>
+                    <ul class="d-flex">
+                        <li><a href="/">Home</a></li>
+                        <li><i class="fa fa-angle-double-right"></i></li>
+                        <li><span>Contact Us</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nvestments-area position-relative nvestments-area2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="nvestments-img">
+                        <img src={% static "web/images/bg/2.png" %} alt="">
+                    </div>
+                </div>
+                <div class="col-lg-7 col-12">
+                    <div class="contact-wrap flex-style">
+                        <h2>Request A Call Back</h2>
+                        <form action="#">
+                            <div class="row">
+                                <div class="col-sm-6 col-12">
+                                    <input type="text" placeholder="Name">
+                                </div>
+                                <div class="col-sm-6 col-12">
+                                    <input type="email" placeholder="Email">
+                                </div>
+                                <div class="col-sm-6 col-12">
+                                    <input type="text" placeholder="Phone">
+                                </div>
+                                <div class="col-sm-6 col-12">
+                                    <input type="text" placeholder="Subject">
+                                </div>
+                                <div class="col-12">
+                                    <textarea cols="30" rows="10" placeholder="Massage"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button>Submit Now</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

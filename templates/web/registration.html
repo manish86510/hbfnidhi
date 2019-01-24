@@ -1,0 +1,332 @@
+{% extends 'web/layouts/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="breadcumb-area flex-style black-opacity">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>About Us Company</h2>
+                    <ul class="d-flex">
+                        <li><a href="/">Home</a></li>
+                        <li><i class="fa fa-angle-double-right"></i></li>
+                        <li><span>Registration</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+  <div class="container">
+  <div class="container mt-3">
+      <h3 align="center"><span>HBF Nidhi</span> User Registration</h3>
+          <br>
+      {% if message != null %}
+          <div class="alert-success">
+            <h3>&nbsp;&nbsp;{{ message }}</h3>
+          </div>
+      {% endif %}
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#personal"><b>Personal Details</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#payment"><b>Payment Details</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#nominee"><b>Nominee Details</b></a>
+            </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#documents"><b>Documents Details</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#additional"><b>Additional Details</b></a>
+            </li>
+          </ul>
+            <form action="/create_account/" method="post" enctype="multipart/form-data" class="form-inline contact-form">
+                {% csrf_token %}
+          <div class="tab-content">
+            <div id="personal" class="container tab-pane active">
+              <br/>
+                            <div class="row">
+                                 <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" name="agent_id" id="agent_id" placeholder="Agent Or Emp. Code">
+                                </div>
+                                <div class="col-lg-6 col-md-6" style="margin-bottom: 10px">&nbsp;</div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <select name="title" class="form-control" required>
+                                        <option value="Mr.">Mr.</option>
+                                        <option value="Mrs.">Mrs.</option>
+                                        <option value="Miss.">Miss.</option>
+                                        <option value="Dr.">Dr.</option>
+                                    </select>&nbsp;
+                                    <input type="text" placeholder="First Name" class="form-control" name="first_name" required>
+                                  </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" name="last_name" placeholder="Last Name" id="last_name" required>
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" name="father_name" placeholder="Father Name" id="father_name">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" name="mother_name" placeholder="Mother Name" id="mother_name">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" name="husband_name" id="husband_name" placeholder="Husband Name">
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="date" name="dob" id="dob" placeholder="Date of birth" required>
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <label for="gender">Gender: </label>&nbsp;
+                                    <select name="gender" class="form-control" required>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="state" id="state" placeholder="State" required>
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="city" id="city" placeholder="City" required>
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="po" id="po" placeholder="Post Office" required>
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="current_address" placeholder="Current Address" required>
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="permanent_address" placeholder="Permanent Address" required>
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="locality" placeholder="Locality">
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="landmark" placeholder="Landmark">
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="pincode" placeholder="Pincode" required>
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="email" placeholder="Email Id" required>
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="mobile" placeholder="Mobile" required>
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="landline" placeholder="Landline">
+                                </div>
+                            </div>
+              </div>
+                            <div id="payment" class="container tab-pane fade"><br>
+                            <div class="row">
+                                 <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <select name="pay_mode" class="form-control">
+                                        <option value="cash">Cash</option>
+                                        <option value="neft">NEFT</option>
+                                        <option value="cheque">Cheque/DD</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="Amount" name="amount" value="10">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="Cash receipt number" name="cash_receipt_no">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="Cash receipt date" name="cash_receipt_date">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="Cheque number" name="cheque_no">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="Cheque date" name="cheque_date">
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="cheque_bank_name" placeholder="Cheque bank name">
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="cheque_branch_name" placeholder="Cheque branch name">
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="cheque_branch_ifsc" placeholder="Cheque branch ifsc">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="DD No" name="dd_no">
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="dd_date" placeholder="DD date">
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="dd_bank_name" placeholder="DD bank name">
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="dd_branch_name" placeholder="DD branch name">
+                                </div>
+                                <div class="col-lg-6 form-group" style="margin-bottom: 10px">
+                                    <input type="text" name="dd_branch_ifsc" placeholder="DD branch IFSC">
+                                </div>
+                            </div>
+            </div>
+            <div id="nominee" class="container tab-pane fade"><br>
+              <div class="row">
+                                 <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="Nominee Name" name="nominee">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="Nominee Relation" name="nrelation">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="Nominee DOB" name="ndob">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="Guardian Name" name="guardian_name">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="Guardian Relationship" name="guardian_relationship">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="Guardian relationship" name="guardian_address">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="Guardian Aadhar" name="guardian_aadhar">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="Guardian Pan" name="guardian_pan">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="Guardian I-Card" name="guardian_id">
+                                </div>
+              </div>
+            </div>
+            <div id="documents" class="container tab-pane fade"><br>
+              <div class="row">
+                  <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="Pan number" name="pan_no">
+                                    <input type="file" class="form-control" placeholder="Pan Doc" name="pan_doc" style="border:0px">
+                                </div>
+                                <div class="form-group col-lg-12 col-md-12" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="ID proof" name="id_proof">
+                                    <input type="file" class="form-control" placeholder="ID proof doc" name="id_proof_doc" style="border:0px">
+                                </div>
+                                <div class="form-group col-lg-12 col-md-12" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="Aadhar number" name="aadhar_no">
+                                    <input type="file" class="form-control" placeholder="Aadhar doc" name="aadhar_doc" style="border:0px">
+                                </div>
+                                <div class="form-group col-lg-12 col-md-12" style="margin-bottom: 10px">
+                                    <input type="text" placeholder="Other proof" name="other_proof">&nbsp;
+                                    <input type="file" class="form-control" placeholder="Other proof doc" name="other_proof_doc" style="border:0px">
+                                </div>
+              </div>
+            </div>
+            <div id="additional" class="container tab-pane fade"><br>
+              <div class="row">
+                                 <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <select name="income" class="form-control">
+                                        <option value="monthly">Monthly</option>
+                                        <option value="annually">Annually</option>
+                                    </select>&nbsp;
+                                    <input type="text" class="form-control" name="income_amount">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <select name="religion" class="form-control">
+                                        <option value="hindu">Hindu</option>
+                                        <option value="muslim">Muslim</option>
+                                        <option value="christian">Christian</option>
+                                        <option value="sikh">Sikh</option>
+                                        <option value="others">Others</option>
+                                    </select>&nbsp;
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <select name="category" class="form-control">
+                                        <option value="hindu">General</option>
+                                        <option value="muslim">OBC</option>
+                                        <option value="christian">SC</option>
+                                        <option value="sikh">ST</option>
+                                    </select>&nbsp;
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <select name="qualification" class="form-control">
+                                        <option value="non_graduate">Non-Graduate</option>
+                                        <option value="graduate">Graduate</option>
+                                        <option value="post_graduate">Post-Graduate</option>
+                                        <option value="others">Others</option>
+                                    </select>&nbsp;
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <select name="occupation" class="form-control">
+                                        <option value="salaried">Salaried</option>
+                                        <option value="self_employed">Self-employed	</option>
+                                        <option value="business">Business</option>
+                                        <option value="retired">Retired</option>
+                                        <option value="student">Student</option>
+                                        <option value="others">Others</option>
+                                    </select>&nbsp;
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <select name="vehicle" class="form-control">
+                                        <option value="car">Car</option>
+                                        <option value="two-wheeler">Two-wheeler</option>
+                                        <option value="other">Other</option>
+                                    </select>&nbsp;
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <select name="life_insurance" class="form-control">
+                                        <option value="Up to 2 lakhs">Up to 2 lakhs</option>
+                                        <option value="Up to 5 lakhs">Up to 5 lakhs</option>
+                                        <option value="above 5 lakhs">above 5 lakhs</option>
+                                    </select>&nbsp;
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <select name="loans" class="form-control">
+                                        <option value="Car Loan">Car Loan</option>
+                                        <option value="Personal Loan">Personal Loan</option>
+                                        <option value="Education Loan">Education Loan</option>
+                                        <option value="Business/Agriculture">Business/Agriculture</option>
+                                    </select>&nbsp;
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <select name="house" class="form-control">
+                                        <option value="Ancestral">Ancestral</option>
+                                        <option value="Owned">Owned</option>
+                                        <option value="Rented">Rented</option>
+                                        <option value="Employers">Employers</option>
+                                    </select>&nbsp;
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                    <select name="mutual_fund" class="form-control">
+                                        <option value="SBMF">SBMF</option>
+                                        <option value="No investment">No investment</option>
+                                        <option value="Other">Other</option>
+                                    </select>&nbsp;
+                                </div>
+                  <div class="jumbotron-fluid">
+                      <pre>
+If applicant Declaration , Benefits , Information ,Terms & Conditions
+
+I certify that I have known my introduction which I mention above. And confirm that his/her/their Name, Business and Address mentioned in the application form are correct.
+I appoint that person as nominees for my Fixed deposit/Saving account & other services. Which I am taking from HBF Nidhi Ltd.
+I already read this entire document from the site English language.
+I have a declare with voluntary open with the member HBF Nidhi Ltd. And I shall abide by the existing rules and regulations of the amendment as may taken
+place from time to time And I provide all the details are correctly.
+MEMBERSHIP Conditions
+*	A person is to enroll only once for membership. A membership fee is Rs. 10/-.A person has to affix his passport size photograph along with identify
+     proof in the application form which are mandatory. The lunatics are also not eligible for membership in the company. Loan only granted to the member
+     on their deposits.
+*	Company Details & Information:
+*	Company Name: HBF NIDHI LIMITED, Date of incorporation: MAR 7 2017, CIN: U65900UP2017PLC091080
+*	Registered Address: C 16 sector 6 Noida U.P 201301 INDIA, (we operate only from the mentioned branch address),
+*	Paid Up Capital: Rs. 10000000, Authorized Capital: 100000000
+    </pre>
+                      <div class="col-12">
+                    <button>Register Now</button>
+                </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+         </form>
+        </div>
+        </div>
+    <p>&nbsp;</p>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'admin/layouts/base.html' %}
+{% block content %}
+<div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                            <form role="search" class="sr-input-func">
+                                               <!-- <input type="text" placeholder="Search..." class="search-int form-control">
+                                                <a href="#"><i class="fa fa-search"></i></a>-->
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="/admin/dashboard/">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-slash">Customer List</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="data-table-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd">
+                                    <h1>List Of Saving Account</h1>
+                                </div>
+                            </div>
+                            <div class="sparkline13-graph">
+                                <div class="datatable-dashv1-list custom-datatable-overright">
+                                    <!--<div id="toolbar">
+                                        <select class="form-control dt-tb">
+											<option value="">Export Basic</option>
+											<option value="all">Export All</option>
+											<option value="selected">Export Selected</option>
+										</select>
+                                    </div>-->
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+                                                <th>SN.</th>
+                                                <th data-field="member">Member Id</th>
+                                                <th data-field="agent">Account Number</th>
+                                                <th data-field="email">Balance</th>
+                                                <th data-field="phone">IFSC Code</th>
+                                                <th data-field="pincode">Active</th>
+                                                <th data-field="date">Created Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for data in member %}
+                                            <tr>
+                                                <td>{{ forloop.counter }}</td>
+                                                <td><a href="/admin/profile/{{ data.member }}/"><u>{{ data.member }}</u></a></td>
+                                                <td>{{ data.account_no }}</td>
+                                                <td>{{ data.account_balance }}</td>
+                                                <td>{{ data.ifsc }}</td>
+                                                <td>{{ data.created_date }}</td>
+                                                {% if data.is_active == 0 %}
+                                                    <td><a href="/admin/sactive/{{ data.is_active }}/{{ data.member }}/"><button class="btn btn-info">Activate</button></a></td>
+                                                {% else %}
+                                                    <td><a href="/admin/sactive/{{ data.is_active }}/{{ data.member }}/"><button class="btn btn-info">Not Activate</button></a></td>
+                                                {% endif %}
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

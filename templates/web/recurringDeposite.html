@@ -1,0 +1,87 @@
+{% extends 'web/layouts/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="breadcumb-area flex-style  black-opacity">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>About Us Company</h2>
+                    <ul class="d-flex">
+                        <li><a href="/">Home</a></li>
+                        <li><i class="fa fa-angle-double-right"></i></li>
+                        <li><span>Recurring Account</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about-area position-relative">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="about-img">
+                        <iframe style="margin-top: 10%" width="560" height="312" src="https://www.youtube.com/embed/Hh5Bhxu37So" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="about-content">
+                        <h3>Our Company</h3>
+                        <p>HBF NIDHI LIMITED, a public limited company, was incorporated in 2017, recognizing the prevalent gap in addressing the basic functionality of banking to inculcate the habits of “Thrift Saving”. In line with the growing aspiration of a resurgent and developing economy of India and with the focus of financial inclusivity of the population by the present economic outlook, HBF Nidhi Limited aspires to address this opportunity with its innovative products and services. Our businesss model stands on the principles of transacting within members of the Nidhi company. We accept deposits from lend credit to our members and thus inculcte the habbit of savings among the masses and also provide credit at lower costs than traditional banks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="service-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title text-center">
+                        <h2>Why Choose HBFNIDHI</h2>
+                        <img src={% static "web/images/line.png" %} alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="service-wrap">
+                        <h3>HBF Values</h3>
+                        <p>People, Integrity, Leadership, Teamwork and Excellence Our values are the fundamentals beliefs and guiding principles of our organization. Our values define who we are.</p>
+                        <p>People We value our people - be it our team members or customers. We treat our team members, clients and others with whom we do business with equality, respect, dignity and politeness. People are our biggest asset and we value their development and reward their performance. We are committed towards maintaining a safe working environment that is free from any kind of discrimination, harassment and retaliation.</p>
+                        <p>Ethics our business ethical standards are higher. Ethics is an integral part of everything that we do. We believe that following an ethical behavior results in companies’ growth in both the short and long term.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="service-items">
+                        <span class="flaticon-profits"></span>
+                        <h3>Integrity</h3>
+                        <p>We believe that Integrity should be at the heart and soul of a company’s culture. We have clear commitment towards achieving professional goals and objectives through ethical conduct of our business.</p>
+                    </div>
+                    <div class="service-items">
+                        <span class="flaticon-profits"></span>
+                        <h3>Excellence</h3>
+                        <p>drives us to deliver what we promise and add value beyond the customer expectations. We strive to achieve excellence through keeping an open mind for learning, adopting futuristic technologies and by being agile in our thoughts and actions.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-6 col-12">
+                            <div class="service-items">
+                                <span class="flaticon-exchange-1"></span>
+                                <h3>Team work</h3>
+                                <p>We Believe in maintaining employer-employee relationships based on open communication. Our team always works with transparency & maintain ethical behavior.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-6 col-12">
+                            <div class="service-items">
+                                <span class="flaticon-bitcoin-7"></span>
+                                <h3>Future Vision</h3>
+                                <p>Our Goal is to fulfill all public financial needs in order to raise our organization into small bank Covering target with more than 100cr authorized capital within a period of 5years.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

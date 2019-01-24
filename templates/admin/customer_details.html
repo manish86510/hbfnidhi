@@ -1,0 +1,283 @@
+{% extends 'admin/layouts/base.html' %}
+{% block content %}
+<div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                            <form role="search" class="sr-input-func">
+                                               <!-- <input type="text" placeholder="Search..." class="search-int form-control">
+                                                <a href="#"><i class="fa fa-search"></i></a>-->
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="/admin/dashboard/">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-slash">Customer List</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="single-pro-review-area mt-t-30 mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-payment-inner-st">
+                            <ul id="myTabedu1" class="tab-review-design">
+                                <li class="active"><a href="#persional">Persional Details</a></li>
+                                <li><a href="#payment"> Payment Details</a></li>
+                                <li><a href="#nominee">Nominee Details</a></li>
+                                <li><a href="#documents"> Documents Details</a></li>
+                                <li><a href="#additional">Additional Details</a></li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content custom-product-edit">
+                                <div class="product-tab-list tab-pane fade active in" id="persional">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                                <div id="dropzone1" class="pro-ad">
+                                                    <div class="row">
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <input type="text" name="agent_id" id="agent_id" placeholder="Agent Code" class="form-control">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="fname" type="text" class="form-control" placeholder="First Name" value="{{ customer.first_name }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="lname" type="text" class="form-control" placeholder="Last Name" value="{{ customer.last_name }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="fath_name" type="text" class="form-control" placeholder="Father Name" value="{{ customer.father_name }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="moth_name" type="text" class="form-control" placeholder="Mother Name" value="{{ customer.mother_name }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="hname" type="text" class="form-control" placeholder="Husband Name" value="{{ customer.husband_name }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="dob" type="text" class="form-control" placeholder="Date of birth" value="{{ customer.dob }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="gender" type="text" class="form-control" placeholder="Gender" value="{{ customer.gender }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="state" type="text" class="form-control" placeholder="State" value="{{ customer.state }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="city" type="text" class="form-control" placeholder="City" value="{{ customer.city }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="post_office" type="text" class="form-control" placeholder="Post Office" value="{{ customer.post_office }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                    <input name="pincode" type="text" class="form-control" placeholder="Pincode" value="{{ customer.pincode }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="current_address" type="text" class="form-control" placeholder="Current Address" value="{{ customer.current_address }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="permanent_address" type="text" class="form-control" placeholder="Permanent Address" value="{{ customer.permanent_address }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="post_office" type="text" class="form-control" placeholder="Post Office" value="{{ customer.post_office }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="locality" type="text" class="form-control" placeholder="Locality" value="{{ customer.locality }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="landmark" type="text" class="form-control" placeholder="Landmark" value="{{ customer.landmark }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="email" type="email" class="form-control" placeholder="Email Id" value="{{ customer.email }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="contact" type="text" class="form-control" placeholder="contact" value="{{ customer.contact }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="post_office" type="text" class="form-control" placeholder="Post Office" value="{{ customer.post_office }}">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="landline" type="text" class="form-control" placeholder="Landline" value="{{ customer.landline }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-tab-list tab-pane fade" id="payment">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                        <div class="devit-card-custom">
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" placeholder="Payment mode" value="{{ payment.payment_mode }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="amount" class="form-control" placeholder="Fees" value="{{ payment.amount }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-tab-list tab-pane fade" id="nominee">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+												<div class="row">
+													<div class="col-lg-6">
+														<div class="devit-card-custom">
+															<div class="form-group">
+																<input type="text" class="form-control" placeholder="Nominee Name" value="{{ nominee.nominee_name }}">
+															</div>
+															<div class="form-group">
+																<input type="text" class="form-control" placeholder="Nominee Relationship" value="{{ nominee.nominee_relationship }}">
+															</div>
+                                                            <div class="form-group">
+																<input type="text" class="form-control" placeholder="Nominee DOB" value="{{ nominee.nominee_dob }}">
+															</div>
+															<div class="form-group">
+																<input type="text" class="form-control" placeholder="Guardian Name" value="{{ nominee.guardian_name }}">
+															</div>
+                                                            <div class="form-group">
+																<input type="text" class="form-control" placeholder="Guardian Relationship" value="{{ nominee.guardian_relation }}">
+															</div>
+															<div class="form-group">
+																<input type="text" class="form-control" placeholder="Guardian DOB" value="{{ nominee.guardian_dob }}">
+															</div>
+														</div>
+													</div>
+												</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-tab-list tab-pane fade" id="documents">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+												<div class="row">
+													<div class="col-lg-12">
+														<div class="devit-card-custom">
+															<div class="form-group">
+                                                                <label for="aadhar">Aadhar</label>
+																<input type="url" class="form-control" placeholder="Aadhar Number" name="aadhar" value="{{ document.aadhar }}">
+															    <input type="file" name="" class="form-control">
+                                                                <img src="../../media/{{ document.aadhar_doc }}" stylaadhar_doce="margin: 5px; height:100px;width: 100px">
+                                                            </div>
+															<div class="form-group">
+                                                                <label for="aadhar">Id Proof</label>
+																<input type="url" class="form-control" name="id_proof" placeholder="Id Proof" value="{{ document.id }}">
+															    <input type="file" name="id_doc" class="form-control">
+                                                                <img src="../../media/{{ document.id_doc }}" style="margin: 5px; height:100px;width: 100px">
+															</div>
+															<div class="form-group">
+                                                                <label for="aadhar">Pancard</label>
+																<input type="url" class="form-control" name="pan" placeholder="pan" value="{{ document.pan }}">
+															    <input type="file" name="pan_doc" class="form-control">
+                                                                <img src="../../media/{{ document.pan_doc }}" style="margin: 5px; height:100px;width: 100px">
+															</div>
+															<div class="form-group">
+                                                                <label for="aadhar">Other Id Proof</label>
+																<input type="url" class="form-control" name="other_id" placeholder="Other Id" value="{{ document.other_id }}">
+															    <input type="file" name="other_id_doc" class="form-control">
+                                                                <img src="../../media/{{ document.pan_doc }}" style="margin: 5px; height:100px;width: 100px">
+															</div>
+														</div>
+													</div>
+												</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-tab-list tab-pane fade" id="additional">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+												<div class="row">
+													<div class="col-lg-6">
+														<div class="devit-card-custom">
+															<div class="form-group">
+                                                                <label for="income">Income</label>
+																<input type="text" class="form-control" name="income" placeholder="Income" value="{{ other.income }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="income">Income amount</label>
+                                                                <input type="text" class="form-control" name="income_amount" placeholder="Income Amount" value="{{ other.income_amount }}">
+															</div>
+															<div class="form-group">
+                                                                <label for="category">Category</label>
+																<input type="text" class="form-control" name="category" placeholder="category" value="{{ other.category }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="loans">Existing Loan</label>
+                                                                <input type="text" class="form-control" name="existing_loan" placeholder="Existing Loan" value="{{ other.existing_loan }}">
+															</div>
+															<div class="form-group">
+																<label for="house">House</label>
+																<input type="text" class="form-control" name="house" placeholder="House" value="{{ other.house }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="life_insurence">Life Insurence</label>
+                                                                <input type="text" class="form-control" name="life_insurence" placeholder="Life Insurence" value="{{ other.life_insurance }}">
+															</div>
+														</div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                            <div class="form-group">
+																<label for="mutual_fund">Mutual Fund</label>
+																<input type="text" class="form-control" name="mutual_fund" placeholder="Mutual Fund" value="{{ other.mutual_fund }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="occupation">Occupation</label>
+                                                                <input type="text" class="form-control" name="occupation" placeholder="Occupation" value="{{ other.occupation }}">
+															</div>
+                                                            <div class="form-group">
+																<label for="income">Occupation Type</label>
+																<input type="text" class="form-control" name="Occupation_type" placeholder="Occupation Type" value="{{ other.occupation_type }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="qualification">Qualification</label>
+                                                                <input type="text" class="form-control" name="qualification" placeholder="Qualification" value="{{ other.qualification }}">
+															</div>
+                                                            <div class="form-group">
+																<label for="religion">Religion</label>
+																<input type="text" class="form-control" name="religion" placeholder="Religion" value="{{ other.religion }}">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="vehicle">Vehicle</label>
+                                                                <input type="text" class="form-control" name="vehicle" placeholder="Vehicle" value="{{ other.vehicle }}">
+															</div>
+                                                    </div>
+												</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

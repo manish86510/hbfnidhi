@@ -1,0 +1,82 @@
+{% extends 'admin/layouts/base.html' %}
+{% block content %}
+<div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                            <form role="search" class="sr-input-func">
+                                               <!-- <input type="text" placeholder="Search..." class="search-int form-control">
+                                                <a href="#"><i class="fa fa-search"></i></a>-->
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="/">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-blod">Members</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="contacts-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div class="sparkline10-list mt-b-30">
+                            <div class="sparkline10-hd">
+                                <div class="main-sparkline10-hd">
+                                    <h1>Search Customer Here</h1>
+                                </div>
+                            </div>
+                            <div class="sparkline10-graph">
+                                <div class="basic-login-form-ad">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="basic-login-inner inline-basic-form">
+                                                <form action="/admin/show_account_transaction/" method="post">
+                                                    {% csrf_token %}
+                                                    <div class="form-group-inner">
+                                                        <div class="row">
+                                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                                <label for="member_id">Member Id</label>
+                                                                <input type="text" class="form-control basic-ele-mg-b-10 responsive-mg-b-10" id="member_id" placeholder="Member Id" />
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                                <label for="account_no">Account Number</label>
+                                                                <input type="text" class="form-control basic-ele-mg-b-10 responsive-mg-b-10" id="account_no" placeholder="Account Number" />
+                                                            </div>
+                                                            <p>&nbsp;</p>
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                <div class="login-btn-inner">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																			<div class="login-horizental lg-hz-mg">
+                                                                                <button class="btn btn-sm btn-primary login-submit-cs" type="submit" style="float: right">Search Now</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+{% endblock %}

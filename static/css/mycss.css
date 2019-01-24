@@ -8,17 +8,18 @@ html {
 
 body {
   background:#0E993C;
+  color : #ffecec;
   font-family: 'Titillium Web', sans-serif;
 }
 
 
 .form {
-  background:#9d9d9d;
-  padding: 40px;
-  max-width:600px;
-  margin:40px auto;
+  background: #827b76;
+  padding: 32px;
+  max-width:475px;
+  margin:60px auto;
   border-radius:10px;
-  box-shadow:0 4px 10px 4px #FF9D00;
+  box-shadow:0 4px 4px 4px #FF9D00;
 }
 
 .tab-group {
@@ -46,23 +47,10 @@ body {
   }
 
 
-h1 {
+h2 {
   text-align:center;
-  color:#fff;
-  margin:0 0 40px;
-}
-
-label {
-  position:absolute;
-  left:13px;
   color:#000;
-  pointer-events: none;
-  font-size:22px;
-}
-
-
-label.highlight {
-	color:#fff;
+  margin:0 0 40px;
 }
 
 input, textarea {
@@ -86,7 +74,7 @@ textarea {
 
 .field-wrap {
   position:relative;
-  margin-bottom:40px;
+  margin-bottom:10px;
 }
 
 .button {
@@ -110,6 +98,6 @@ textarea {
 }
 
 .forgot {
-  margin-top:-20px;
+  margin-top:10px;
   text-align:right;
 }

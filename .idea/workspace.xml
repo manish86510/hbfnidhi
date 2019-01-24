@@ -1,7 +1,205 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="50f7c42f-de37-4e2a-b4ec-a8a455ca2572" name="Default Changelist" comment="" />
+    <list default="true" id="50f7c42f-de37-4e2a-b4ec-a8a455ca2572" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/static/downloads/open_saving_account_form.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/user-male-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/Flaticon.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/animate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/datepicker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/flaticon.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/font-awesome.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/magnific-popup.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/metisMenu.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/owl.carousel.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/owl.video.play.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/responsive.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/swiper.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/Flaticon.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/Flaticon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/Flaticon.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/Flaticon.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/Flaticond41d.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfont5b62.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfont5b62.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfont5b62.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfont5b62.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfont5b62.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfontd41d.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/about.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/about/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/about/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/about/icon/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/about/icon/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/about/icon/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/about/icon/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/arrows.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/banner.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/banner2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/banner4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/banner5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/bg/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/bg/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/bg/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/bg/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/bg/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/bg/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/bg/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/bg/6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/bg/expart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/blog/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/blog/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/blog/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/blog/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/blog/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/blog/6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/blog/7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/blog/8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/blog/9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/blog/blog-details.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/blog/comment/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/blog/comment/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/blog/comment/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/blog/comment/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/blog/comment/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/calcluate.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/enquiry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/favicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/featured/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/featured/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/featured/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/featured/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/fixed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/inner_banner.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/line.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/line2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/loans.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/logo2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/logo3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/mobail.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/post/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/post/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/post/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/recurring.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/saving.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/service/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/service/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/service/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/service/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/service/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/service/6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/service/icon/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/service/icon/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/service/icon/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/service/icon/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/service/icon/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/service/icon/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/service/icon/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/share.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/shop/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/shop/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/shop/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/shop/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/shop/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/shop/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/slider/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/slider/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/slider/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/slider/thumb/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/slider/thumb/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/slider/thumb/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/team.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/team/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/team/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/team/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/team/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/test/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/test/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/datepicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/jquery.canvasjs.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/mailchimp.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/metisMenu.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/owl.carousel.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/plugins.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/scripts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/swiper.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/vendor/jquery-2.2.4.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/vendor/modernizr-2.8.3.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/vendor/popper.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/add_member.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/create_fd.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/create_rd.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/create_saving.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/customer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/customer_details.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/fd_account.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/member.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/rd_account.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/saving_account.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/saving_transaction.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/transaction.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/about.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/career.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/contact.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/csr.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/enquiry.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/fixedDeposite.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/layouts/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/loan.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/lockers.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/recurringDeposite.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/registration.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/saving.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/shareholder.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/team.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/MySQLdb/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/MySQLdb/compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/MySQLdb/connections.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/MySQLdb/constants/CLIENT.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/MySQLdb/constants/CR.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/MySQLdb/constants/ER.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/MySQLdb/constants/FIELD_TYPE.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/MySQLdb/constants/FLAG.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/MySQLdb/constants/REFRESH.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/MySQLdb/constants/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/MySQLdb/converters.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/MySQLdb/cursors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/MySQLdb/release.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/MySQLdb/times.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/_mysql.cpython-36m-x86_64-linux-gnu.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/_mysql_exceptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/mysqlclient-1.3.14.dist-info/INSTALLER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/mysqlclient-1.3.14.dist-info/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/mysqlclient-1.3.14.dist-info/METADATA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/mysqlclient-1.3.14.dist-info/RECORD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/mysqlclient-1.3.14.dist-info/WHEEL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/mysqlclient-1.3.14.dist-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hbfnidhi/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/hbfnidhi/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hbfnidhi/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/hbfnidhi/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/masteradmin/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/masteradmin/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/masteradmin/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/masteradmin/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/masteradmin/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/masteradmin/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/mycss.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/mycss.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/layouts/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/layouts/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pip-selfcheck.json" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,85 +220,55 @@
     <expand />
     <select />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/masteradmin/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="990">
+              <caret line="72" column="63" selection-start-line="72" selection-start-column="63" selection-end-line="72" selection-end-column="63" />
               <folding>
-                <element signature="e#0#35#0" expanded="true" />
+                <element signature="e#0#13#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hbfnidhi/urls.py">
+        <entry file="file://$PROJECT_DIR$/templates/admin/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/admin/layouts/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/admin/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1485">
-              <caret line="99" column="84" selection-start-line="99" selection-start-column="84" selection-end-line="99" selection-end-column="84" />
+            <state relative-caret-position="150">
+              <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/admin/login.html">
+        <entry file="file://$PROJECT_DIR$/templates/admin/layouts/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+            <state relative-caret-position="282">
+              <caret line="65" column="28" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/masteradmin/urls.py">
+        <entry file="file://$PROJECT_DIR$/masteradmin/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1665">
+              <caret line="111" column="50" selection-start-line="111" selection-start-column="50" selection-end-line="111" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/js/myjs.js">
+        <entry file="file://$PROJECT_DIR$/templates/web/registration.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/css/mycss.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="109" column="1" selection-start-line="109" selection-start-column="1" selection-end-line="109" selection-end-column="1" />
+            <state relative-caret-position="3090">
+              <caret line="206" column="38" selection-start-line="206" selection-start-column="38" selection-end-line="206" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -110,10 +278,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
-        <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
     <option name="SCHEME" value="Project" />
@@ -121,6 +289,20 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>lab</find>
+      <find>body-bg</find>
+      <find>form-bg</find>
+      <find>white</find>
+      <find>main</find>
+      <find>main-light</find>
+      <find>main-dark</find>
+      <find>gray</find>
+      <find>thin</find>
+      <find>br</find>
+      <find>bold</find>
+      <find>normal</find>
+      <find>tab</find>
+      <find>ifra</find>
+      <find>Prof</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -129,16 +311,51 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/hbfnidhi/settings.py" />
         <option value="$PROJECT_DIR$/templates/index.html" />
-        <option value="$PROJECT_DIR$/templates/admin/index.html" />
-        <option value="$PROJECT_DIR$/templates/admin/layouts/base.html" />
-        <option value="$PROJECT_DIR$/masteradmin/urls.py" />
-        <option value="$PROJECT_DIR$/masteradmin/views.py" />
         <option value="$PROJECT_DIR$/static/js/myjs.js" />
-        <option value="$PROJECT_DIR$/hbfnidhi/urls.py" />
+        <option value="$PROJECT_DIR$/templates/web/index.html" />
+        <option value="$PROJECT_DIR$/static/web/css/styles.css" />
+        <option value="$PROJECT_DIR$/templates/web/enquiry.html" />
+        <option value="$PROJECT_DIR$/templates/web/shareholder.html" />
+        <option value="$PROJECT_DIR$/templates/web/about.html" />
+        <option value="$PROJECT_DIR$/templates/web/team.html" />
+        <option value="$PROJECT_DIR$/templates/web/layouts/saving.html" />
+        <option value="$PROJECT_DIR$/templates/web/csr.html" />
+        <option value="$PROJECT_DIR$/templates/web/career.html" />
+        <option value="$PROJECT_DIR$/templates/web/fixedDeposite.html" />
+        <option value="$PROJECT_DIR$/templates/web/recurringDeposite.html" />
+        <option value="$PROJECT_DIR$/templates/web/loan.html" />
+        <option value="$PROJECT_DIR$/templates/web/lockers.html" />
+        <option value="$PROJECT_DIR$/templates/web/saving.html" />
+        <option value="$PROJECT_DIR$/templates/web/contact.html" />
+        <option value="$PROJECT_DIR$/templates/web/layouts/base.html" />
         <option value="$PROJECT_DIR$/static/css/mycss.css" />
+        <option value="$PROJECT_DIR$/templates/admin/add_employee.html" />
+        <option value="$PROJECT_DIR$/templates/transaction.html" />
+        <option value="$PROJECT_DIR$/templates/admin/saving_transaction.html" />
+        <option value="$PROJECT_DIR$/web/urls.py" />
+        <option value="$PROJECT_DIR$/hbfnidhi/urls.py" />
+        <option value="$PROJECT_DIR$/hbfnidhi/settings.py" />
+        <option value="$PROJECT_DIR$/templates/admin/transaction.html" />
+        <option value="$PROJECT_DIR$/templates/admin/index.html" />
+        <option value="$PROJECT_DIR$/templates/admin/layouts/create_fd.html" />
+        <option value="$PROJECT_DIR$/templates/admin/create_saving.html" />
+        <option value="$PROJECT_DIR$/templates/admin/create_rd.html" />
+        <option value="$PROJECT_DIR$/templates/admin/member.html" />
+        <option value="$PROJECT_DIR$/masteradmin/urls.py" />
+        <option value="$PROJECT_DIR$/web/views.py" />
+        <option value="$PROJECT_DIR$/templates/admin/add_member.html" />
+        <option value="$PROJECT_DIR$/templates/admin/customer.html" />
+        <option value="$PROJECT_DIR$/templates/admin/saving_account.html" />
+        <option value="$PROJECT_DIR$/templates/admin/layouts/base.html" />
+        <option value="$PROJECT_DIR$/templates/admin/create_fd.html" />
+        <option value="$PROJECT_DIR$/templates/admin/rd_account.html" />
+        <option value="$PROJECT_DIR$/templates/admin/fd_account.html" />
+        <option value="$PROJECT_DIR$/templates/web/registration.html" />
+        <option value="$PROJECT_DIR$/masteradmin/models.py" />
         <option value="$PROJECT_DIR$/templates/admin/login.html" />
+        <option value="$PROJECT_DIR$/masteradmin/views.py" />
+        <option value="$PROJECT_DIR$/templates/admin/customer_details.html" />
       </list>
     </option>
   </component>
@@ -148,16 +365,19 @@
     </ignored-facets>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="25" />
-    <option name="width" value="1366" />
-    <option name="height" value="692" />
+    <option name="y" value="89" />
+    <option name="width" value="1356" />
+    <option name="height" value="517" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -168,24 +388,41 @@
             <path>
               <item name="hbfnidhi" type="b2602c69:ProjectViewProjectNode" />
               <item name="hbfnidhi" type="462c0819:PsiDirectoryNode" />
-              <item name="hbfnidhi" type="462c0819:PsiDirectoryNode" />
+              <item name="masteradmin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hbfnidhi" type="b2602c69:ProjectViewProjectNode" />
               <item name="hbfnidhi" type="462c0819:PsiDirectoryNode" />
-              <item name="masteradmin" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hbfnidhi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hbfnidhi" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hbfnidhi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hbfnidhi" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hbfnidhi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hbfnidhi" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../untitled" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -194,10 +431,14 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/static/img" />
-      <recent name="$PROJECT_DIR$/static/css" />
-      <recent name="$PROJECT_DIR$/templates" />
+      <recent name="$PROJECT_DIR$/static/web/css" />
+      <recent name="$PROJECT_DIR$/static/web/js" />
+      <recent name="$PROJECT_DIR$/static/downloads" />
+      <recent name="$PROJECT_DIR$/static/web/images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/admin/" />
+      <recent name="$PROJECT_DIR$/static/web/images" />
       <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$/templates/admin" />
       <recent name="$PROJECT_DIR$/static" />
@@ -215,7 +456,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.models">
+    <configuration name="models" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="hbfnidhi" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/masteradmin" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/masteradmin/models.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="hbfnidhi" type="Python.DjangoServer" factoryName="Django server">
       <module name="hbfnidhi" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -240,6 +503,11 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.models" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -266,12 +534,210 @@
       <workItem from="1546409450809" duration="1546000" />
       <workItem from="1546412355460" duration="1789000" />
       <workItem from="1546414233429" duration="1553000" />
-      <workItem from="1546422519107" duration="1407000" />
+      <workItem from="1546422519107" duration="1789000" />
+      <workItem from="1546424349184" duration="1783000" />
+      <workItem from="1546426170548" duration="1921000" />
+      <workItem from="1546428677839" duration="1784000" />
+      <workItem from="1546430523220" duration="1334000" />
+      <workItem from="1546460164211" duration="599000" />
+      <workItem from="1546498029026" duration="1670000" />
+      <workItem from="1546499905354" duration="1678000" />
+      <workItem from="1546503523529" duration="1330000" />
+      <workItem from="1546513587166" duration="1787000" />
+      <workItem from="1546515539629" duration="956000" />
+      <workItem from="1546566219263" duration="599000" />
+      <workItem from="1546592208443" duration="753000" />
+      <workItem from="1546595332683" duration="785000" />
+      <workItem from="1546597135938" duration="1887000" />
+      <workItem from="1546599060163" duration="1299000" />
+      <workItem from="1546600412996" duration="1606000" />
+      <workItem from="1546602064053" duration="708000" />
+      <workItem from="1546603508809" duration="899000" />
+      <workItem from="1546668388563" duration="1791000" />
+      <workItem from="1546670210521" duration="1758000" />
+      <workItem from="1546672066934" duration="1791000" />
+      <workItem from="1546673887915" duration="2092000" />
+      <workItem from="1546676242262" duration="303000" />
+      <workItem from="1546677041667" duration="1218000" />
+      <workItem from="1546684749730" duration="1809000" />
+      <workItem from="1546686614314" duration="1705000" />
+      <workItem from="1546688989786" duration="1694000" />
+      <workItem from="1546844148123" duration="1530000" />
+      <workItem from="1546846123228" duration="599000" />
+      <workItem from="1546848088808" duration="1872000" />
+      <workItem from="1546849993182" duration="1774000" />
+      <workItem from="1546851812436" duration="1789000" />
+      <workItem from="1546853638515" duration="1788000" />
+      <workItem from="1546855466163" duration="2179000" />
+      <workItem from="1546859279835" duration="1791000" />
+      <workItem from="1546861101329" duration="1788000" />
+      <workItem from="1546862919576" duration="1786000" />
+      <workItem from="1546864761628" duration="1794000" />
+      <workItem from="1546929420182" duration="1017000" />
+      <workItem from="1546931451330" duration="1349000" />
+      <workItem from="1546936149862" duration="1965000" />
+      <workItem from="1546938152642" duration="1783000" />
+      <workItem from="1546939965127" duration="1859000" />
+      <workItem from="1546943948770" duration="732000" />
+      <workItem from="1546955726064" duration="1203000" />
+      <workItem from="1546958677500" duration="1258000" />
+      <workItem from="1547022487955" duration="1775000" />
+      <workItem from="1547024301384" duration="1678000" />
+      <workItem from="1547029562870" duration="2316000" />
+      <workItem from="1547052194522" duration="1745000" />
+      <workItem from="1547054002296" duration="1745000" />
+      <workItem from="1547055822685" duration="599000" />
+      <workItem from="1547100522325" duration="1771000" />
+      <workItem from="1547102331543" duration="1784000" />
+      <workItem from="1547104163976" duration="1784000" />
+      <workItem from="1547108289809" duration="1785000" />
+      <workItem from="1547110110274" duration="1800000" />
+      <workItem from="1547111949942" duration="1785000" />
+      <workItem from="1547113768633" duration="1789000" />
+      <workItem from="1547115607472" duration="1841000" />
+      <workItem from="1547117478596" duration="1795000" />
+      <workItem from="1547119363484" duration="1825000" />
+      <workItem from="1547121234390" duration="1429000" />
+      <workItem from="1547123455053" duration="1793000" />
+      <workItem from="1547125281952" duration="905000" />
+      <workItem from="1547199644254" duration="1128000" />
+      <workItem from="1547201457520" duration="951000" />
+      <workItem from="1547202806076" duration="1770000" />
+      <workItem from="1547204610662" duration="2402000" />
+      <workItem from="1547207161020" duration="1785000" />
+      <workItem from="1547210525417" duration="1285000" />
+      <workItem from="1547275160652" duration="2019000" />
+      <workItem from="1547277568161" duration="1786000" />
+      <workItem from="1547279433361" duration="1621000" />
+      <workItem from="1547404343313" duration="1925000" />
+      <workItem from="1547407593024" duration="597000" />
+      <workItem from="1547424670869" duration="599000" />
+      <workItem from="1547427433901" duration="1770000" />
+      <workItem from="1547429276432" duration="1798000" />
+      <workItem from="1547431118883" duration="744000" />
+      <workItem from="1547446429054" duration="1811000" />
+      <workItem from="1547448578215" duration="682000" />
+      <workItem from="1547456218619" duration="1729000" />
+      <workItem from="1547458041272" duration="1795000" />
+      <workItem from="1547459889185" duration="1968000" />
+      <workItem from="1547464617672" duration="1198000" />
+      <workItem from="1547467021150" duration="919000" />
+      <workItem from="1547468844040" duration="1362000" />
+      <workItem from="1547470608686" duration="1623000" />
+      <workItem from="1547472423174" duration="1278000" />
+      <workItem from="1547481408407" duration="1297000" />
+      <workItem from="1547485159948" duration="1779000" />
+      <workItem from="1547486984182" duration="1424000" />
+      <workItem from="1547491826190" duration="599000" />
+      <workItem from="1547498971032" duration="948000" />
+      <workItem from="1547537326835" duration="797000" />
+      <workItem from="1547541642978" duration="880000" />
+      <workItem from="1547621605262" duration="1758000" />
+      <workItem from="1547624278991" duration="972000" />
+      <workItem from="1547627984415" duration="878000" />
+      <workItem from="1547631572708" duration="1146000" />
+      <workItem from="1547633677105" duration="1786000" />
+      <workItem from="1547635498016" duration="1286000" />
+      <workItem from="1547637538708" duration="1503000" />
+      <workItem from="1547639786604" duration="1780000" />
+      <workItem from="1547641608543" duration="1779000" />
+      <workItem from="1547643425302" duration="634000" />
+      <workItem from="1547704588728" duration="1684000" />
+      <workItem from="1547713772250" duration="2243000" />
+      <workItem from="1547716521055" duration="1113000" />
+      <workItem from="1547718719100" duration="1815000" />
+      <workItem from="1547721480353" duration="1768000" />
+      <workItem from="1547723287626" duration="1782000" />
+      <workItem from="1547725132122" duration="1778000" />
+      <workItem from="1547728183931" duration="1781000" />
+      <workItem from="1547730001159" duration="182000" />
+      <workItem from="1547794519402" duration="1135000" />
+      <workItem from="1547796365184" duration="1914000" />
+      <workItem from="1547798318595" duration="1713000" />
+      <workItem from="1547801017765" duration="1781000" />
+      <workItem from="1547802862660" duration="1664000" />
+      <workItem from="1547804824377" duration="670000" />
+      <workItem from="1547807803444" duration="1996000" />
+      <workItem from="1547810893744" duration="2076000" />
+      <workItem from="1547813158292" duration="2289000" />
+      <workItem from="1547815537069" duration="1605000" />
+      <workItem from="1547820886625" duration="1194000" />
+      <workItem from="1547826828429" duration="791000" />
+      <workItem from="1547833087026" duration="1838000" />
+      <workItem from="1547834973648" duration="1235000" />
+      <workItem from="1547839309756" duration="599000" />
+      <workItem from="1547841174398" duration="599000" />
+      <workItem from="1547844658034" duration="1840000" />
+      <workItem from="1547846543812" duration="1926000" />
+      <workItem from="1547848509247" duration="1744000" />
+      <workItem from="1547850324737" duration="409000" />
+      <workItem from="1547880246221" duration="1770000" />
+      <workItem from="1547882053422" duration="1778000" />
+      <workItem from="1547883868764" duration="1442000" />
+      <workItem from="1547885689686" duration="1780000" />
+      <workItem from="1547887509867" duration="1954000" />
+      <workItem from="1547889502392" duration="2136000" />
+      <workItem from="1547891675004" duration="1876000" />
+      <workItem from="1547893592987" duration="1926000" />
+      <workItem from="1547895561213" duration="1717000" />
+      <workItem from="1547897459015" duration="1778000" />
+      <workItem from="1547899274022" duration="1780000" />
+      <workItem from="1547901095242" duration="1319000" />
+      <workItem from="1547921431511" duration="598000" />
+      <workItem from="1547929492443" duration="1781000" />
+      <workItem from="1547931322281" duration="1495000" />
+      <workItem from="1547940176851" duration="1062000" />
+      <workItem from="1547942080218" duration="1280000" />
+      <workItem from="1547983550274" duration="895000" />
+      <workItem from="1548004079523" duration="2246000" />
+      <workItem from="1548033523575" duration="1777000" />
+      <workItem from="1548035343037" duration="1989000" />
+      <workItem from="1548037371203" duration="599000" />
+      <workItem from="1548057325228" duration="1764000" />
+      <workItem from="1548059127487" duration="997000" />
+      <workItem from="1548063684618" duration="1175000" />
+      <workItem from="1548069401575" duration="1781000" />
+      <workItem from="1548071449909" duration="1526000" />
+      <workItem from="1548073295266" duration="1779000" />
+      <workItem from="1548075119084" duration="1636000" />
+      <workItem from="1548138576858" duration="2296000" />
+      <workItem from="1548141198729" duration="1807000" />
+      <workItem from="1548143040159" duration="2086000" />
+      <workItem from="1548145159949" duration="955000" />
+      <workItem from="1548148109507" duration="1805000" />
+      <workItem from="1548149947104" duration="1809000" />
+      <workItem from="1548151793842" duration="1255000" />
+      <workItem from="1548153750969" duration="1782000" />
+      <workItem from="1548155689361" duration="1769000" />
+      <workItem from="1548172348635" duration="1794000" />
+      <workItem from="1548174188597" duration="1344000" />
+      <workItem from="1548185307918" duration="1583000" />
+      <workItem from="1548187116116" duration="1778000" />
+      <workItem from="1548188935383" duration="1772000" />
+      <workItem from="1548190738274" duration="1786000" />
+      <workItem from="1548192557232" duration="871000" />
+      <workItem from="1548224186114" duration="1766000" />
+      <workItem from="1548225985273" duration="1508000" />
+      <workItem from="1548228821416" duration="691000" />
+      <workItem from="1548237664126" duration="1119000" />
+      <workItem from="1548247813376" duration="1779000" />
+      <workItem from="1548292701609" duration="641000" />
+      <workItem from="1548293683023" duration="599000" />
+      <workItem from="1548296254054" duration="599000" />
+      <workItem from="1548302402809" duration="1070000" />
+      <workItem from="1548304218089" duration="1743000" />
+      <workItem from="1548306008197" duration="1598000" />
+      <workItem from="1548308737486" duration="1781000" />
+      <workItem from="1548310857843" duration="1869000" />
+      <workItem from="1548313186029" duration="1779000" />
+      <workItem from="1548314997801" duration="1789000" />
+      <workItem from="1548318162173" duration="1425000" />
+      <workItem from="1548320273491" duration="596000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30796000" />
+    <option name="totallyTimeSpent" value="325952000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -284,27 +750,28 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1366" height="692" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.225" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3439394" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32920355" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32920355" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3285968" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49772727" weight="0.32920355" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49848485" weight="0.3285968" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5022727" side_tool="true" weight="0.32920355" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4969697" visible="true" weight="0.27353463" />
-      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49924242" weight="0.32920355" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5037879" side_tool="true" weight="0.27175844" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49621212" visible="true" weight="0.1811723" />
+      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49924242" weight="0.3285968" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.32954547" />
       <window_info anchor="right" id="Database" order="4" weight="0.2" />
       <window_info anchor="right" id="R Graphics" order="5" weight="0.32954547" />
       <window_info anchor="right" id="R Packages" order="6" weight="0.32954547" />
@@ -314,107 +781,348 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/css/c3/c3.min.css">
+    <entry file="file://$PROJECT_DIR$/static/css/tabs.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+        <state relative-caret-position="310">
+          <caret line="1770" column="12" lean-forward="true" selection-start-line="1770" selection-start-column="12" selection-end-line="1770" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/web/css/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="517" column="21" lean-forward="true" selection-start-line="517" selection-start-column="21" selection-end-line="517" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/team.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/shareholder.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="38" column="46" lean-forward="true" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
+          <folding>
+            <element signature="e#1562#1585#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/enquiry.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/layouts/saving.html" />
+    <entry file="file://$PROJECT_DIR$/templates/web/csr.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/lockers.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="26" column="47" lean-forward="true" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/saving.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/contact.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="56" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6855">
+          <caret line="457" column="14" selection-start-line="457" selection-start-column="14" selection-end-line="457" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/web/js/datepicker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/web/css/datepicker.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/layouts/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3750">
+          <caret line="250" column="17" selection-start-line="250" selection-start-column="17" selection-end-line="250" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/fixedDeposite.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="58" selection-start-line="3" selection-start-column="58" selection-end-line="3" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/recurringDeposite.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="37" selection-start-column="37" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/loan.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1080">
+          <caret line="72" column="34" selection-start-line="72" selection-start-column="34" selection-end-line="72" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/career.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/mycss.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="19" selection-start-line="17" selection-start-column="2" selection-end-line="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/transaction.html" />
+    <entry file="file://$PROJECT_DIR$/masteradmin/migrations/0001_initial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/masteradmin/migrations/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/masteradmin/migrations/0002_auto_20190118_1749.py" />
+    <entry file="file://$PROJECT_DIR$/hbfnidhi/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hbfnidhi/settings.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/index.html">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="26" column="12" lean-forward="true" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
+          <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/masteradmin/tests.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/saving_transaction.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="968">
+          <caret line="365" column="38" lean-forward="true" selection-start-line="365" selection-start-column="38" selection-end-line="365" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/transaction.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="55" column="56" selection-start-line="55" selection-start-column="56" selection-end-line="55" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/member.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+          <folding>
+            <element signature="e#2529#2560#0#HTML" expanded="true" />
+            <element signature="e#3288#3307#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/masteradmin/admin.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/masteradmin/apps.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/masteradmin/models.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/masteradmin/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
+    <entry file="file://$PROJECT_DIR$/templates/admin/add_member.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        <state relative-caret-position="735">
+          <caret line="49" column="5" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/masteradmin/views.py">
+    <entry file="file://$PROJECT_DIR$/templates/admin/customer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1080">
+          <caret line="72" column="41" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hbfnidhi/urls.py">
+    <entry file="file://$PROJECT_DIR$/templates/admin/create_rd.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="149">
+          <caret line="44" column="76" lean-forward="true" selection-start-line="44" selection-start-column="76" selection-end-line="44" selection-end-column="76" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/layouts/base.html">
+    <entry file="file://$PROJECT_DIR$/templates/admin/saving_account.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        <state relative-caret-position="121">
+          <caret line="64" column="48" lean-forward="true" selection-start-line="64" selection-start-column="48" selection-end-line="64" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/index.html">
+    <entry file="file://$PROJECT_DIR$/templates/admin/create_saving.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1485">
-          <caret line="99" column="84" selection-start-line="99" selection-start-column="84" selection-end-line="99" selection-end-column="84" />
+        <state relative-caret-position="221">
+          <caret line="30" column="15" lean-forward="true" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/create_fd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="70" column="46" lean-forward="true" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/masteradmin/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+        <state relative-caret-position="210">
+          <caret line="18" column="48" selection-start-line="18" selection-start-column="48" selection-end-line="18" selection-end-column="48" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/myjs.js">
+    <entry file="file://$PROJECT_DIR$/web/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        <state relative-caret-position="376">
+          <caret line="86" column="13" selection-start-line="86" selection-start-column="13" selection-end-line="86" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/mycss.css">
+    <entry file="file://$PROJECT_DIR$/templates/admin/rd_account.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="109" column="1" selection-start-line="109" selection-start-column="1" selection-end-line="109" selection-end-column="1" />
+        <state relative-caret-position="181">
+          <caret line="47" column="60" lean-forward="true" selection-start-line="47" selection-start-column="60" selection-end-line="47" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/fd_account.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="49" column="25" lean-forward="true" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/customer_details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="180" column="87" lean-forward="true" selection-start-line="180" selection-start-column="87" selection-end-line="180" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/masteradmin/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="72" column="63" selection-start-line="72" selection-start-column="63" selection-end-line="72" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+        <state relative-caret-position="150">
+          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/masteradmin/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1665">
+          <caret line="111" column="50" selection-start-line="111" selection-start-column="50" selection-end-line="111" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/registration.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3090">
+          <caret line="206" column="38" selection-start-line="206" selection-start-column="38" selection-end-line="206" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/layouts/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="65" column="28" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
         </state>
       </provider>
     </entry>

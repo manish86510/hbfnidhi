@@ -1,0 +1,304 @@
+{% load staticfiles %}
+<!doctype html>
+<html class="no-js" lang="">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>HBF NIDHI</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="stylesheet" href={% static "web/css/bootstrap.min.css" %}>
+    <link rel="stylesheet" href={% static "web/css/animate.css" %}>
+    <link rel="stylesheet" href={% static "web/css/owl.carousel.min.css" %}>
+    <link rel="stylesheet" href={% static "web/css/swiper.min.css" %}>
+    <link rel="stylesheet" href={% static "web/css/font-awesome.min.css" %}>
+    <link rel="stylesheet" href={% static "web/css/flaticon.css" %}>
+    <link rel="stylesheet" href={% static "web/css/magnific-popup.css" %}>
+    <link rel="stylesheet" href={% static "web/css/metisMenu.min.css" %}>
+    <link rel="stylesheet" href={% static "web/css/styles.css" %}>
+    <link rel="stylesheet" href={% static "web/css/responsive.css" %}>
+    <link rel="stylesheet" href={% static "web/css/datepicker.css" %}>
+    <script src={% static "web/js/vendor/modernizr-2.8.3.min.js" %}></script>
+    <style>
+        .social-icon {
+            padding: 8px 0px;
+        }
+        .contact-info li {
+            padding: 0px 25px;
+            position: relative;
+            line-height: 20px;
+            margin: 5px 0px;
+        }
+        .header-top {
+            border-bottom: 1px solid #eaeaea;
+            height: 54px;
+        }
+        .slider-area2 .slider-items {
+            height: 500px;
+        }
+        .breadcumb-area {
+            min-height: 320px;
+            background: url('{% static "web/images/inner_banner.jpg" %}') no-repeat center center / cover;
+        }
+        .contact-form input, .contact-form textarea {
+            height: 34px;
+            width: 100%;
+            border: 1px solid #e5e5e5;
+            padding-left: 12px;
+            margin-bottom: 25px;
+        }
+        .contact-form input, .contact-form textarea {
+            height: 34px;
+            width: 100%;
+            border: 1px solid #e5e5e5;
+            padding-left: 12px;
+            margin-bottom: 0px;
+        }
+        .contact-form select{
+            height: 30px;
+        }
+        .contact-form input, .contact-form textarea {
+            height: 34px;
+            width: 100%;
+            border: 1px solid #e5e5e5;
+            padding-left: 10px;
+            margin-bottom: 0px;
+        }
+        select.form-control:not([size]):not([multiple]) {
+            height: calc(2.00rem + 2px);
+        }
+    </style>
+</head>
+<body>
+ <header class="header-area header-area2">
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-6 col-md-8 col-12">
+                        <ul class="contact-info d-flex">
+                            <li>
+                                <span><i class="fa fa-phone"></i>0120-4752255</span>
+                                <span><i class="fa fa-mobile"></i>9971-337-447</span>
+                            </li>
+                            <li>
+                                <span><i class="fa fa-envelope"></i> Info@hbfnidhi.com</span>
+                                <span><i class="fa fa-paper-plane-o"></i> www.hbfnidhi.com</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-xl-7 col-lg-6 col-sm-4 col-12 d-none d-md-block">
+                        <ul class="social-icon d-flex justify-content-end">
+                            <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li class="youtube"><a href="#"><i class="fa fa-youtube"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom bg-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-sm-7">
+                        <div class="logo">
+                            <a href="/">
+                                <img src={% static "web/images/logo3.png" %} alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 col-sm-10 d-none d-lg-block">
+                        <ul class="mainmenu d-flex justify-content-end">
+                            <li class="active"><a href="/">Home </a></li>
+                            <li><a href="javascript:void(0);">About Us</a>
+                                <ul>
+                                    <li><a href="/our_company/">Our Company</a></li>
+                                    <li><a href="/team/">Our Team</a></li>
+                                    <li><a href="/shareholder/">Shareholders</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0);">Our Products</a>
+                                <ul>
+                                    <li><a href="/saving/">Saving Account</a></li>
+                                    <li><a href="/fixed/">Fixed Deposite</a></li>
+                                    <li><a href="/recurring/">Recurring Deposite</a></li>
+                                    <li><a href="/loans/">Loans</a></li>
+                                    <li><a href="/lockers/">Lockers</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/doorsteps/">Doorsteps Services</a></li>
+                            <li><a href="/csr/">CSR</a></li>
+                            <li><a href="/career/">Career</a></li>
+                            <li><a href="/contact/">Contact</a></li>
+                            <li><a href="/login/" style="color: #fffaf0">Login</a></li>
+                            <li><a href="/registration/" style="color: #fffaf0">new user</a></li>
+                        </ul>
+                    </div>
+                    <div class="d-block d-lg-none col-4 pull-right col-sm-2">
+                        <ul class="menu">
+                            <li class="first"></li>
+                            <li class="second"></li>
+                            <li class="third"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="responsive-menu-area d-block d-sm-none">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="metismenu">
+                            <li class="active"><a href="/">Home </a></li>
+                            <li><a href="javascript:void(0);">About Us</a>
+                                <ul>
+                                    <li><a href="/our_company/">Our Company</a></li>
+                                    <li><a href="/team/">Our Team</a></li>
+                                    <li><a href="/shareholder/">Shareholders</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:void(0);">Our Products</a>
+                                <ul>
+                                    <li><a href="/saving/">Saving Account</a></li>
+                                    <li><a href="/fixed/">Fixed Deposite</a></li>
+                                    <li><a href="/recurring/">Recurring Deposite</a></li>
+                                    <li><a href="/loans/">Loans</a></li>
+                                    <li><a href="/lockers/">Lockers</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/doorsteps/">Doorsteps Services</a></li>
+                            <li><a href="/csr/">CSR</a></li>
+                            <li><a href="/career/">Career</a></li>
+                            <li><a href="/contact/">Contact</a></li>
+                            <li><a href="/login/" style="color: #fffaf0">Login</a></li>
+                            <li><a href="/registration/" style="color: #fffaf0">new user</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    {% block content %}
+
+    {% endblock %}
+    <!-- footer-area start -->
+    <footer class="footer-area">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3  col-sm-6 col-12">
+                        <div class="footer-widget footer-logo">
+                            <img src={% static "web/images/logo3.png" %} alt="" style="height: 60px;width: 160px;float: left">
+                            <div class="clearfix"></div>
+                            <p>HBF Nidhi Limited is launched by Expert Finance Management team members, pioneer in the financial services Industry. We are recognized under Section 406 of the Companies Act 2013. We are operating under the supervision of Reserve Bank of India</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="footer-widget footer-menu">
+                            <h3>Our Services</h3>
+                            <ul>
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Saving Account</a></li>
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Recurring Deposit</a></li>
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Fixed Deposite</a></li>
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Loans</a></li>
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Lockers</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="footer-widget footer-twitter">
+                            <h3>Twitter Feeds</h3>
+                            <ul>
+                                <li><a href="#"><i class="fa fa-twitter"></i>
+                                    https://twitter.com /envatO/ status/944202192013144064 https://twitter.com/envato/status/ 944202192013144064</a> </li>
+                                <li class="mb-0"><a href="#"><i class="fa fa-twitter"></i>
+                                    https://twitter.com /envatO/ status/944202192013144064 https://twitter.com/envato/status/ 944202192013144064</a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="footer-widget footer-contact">
+                            <h3>Contact Information</h3>
+                            <ul class="footer-contact-info">
+                                <li><span>Location: </span> C - 16, Sector - 6, Noida, UP (India) </li>
+                                <li><span>Email: </span> Info@hbfnidhi.com</li>
+                                <li><span>Phone: </span> 9971-337-447 / 0120-4752255</li>
+                            </ul>
+                            <h5>We are Social</h5>
+                            <ul class="social-icon d-flex">
+                                <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="youtube"><a href="#"><i class="fa fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 copyright">
+                        <p>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src={% static "web/js/vendor/jquery-2.2.4.min.js" %}></script>
+    <script src={% static "web/js/vendor/popper.min.js" %}></script>
+    <script src={% static "web/js/bootstrap.min.js" %}></script>
+    <script src={% static "web/js/owl.carousel.min.js" %}></script>
+    <script src={% static "web/js/datepicker.js" %}></script>
+    <script src={% static "web/js/swiper.min.js" %}></script>
+    <script src={% static "web/js/mailchimp.js" %}></script>
+    <script src={% static "web/js/jquery.canvasjs.min.js" %}></script>
+    <script src={% static "web/js/metisMenu.min.js" %}></script>
+    <script src={% static "web/js/plugins.js" %}></script>
+ <script>
+    window.onload = function () {
+    var limit = 10000;    //increase number of dataPoints by increasing the limit
+    var y = 100;
+    var data = [];
+    var dataSeries = { type: "line" };
+    var dataPoints = [];
+    for (var i = 0; i < limit; i += 1) {
+        y += Math.round(Math.random() * 10 - 5);
+        dataPoints.push({
+            x: i,
+            y: y
+        });
+    }
+    dataSeries.dataPoints = dataPoints;
+    data.push(dataSeries);
+
+    //Better to construct options first and then pass it as a parameter
+    var options = {
+        zoomEnabled: true,
+        animationEnabled: true,
+        axisY: {
+            includeZero: false
+        },
+        data: data  // random data
+    };
+        $("#chartContainer").CanvasJSChart(options);
+    }
+    </script>
+    <script src={% static "web/js/scripts.js" %}></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-23581568-13');
+</script>
+</body>
+</html>

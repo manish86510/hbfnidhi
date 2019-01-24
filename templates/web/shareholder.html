@@ -1,0 +1,118 @@
+{% extends 'web/layouts/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <style>
+    .breadcumb-area {
+            min-height: 320px;
+            background: url('{% static "web/images/team.jpg" %}') no-repeat center center / cover;
+        }
+    .service-wrap {
+        background: #fff;
+        box-shadow: 0px 2px 10px rgba(0,0,0,.1);
+        padding: 26px 25px;
+        margin-bottom: 30px;
+    }
+    .service-items {
+        background: #fff;
+        box-shadow: 0px 2px 10px rgba(0,0,0,.1);
+        padding: 30px 20px 35px 25px;
+        margin-bottom: 30px;
+        position: relative;
+    }
+    img {
+        max-width: 100%;
+        height: 50px;
+        float: right;
+        margin-top: -10px;
+    }
+    .service-area {
+        padding: 40px 0px 100px;
+    }
+    </style>
+    <div class="breadcumb-area flex-style  black-opacity">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>About Us Company</h2>
+                    <ul class="d-flex">
+                        <li><a href="/">Home</a></li>
+                        <li><i class="fa fa-angle-double-right"></i></li>
+                        <li><span>Shareholders</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-area position-relative">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="about-img">
+                        <iframe style="margin-top: 10%" width="560" height="312" src="https://www.youtube.com/embed/Hh5Bhxu37So" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="about-content">
+                        <h2>SHAREHOLDERS</h2>
+                        <h3>Backbone of HBF Nidhi Ltd.</h3>
+                        <p>HBF Nidhi Ltd. starts process with shareholders & they are not just our shareholders they are our family. Increase value of shares is a source of second income for shareholders.</p>
+                        <p>HBF Nidhi Ltd. is a fully organized firm that believes in Transparency so that our shareholder can maintain a long-term relationship. HBF Nidhi Ltd. maintains a large number of shareholders because we work on MUTUAL BENEFITS Concepts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- about-area end -->
+    <!-- service-area start -->
+    <div class="service-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title text-center">
+                        <h2>Why Invest HBF Nidhi Ltd.?</h2>
+                        <img src="assets/images/line.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="service-items">
+                        <p>HBF Nidhi Ltd. works on Doorstep Banking startup. We maintain low cost of infrastructure and works with single branch concept in order to maintain profitability.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="service-items">
+                        <p>HBF Nidhi Ltd. works with secure business model we only provide secured loans which leads our org to be financially strong & secure.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="service-items">
+                        <p>HBF Nidhi Ltd. only works with housing society concept, where we manage a large number of members by single employees.</p>
+                    </div>
+                </div>
+            </div>
+                <div class="col-lg-12 col-sm-12">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-12">
+                            <div class="service-items">
+                                <p>HBF Nidhi Ltd. takes experts advice before expansion, it reduces financial risk.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-12">
+                            <div class="service-items">
+                                <p>HBF Nidhi Ltd. maintains reserves equal to or more than the total amount invested by shareholders.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-12">
+                            <div class="service-items">
+                                <p>HBF Nidhi Ltd. instead of working with corporate it works with members only. So that, max shareholders can be benefited .</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/enquiry/"><img src={% static "web/images/enquiry.png" %}></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

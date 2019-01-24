@@ -1,0 +1,107 @@
+{% extends 'web/layouts/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <style>
+        .about-area {
+            padding: 58px 0px;
+            overflow: hidden;
+            background: url({% static "web/images/about/1.png" %}) no-repeat center center / cover;
+        }
+    </style>
+    <div class="breadcumb-area flex-style  black-opacity">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Our Products</h2>
+                    <ul class="d-flex">
+                        <li><a href="/">Home</a></li>
+                        <li><i class="fa fa-angle-double-right"></i></li>
+                        <li><span>Saving Account</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about-area position-relative">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="about-img">
+                        <iframe width="560" height="312" src="https://www.youtube.com/embed/Hh5Bhxu37So" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="about-content">
+                        <h3>HBF Savings Account</h3>
+                        <p>HBF NIDHI LTD offers an attractive savings account to our members with a interest rate of 6% . We offers this savings account facility to our tie-up housing society members where banking service/solution are not easy for senior citizen, ladies & others.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="service-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h3>Features of HBF Saving Account</h3>
+                    <ul style="margin-left: 20px">
+                        <li><b>*</b>  Minimum amount of deposit for opening a Savings Account with a minimum balance of Rs. 100 only which is to be maintained always.</li>
+                        <li><b>*</b>  The money can be withdrawn and deposited by using withdrawal/Deposit slip in the concerned branch(es) or on demand at your doorstep free of charges*</li>
+                        <li><b>*</b>  <b>To enable the depositor to earn high rate of Interest below are the slabs for Interest Rates provided:</b></ul>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Daily Minimum Balance Required in your Account</th>
+        <th>Interest Rate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Less than or Equal to Rs. 10,000/-</td>
+        <td>@6% p.a.</td>
+      </tr>
+      <tr>
+        <td>For Rs. 10,001 and above</td>
+        <td>@6% p.a.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+                    <ul style="margin-left: 20px">
+                        <li><b>*</b>  NEFT Transfers’ facility will also be provided for ease of transacting</li>
+                        <li><b>*</b>  Loans will NOT be provided against the balance kept in HBF Savings Account</li>
+                    </ul>
+                </div>
+                <p>&nbsp;</p>
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h3>Documents required for opening Savings Account</h3>
+                    <p>You can open your HBF Savings Account by providing evidence of the depositor in the form of proof of identity and address as under:</p>
+                    <ul style="margin-left: 20px">
+                                   <li><b>*</b>  Proof of Identity (any one of the following).</li>
+                                   <ul style="list-style-type:square;margin-left: 40px">
+                                       <li>Passport</li>
+                                       <li>Unique Identification Number</li>
+                                       <li>Income-tax PAN card</li>
+                                       <li>Elector Photo Identity Card</li>
+                                       <li>Driving licence</li>
+                                       <li>Ration card</li>
+                                   </ul>
+                                   <li><b>*</b>  Proof of address (any one of the following)</li>
+                                   <ul style="list-style-type:square;margin-left: 40px">
+                                       <li>Passport</li>
+                                       <li>Unique Identification Number</li>
+                                       <li>Elector Photo Identity Card</li>
+                                       <li>Driving licence</li>
+                                       <li>Ration card</li>
+                                       <li>Telephone bill</li>
+                                       <li>Bank account statement</li>
+                                       <li>Electricity bill</li>
+                                   </ul>
+                               </ul>
+                </div>
+                <button class="btn btn-info" style="margin: 12px"><a target="blank" href={% static "downloads/open_saving_account_form.pdf" %}>Download Saving Form</a></button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
