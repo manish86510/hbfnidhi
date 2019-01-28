@@ -31,11 +31,8 @@
     <link rel="stylesheet" href={% static "css/editor/datetimepicker.css"%}>
     <link rel="stylesheet" href={% static "css/editor/bootstrap-editable.css"%}>
     <link rel="stylesheet" href={% static "css/editor/x-editor-style.css"%}>
-    <!-- normalize CSS
-		============================================ -->
     <link rel="stylesheet" href={% static "css/data-table/bootstrap-table.css"%}>
     <link rel="stylesheet" href={% static "css/data-table/bootstrap-editable.css"%}>
-
     <script src={% static "js/vendor/modernizr-2.8.3.min.js" %}></script>
     <style>
         .sidebar-nav .metismenu a {
@@ -48,7 +45,6 @@
     </style>
 </head>
 <body>
-    <!-- Start Left menu area -->
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
@@ -59,13 +55,18 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li>
-                            <a href="/admin/Das">
+                            <a href="/admin/login/">
 								   <span class="mini-click-non">Dashboard</span>
                             </a>
                         </li>
                         <li>
                             <a title="Landing Page" href="/admin/members/" aria-expanded="false">
                                 <span class="mini-click-non">Members</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a title="Landing Page" href="/admin/transfer/" aria-expanded="false">
+                                <span class="mini-click-non">Money Transfer</span>
                             </a>
                         </li>
                         <li>
@@ -89,6 +90,11 @@
                                 <li>
                                     <a title="Add Students" href="/admin/saving_account/">
                                     <span class="mini-sub-pro">All Saving Account</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a title="Edit Students" href="/admin/saving_account_transaction/">
+                                    <span class="mini-sub-pro">Transaction</span>
                                     </a>
                                 </li>
                                 <li>

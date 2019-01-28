@@ -108,6 +108,10 @@ class Admin(models.Model):
     password = models.CharField(max_length=200, null=True)
     contact = models.CharField(max_length=80, null=True)
     address = models.CharField(max_length=250, null=True)
+    description = models.CharField(max_length=250, null=True)
+    facebook = models.CharField(max_length=250, null=True)
+    twitter = models.CharField(max_length=250, null=True)
+    linkedin = models.CharField(max_length=250, null=True)
     is_active = models.IntegerField()
     created_date = models.DateTimeField(auto_now_add=True)
 
@@ -147,6 +151,7 @@ class DebitTransaction(models.Model):
     type_of_transaction = models.CharField(max_length=20, null=True)
     debit_type = models.CharField(max_length=20, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
+    status = models.IntegerField(null=True)
 
 
 class CreditTransaction(models.Model):
@@ -159,6 +164,7 @@ class CreditTransaction(models.Model):
     models.CharField(max_length=20, null=True)
     debit_type = models.CharField(max_length=20, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
+    status = models.IntegerField(null=True)
 
 
 class FD(models.Model):
@@ -170,6 +176,7 @@ class FD(models.Model):
     maturity_amount = models.CharField(max_length=20)
     status = models.CharField(max_length=20)
     is_active = models.IntegerField(null=True)
+    scheme = models.IntegerField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
 
 
@@ -182,6 +189,7 @@ class RD(models.Model):
     rate_of_interest = models.CharField(max_length=20)
     maturity_amount = models.CharField(max_length=20)
     is_active = models.IntegerField(null=True)
+    scheme = models.IntegerField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
 
 

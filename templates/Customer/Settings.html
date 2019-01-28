@@ -1,0 +1,76 @@
+{% extends 'Customer/layout/base.html' %}
+{% block content %}
+
+      <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="row top_tiles">
+              <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                   <div class="tile-stats" style="background-color: #003b4e; color: #0b2e13 ;">
+                     <a class="site_title" style="background-color: #51a9b5;" > Settings </a>
+                </div>
+              </div>
+            </div>
+               <div class="row" style="width: 70%;margin-left: 60px">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Change Password</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                    <form class="form-horizontal form-label-left" method="post" action="setting">
+                            {% csrf_token %}
+                     <div class="item form-group">
+                        <label for="password" class="control-label col-md-3">Old Password</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="oldpassword" type="password" name="oldpassword"  class="form-control col-md-7 col-xs-12" required="required">
+                        </div>
+                      </div>
+
+                      <div class="ln_solid">
+
+                      </div>
+                       <div class="item form-group">
+                        <label for="password" class="control-label col-md-3">New Password</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="newpassword" type="password" name="newpassword"  class="form-control col-md-7 col-xs-12" required="required">
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label for="password2" class="control-label col-md-3 col-sm-3 col-xs-12">Confirm Password</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="conpassword" type="password" name="conpassword" class="form-control col-md-7 col-xs-12" required="required">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-md-9 col-md-offset-3">
+
+                          <button type="submit" class="btn btn-success" >Submit</button>
+                        </div>
+                      </div>
+
+                       <div class="form-group">
+                        <div class="col-md-9 col-md-offset-3">
+                            <br/>
+                            {{ message }}
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+{% endblock content %}

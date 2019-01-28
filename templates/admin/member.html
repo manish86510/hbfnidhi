@@ -40,15 +40,15 @@
                         <div class="hpanel hblue contact-panel contact-panel-cs responsive-mg-b-30">
                             <div class="panel-body custom-panel-jw">
                                 <div class="social-media-in">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                                    <a href="{{ data.facebook }}" target="_blank"><i class="fa fa-facebook"></i></a>
+                                    <a href="{{ data.twitter }}" target="_blank"><i class="fa fa-twitter"></i></a>
+                                    <a href="{{ data.linkedin }}" target="_blank"><i class="fa fa-linkedin"></i></a>
                                 </div>
                                 <img alt="logo" class="img-circle m-b" style="height: 70px;width:70px" src={% static "img/user-male-icon.png" %}>
                                 <h3><a href="">{{ data.admin_name }}</a></h3>
                                 <p class="all-pro-ad">{{ data.address }}</p>
                                 <p>
-                                    Lorem ipsum dolor sit amet of, consectetur adipiscing elitable. Vestibulum tincidunt est vitae ultrices accumsan.
+                                    {{ data.description }}
                                 </p>
                             </div>
                             <div class="panel-footer contact-footer">

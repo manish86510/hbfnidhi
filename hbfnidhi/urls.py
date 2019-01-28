@@ -8,6 +8,7 @@ import web
 urlpatterns = [
     path('admin/', include('masteradmin.urls')),
     path('', include('web.urls')),
+    path('customer/', include('customer.urls')),
 ]
 
 

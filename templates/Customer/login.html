@@ -1,0 +1,79 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Customer Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="icon" type="image/jpg" href='{% static "customer/img/hbf.png" %}'/>
+
+	<link rel="stylesheet" type="text/css" href={% static "customer/css/Customer_login/bootstrap.min.css" %}>
+
+	<link rel="stylesheet" type="text/css" href={% static "customer/css/Customer_login/font-awesome.min.css" %}>
+
+	<link rel="stylesheet" type="text/css" href={% static "customer/css/Customer_login/material-design-iconic-font.min.css"%}>
+
+	<link rel="stylesheet" type="text/css" href={% static "customer/css/Customer_login/animate.css" %}>
+
+	<link rel="stylesheet" type="text/css" href={% static "customer/css/Customer_login/hamburgers.min.css" %}>
+
+	<link rel="stylesheet" type="text/css" href={% static "customer/css/Customer_login/animsition.min.css" %}>
+
+	<link rel="stylesheet" type="text/css" href={% static "customer/css/Customer_login/select2.min.css" %}>
+
+	<link rel="stylesheet" type="text/css" href={% static "customer/css/Customer_login/daterangepicker.css" %}>
+
+	<link rel="stylesheet" type="text/css" href={% static "customer/css/Customer_login/util.css" %}>
+
+	<link rel="stylesheet" type="text/css" href={% static "customer/css/Customer_login/main.css" %}>
+
+</head>
+<body>
+
+
+	<div class="container-login100" style="background-image:url('{{ STATIC_URL }}static/img/bg.jpg')">
+		<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30" style="margin-left: 35%;margin-top: 5%">
+			<form class="login100-form validate-form" method="POST" action="customer">
+                {% csrf_token %}
+				<span class="login100-form-title p-b-37">
+					Member Login
+				</span>
+
+				<div class="wrap-input100 validate-input m-b-20" data-validate="Enter username ">
+					<input class="input100" type="text" name="username" placeholder="username ">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input m-b-25" data-validate = "Enter password">
+					<input class="input100" type="password" name="pass" placeholder="password">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="container-login100-form-btn">
+					<button class="login100-form-btn">
+					Sign In
+					</button>
+				</div>
+
+                <div class="login100-form-title p-b-0">
+                       <br/>
+					  {{ message }}
+				</div>
+                &nbsp;
+			</form>
+		</div>
+	</div>
+	<div id="dropDownSelect1"></div>
+	<script src={% static "customer/js/Customer_login/jquery-3.2.1.min.js" %}></script>
+	<script src={% static "customer/js/Customer_login/animsition.min.js"%}></script>
+	<script src={% static "customer/js/Customer_login/popper.js" %}></script>
+	<script src={% static "customer/js/Customer_login/bootstrap.min.js" %}></script>
+	<script src={% static "customer/js/Customer_login/select2.min.js" %}></script>
+	<script src={% static "customer/js/Customer_login/moment.min.js" %}></script>
+	<script src={% static "customer/js/Customer_login/daterangepicker.js" %}></script>
+	<script src={% static "customer/js/Customer_login/countdowntime.js" %}></script>
+    <script src={%  static "customer/js/Customer_login/main.js" %}></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+{% extends 'Customer/layout/base.html' %}
+{% block content %}
+    {% load staticfiles %}
+    <script>
+        function non_break_roi() {
+              var ab = document.getElementById("nonbreak_roi");
+              var strUser = ab.options[ab.selectedIndex].text;
+              var e = document.getElementById("scheme");
+              var scheme = e.options[e.selectedIndex].value;
+              $.ajax({
+              url: "rate",
+              data: {'strUser' : strUser ,'scheme' : scheme},
+              dataType: "json",
+              success: function (data) {
+                  $("#intrest_rate").val(data.rate);
+                  var amount = $("#amount").val();
+                  var irate =data.rate/400;
+                  var maturity_amount = (1+irate);
+                  var time = (strUser/12);
+                  var ftime = time*4;
+                  var power = Math.pow(maturity_amount, ftime);
+                  var mat_amount = amount*power;
+                  $("#maturity").val(mat_amount);
+              },
+              failure: function(data) {
+                  document.getElementById("account").value = "Not Available";
+              }
+              });
+        }
+    </script>
+    <script src="{% static "customer/js/Customer_dashboard/Editable.js" %}"></script>
+      <!-- page content -->
+    <div class="right_col" role="main" xmlns="http://www.w3.org/1999/html">
+          <div class="">
+            <div class="row top_tiles">
+              <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                   <div class="tile-stats" style="background-color: #003b4e; color: #0b2e13 ;">
+                     <a class="site_title" style="background-color: #51a9b5;" > Fixed Deposit (FD)</a>
+                </div>
+              </div>
+            </div>
+             <div class="row">
+              <div class="col-md-1 col-sm-1 col-xs-2">
+              </div>
+              <div class="col-md-10 col-sm-10 col-xs-7">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Apply for FD</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                    <form class="form-horizontal form-label-left input_mask"  method="POST" action="Fd">
+                            {% csrf_token %}
+                    <div class="form-group">
+                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Amount : </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text"  id="amount" name="amount" class="form-control">
+                        </div>
+                    </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Account No :</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text"  id="account" name="account" value="{{ acc_num.account_no }}" class="form-control" readonly="readonly" placeholder="Read-Only Input" >
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Scheme : </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select id="scheme" name="scheme" onclick="selectedvalue()" class="form-control">
+                              <option value="0">Non-Breakable</option>
+                              <option value="1">Breakable</option>
+                          </select>
+                        </div>
+                       </div>
+
+                      <div class="form-group my" id="Non-Breakable">
+                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Tenure :</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+
+                        <select id="nonbreak_roi" name="nonbreak_roi" onclick="non_break_roi()" class="form-control">
+                            {% for data in scheme_non_breakable %}
+                              <option>{{ data.tenure }} </option>
+                            {% endfor %}
+                        </select>
+                        </div>
+                      </div>
+
+                     <div class="form-group my" id="Breakable" >
+                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Tenure :</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+
+                        <select id="break_roi" name="break_roi" oncuechange="non_break_roi()" class="form-control">
+                            {% for data in scheme_breakable %}
+                              <option>{{ data.tenure }}</option>
+                            {% endfor %}
+                        </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group " >
+                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Rate of interest : </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="intrest_rate" name="intrest_rate" value="{{ rate.values }}" class="form-control" readonly="readonly" placeholder="Read-Only Input" >
+                        </div>
+                      </div>
+
+                       <div class="form-group">
+                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Maturity Amount : </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="maturity" name="maturity" class="form-control"  readonly>
+                        </div>
+                      </div>
+
+                      <div class="ln_solid"></div>
+
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                          {{ message }}
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                          <button type="submit" class="btn btn-success" >Submit</button>
+                        </div>
+                      </div>
+                 </form>
+                  </div>
+                </div>
+              </div>
+             </div>
+          </div>
+          </div>
+{% endblock content %}

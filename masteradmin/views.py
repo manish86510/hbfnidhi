@@ -33,7 +33,7 @@ class Dashboard:
                 member = self.POST.get('member')
                 email = self.POST.get('email')
                 Admin.objects.get(admin_name=member, email=email)
-                message = "User Already Created !"
+                message = "Member Already Created !"
                 return render(self, 'admin/add_member.html', {'message': message})
             except Exception:
                 admin = Admin(
@@ -44,6 +44,10 @@ class Dashboard:
                     password=self.POST.get('password'),
                     contact=self.POST.get('contact'),
                     address=self.POST.get('address'),
+                    description=self.POST.get('description'),
+                    facebook=self.POST.get('facebook'),
+                    twitter=self.POST.get('twitter'),
+                    linkedin=self.POST.get('linkedin'),
                     is_active=1,
                     created_date=models.DateTimeField(auto_now_add=True),
                 )
@@ -68,11 +72,31 @@ class Dashboard:
         return render(self, 'admin/customer.html', {'customer': customer_data})
 
     def view_customers(self, member):
-        customer_data = Customer.objects.get(member=member)
-        customer_payment = UserPayment.objects.get(user=customer_data.id)
-        nominee = UserFamily.objects.get(user=customer_data.id)
-        document = UserDocument.objects.get(user=customer_data.id)
-        other = UserOther.objects.get(user=customer_data.id)
+        try:
+            customer_data = Customer.objects.get(member=member)
+        except:
+            customer_data = None
+
+        try:
+            customer_payment = UserPayment.objects.get(user=customer_data.id)
+        except:
+            customer_payment = None
+
+        try:
+            nominee = UserFamily.objects.get(user=customer_data.id)
+        except:
+            nominee = None
+
+        try:
+            document = UserDocument.objects.get(user=customer_data.id)
+        except:
+            document = None
+
+        try:
+            other = UserOther.objects.get(user=customer_data.id)
+        except:
+            other = None
+
         context = {'customer': customer_data, 'payment': customer_payment, 'nominee': nominee, 'document': document, 'other': other}
         return render(self, 'admin/customer_details.html', context)
 
@@ -191,3 +215,18 @@ class Dashboard:
     def rd_account(self):
         rd_data = RD.objects.all()
         return render(self, 'admin/rd_account.html', {'rd_data': rd_data})
+
+    def active_fd(self, active, account):
+        FD.objects.filter(account_number=account).update(is_active=active)
+        fd_data = FD.objects.all()
+        return render(self, 'admin/fd_account.html', {'fd_data': fd_data})
+
+    def active_rd(self, active, account):
+        RD.objects.filter(account_number=account).update(is_active=active)
+        rd_data = RD.objects.all()
+        return render(self, 'admin/rd_account.html', {'rd_data': rd_data})
+
+    def transfer(self):
+        credit = CreditTransaction.objects.all().order_by('-id')
+        debit = DebitTransaction.objects.all().order_by('-id')
+        return render(self, 'admin/saving_transaction.html', {'credit': credit, 'debit': debit})

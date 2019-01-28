@@ -50,8 +50,9 @@
                                                 <th data-field="agent">Ac.No</th>
                                                 <th data-field="email">Tenure</th>
                                                 <th data-field="phone">Amount</th>
+                                                <th data-field="pincode">Interest(Quarterly)</th>
                                                 <th data-field="pincode">Maturity Amount</th>
-                                                <th data-field="complete">Opening DAte</th>
+                                                <th data-field="complete">Opening Date</th>
                                                 <th data-field="date">Active</th>
                                             </tr>
                                         </thead>
@@ -59,20 +60,17 @@
                                         {% for data in fd_data %}
                                             <tr>
                                                 <td>{{ forloop.counter }}</td>
-                                                <td><a href="/admin/profile/{{ data.member }}/"><u>{{ data.member }}</u></a></td>
-                                                <td>{{ data.agent }}</td>
-                                                <td>{{ data.email }}</td>
-                                                <td>{{ data.mobile }}</td>
-                                                <td>{{ data.registration_date }}</td>
-                                                    {% if data.is_verify == 0 %}
-                                                        <td><a href="/admin/verify/{{ data.is_verify }}/{{ data.member }}/"><button class="btn btn-info">Verified</button></a></td>
-                                                    {% else %}
-                                                        <td><a href="/admin/verify/{{ data.is_verify }}/{{ data.member }}/"><button class="btn btn-info">Not Verify</button></a></td>
-                                                    {% endif %}
+                                                <td>{{ data.associated_member }}</td>
+                                                <td><a href="/admin/fd_info/{{ data.account_number }}/"><u>{{ data.account_number }}</u></a></td>
+                                                <td>{{ data.tenure }}</td>
+                                                <td>{{ data.amount }}</td>
+                                                <td>{{ data.rate_of_interest }}</td>
+                                                <td>{{ data.maturity_amount }}</td>
+                                                <td>{{ data.created_date }}</td>
                                                     {% if data.is_active == 0 %}
-                                                        <td><a href="/admin/active/{{ data.is_active }}/{{ data.member }}/"><button class="btn btn-info">Active</button></a></td>
+                                                        <td><a href="/admin/fd/active/1/{{ data.account_number }}/"><button class="btn btn-info">Active</button></a></td>
                                                     {% else %}
-                                                        <td><a href="/admin/active/{{ data.is_active }}/{{ data.member }}/"><button class="btn btn-info">Not Active</button></a></td>
+                                                        <td><a href="/admin/fd/active/0/{{ data.account_number }}/"><button class="btn btn-info">Not Active</button></a></td>
                                                     {% endif %}
                                             </tr>
                                         {% endfor %}
