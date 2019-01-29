@@ -14,11 +14,10 @@
               success: function (data) {
                   $("#intrest_rate").val(data.rate);
                   var amount = $("#amount").val();
-                  var irate =data.rate/400;
+                  var irate =data.rate/100;
                   var maturity_amount = (1+irate);
                   var time = (strUser/12);
-                  var ftime = time*4;
-                  var power = Math.pow(maturity_amount, ftime);
+                  var power = Math.pow(maturity_amount, time);
                   var mat_amount = amount*power;
                   $("#maturity").val(mat_amount);
               },

@@ -20,9 +20,9 @@ class Dashboard:
                 email = self.POST.get('email')
                 password = self.POST.get('password')
                 result = Admin.objects.get(email=email, password=password, is_active=1)
-                self.session['user_name'] = result.admin_name;
-                self.session['user_id'] = result.id;
-                self.session['user_role'] = result.role;
+                self.session['user_name'] = result.admin_name
+                self.session['user_id'] = result.id
+                self.session['user_role'] = result.role
                 return render(self, 'admin/index.html', {'result': result, 'username': result.admin_name})
             except Exception:
                 message = "Email Id & Password is invalid !"
@@ -230,8 +230,14 @@ class Dashboard:
         return render(self, 'admin/rd_account.html', {'rd_data': rd_data})
 
     def transfer(self):
-        credit = CreditTransaction.objects.all().order_by('-id')
-        debit = DebitTransaction.objects.all().order_by('-id')
+        try:
+            credit = CreditTransaction.objects.all().order_by('-id')
+        except:
+            credit = None
+        try:
+            debit = DebitTransaction.objects.all().order_by('-id')
+        except:
+            debit = None
         return render(self, 'admin/saving_transaction.html', {'credit': credit, 'debit': debit})
 
     def saving_info(self, member, account):
