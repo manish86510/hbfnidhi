@@ -9,7 +9,10 @@ import datetime
 
 class Dashboard:
     def index(self):
-        return render(self, 'admin/login.html')
+        if self.session['user_name']:
+            return render(self, 'admin/index.html')
+        else:
+            return render(self, 'admin/login.html')
 
     def login(self):
         if self.method == 'POST':
@@ -230,3 +233,20 @@ class Dashboard:
         credit = CreditTransaction.objects.all().order_by('-id')
         debit = DebitTransaction.objects.all().order_by('-id')
         return render(self, 'admin/saving_transaction.html', {'credit': credit, 'debit': debit})
+
+    def saving_info(self, member, account):
+        try:
+            customer = Customer.objects.get(member=member, is_active=1)
+            saving_info = SavingAccount.objects.get(account_no=account, is_active=1)
+        except:
+            customer = None;
+            saving_info = None;
+        try:
+            credit = CreditTransaction.objects.get(member=member).order_by('-id')
+        except:
+            credit = None
+        try:
+            debit = DebitTransaction.objects.all(member=member).order_by('-id')
+        except:
+            debit = None
+        return render(self, 'admin/transaction_info.html', {'credit': credit, 'debit': debit, 'saving': saving_info, 'customer': customer})

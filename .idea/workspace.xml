@@ -2,374 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50f7c42f-de37-4e2a-b4ec-a8a455ca2572" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/customer/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/bootstrap-colorpicker.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/bootstrap-datetimepicker.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/bootstrap-theme.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/buttons.bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/cropper.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/custom.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/dataTables.bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/daterangepicker.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/fixedHeader.bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/font-awesome.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/green.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/ion.rangeSlider.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/ion.rangeSlider.skinFlat.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/normalize.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/nprogress.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/prettify.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/responsive.bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/scroller.bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/select2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/starrr.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_dashboard/switchery.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_login/animate.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_login/animsition.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_login/animsition.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_login/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_login/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_login/daterangepicker.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_login/font-awesome.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_login/font-awesome.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_login/hamburgers.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_login/hamburgers.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_login/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_login/material-design-iconic-font.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_login/material-design-iconic-font.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_login/select2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_login/select2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/Customer_login/util.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/accordions.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/alerts.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/animate.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/buttons.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/c3/c3.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/calendar/fullcalendar.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/calendar/fullcalendar.print.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/chosen/bootstrap-chosen.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/chosen/chosen-sprite.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/code-editor/ambiance.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/code-editor/codemirror.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/colorpicker/colorpicker.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/cropper/cropper.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/data-table/bootstrap-editable.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/data-table/bootstrap-table.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/datapicker/colorpicker.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/datapicker/datepicker3.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/dropzone/dropzone.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/duallistbox/bootstrap-duallistbox.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/editor/bootstrap-editable.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/editor/datetimepicker.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/editor/select2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/editor/x-editor-style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/educate-custon-icon.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/font-awesome.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/form.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/form/all-type-forms.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/form/themesaller-forms.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/ionRangeSlider/ion.rangeSlider.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/ionRangeSlider/ion.rangeSlider.skinFlat.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/ionRangeSlider/sprite-skin-flat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/meanmenu.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/metisMenu/metisMenu-vertical.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/metisMenu/metisMenu.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/modals.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/morrisjs/morris.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/mycss.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/normalize.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/notifications/Lobibox.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/notifications/notifications.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/owl.carousel.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/owl.theme.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/owl.transitions.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/preloader/preloader-style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/responsive.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/scrollbar/jquery.mCustomScrollbar.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/select2/select2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/summernote/fonts/summernote.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/summernote/fonts/summernote.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/summernote/fonts/summernote.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/summernote/summernote.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/tabs.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/touchspin/jquery.bootstrap-touchspin.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/tree-viewer/32px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/tree-viewer/throbber.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/css/tree-viewer/tree-viewer.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/FontAwesome.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_dashboard/FontAwesome.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_dashboard/fontawesome-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_dashboard/fontawesome-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_dashboard/fontawesome-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_dashboard/fontawesome-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_dashboard/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_dashboard/glyphicons-halflings-regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_dashboard/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_dashboard/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_dashboard/glyphicons-halflings-regular.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_login/FontAwesome.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_login/JosefinSans-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_login/SourceSansPro-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_login/SourceSansPro-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_login/SourceSansPro-SemiBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_login/fontawesome-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_login/fontawesome-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_login/fontawesome-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_login/fontawesome-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/customer_login/fontawesome-webfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/educate-icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/educate-icon.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/educate-icon.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/fontawesome-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/fontawesome-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/fontawesome-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/fontawesome-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/fontawesome-webfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/bg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/blog-details/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/contact/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/contact/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/contact/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/contact/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/courses/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/courses/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/courses/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/cropper/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/green1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/hbf.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/logo/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/logo/logosn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/notification/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/notification/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/notification/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/notification/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/notification/5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/notification/6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/product/book-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/product/book-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/product/book-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/product/book-4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/product/pro4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/product/profile-bg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/profile/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/student/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/student/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/student/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/img/student/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/Chart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/Editable.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/bootstrap-colorpicker.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/bootstrap-datetimepicker.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/buttons.bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/buttons.flash.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/buttons.html5.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/buttons.print.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/cropper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/curvedLines.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/custom.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/custom.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/dataTables.bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/dataTables.buttons.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/dataTables.fixedHeader.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/dataTables.keyTable.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/dataTables.responsive.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/dataTables.scroller.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/date.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/daterangepicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/fastclick.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/icheck.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/ion.rangeSlider.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/jquery.dataTables.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/jquery.flot.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/jquery.flot.orderBars.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/jquery.flot.pie.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/jquery.flot.resize.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/jquery.flot.selection.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/jquery.flot.spline.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/jquery.flot.stack.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/jquery.flot.symbol.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/jquery.flot.time.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/jquery.inputmask.bundle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/jquery.knob.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/jquery.sparkline.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/jszip.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/moment.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/nprogress.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/pdfmake.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/responsive.bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/validator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_dashboard/vfs_fonts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_login/animsition.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_login/animsition.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_login/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_login/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_login/countdowntime.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_login/daterangepicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_login/jquery-3.2.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_login/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_login/moment.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_login/moment.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_login/popper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_login/popper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_login/select2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/Customer_login/select2.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/c3-charts/c3-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/c3-charts/c3.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/c3-charts/d3.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/calendar/fullcalendar-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/calendar/fullcalendar.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/calendar/moment.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/card.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/chart/jquery.peity.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/chart/peity-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/charts/Chart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/charts/area-chart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/charts/bar-chart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/charts/line-chart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/charts/rounded-chart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/chosen/chosen-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/chosen/chosen.jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/code-editor/code-editor-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/code-editor/code-editor.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/code-editor/codemirror.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/colorpicker/color-picker-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/colorpicker/jquery.spectrum.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/counterup/counterup-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/counterup/jquery.counterup.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/counterup/waypoints.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/cropper/cropper-actice.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/cropper/cropper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/data-map/d3.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/data-map/data-maps-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/data-map/datamaps.all.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/data-map/topojson.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/data-table/bootstrap-editable.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/data-table/bootstrap-table-editable.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/data-table/bootstrap-table-export.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/data-table/bootstrap-table-resizable.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/data-table/bootstrap-table.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/data-table/colResizable-1.5.source.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/data-table/data-table-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/data-table/tableExport.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/datapicker/bootstrap-datepicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/datapicker/datepicker-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/datepicker/datepicker-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/datepicker/jquery-ui.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/dropzone/dropzone.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/duallistbox/duallistbox.active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/duallistbox/jquery.bootstrap-duallistbox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/e-payment.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/editable/bootstrap-datetimepicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/editable/bootstrap-editable.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/editable/jquery.mockjax.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/editable/mock-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/editable/moment.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/editable/select2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/editable/xediable-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/form-validation/form-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/form-validation/jquery.form.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/form-validation/jquery.validate.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/google.maps/google.maps-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/icheck/icheck-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/icheck/icheck.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/input-mask/jasny-bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/ionRangeSlider/ion.rangeSlider.active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/ionRangeSlider/ion.rangeSlider.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/jquery-price-slider.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/jquery.maskedinput.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/jquery.meanmenu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/jquery.payform.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/jquery.scrollUp.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/jquery.sticky.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/knob/jquery.knob.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/knob/knob-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/masking-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/metisMenu/metisMenu-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/metisMenu/metisMenu.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/morrisjs/home3-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/morrisjs/morris-active-pro.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/morrisjs/morris-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/morrisjs/morris.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/morrisjs/raphael-min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/multiple-email/multiple-email-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/myjs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/notifications/Lobibox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/notifications/notification-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/owl.carousel.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/password-meter/password-meter-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/password-meter/pwstrength-bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/password-meter/zxcvbn.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/pdf/jquery.media.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/pdf/pdf-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/peity/jquery.peity.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/peity/peity-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/plugins.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/rangle-slider/jquery-ui-1.10.4.custom.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/rangle-slider/jquery-ui-touch-punch.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/rangle-slider/rangle-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/scrollbar/jquery.mCustomScrollbar.concat.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/scrollbar/mCustomScrollbar-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/select2/select2-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/select2/select2.full.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/sparkline/jquery.charts-sparkline.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/sparkline/jquery.sparkline.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/sparkline/sparkline-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/summernote/summernote-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/summernote/summernote.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/tab.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/tawk-chat.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/touchspin/jquery.bootstrap-touchspin.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/touchspin/touchspin-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/tree-line/jstree.active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/tree-line/jstree.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/vendor/jquery-1.12.4.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/vendor/modernizr-2.8.3.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/wizard/jquery.steps.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/wizard/steps-active.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/js/wow.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/customer/pdf/mamunur.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Customer/Accounts.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Customer/Bill.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Customer/FD.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Customer/Funds.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Customer/Home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Customer/Invest.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Customer/Loan.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Customer/Profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Customer/RD.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Customer/Services.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Customer/Settings.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Customer/layout/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/Customer/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/fund_transfer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/transaction_info.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hbfnidhi/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/hbfnidhi/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/masteradmin/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/masteradmin/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/masteradmin/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/masteradmin/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/masteradmin/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/masteradmin/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/add_member.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/add_member.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/customer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/customer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/customer_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/customer_details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/fd_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/fd_account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/fund_transfer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/fund_transfer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/admin/layouts/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/layouts/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/member.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/member.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/rd_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/rd_account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/saving_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/saving_account.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/admin/saving_transaction.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/saving_transaction.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -396,20 +38,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/masteradmin/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3375">
-              <caret line="231" column="69" selection-start-line="231" selection-start-column="63" selection-end-line="231" selection-end-column="69" />
+            <state relative-caret-position="120">
+              <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/admin/rd_account.html">
+        <entry file="file://$PROJECT_DIR$/masteradmin/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="960">
-              <caret line="64" column="74" selection-start-line="64" selection-start-column="74" selection-end-line="64" selection-end-column="74" />
+            <state relative-caret-position="135">
+              <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -417,38 +62,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/admin/layouts/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1455">
-              <caret line="97" column="40" selection-start-line="97" selection-start-column="36" selection-end-line="97" selection-end-column="40" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="160">
+              <caret line="123" column="65" selection-start-line="123" selection-start-column="65" selection-end-line="123" selection-end-column="65" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/admin/fund_transfer.html">
+        <entry file="file://$PROJECT_DIR$/templates/admin/transaction_info.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1005">
-              <caret line="67" selection-start-line="67" selection-end-line="67" />
+            <state relative-caret-position="210">
+              <caret line="80" column="76" selection-start-line="80" selection-start-column="76" selection-end-line="80" selection-end-column="76" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/admin/saving_account.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="870">
+              <caret line="58" column="84" selection-start-line="58" selection-start-column="84" selection-end-line="58" selection-end-column="84" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/admin/saving_transaction.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Customer/FD.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+            <state relative-caret-position="465">
+              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -456,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/masteradmin/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3540">
-              <caret line="236" column="58" selection-start-line="236" selection-start-column="58" selection-end-line="236" selection-end-column="58" />
+            <state relative-caret-position="2325">
+              <caret line="155" selection-start-line="155" selection-end-line="155" />
             </state>
           </provider>
         </entry>
@@ -505,7 +147,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/web/index.html" />
         <option value="$PROJECT_DIR$/static/web/css/styles.css" />
         <option value="$PROJECT_DIR$/templates/web/enquiry.html" />
         <option value="$PROJECT_DIR$/templates/web/shareholder.html" />
@@ -531,8 +172,6 @@
         <option value="$PROJECT_DIR$/templates/admin/layouts/create_fd.html" />
         <option value="$PROJECT_DIR$/templates/admin/create_saving.html" />
         <option value="$PROJECT_DIR$/templates/admin/create_rd.html" />
-        <option value="$PROJECT_DIR$/web/views.py" />
-        <option value="$PROJECT_DIR$/templates/admin/saving_account.html" />
         <option value="$PROJECT_DIR$/templates/admin/create_fd.html" />
         <option value="$PROJECT_DIR$/templates/web/registration.html" />
         <option value="$PROJECT_DIR$/templates/admin/login.html" />
@@ -550,12 +189,15 @@
         <option value="$PROJECT_DIR$/templates/Customer/FD.html" />
         <option value="$PROJECT_DIR$/templates/admin/fd_account.html" />
         <option value="$PROJECT_DIR$/templates/admin/rd_account.html" />
-        <option value="$PROJECT_DIR$/templates/admin/layouts/base.html" />
-        <option value="$PROJECT_DIR$/masteradmin/urls.py" />
-        <option value="$PROJECT_DIR$/masteradmin/views.py" />
         <option value="$PROJECT_DIR$/templates/admin/fund_transfer.html" />
-        <option value="$PROJECT_DIR$/masteradmin/models.py" />
         <option value="$PROJECT_DIR$/templates/admin/saving_transaction.html" />
+        <option value="$PROJECT_DIR$/templates/admin/saving_account.html" />
+        <option value="$PROJECT_DIR$/masteradmin/models.py" />
+        <option value="$PROJECT_DIR$/templates/admin/transaction_info.html" />
+        <option value="$PROJECT_DIR$/web/views.py" />
+        <option value="$PROJECT_DIR$/masteradmin/urls.py" />
+        <option value="$PROJECT_DIR$/templates/admin/layouts/base.html" />
+        <option value="$PROJECT_DIR$/masteradmin/views.py" />
       </list>
     </option>
   </component>
@@ -577,7 +219,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -599,12 +240,20 @@
               <item name="hbfnidhi" type="b2602c69:ProjectViewProjectNode" />
               <item name="hbfnidhi" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="Customer" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hbfnidhi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hbfnidhi" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -617,19 +266,19 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/static" />
-      <recent name="$PROJECT_DIR$/customer" />
-      <recent name="$PROJECT_DIR$/templates" />
-      <recent name="$PROJECT_DIR$/static/img" />
-      <recent name="$PROJECT_DIR$/static/web/css" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates/admin/" />
       <recent name="$PROJECT_DIR$/static/web/images" />
       <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$/templates/admin" />
       <recent name="$PROJECT_DIR$/static" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$/customer" />
+      <recent name="$PROJECT_DIR$/templates" />
+      <recent name="$PROJECT_DIR$/static/img" />
+      <recent name="$PROJECT_DIR$/static/web/css" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -957,12 +606,21 @@
       <workItem from="1548660465600" duration="1783000" />
       <workItem from="1548662280179" duration="1706000" />
       <workItem from="1548664093695" duration="1537000" />
-      <workItem from="1548665916911" duration="40000" />
+      <workItem from="1548665916911" duration="1578000" />
+      <workItem from="1548680552561" duration="1685000" />
+      <workItem from="1548682500184" duration="1201000" />
+      <workItem from="1548715825088" duration="599000" />
+      <workItem from="1548717641098" duration="599000" />
+      <workItem from="1548722619737" duration="1328000" />
+      <workItem from="1548728325010" duration="1781000" />
+      <workItem from="1548730135404" duration="832000" />
+      <workItem from="1548731958851" duration="1784000" />
+      <workItem from="1548733770864" duration="1519000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="380209000" />
+    <option name="totallyTimeSpent" value="393075000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -975,9 +633,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1366" height="692" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27575758" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2530303" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -991,7 +648,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49848485" weight="0.3285968" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5037879" side_tool="true" weight="0.27175844" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49621212" visible="true" weight="0.13854352" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49621212" visible="true" weight="0.13854352" />
       <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49924242" weight="0.3285968" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1006,13 +663,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/web/saving.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/web/contact.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1139,13 +789,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/saving_account.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="64" column="48" lean-forward="true" selection-start-line="64" selection-start-column="48" selection-end-line="64" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/create_saving.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1157,16 +800,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="241">
           <caret line="70" column="46" lean-forward="true" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="86" column="13" selection-start-line="86" selection-start-column="13" selection-end-line="86" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#55#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1280,16 +913,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/masteradmin/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="30" column="1" lean-forward="true" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/customer/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="145">
@@ -1303,34 +926,10 @@
     <entry file="file://$PROJECT_DIR$/customer/models.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/masteradmin/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3375">
-          <caret line="231" column="69" selection-start-line="231" selection-start-column="63" selection-end-line="231" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/rd_account.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="64" column="74" selection-start-line="64" selection-start-column="74" selection-end-line="64" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/layouts/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1455">
-          <caret line="97" column="40" selection-start-line="97" selection-start-column="36" selection-end-line="97" selection-end-column="40" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/fund_transfer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1005">
-          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        <state relative-caret-position="990">
+          <caret line="66" column="49" selection-start-line="66" selection-start-column="49" selection-end-line="66" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -1341,17 +940,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/masteradmin/models.py">
+    <entry file="file://$PROJECT_DIR$/templates/admin/rd_account.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3540">
-          <caret line="236" column="58" selection-start-line="236" selection-start-column="58" selection-end-line="236" selection-end-column="58" />
+        <state relative-caret-position="400">
+          <caret line="45" column="37" selection-end-line="85" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/saving_account.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="58" column="84" selection-start-line="58" selection-start-column="84" selection-end-line="58" selection-end-column="84" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/saving_transaction.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+        <state relative-caret-position="465">
+          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/masteradmin/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2325">
+          <caret line="155" selection-start-line="155" selection-end-line="155" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/transaction_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="80" column="76" selection-start-line="80" selection-start-column="76" selection-end-line="80" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="50" column="18" lean-forward="true" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/layouts/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="123" column="65" selection-start-line="123" selection-start-column="65" selection-end-line="123" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/masteradmin/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="30" lean-forward="true" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/masteradmin/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
         </state>
       </provider>
     </entry>

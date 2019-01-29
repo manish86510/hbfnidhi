@@ -140,7 +140,7 @@ class Beneficiary(models.Model):
 
 
 class DebitTransaction(models.Model):
-    member = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    member = models.CharField(max_length=20, unique=True)
     transaction = models.CharField(max_length=20, unique=True)
     beneficiary = models.ForeignKey(Beneficiary, on_delete=models.CASCADE)
     amount = models.CharField(max_length=20, null=True)
@@ -155,7 +155,7 @@ class DebitTransaction(models.Model):
 
 
 class CreditTransaction(models.Model):
-    member = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    member = models.CharField(max_length=20, unique=True)
     transaction = models.CharField(max_length=20, unique=True)
     amount = models.CharField(max_length=20, null=True)
     type_of_transaction = models.CharField(max_length=20, null=True)

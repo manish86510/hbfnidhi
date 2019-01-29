@@ -86,6 +86,9 @@ def create_account(self):
                 registration_date=models.DateTimeField(auto_now_add=True),
             )
             customer.save()
+        except:
+            customer = None
+        try:
             payment = UserPayment(
                 user=Customer.objects.last(),
                 payment_mode=self.POST.get('pay_mode'),
@@ -104,6 +107,9 @@ def create_account(self):
                 dd_branch_ifsc=self.POST.get('dd_branch_ifsc'),
             )
             payment.save()
+        except:
+            payment = None
+        try:
             family = UserFamily(
                 user=Customer.objects.last(),
                 nominee_name=self.POST.get('nominee'),
@@ -118,6 +124,9 @@ def create_account(self):
                 guardian_id=self.POST.get('guardian_id'),
             )
             family.save()
+        except:
+            family = None
+        try:
             if self.FILES['aadhar_doc']:
                 aadhardoc = self.FILES['aadhar_doc']
                 fs = FileSystemStorage()

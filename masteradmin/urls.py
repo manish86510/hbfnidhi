@@ -8,7 +8,7 @@ app_name = "admin"
 
 urlpatterns = [
     path('', Dashboard.login),
-    path('dashboard/', Dashboard.login),
+    path('dashboard/', Dashboard.index),
     path('login/', Dashboard.login),
     path('logout/', Dashboard.logout),
     path('members/', Dashboard.members),
@@ -28,6 +28,7 @@ urlpatterns = [
     path('fd/active/<int:active>/<str:account>/', Dashboard.active_fd),
     path('rd/active/<int:active>/<str:account>/', Dashboard.active_rd),
     path('transfer/', Dashboard.transfer),
+    path('saving_info/<str:member>/<str:account>/', Dashboard.saving_info),
 ]
 
 if settings.DEBUG:

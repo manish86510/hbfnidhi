@@ -64,7 +64,7 @@
                                         {% for data in member %}
                                             <tr>
                                                 <td>{{ forloop.counter }}</td>
-                                                <td><a href="/admin/profile/{{ data.member }}/"><u>{{ data.member }}</u></a></td>
+                                                <td><a href="/admin/saving_info/{{ data.member }}/{{ data.account_no }}/"><u>{{ data.member }}</u></a></td>
                                                 <td>{{ data.account_no }}</td>
                                                 <td>{{ data.account_balance }}</td>
                                                 <td>{{ data.ifsc }}</td>
