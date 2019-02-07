@@ -1,0 +1,90 @@
+{% extends 'admin/layouts/base.html' %}
+{% block content %}
+<div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                            <form role="search" class="sr-input-func">
+                                               <!-- <input type="text" placeholder="Search..." class="search-int form-control">
+                                                <a href="#"><i class="fa fa-search"></i></a>-->
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="/admin/dashboard/">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-slash">RD Plan</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="single-pro-review-area mt-t-30 mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-payment-inner-st">
+                            <div class="tab-content custom-product-edit">
+                                <div class="product-tab-list tab-pane fade active in" id="persional">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section"></div>
+                                            <h3>Create RD Plan</h3>
+                                            {% if messages %}
+                                              <ul class="messages">
+                                                {% for message in messages %}
+                                                  <li class="{{ message.tags }}">{{ message }}</li>
+                                                {% endfor %}
+                                              </ul>
+                                            {% endif %}
+                                                <form id="dropzone1" action="/admin/rd_plans/" method="post">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <input name="scheme" type="text" class="form-control" placeholder="Scheme">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="interest_rate" type="text" class="form-control" placeholder="Interest Rate">
+                                                                </div>
+                                                            </div>
+                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <input name="tenure" type="text" class="form-control" placeholder="Tenure (Months)">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <select name="breakable" class="form-control" required>
+                                                                        <option>Scheme Type</option>
+                                                                        <option value="1">Breakable</option>
+                                                                        <option value="0">Non-Breakable</option>
+                                                                    </select>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light" style="float: right">Create Recurring Deposit</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

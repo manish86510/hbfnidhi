@@ -1,529 +1,956 @@
-{% extends 'web/layouts/base.html' %}
 {% load staticfiles %}
-{% block content %}
-<div class="slider-area slider-area2">
-        <div class="slider-active owl-carousel">
-            <div class="slider-items">
-                <img src={% static "web/images/banner2.jpg" %} alt="" class="slider">
-            </div>
-            <div class="slider-items">
-                <img src={% static "web/images/banner.jpg" %} alt="" class="slider">
-            </div>
-            <div class="slider-items">
-                <img src={% static "web/images/banner4.jpg" %} alt="" class="slider">
-            </div>
-            <div class="slider-items">
-                <img src={% static "web/images/banner5.jpg" %} alt="" class="slider">
-            </div>
-        </div>
-    </div>
-    <div class="featured-area featured-area2">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="featured-wrapper">
-                        <div class="row">
-                            <div class="col-lg-3 col-sm-6 col-12">
-                                <div class="featured-wrap">
-                                    <div class="featured-img">
-                                        <img src={% static "web/images/saving.png" %} alt="">
-                                    </div>
-                                    <h2><a href="#">Saving Account</a></h2>
-                                    <p>HBF NIDHI LTD offers an attractive savings account to our members with a interest rate of 6% . We offers this savings account facility to our tie-up housing society members where banking service/solution are not easy for senior citizen, ladies & others.</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6 col-12">
-                                <div class="featured-wrap">
-                                    <div class="featured-img">
-                                        <img src={% static "web/images/fixed.png" %} % alt="">
-                                    </div>
-                                    <h2><a href="#">Fixed Deposite</a></h2>
-                                    <p>HBF Fixed deposits (FDs) are an attractive mode of parking one's money safely. It offers security in terms of savings on one's income.</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6 col-12">
-                                <div class="featured-wrap mb-0">
-                                    <div class="featured-img">
-                                        <img src={% static "web/images/recurring.png" %} alt="">
-                                    </div>
-                                    <h2><a href="#">Recurring Deposite</a></h2>
-                                    <p>HBF Nidhi Ltd. Recurring Deposit is designed to help you prepare for the future. It enables you save regularly for a certain period of time with minimum amount starting Rs. 1,000/- only and earn a higher interest rate.</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6 col-12">
-                                <div class="featured-wrap mb-0">
-                                    <div class="featured-img">
-                                        <img src={% static "web/images/loans.png" %} alt="">
-                                    </div>
-                                    <h2><a href="#">Loans</a></h2>
-                                    <p>HBF Nidhi Ltd Gold loans may be availed for any amount between Rs.1,000 to a maximum of Rs. 7.5 Lakhs. Loans are available for periods ranging from one month to one year.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- featured-area end -->
+<!DOCTYPE html>
+<html lang="zxx">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <title>HBF Nidhi Ltd.| Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="HBF NIDHI" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-    <!-- about-area start -->
-    <div class="featured-content-area position-relative featured-content-area2">
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" href={% static "web/images/logo.png" %}>
+    <link href={% static "web/css/bootstrap.css" %} type="text/css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href={% static "web/css/smoothbox.css" %} type='text/css' media="all" />
+    <link rel="stylesheet" href={% static "web/css/jquery.desoslide.css" %}>
+    <link href={% static "web/css/style.css" %} type="text/css" rel="stylesheet" media="all">
+    <link href={% static "web/css/font-awesome.css" %} rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
+</head>
+<body>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125810435-1"></script>
+<body>
+    <div class="top-nav">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6 d-none d-lg-block">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Hh5Bhxu37So" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="col-lg-6">
-                    <div class="featured-content-wrap flex-style">
-                        <h2><span>ABOUT HBF NIDHI</span></h2>
-                        <p>HBF Nidhi Limited is launched by Expert Finance Management team members, pioneer in the financial services Industry. We are recognized under Section 406 of the Companies Act 2013. We are operating under the supervision of Reserve Bank of India.</p>
-<p>We accept the deposits, within the framework of norms stipulated by RBI, and are highly secured. The funds mobilized are utilized for the advance of Gold loan to the members.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- about-area end -->
-
-    <!-- about-area start -->
-    <div class="about-area position-relative">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title text-center">
-                        <h2>About Bitcoin</h2>
-                        <img src={% static "web/images/line.png" %} alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 d-none d-lg-block">
-                    <div class="about-img">
-                        <img src={% static "web/images/about/1.jpg" %} alt="">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-12">
-                    <div class="about-content">
-                        <h3>Minimum purchase is 50 Coins tokens. Get a bonus from 5% to 25% on every token purchase</h3>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3 col-6">
-                            <div class="about-items">
-                                <img src={% static "web/images/about/icon/1.png" %} alt="">
-                                <span class="counter">1454</span>
-                                <p>Support Countrie</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 col-6">
-                            <div class="about-items">
-                                <img src={% static "web/images/about/icon/2.png" %} alt="">
-                                <span class="counter">759</span>
-                                <p>Bank Support</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 col-6">
-                            <div class="about-items mb-0">
-                                <img src={% static "web/images/about/icon/3.png" %} alt="">
-                                <span class="counter">1250</span>
-                                <p>BitCoin ATMs</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 col-6">
-                            <div class="about-items mb-0">
-                                <img src={% static "web/images/about/icon/4.png" %} alt="">
-                                <span class="counter">2391</span>
-                                <p>Producers Ready</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- about-area end -->
-    <!-- service-area start -->
-    <div class="service-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title text-center">
-                        <h2>Why Choose Bitcoin</h2>
-                        <img src="assets/images/line.png" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="service-wrap">
-                        <h3>What We Offer</h3>
-                        <p>There are many variations of passages of an Lorem Ipsum available but the about majority have suffered alteration in man some form a by injected humour or that randomised the a words which</p>
-                        <p>There are many variations of passages of an Lorem Ipsum available but the about majority have suffered.</p>
-                        <a href="#">Free Consultation</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="service-items">
-                        <span class="flaticon-bitcoin-9"></span>
-                        <h3>Safe And Secure</h3>
-                        <p>There are many variations of Lorem Ipsum available but the about  some majority have form randomised words which believable.</p>
-                    </div>
-                    <div class="service-items">
-                        <span class="flaticon-profits"></span>
-                        <h3>Instant Exchange</h3>
-                        <p>There are many variations of Lorem Ipsum available but the about  some majority have form randomised words which believable.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-12">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-6 col-12">
-                            <div class="service-items">
-                                <span class="flaticon-exchange-1"></span>
-                                <h3>Secure Wallet</h3>
-                                <p>There are many variations of Lorem Ipsum available but the about  some majority have form randomised words which believable.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-6 col-12">
-                            <div class="service-items">
-                                <span class="flaticon-bitcoin-7"></span>
-                                <h3>Experts Support</h3>
-                                <p>There are many variations of Lorem Ipsum available but the about  some majority have form randomised words which believable.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- service-area end -->
-
-    <!-- resorce-area start -->
-    <div class="resorce-area bg-2 ptb-120 resorce-area2">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title text-center">
-                        <h2>Our Market Resource</h2>
-                        <img src={% static "web/images/line2.png" %} alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-12">
-                    <ul class="resorce-menu row">
-                        <li class="col-6">
-                            <div class="resorce-info">
-                                <h4>btc/usd</h4>
-                                <p>2415.1426</p>
-                            </div>
+            <div class="navbar-top">
+                <div class="nav-top-left">
+                    <ul>
+                        <li>
+                            <a href="/customer/" class="log">Login</a>
                         </li>
-                        <li class="col-6">
-                            <div class="resorce-info">
-                                <h4>btc/eur</h4>
-                                <p>1745.0008</p>
-                            </div>
-                        </li>
-                        <li class="col-6">
-                            <div class="resorce-info">
-                                <h4>btc/rub</h4>
-                                <p>0014.2156</p>
-                            </div>
-                        </li>
-                        <li class="col-6">
-                            <div class="resorce-info">
-                                <h4>btc/usd</h4>
-                                <p>2415.1426</p>
-                            </div>
-                        </li>
-                        <li class="col-6">
-                            <div class="resorce-info">
-                                <h4>btc/eth</h4>
-                                <p>2415.1426</p>
-                            </div>
-                        </li>
-                        <li class="col-6">
-                            <div class="resorce-info">
-                                <h4>btc/eur</h4>
-                                <p>2415.1426</p>
-                            </div>
-                        </li>
-                        <li class="col-6">
-                            <div class="resorce-info">
-                                <h4>btc/eth</h4>
-                                <p>2415.1426</p>
-                            </div>
-                        </li>
-                        <li class="col-6">
-                            <div class="resorce-info">
-                                <h4>btc/usd</h4>
-                                <p>2415.1426</p>
-                            </div>
-                        </li>
-                        <li class="col-6">
-                            <div class="resorce-info mb-0">
-                                <h4>btc/eth</h4>
-                                <p>2415.1426</p>
-                            </div>
-                        </li>
-                        <li class="col-6">
-                            <div class="resorce-info mb-0">
-                                <h4>btc/usd</h4>
-                                <p>2415.1426</p>
-                            </div>
+                        <li>
+                            <a href="/registration/" class="log">register</a>
                         </li>
                     </ul>
                 </div>
-                <div class="col-lg-9 col-12">
-                    <div class="resorce-wrap">
-                        <div id="chartContainer"></div>
-                    </div>
+                <div class="nav-top-right">
+                    <ul>
+                        <li>
+                            <i class="fa fa-phone" aria-hidden="true"></i>+91-9971-337-447</li>
+                        <li>
+                            <i class="fa fa-envelope-o list-icon" aria-hidden="true"></i>
+                            <a href="mailto:Info@hbfnidhi.com">Info@hbfnidhi.com</a>
+                        </li>
+                    </ul>
                 </div>
+                <div class="clearfix"></div>
             </div>
         </div>
+        <!-- nav-bottom -->
+        <div class="inner-header">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                   
+                    <h1>
+                       <a href="#"  title="HBF NIDHI Ltd.">
+                             <img alt="HBF NIDHI Ltd." src={% static "web/images/logo.png" %} >
+                        </a>
+                    </h1>
+                </div>
+                <!-- navbar-header -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="#about" class="scroll">About</a>
+                        </li>
+                        <li>
+                            <a href="#services" class="scroll">Product</a>
+                        </li>
+                        <li>
+                            <a href="#team" class="scroll">Team</a>
+                        </li>
+                        <li>
+                            <a href="#testimonials" class="scroll">Career</a>
+                        </li>
+                        <li>
+                            <a href="#gallery" class="scroll">Faq</a>
+                        </li>
+                        <li>
+                            <a href="#contact" class="scroll">contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </nav>
+        </div>
     </div>
-    <!-- resorce-area end -->
+    <!--/nav ends here-->
+    <!-- banner -->
+    <div class="banner">
+        <div class="banner-right">
+            <img src={% static "web/images/new.png" %} alt="" class="img-responsive" />
+        </div>
+        <div class="banner-text">
+            <div id="top" class="callbacks_container">
+                <ul class="rslides" id="slider3">
+                    <li>
+                        <div class="banner-textagileinfo">
+                            <h6>Welcome To HBF NIDHI</h6>
+                            <h3>For Your Personal And Professional Banking Needs.</h3>
+                            
 
-    <!-- expart-area start -->
-    <div class="expart-area expart-area2">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7 offset-lg-5 col-12">
-                    <div class="expart-wrap">
-                        <h2>We’r a dynamic team of creatives people innovation & Marketing Expert.</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the dummy majority have suffered alteration in some form, by injected humour or dummy to randomised words which don't look even slightly believable. If you are going to a use a passage of Lorem Ipsum, you need to be sure there isn't anything about an embarrassing hidden in the middle of text.</p>
-                        <a href="#">More About <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="banner-textagileinfo">
+                            <h6>the Internet banking portal</h6>
+                            <h3>Ensuring a high level of customer service.</h3>
+                            
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="banner-textagileinfo">
+                            <h6>Ideal for Personal Banking</h6>
+                            <h3>For Your Personal And Professional Banking Needs.</h3>
+                            
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+    <!-- //banner -->
+    <!--about -->
+    <div id="about" class="section">
+        <h3 class="title-txt">
+            <span>a</span>bout us</h3>
+        <div class="abt-container">
+            <div class="faq-info">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#testi" aria-controls="testi" role="tab" data-toggle="tab">HBF NIDHI</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Our Company</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Shareholders</a>
+                    </li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="testi">
+                        <div class="faqmain-info">
+                            <div class="faq-subinfo">
+                                <fieldset>
+                                    <legend>Building the Finest Quality Bank.</legend>
+                                    <div class="stats-info">
+                                        <div class="col-sm-3 col-xs-3 stats-grid">
+                                            <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='324' data-delay='.5' data-increment="1">10</div>
+                                            <div class="stats-img stat2">
+                                                <p>branches</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-xs-3 stats-grid">
+                                            <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='574' data-delay='.5' data-increment="1">490</div>
+                                            <div class="stats-img stat2">
+                                                <p>personal loans</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-xs-3 stats-grid stat1">
+                                            <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='350' data-delay='.5' data-increment="1">20</div>
+                                            <div class="stats-img stat2">
+                                                <p>ATM's</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 col-xs-3 stats-grid stat1">
+                                            <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='1974' data-delay='.5' data-increment="1">1974</div>
+                                            <div class="stats-img stat2">
+                                                <p>Deposit Accounts</p>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="abt-pos">
+                                        <div class="col-md-8  about-left">
+                                            <h3 class="title">About HBF Nidhi</h3>
+                                            <p class="about-bottom">
+                                                HBF Nidhi Limited is launched by Expert Finance Management team members, pioneer in the financial services Industry. We are recognized under Section 406 of the Companies Act 2013. We are operating under the supervision of Reserve Bank of India,<br>
+
+                                                We accept the deposits, within the framework of norms stipulated by RBI, and are highly secured. The funds mobilized are utilized for the advance of Gold loan to the members.
+                                            </p>
+                                            <img src={% static "web/images/c.png" %} class="img-responsive" alt="" />
+                                        </div>
+                                        <div class="col-md-4 w3ls-row">
+                                            <img src={% static "web/images/a.jpg" %} class="img-responsive" alt="" />
+                                        </div>
+                                        <div class="clearfix"> </div>
+                                    </div>
+                                </fieldset>
+                                <div class="clearfix"> </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="profile">
+                        <div class="faqmain-info">
+                            <div class="faq-subinfo">
+                                <fieldset>
+                                    <legend>OUR COMPANY</legend>
+                                    <div class="stats-info" style="padding: 0 0em 2em;">
+                                        <div class="col-sm-12 col-xs-12 ">
+                                            <p style="color: #000; font-size: 14px;">HBF NIDHI LIMITED, a public limited company, was incorporated in 2017, recognizing the prevalent gap in addressing the basic functionality of banking to inculcate the habits of “Thrift Saving”. In line with the growing aspiration of a resurgent and developing economy of India and with the focus of financial inclusivity of the population by the present economic outlook, HBF Nidhi Limited aspires to address this opportunity with its innovative products and services. Our businesss model stands on the principles of transacting within members of the Nidhi company. We accept deposits from lend credit to our members and thus inculcte the habbit of savings among the masses and also provide credit at lower costs than traditional banks.</p><br>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6 ">
+                                            <p>HBF Values:</p> People, Integrity, Leadership, Teamwork and Excellence Our values are the fundamentals beliefs and guiding principles of our organization. Our values define who we are.
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6 ">
+                                            <p>Integrity:</p> We believe that Integrity should be at the heart and soul of a company’s culture. We have clear commitment towards achieving professional goals and objectives through ethical conduct of our business.
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6 ">
+                                            <p>Team work:</p> We Believe in maintaining employer-employee relationships based on open communication. Our team always works with transparency & maintain ethical behavior.
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6 ">
+                                            <p>Future Vision:</p> Our Goal is to fulfill all public financial needs in order to raise our organization into small bank Covering target with more than 100cr authorized capital within a period of 5years.
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6 ">
+                                            <p>Excellence:</p> drives us to deliver what we promise and add value beyond the customer expectations. We strive to achieve excellence through keeping an open mind for learning, adopting futuristic technologies.
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6 ">
+                                            <p>Ethics:</p> our business ethical standards are higher. Ethics is an integral part of everything that we do. We believe that following an ethical behavior results in companies’ growth in both the short and long term.
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6 ">
+                                            <p>People:</p> We value our people - be it our team members or customers. We treat our team members, clients and others with whom we do business with equality, respect, dignity and politeness. People are our biggest asset and we value their development and reward their performance. We are committed towards maintaining a safe working environment that is free from any kind of discrimination, harassment and retaliation.
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6 ">
+                                            <P>Leadership</P> demands vision, courage and integrity. We believe in leading our clients towards taking apt business decisions, leading our people towards achieving excellence and thought leadership. Teamwork: Effective teamwork requires strong relationships built on the foundation of mutual respect and sharing. We believe that the best business solutions come from working together with our team members and clients.
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </fieldset>
+                                <div class="clearfix"> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="messages">
+                        <div class="faqmain-info">
+                            <div class="faq-subinfo">
+                                <fieldset>
+                                    <legend>SHAREHOLDERS</legend>
+                                    <div class="stats-info" style="padding: 0 0em 2em;">
+                                        <div class="col-sm-12 col-xs-12 ">
+                                            <P>Backbone of HBF Nidhi Ltd.</P>
+                                            <p style="color: #000; font-size: 14px;">HBF Nidhi Ltd. starts process with shareholders & they are not just our shareholders they are our family. Increase value of shares is a source of second income for shareholders.<br/>HBF Nidhi Ltd. is a fully organized firm that believes in Transparency so that our shareholder can maintain a long-term relationship. HBF Nidhi Ltd. maintains a large number of shareholders because we work on MUTUAL BENEFITS Concepts.</p><br>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-12 ">
+                                            <p>Why Invest HBF Nidhi Ltd.?</p>
+                                            <ul>
+                                                <li><i class="fa fa-angle-double-right" style="font-size:18px;color:red"></i>
+                                                    HBF Nidhi Ltd. works on Doorstep Banking startup. We maintain low cost of infrastructure and works with single branch concept in order to maintain profitability.
+                                                </li>
+                                                <li><i class="fa fa-angle-double-right" style="font-size:18px;color:red"></i>
+                                                    HBF Nidhi Ltd. works with secure business model we only provide secured loans which leads our org to be financially strong & secure.
+                                                </li>
+                                                <li><i class="fa fa-angle-double-right" style="font-size:18px;color:red"></i>
+                                                    HBF Nidhi Ltd. only works with housing society concept, where we manage a large number of members by single employees.
+                                                </li>
+                                                <li><i class="fa fa-angle-double-right" style="font-size:18px;color:red"></i>
+                                                    HBF Nidhi Ltd. takes experts advice before expansion, it reduces financial risk.
+                                                </li>
+                                                <li><i class="fa fa-angle-double-right" style="font-size:18px;color:red"></i>
+                                                    HBF Nidhi Ltd. maintains reserves equal to or more than the total amount invested by shareholders.
+                                                </li>
+                                                <li><i class="fa fa-angle-double-right" style="font-size:18px;color:red"></i>
+                                                    HBF Nidhi Ltd. instead of working with corporate it works with members only. So that, max shareholders can be benefited .
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </fieldset>
+                                <div class="clearfix"> </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="expart-img d-none d-lg-block">
-            <img src={% static "web/images/featured/1.png" %} alt="">
         </div>
     </div>
-    <!-- expart-area end -->
-    <!-- calculate-area start -->
-    <div class="calculate-area">
+    <!-- //about -->
+    <!-- services -->
+    <div class="services section" id="services">
+        <div class="container2">
+            <h3 class="title-txt">
+                <span>O</span>ur <span>P</span>roduct</h3>
+            <h5>we offer products and services for your
+                <span>personal</span> and
+                <span>professional banking</span> needs.</h5>
+            <div class="col-md-5 service-left-grid">
+                <div class="services-left">
+
+                    <h4> 
+                        <span>HBF NIDHI Ltd.</span></h4>
+                    <p>  HBF NIDHI Ltd provides differnt types of products </p>
+                    <ul>
+                        <li><i class="fa fa-angle-double-right" style="font-size:18px;color:red"></i><a href="saving-accounting.html" style="font-size: 18px"> Saving Account</a></li>
+                        <li><i class="fa fa-angle-double-right" style="font-size:18px;color:red"></i><a href="fixed-deposit.html" style="font-size: 18px"> Fixed Deposit</a></li>
+                        <li><i class="fa fa-angle-double-right" style="font-size:18px;color:red"></i><a href="recurring-deposit.html" style="font-size: 18px"> Recurring Deposit</a></li>
+                        <li><i class="fa fa-angle-double-right" style="font-size:18px;color:red"></i><a href="loans.html" style="font-size: 18px"> Loans</a></li>
+                        <li><i class="fa fa-angle-double-right" style="font-size:18px;color:red"></i><a href="#" style="font-size: 18px"> Lockers</a></li>
+                        <li><i class="fa fa-angle-double-right" style="font-size:18px;color:red"></i><a href="doorstep-services.html" style="font-size: 18px"> Doorstep Services</a></li>
+                    </ul>
+                    
+                </div>
+            </div>
+            <div class="col-md-7 text-center agileinfo-about-grid">
+                <div class="col-md-4 col-xs-4 service-subgrids">
+                    <div class="w3ls-about-grid">
+                        <i class="fa fa-money" style="font-size: 42px;" aria-hidden="true"></i>
+                        <h6><a href="/saving/" style="color: #000">Savings Account</a></h6>
+                        <p>HBF NIDHI LTD. offers an attractive savings account to our members.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-xs-4 service-subgrids">
+                    <div class="w3ls-about-grid">
+                        <i class="fa fa-google-wallet" aria-hidden="true"></i>
+                        <h6><a href="/fixed/" style="color: #fff">Fixed Deposit</a></h6>
+                        <p>HBF Fixed deposits (FDs) are an attractive mode of parking one's money safely.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-4 service-subgrids">
+                    <div class="w3ls-about-grid">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        <h6><a href="/recurring/" style="color: #000">Recurring Deposit</a></h6>
+                        <p> HBF Nidhi Ltd. Recurring Deposit is designed to help you prepare for the future.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-4 service-subgrids">
+                    <div class="w3ls-about-grid">
+                        <i class="fa fa-briefcase" aria-hidden="true"></i>
+                        <h6><a href="/loans/" style="color: #fff">Loans</a></h6>
+                        <p>HBF NIDHI Ltd. provides differnt types of loans <br/><br/></p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-xs-4 service-subgrids">
+                    <div class="w3ls-about-grid">
+                        <i class="fa fa-inbox" aria-hidden="true"></i>
+                        <h6><a href="#" style="color: #000">Lockers</a></h6>
+                        <p> HNF NIDHI Ltd provide lockers <br/><br/></p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-4 service-subgrids">
+                    <div class="w3ls-about-grid">
+                        <i class="fa fa-cc-mastercard" aria-hidden="true"></i>
+                        <h6><a href="/doorstep/" style="color: #fff">Doorstep Services</a></h6>
+                        <p> Pick-up and delivery for cash and instruments,at your doorstep</p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+    <!-- //services -->
+    <!--about manager -->
+    <div class="section manager" id="manger">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="calculate-wrap">
-                        <h2>Bitcoin To Currency Calculator...</h2>
-                        <p>There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form humour randomised slightly believable.</p>
+            <h3 class="title-txt">
+                <span>K</span>now more</h3>
+            <div class="about-main">
+                <div class="col-md-4 man-grid2">
+                    <h5>Ensuring there's a high level of customer service.</h5>
+                    <p class="about-text-w3l">At HBF NIDHI LTD, Corporate Social Responsibility is all about developing a business model that not only creates economic value but also contributes to a healthy ecosystem and strong communities. Our endeavor is to evolve and develop appropriate business processes and strategies to achieve a common goal which contributes to the greater good.</p>
+                    <h4 class="man-txt">Sachin Kumar Sheoran</h4>
+                    <p>Founder</p>
+                </div>
+                <div class="col-md-8 man-right">
+                <div class="col-md-5 col-sm-5 man-grid">
+                    <ul>
+                        <li>
+                            HBF Nidhi Ltd. takes experts advice before expansion, it reduces financial risk.
+                        </li>
+                        <li>
+                            HBF Nidhi Ltd. maintains reserves equal to or more than the total amount invested by shareholders.
+                        </li>
+
+                        <li>
+                            HBF Nidhi Ltd. instead of working with corporate it works with members only. So that, max shareholders can be benefited .
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="w3ls-about-right col-md-7 col-sm-7">
+                    <img class="img-responsive" src={% static "web/images/man.jpg" %} alt="about-image" />
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- //about manager -->
+    
+    <!-- team -->
+    <div class="team section" id="team">
+        <div class="container">
+            <h3 class="title-txt">
+                <span>T</span>eam</h3>
+            <div class="new-agileinfo">
+                <div class="col-md-4 col-xs-5 team-left">
+                    <ul id="demo1_thumbs" class="list-inline">
+                        <li>
+                            <a href={% static "web/images/man.jpg" %}>
+                                <img src={% static "web/images/man.jpg" %} alt="" data-desoslide-caption="<h3>CEO & Founder</h3> He has more than 9 years of experience in Financial Sector. He is a first-generation business entrepreneur and a thorough executer who believes in working hard to get results with persistence. A passionate salesman, Sachin has been committed to building strong relationships with client, people and team. He has worked for over 2 years for Foreign based Leading Investment Banks where his role involved managing a team to provide Financial Services.Sachin heads the board at HBF Nidhi Limited and has been the key factor behind the concept">
+                                <div class="team-w3text">
+                                    <h4>Sachin Kumar Sheoran</h4>
+                                    <p>CEO & Founder</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href={% static "web/images/t2.jpg" %}>
+                                <img src={% static "web/images/t2.jpg" %} alt="" data-desoslide-caption="<h3>Advisor & Promoter</h3>  Mr. Harish K Varma is the senior most experienced person in our team. He has more than 37 years of total experience and is currently working as an Executive Director at International Commission on Irrigation and Drainage (ICID). He has experience and exposure with ASIAN DEVLOPMENT BANK as a Senior Project Officer. A Masters of Engineering with University of Roorkee (now IIT, Roorkee), Mr. Varma, provides invaluable mentorship, suggestions, advice to the board and gives the overall direction, depth and insight to our brand.">
+                                <div class="team-w3text">
+                                    <h4>Harish Kumar Verma</h4>
+                                    <p>Advisor & Promoter</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href={% static "web/images/t3.jpg" %}>
+                                <img src={% static "web/images/t3.jpg" %} alt="" data-desoslide-caption="<h3>Promoter</h3>  ShashwatVerma is an engineer (B.Tech) in Computer Sciences and MBA in I.T. He brings 11 years of extreme experience in the field of customer sales management & satisfaction, account management, and is also experienced in software development. He had an experience of 7 yrs in SAP LABS">
+                                <div class="team-w3text">
+                                    <h4>Shashwat Verma</h4>
+                                    <p>Promoter</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href={% static "web/images/t4.jpeg" %}>
+                                <img src={% static "web/images/t4.jpeg" %} alt="" data-desoslide-caption="<h3>Human Resources</h3> Visionary Human Resource leader with 10+ years of strong experienceacross all verticals of Human Resources in diverse industries. SilverMedalist in Human Resources Management with a positive and proactiveattitude. Creative, practical & articulate communicator with provenresults in solving difficult business problems.Demonstrated experience includes: Organizational effectiveness,Compensation Analysis, Leadership & employee development, Team building, Performance management, Positive employee relations,Training, Recruitment/Retention, Negotiation Skill, Culture change.">
+                                <div class="team-w3text">
+                                    <h4>Neha Gupta Vishnoi</h4>
+                                    <p>Human Resources </p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="demo1_main_image" class="col-md-8 col-xs-7 team-right"></div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!-- //team -->
+    <!-- testimonials -->
+    <div class="testimonials section" id="testimonials">
+        <div class="container">
+            <h3 class="title-txt">
+                <span>C</span>areer</h3>
+            <fieldset>
+                <legend>HBF Career Program</legend>
+                <div class="stats-info" style="padding: 0 0em 2em;">
+                    <div class="col-sm-12 col-xs-12 ">
+                        <p style="color: #000; font-size: 14px;">
+                            It takes self-belief to accept a challenge but it needs courage to conquer it. So, if you believe in yourself and are looking to push your limits you are welcome to be part of team HBF.<br/>
+                            <h3>Why HBF</h3>
+                            HBF treat everyone as a family, we work for our company members So we grow our employees with best learning skill development Programs. These Program are only for our employees.
+                        </p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 man-grid">
                         <ul>
-                            <li><input type="text" placeholder="1"></li>
-                            <li><p>BTC </p></li>
-                            <li>=</li>
-                            <li><p>14,150,588 </p></li>
                             <li>
-                                <select name="select">
-                                    <option value="inr">inr</option>
-                                    <option value="etc">ect</option>
-                                    <option value="btc">btc</option>
-                                    <option value="inr">inr</option>
-                                    <option value="etc">ect</option>
-                                    <option value="btc">btc</option>
-                                </select>
+                                <i class="fa fa-square" aria-hidden="true"></i>Professional Finance & Banking Program<br/><br/>
+                                <h4>
+                                    What is the HBF Professional Finance & Banking Program?
+                                </h4>
+                                <p style="color: #000; font-size: 14px;">
+                                    This is a program under which talented finance professionals, they can manage Banking or accounting for 180 days to enable them to become dynamic banking professionals. 15-Day Residential Program 165-Day On-the-Job Training with Performance and Mentoring.<br/>
+                                </p>
+                                <h4>
+                                    What would be the Job Role?
+                                </h4>
+                                <p style="color: #000; font-size: 14px;">
+                                    The role would be to retain customers by building relationships.<br/>
+                                </p>
+                                <h4>
+                                    Required Qualification:
+                                </h4>
+                                <p style="color: #000; font-size: 14px;">
+                                    For Graduates & Post Graduates (50% marks compulsory) less than 28 years of age.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-sm-6 man-grid">
+                        <ul>
+                            <li>
+                                <i class="fa fa-square" aria-hidden="true"></i>Professional Doorstep Banking & Marketing<br/><br/>
+                                <h4>
+                                    What is the HBF Professional Finance & Banking Program?What is the HBF Professional Doorstep Banking & Marketing Program?
+                                </h4>
+                                <p style="color: #000; font-size: 14px;">
+                                    This is a program under which talented sales and service professionals will be imparted functional training and groomed for 90 days to enable them to become dynamic banking professionals.<br/>
+                                </p>
+                                <h4>
+                                    What would be the Job Role?
+                                </h4>
+                                <p style="color: #000; font-size: 14px;">
+                                    The role would be to acquire new customers and cross sales with customer.<br/>
+                                </p>
+                                <h4>
+                                    Required Qualification:
+                                </h4>
+                                <p style="color: #000; font-size: 14px;">
+                                    For Graduates & Post Graduates (50% marks compulsory) less than 28 years of age.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-12 col-sm-12 man-grid">
+                        <ul>
+                            <li>
+                                <i class="fa fa-square" aria-hidden="true"></i>EMPLOYEES AS THE PILLAR:<br/><br/>
+                                <p>To provide an enabling work culture where career aspirations can be realized through consistent performance and demonstration of the Nidhi's core values & beliefs.</p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Sr. No.</th>
+                                                <th>Designation</th>
+                                                <th>Finance/Banking exp</th>
+                                                <th>Req Total Exp</th>
+                                                <th>Location</th>
+                                                <th colspan="2">No. of Vacancies </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Business Development Manager</td>
+                                                <td>Exp</td>
+                                                <td>4-5</td>
+                                                <td>Noida/Gr Noida</td>
+                                                <td>3</td>
+                                                <td>Apply</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Sales Manager</td>
+                                                <td>3year</td>
+                                                <td>5year</td>
+                                                <td>Noida/Gr Noida</td>
+                                                <td>30</td>
+                                                <td>Apply</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Quality Manager</td>
+                                                <td>5year</td>
+                                                <td>7year</td>
+                                                <td>Noida/Gr Noida</td>
+                                                <td>1</td>
+                                                <td>Apply</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>LAP Specialist </td>
+                                                <td>5 year</td>
+                                                <td>7year</td>
+                                                <td>Noida / Gr Noida</td>
+                                                <td>1</td>
+                                                <td>Apply</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>Gold Loan Specialist</td>
+                                                <td>5year</td>
+                                                <td>7 year</td>
+                                                <td>Noida / Gr Noida</td>
+                                                <td>1</td>
+                                                <td>Apply</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td>Trainer</td>
+                                                <td>5 year</td>
+                                                <td>10 year</td>
+                                                <td>Noida / Gr Noida</td>
+                                                <td>1</td>
+                                                <td>Apply</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p>After Apply Person can See JD &amp; he/she can upload his resume with extra comment</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>                
+                    <div class="clearfix"></div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <!-- //testimonials -->
+    <!-- faq -->
+    <div class="section faq" id="gallery">
+        <div class="container">
+            <h3 class="title-txt text-center">
+                <span>F</span>AQ</h3>
+
+            <div class="faq-info">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#testi" aria-controls="testi" role="tab" data-toggle="tab">tab1</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">tab2</a>
+                    </li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="testi">
+                        <div class="faqmain-info">
+                            <div class="faq-subinfo">
+                                <div class="col-md-6  latest-grid">
+                                    <div class="faq-left">
+                                        <h5>
+                                            <i class="fa fa-question-circle" aria-hidden="true"></i> Can you provide current account ?</h5>
+                                        <p>HBF Nidhi Ltd shall not open any current account with its members;<br/>
+                                    Nidhi Company is a type but is not the substitute to fully fledged NBFC or a Bank. Hence, it is not allowed to open the current account.
+                                </p>
+
+                                    </div>
+                                    <div class="faq-left">
+                                        <h5>
+                                            <i class="fa fa-question-circle" aria-hidden="true"></i>Can Hbf Nidhi Limited offer Lockers to their members ?</h5>
+                                        <p>Yes, they can provide lockers to members only.</p>
+                                    </div>
+                                    <div class="faq-left">
+                                        <h5>
+                                            <i class="fa fa-question-circle" aria-hidden="true"></i>Is HBF nidhi limited is bank ? what is nidhi mean ?</h5>
+                                        <p>No, we are not bank. "Nidhi" is a Hindi word, which means finance or fund. Nidhi" means a company which has been incorporated as a Nidhi with the object of developing the habit of thrift and reserve funds amongst its members, receiving deposits, and lending to its members only for their mutual benefit.We cannot run any other business in its name.</p>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 latest-grid">
+                                    <div class="faq-left">
+                                        <h5>
+                                            <i class="fa fa-question-circle" aria-hidden="true"></i> Where you registered & is RBI involved with your organization ?</h5>
+                                        <p>We registered with Ministry of corporate affairs (Govt of India). Hbf Nidhi Limited follow all guidelines from RBI, but we don't require any license from RBI.</p>
+                                    </div>
+                                    <div class="faq-left">
+                                        <h5>
+                                            <i class="fa fa-question-circle" aria-hidden="true"></i>Can I buy share in your Org?</h5>
+                                        <p>Yes, you can buy share in our organisation. If you are not a member than first you have to be a member of our organisation.</p>
+                                    </div>
+                                    <div class="faq-left">
+                                        <h5>
+                                            <i class="fa fa-question-circle" aria-hidden="true"></i> Why should I open a saving account with your org.</h5>
+                                        <p>Hbf Nidhi ltd never treat anyone as a member/customer/employee, we believe you all are our family. So we try to resolve ground level difficulties, we do special care of senior citizen and ladies , A person can open saving account with just 100 rs .. we provide 6% interest rate on our saving account. We also provide Doorstep services to collect funds & etc.</p>
+                                    </div>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="profile">
+                        <div class="faqmain-info">
+                            <div class="faq-subinfo">
+                                <div class="col-md-6  latest-grid">
+                                    <div class="faq-left">
+                                        <h5>
+                                            <i class="fa fa-question-circle" aria-hidden="true"></i>How much fund you have to reserve as a CRR or balance</h5>
+                                        <p>
+                                            <ul>
+                                                <li><i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                                    HBF NIDHI Limited min maintain 10% of Total collection amount.
+                                                </li>
+                                                <li><i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                                    For ex Hbf nidhi limited.
+                                                </li>
+                                                <li><i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                                    Collect : 2 cr saving account ,15 cr fixed depost ,3 cr Reccuring deposit.
+                                                </li>
+                                                <li><i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                                     Min CRR mainitain every time : 2cr.
+                                                </li>
+                                            </ul>
+                                        </p>
+                                    </div>
+                                    <div class="faq-left">
+                                        <h5>
+                                            <i class="fa fa-question-circle" aria-hidden="true"></i>Can you provide cheque book ?</h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do sit amet conse eiusmod.No, as we told you we are not a bank so we can't provide cheque book.</p>
+                                    </div>
+                                    <div class="faq-left">
+                                        <h5>
+                                            <i class="fa fa-question-circle" aria-hidden="true"></i> Can you provide debit card ?</h5>
+                                        <p>Yes, we can provide debit card on behalf of Bank. We will come soon with debit cards on behalf of Banks.</p>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 latest-grid">
+                                    <div class="faq-left">
+                                        <h5>
+                                            <i class="fa fa-question-circle" aria-hidden="true"></i>Can I transfer my fund to other of my account in bank or nidhi company and can I transfer to any of my relative or friends account ?</h5>
+                                        <p>Yes you can transfer the money, once you will request to transfer, your relationship manager will contact you for verification .After verification your funds will be transferred.</p>
+                                    </div>
+                                    <div class="faq-left">
+                                        <h5>
+                                            <i class="fa fa-question-circle" aria-hidden="true"></i> ed do sit amet conse eiusmod ?</h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do sit amet conse eiusmod.</p>
+                                    </div>
+                                    <div class="faq-left">
+                                        <h5>
+                                            <i class="fa fa-question-circle" aria-hidden="true"></i> conse eiusmod ed do sit amet ?</h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do sit amet conse eiusmod.</p>
+                                    </div>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //faq -->
+    <!-- contact -->
+    <div class="contact-main section" id="contact" style="background: #aabbcc">
+        <div class="section contact-bottom">
+            <div class="container">
+            <h3 class="title-txt" style="color: #fff">
+                Contact us</h3>
+                <div class="col-lg-6 col-md-6  contact-right-grid">
+                    <h6>send us a message</h6>
+                    <div class="agileits-main-right">
+                        <form action="#" method="post" class="agile_form">
+                            <label class="header">Name</label>
+                            <div class="icon1 w3ls-name1">
+                                <input placeholder=" " name="first name" type="text" required="">
+                            </div>
+                            <div class="icon2">
+                                <label class="header">Email</label>
+                                <input placeholder=" " name="Email" type="email" required="">
+                            </div>
+                            <label class="header">your message</label>
+                            <textarea class="w3l_summary" required=""></textarea>
+                            <input type="submit" value="SEND">
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6 contact-bot">
+                    <div class="contact-list">
+
+                        <h6> Open a free checking account online today </h6>
+                        <ul class="cbot-list">
+                            <li>
+                                <h6>Get In Touch</h6>
+                                <ul class="address">
+                                    <li>
+                                        <span class="fa fa-phone" aria-hidden="true"></span>
+                                        +91-9971-337-447
+                                    </li>
+                                    <li>
+                                        <span class="fa fa-envelope" aria-hidden="true"></span>
+                                        <a href="mailto:info@hbfnidhi.com"> info@hbfnidhi.com</a>
+                                    </li>
+                                    <li>
+                                        <span class="fa fa-map-marker" aria-hidden="true"></span>
+                                         H - 146 & 147, Sector - 63, Noida, UP (India)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                               <h6>Follow us</h6>
+                                <div class="address-grid">
+
+                                    <ul class="social-icons3">
+
+                                        <li>
+                                            <a href="https://www.facebook.com/hbfindia" target="_blank" class="s-iconfacebook">
+                                                <span class="fa fa-facebook" aria-hidden="true"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://twitter.com/hbfindia" target="_blank" class="s-icontwitter">
+                                                <span class="fa fa-twitter" aria-hidden="true"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="s-icondribbble">
+                                                <span class="fa fa-linkedin" aria-hidden="true"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </div>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>
-    <!-- calculate-area start -->
+    <!-- contact -->
+	<!---728x90--->
 
-    <!-- team-area start -->
-    <div class="team-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title text-center">
-                        <h2>Our Experts Team</h2>
-                        <img src={% static "web/images/line.png" %} alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="team-wrap">
-                        <div class="team-img">
-                            <img src={% static "web/images/team/1.jpg" %} alt="">
-                        </div>
-                        <div class="team-content">
-                            <h4>Conner Wilkinson</h4>
-                            <p>UX / Web Designer</p>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="team-wrap">
-                        <div class="team-img">
-                            <img src={% static "web/images/team/2.jpg" %} alt="">
-                        </div>
-                        <div class="team-content">
-                            <h4>Carolina Velez</h4>
-                            <p>Web Developer</p>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="team-wrap">
-                        <div class="team-img">
-                            <img src={% static "web/images/team/3.jpg" %} alt="">
-                        </div>
-                        <div class="team-content">
-                            <h4>Michael Arinze</h4>
-                            <p>Marketing Developer</p>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="team-wrap">
-                        <div class="team-img">
-                            <img src={% static "web/images/team/4.jpg" %} alt="">
-                        </div>
-                        <div class="team-content">
-                            <h4>Ashleigh Nelin</h4>
-                            <p>Apps Developer</p>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- team-area end -->
+    <!-- copy right -->
+    <p class="footer-class">© 2019 HBF Nidhi Ltd. All Rights Reserved | Design by
+        <a href="https:\\www.techlopers.com" target="_blank">Techlopers Solution Pvt. Ltd.</a>
+    </p>
+    <!-- //copy right -->
+   
 
-    <!-- nvestments-area start -->
-    <div class="nvestments-area position-relative nvestments-area2">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 d-none d-lg-block">
-                    <div class="nvestments-img">
-                        <img src={% static "web/images/bg/2.png" %} alt="">
-                    </div>
-                </div>
-                <div class="col-lg-7 col-12">
-                    <div class="contact-wrap  flex-style">
-                        <h2>Request A Call Back</h2>
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-sm-6 col-12">
-                                    <input type="text" placeholder="Name">
-                                </div>
-                                <div class="col-sm-6 col-12">
-                                    <input type="email" placeholder="Email">
-                                </div>
-                                <div class="col-sm-6 col-12">
-                                    <input type="text" placeholder="Phone">
-                                </div>
-                                <div class="col-sm-6 col-12">
-                                    <input type="text" placeholder="Subject">
-                                </div>
-                                <div class="col-12">
-                                    <textarea cols="30" rows="10" placeholder="Massage"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <button>Submit Now</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- nvestments-area end -->
+    <!-- js -->
+    <script src={% static "web/js/jquery-2.2.3.min.js" %}></script>
+    <!-- //js -->
+    <!-- about numscroller -->
+    <script src={% static "web/js/numscroller-1.0.js" %}></script>
+    <!-- //about numscroller -->
+    <!-- banner Slider starts Here -->
+    <script src={% static "web/js/responsiveslides.min.js" %}></script>
+    <script>
+        // You can also use "$(window).load(function() {"
+        $(function () {
+            // Slideshow 3
+            $("#slider3").responsiveSlides({
+                auto: true,
+                pager: true,
+                nav: false,
+                speed: 500,
+                namespace: "callbacks",
+                before: function () {
+                    $('.events').append("<li>before event fired.</li>");
+                },
+                after: function () {
+                    $('.events').append("<li>after event fired.</li>");
+                }
+            });
 
-    <!-- blog-area start -->
-    <div class="blog-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title text-center">
-                        <h2>Latest Our News</h2>
-                        <img src={% static "web/images/line.png" %} alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4  col-sm-6 col-12">
-                    <div class="blog-wrap">
-                        <div class="blog-img">
-                            <img src={% static "web/images/blog/1.jpg" %} alt="">
-                        </div>
-                        <div class="blog-content">
-                            <h3><a href="blog-details.html">Digital Marketo Moved To Their New Office</a></h3>
-                            <ul>
-                                <li><a href="#">Jhon Simith</a></li>
-                                <li><a href="#">2 May, 2017</a></li>
-                                <li><a href="#">Latest News</a></li>
-                            </ul>
-                            <p>There are many variations of passages of Lorem is Ipsum available, but the majority have some suffered or alteration in  form, by injected randomised words which.</p>
-                            <a href="blog-details.html" class="readmore">Read More <i class="fa fa-angle-double-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 col-12">
-                    <div class="blog-wrap">
-                        <div class="blog-img">
-                            <img src={% static "web/images/blog/2.jpg" %} alt="">
-                        </div>
-                        <div class="blog-content">
-                            <h3><a href="blog-details.html">Welcome To Our New Head Of Production</a></h3>
-                            <ul>
-                                <li><a href="#">Jhon Simith</a></li>
-                                <li><a href="#">2 May, 2017</a></li>
-                                <li><a href="#">Latest News</a></li>
-                            </ul>
-                            <p>There are many variations of passages of Lorem is Ipsum available, but the majority have some suffered or alteration in  form, by injected randomised words which.</p>
-                            <a href="blog-details.html" class="readmore">Read More <i class="fa fa-angle-double-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 col-12">
-                    <div class="blog-wrap">
-                        <div class="blog-img">
-                            <img src={% static "web/images/blog/1.jpg" %} alt="">
-                        </div>
-                        <div class="blog-content">
-                            <h3><a href="blog-details.html">Digital Marketo Launched Their Website</a></h3>
-                            <ul>
-                                <li><a href="#">Jhon Simith</a></li>
-                                <li><a href="#">2 May, 2017</a></li>
-                                <li><a href="#">Latest News</a></li>
-                            </ul>
-                            <p>There are many variations of passages of Lorem is Ipsum available, but the majority have some suffered or alteration in  form, by injected randomised words which.</p>
-                            <a href="blog-details.html" class="readmore">Read More <i class="fa fa-angle-double-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- blog-area end -->
-{% endblock %}
+        });
+    </script>
+    <!-- //banner slider script ends -->
+    <!-- sign in and signup pop up toggle script -->
+    <script>
+        $('.toggle').click(function () {
+            // Switches the Icon
+            $(this).children('i').toggleClass('fa-pencil');
+            // Switches the forms  
+            $('.form').animate({
+                height: "toggle",
+                'padding-top': 'toggle',
+                'padding-bottom': 'toggle',
+                opacity: "toggle"
+            }, "slow");
+        });
+    </script>
+    <!-- sign in and signup pop up toggle script -->
+    <!-- team desoslide-JavaScript -->
+    <script src={% static "web/js/jquery.desoslide.js" %}></script>
+    <script>
+        $('#demo1_thumbs').desoSlide({
+            main: {
+                container: '#demo1_main_image',
+                cssClass: 'img-responsive'
+            },
+            effect: 'sideFade',
+            caption: true
+        });
+    </script>
+    <!-- //team desoslide-JavaScript -->
+    <!-- Flexslider-js for-testimonials -->
+    <script src={% static "web/js/jquery.flexisel.js" %}></script>
+    <script>
+        $(window).load(function () {
+            $("#flexiselDemo1").flexisel({
+                visibleItems: 1,
+                animationSpeed: 1000,
+                autoPlay: false,
+                autoPlaySpeed: 3000,
+                pauseOnHover: true,
+                enableResponsiveBreakpoints: true,
+                responsiveBreakpoints: {
+                    portrait: {
+                        changePoint: 480,
+                        visibleItems: 1
+                    },
+                    landscape: {
+                        changePoint: 640,
+                        visibleItems: 1
+                    },
+                    tablet: {
+                        changePoint: 768,
+                        visibleItems: 1
+                    }
+                }
+            });
+
+        });
+    </script>
+    <!-- //Flexslider-js for-testimonials -->
+    <!-- start-smooth-scrolling -->
+    <script src={% static "web/js/move-top.js" %}></script>
+    <script src={% static "web/js/easing.js" %}></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear' 
+            };
+            */
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <script src={% static "web/js/SmoothScroll.min.js" %}></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- gallery smoothbox -->
+    <script src={% static "web/js/smoothbox.jquery2.js" %}></script>
+    <!-- //gallery smoothbox -->
+    <!-- Bootstrap core JavaScript
+ ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src={% static "web/js/bootstrap.js" %}></script>
+</body>
+</html>

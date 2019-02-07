@@ -1,0 +1,89 @@
+{% extends 'admin/layouts/base.html' %}
+{% block content %}
+<div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                            <form role="search" class="sr-input-func">
+                                               <!-- <input type="text" placeholder="Search..." class="search-int form-control">
+                                                <a href="#"><i class="fa fa-search"></i></a>-->
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="/admin/dashboard/">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-slash">Money Transfer </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="single-pro-review-area mt-t-30 mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-payment-inner-st">
+                            <div class="tab-content custom-product-edit">
+                                <div class="product-tab-list tab-pane fade active in" id="persional">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section"></div>
+                                            <h3>Create Saving Account</h3>
+                                                <form id="dropzone1" action="/admin/account_transfer/" method="post">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+                                                        <p>{{ message }}</p>
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <input name="sender_account" type="text" class="form-control" placeholder="Sender Account No." required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="receiver_account" type="text" class="form-control" placeholder="Receiver Account No." required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <select name="transaction_type" class="form-control" required>
+                                                                        <option>Transaction Type</option>
+                                                                        <option value="neft">NEFT</option>
+                                                                        <option value="imps">IMPS</option>
+                                                                        <option value="rtgs">RTGS</option>
+                                                                        <option value="other">Other</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <input name="amount" type="text" class="form-control" placeholder="Amount" required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="remark" type="text" class="form-control" placeholder="Remark" required>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light" style="float: right">Create Saving Account</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

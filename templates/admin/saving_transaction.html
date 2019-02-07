@@ -79,13 +79,13 @@
                                         <thead>
                                             <tr>
                                                 <th data-field="id">ID</th>
-                                                <th data-field="Transaction Id" data-editable="true">Transaction Id</th>
-                                                <th data-field="Member Acc." data-editable="true">Member Acc.</th>
-                                                <th data-field="Sender Acc." data-editable="true">Sender Acc.</th>
-                                                <th data-field="Amount" data-editable="true">Amount</th>
-                                                <th data-field="Sender Bank" data-editable="true">Sender Bank</th>
-                                                <th data-field="Debit Type" data-editable="true">Debit Type</th>
-                                                <th data-field="Transaction Date" data-editable="true">Transaction Date</th>
+                                                <th data-field="Transaction Id">Transaction Id</th>
+                                                <th data-field="Member Acc.">Member Acc.</th>
+                                                <th data-field="Sender Acc.">Sender Acc.</th>
+                                                <th data-field="Amount">Amount</th>
+                                                <th data-field="Sender Bank">Sender Bank</th>
+                                                <th data-field="Debit Type">Debit Type</th>
+                                                <th data-field="Transaction Date">Transaction Date</th>
                                                 <th data-field="Status">Status</th>
                                             </tr>
                                         </thead>
@@ -101,9 +101,9 @@
                                                 <td>{{ cdata.debit_type }}</td>
                                                 <td>{{ cdata.created_date }}</td>
                                                 {% if cdata.status == 0 %}
-                                                        <td><a href="/admin/transaction/1/{{ cdata.transaction }}/"><button class="btn btn-info">Pending</button></a></td>
+                                                        <td><button class="btn btn-warning">Pending</button></td>
                                                     {% else %}
-                                                        <td><a href="/admin/transaction/0/{{ cdata.transaction }}/"><button class="btn btn-info">Success</button></a></td>
+                                                        <td><button class="btn btn-info">Success</button></td>
                                                     {% endif %}
                                             </tr>
                                         {% endfor %}
@@ -124,13 +124,13 @@
                                         <thead>
                                             <tr>
                                                 <th data-field="Id">ID</th>
-                                                <th data-field="Transaction Id" data-editable="true">Transaction Id</th>
-                                                <th data-field="Member Acc." data-editable="true">Member Acc.</th>
-                                                <th data-field="Beneficiary Acc." data-editable="true">Beneficiary Acc.</th>
-                                                <th data-field="Amount" data-editable="true">Amount</th>
-                                                <th data-field="Beneficiary Bank" data-editable="true">Beneficiary Bank</th>
-                                                <th data-field="Transaction Type" data-editable="true">Transaction Type</th>
-                                                <th data-field="Transaction Date" data-editable="true">Transaction Date</th>
+                                                <th data-field="Transaction Id">Transaction Id</th>
+                                                <th data-field="Member Acc.">Member Acc.</th>
+                                                <th data-field="Beneficiary Acc.">Beneficiary Acc.</th>
+                                                <th data-field="Amount">Amount</th>
+                                                <th data-field="Beneficiary Bank">Beneficiary Bank</th>
+                                                <th data-field="Transaction Type">Transaction Type</th>
+                                                <th data-field="Transaction Date">Transaction Date</th>
                                                 <th data-field="Status">Status</th>
                                             </tr>
                                         </thead>
@@ -146,9 +146,9 @@
                                                 <td>{{ ddata.debit_type }}</td>
                                                 <td>{{ ddata.created_date }}</td>
                                                 {% if ddata.status == 0 %}
-                                                        <td><a href="/admin/transaction/1/{{ ddata.transaction }}/"><button class="btn btn-info">Pending</button></a></td>
+                                                        <td><button class="btn btn-warning">Pending</button></td>
                                                     {% else %}
-                                                        <td><a href="/admin/transaction/0/{{ ddata.transaction }}/"><button class="btn btn-info">Success</button></a></td>
+                                                        <td><button class="btn btn-info">Success</button></td>
                                                     {% endif %}
                                             </tr>
                                         {% endfor %}

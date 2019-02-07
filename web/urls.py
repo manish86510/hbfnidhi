@@ -17,6 +17,7 @@ urlpatterns = [
     path('lockers/', views.lockers),
     path('contact/', views.contact),
     path('create_account/', views.create_account),
+    path('doorstep/', views.doorstap),
 ]
 
 

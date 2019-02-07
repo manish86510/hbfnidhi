@@ -1,4 +1,5 @@
 from django.core.files.storage import FileSystemStorage
+from django.http import HttpResponse
 from django.shortcuts import render
 from masteradmin.models import *
 import datetime, random
@@ -20,20 +21,24 @@ def shareholder(self):
     return render(self, 'web/shareholder.html')
 
 
+def doorstap(self):
+    return render(self, 'web/doorstep-services.html')
+
+
 def enquiry(self):
     return render(self, 'web/enquiry.html')
 
 
 def saving(self):
-    return render(self, 'web/saving.html')
+    return render(self, 'web/saving-accounting.html')
 
 
 def fixed(self):
-    return render(self, 'web/fixedDeposite.html')
+    return render(self, 'web/fixed-deposit.html')
 
 
 def recurring(self):
-    return render(self, 'web/recurringDeposite.html')
+    return render(self, 'web/recurring-deposit.html')
 
 
 def registration(self):
@@ -41,7 +46,7 @@ def registration(self):
 
 
 def loans(self):
-    return render(self, 'web/loan.html')
+    return render(self, 'web/loans.html')
 
 
 def lockers(self):
@@ -54,8 +59,24 @@ def contact(self):
 
 def create_account(self):
     if self.method == 'POST':
-        rend_num = random.randint(1111, 9999)
         first_name = self.POST.get('title')+ ' ' + self.POST.get('first_name')
+        date_of_birth = self.POST.get('dob')
+        d = datetime.datetime.strptime(date_of_birth, "%Y-%m-%d").date()
+        today = datetime.date.today()
+        age = today.year - d.year - ((today.month, today.day) < (d.month, d.day))
+
+        try:
+            Customer.objects.exclude(email=self.POST.get('email'), mobile=self.POST.get('mobile'))
+        except:
+            message = "Email and Contact details already exists !"
+            return render(self, 'web/registration.html', {'message': message})
+
+        try:
+            rend_num = random.randint(1111111, 9999999)
+            Customer.objects.exclude(member="MA"+str(rend_num))
+        except:
+            rend_num = random.randint(1111111, 9999999)
+
         try:
             customer = Customer(
                 first_name=first_name,
@@ -75,9 +96,10 @@ def create_account(self):
                 locality=self.POST.get('locality'),
                 landmark=self.POST.get('landmark'),
                 pincode=self.POST.get('pincode'),
-                password="123456",
+                password=self.POST.get('mobile'),
                 email=self.POST.get('email'),
                 mobile=self.POST.get('mobile'),
+                age=age,
                 landline=self.POST.get('landline'),
                 is_verify=0,
                 is_active=0,
@@ -86,8 +108,11 @@ def create_account(self):
                 registration_date=models.DateTimeField(auto_now_add=True),
             )
             customer.save()
+            message = "Form submitted successfully !"
+            return render(self, 'web/registration.html', {'message': message})
         except:
             customer = None
+
         try:
             payment = UserPayment(
                 user=Customer.objects.last(),
@@ -107,6 +132,7 @@ def create_account(self):
                 dd_branch_ifsc=self.POST.get('dd_branch_ifsc'),
             )
             payment.save()
+            message = "Form submitted successfully !"
         except:
             payment = None
         try:
@@ -124,6 +150,7 @@ def create_account(self):
                 guardian_id=self.POST.get('guardian_id'),
             )
             family.save()
+            message = "Form submitted successfully !"
         except:
             family = None
         try:
@@ -176,8 +203,11 @@ def create_account(self):
             other.save()
             message = "Form Submitted Successfully !"
         except Exception:
-            message = "Something went wrong !"
+            other = None
+        message = "Form submitted successfully !"
+        return render(self, 'web/registration.html', {'message': message})
     else:
-        message = "Something went wrong !"
-    return render(self, 'web/registration.html',{'message': message})
+        return render(self, 'web/registration.html')
+
+
 

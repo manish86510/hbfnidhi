@@ -2,349 +2,205 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50f7c42f-de37-4e2a-b4ec-a8a455ca2572" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/api/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/bin/markdown_py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-3.0.1.dist-info/DESCRIPTION.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-3.0.1.dist-info/INSTALLER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-3.0.1.dist-info/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-3.0.1.dist-info/METADATA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-3.0.1.dist-info/RECORD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-3.0.1.dist-info/WHEEL" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-3.0.1.dist-info/entry_points.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-3.0.1.dist-info/metadata.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/Markdown-3.0.1.dist-info/top_level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filter-2.1.0.dist-info/INSTALLER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filter-2.1.0.dist-info/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filter-2.1.0.dist-info/METADATA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filter-2.1.0.dist-info/RECORD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filter-2.1.0.dist-info/WHEEL" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filter-2.1.0.dist-info/top_level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/compat.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/conf.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/constants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/exceptions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/fields.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/filters.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/filterset.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/be/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/be/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/cs/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/cs/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/da/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/da/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/de/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/de/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/el/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/el/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/es_AR/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/es_AR/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/es_ES/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/es_ES/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/fr/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/fr/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/pl/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/pl/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/pt_BR/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/pt_BR/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/ru/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/ru/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/sk/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/sk/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/uk/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/uk/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/locale/zh_CN/LC_MESSAGES/django.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/rest_framework/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/rest_framework/backends.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/rest_framework/filters.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/rest_framework/filterset.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/templates/django_filters/rest_framework/crispy_form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/templates/django_filters/rest_framework/form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/templates/django_filters/widgets/multiwidget.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django_filters/widgets.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/djangorestframework-3.9.1.dist-info/DESCRIPTION.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/djangorestframework-3.9.1.dist-info/INSTALLER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/djangorestframework-3.9.1.dist-info/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/djangorestframework-3.9.1.dist-info/METADATA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/djangorestframework-3.9.1.dist-info/RECORD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/djangorestframework-3.9.1.dist-info/WHEEL" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/djangorestframework-3.9.1.dist-info/metadata.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/djangorestframework-3.9.1.dist-info/top_level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/__main__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/__version__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/blockparser.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/blockprocessors.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/core.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/abbr.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/admonition.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/attr_list.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/codehilite.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/def_list.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/extra.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/fenced_code.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/footnotes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/headerid.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/legacy_attrs.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/legacy_em.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/meta.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/nl2br.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/sane_lists.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/smart_strong.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/smarty.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/tables.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/toc.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/extensions/wikilinks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/inlinepatterns.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/odict.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/postprocessors.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/preprocessors.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/test_tools.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/treeprocessors.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/markdown/util.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authentication.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/management/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/management/commands/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/management/commands/drf_create_token.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/migrations/0002_auto_20160226_1747.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/checks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/compat.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/decorators.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/documentation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/exceptions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/fields.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/filters.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/generics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/ach/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/ar/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/be/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/ca/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/ca_ES/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/cs/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/da/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/de/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/el/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/el_GR/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/en/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/en_AU/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/en_CA/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/en_US/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/es/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/et/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/fa/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/fa_IR/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/fi/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/fr/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/fr_CA/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/gl/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/gl_ES/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/he_IL/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/hu/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/id/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/it/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/ja/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/ko_KR/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/lv/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/mk/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/nb/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/nl/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/nn/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/no/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/pl/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/pt/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/pt_BR/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/pt_PT/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/ro/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/ru/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/sk/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/sl/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/sv/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/tr/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/tr_TR/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/uk/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/vi/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/zh_CN/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/zh_Hans/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/zh_Hant/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/locale/zh_TW/LC_MESSAGES/django.mo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/management/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/management/commands/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/management/commands/generateschema.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/metadata.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/mixins.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/negotiation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/pagination.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/parsers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/permissions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/relations.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/renderers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/request.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/response.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/reverse.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/routers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/schemas/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/schemas/generators.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/schemas/inspectors.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/schemas/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/schemas/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/css/bootstrap-theme.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/css/bootstrap-theme.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/css/bootstrap-tweaks.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/css/default.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/css/font-awesome-4.0.3.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/css/prettify.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/docs/css/base.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/docs/css/highlight.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/docs/css/jquery.json-view.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/docs/img/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/docs/img/grid.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/docs/js/api.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/docs/js/highlight.pack.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/docs/js/jquery.json-view.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/fontawesome-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/fontawesome-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/fontawesome-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/fontawesome-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/img/glyphicons-halflings-white.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/img/glyphicons-halflings.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/img/grid.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/js/ajax-form.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/js/coreapi-0.1.1.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/js/csrf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/js/default.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/js/jquery-3.3.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/static/rest_framework/js/prettify-min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/status.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/admin.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/admin/detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/admin/dict_value.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/admin/list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/admin/list_value.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/admin/simple_list_value.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/api.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/auth/basic.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/auth/session.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/auth/token.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/document.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/error.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/interact.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/langs/javascript-intro.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/langs/javascript.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/langs/python-intro.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/langs/python.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/langs/shell-intro.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/langs/shell.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/link.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/docs/sidebar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/filters/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/filters/ordering.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/filters/search.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/checkbox.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/checkbox_multiple.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/dict_field.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/fieldset.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/input.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/list_field.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/list_fieldset.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/radio.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/select.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/select_multiple.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/horizontal/textarea.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/checkbox.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/checkbox_multiple.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/dict_field.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/fieldset.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/input.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/list_field.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/list_fieldset.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/radio.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/select.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/select_multiple.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/inline/textarea.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/login_base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/pagination/numbers.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/pagination/previous_and_next.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/raw_data_form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/schema.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/checkbox.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/checkbox_multiple.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/dict_field.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/fieldset.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/input.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/list_field.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/list_fieldset.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/radio.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/select.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/select_multiple.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templates/rest_framework/vertical/textarea.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templatetags/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/templatetags/rest_framework.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/throttling.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/urlpatterns.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/breadcrumbs.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/encoders.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/field_mapping.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/formatting.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/html.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/humanize_datetime.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/json.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/mediatypes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/model_meta.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/representation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/serializer_helpers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/utils/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/validators.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/versioning.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/viewsets.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/font-awesome.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/images/load.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/jquery.desoslide.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/smoothbox.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfont3e6e.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfont3e6e.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfont3e6e.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfont3e6e.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/glyphicons-halflings-regular-2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/glyphicons-halflings-regular-3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/glyphicons-halflings-regular-4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/glyphicons-halflings-regular-5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/glyphicons-halflings-regular.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/fonts/glyphicons-halflings-regulard41d.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/bb.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/c.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/g1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/left-quote.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/left.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/man.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/move-top.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/new.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/right-quote.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/t2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/t3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/images/t4.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/SmoothScroll.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/easing.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/jquery-2.2.3.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/jquery.desoslide.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/jquery.flexisel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/move-top.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/numscroller-1.0.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/responsiveslides.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/web/js/smoothbox.jquery2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/account_transfer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/all_fd_scheme.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/all_rd_scheme.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/fd_info.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/fd_plans.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/rd_info.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/rd_plans.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/doorstep-services.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/fixed-deposit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/loans.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/recurring-deposit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/web/saving-accounting.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hbfnidhi/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/hbfnidhi/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hbfnidhi/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/hbfnidhi/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/masteradmin/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/masteradmin/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/masteradmin/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/masteradmin/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/masteradmin/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/masteradmin/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Customer/FD.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Customer/FD.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pip-selfcheck.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/css/Flaticon.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/css/animate.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/css/datepicker.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/css/flaticon.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/css/font-awesome.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/css/magnific-popup.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/css/metisMenu.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/css/owl.carousel.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/css/owl.video.play.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/css/responsive.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/css/swiper.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/fonts/Flaticon.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/fonts/Flaticon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/fonts/Flaticon.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/fonts/Flaticon.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/fonts/Flaticond41d.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfont5b62.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfont5b62.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfont5b62.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfont3e6e.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfont5b62.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfont5b62.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfontd41d.eot" beforeDir="false" afterPath="$PROJECT_DIR$/static/web/fonts/fontawesome-webfontd41d.eot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/about.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/about/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/about/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/about/icon/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/about/icon/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/about/icon/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/about/icon/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/arrows.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/banner.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/banner2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/banner4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/banner5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/bg/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/bg/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/bg/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/bg/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/bg/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/bg/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/bg/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/bg/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/bg/expart.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/blog/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/blog/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/blog/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/blog/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/blog/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/blog/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/blog/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/blog/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/blog/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/blog/blog-details.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/blog/comment/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/blog/comment/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/blog/comment/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/blog/comment/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/blog/comment/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/calcluate.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/enquiry.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/featured/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/featured/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/featured/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/featured/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/fixed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/inner_banner.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/line.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/line2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/loans.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/web/images/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/logo2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/logo3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/mobail.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/post/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/post/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/post/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/recurring.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/saving.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/service/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/service/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/service/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/service/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/service/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/service/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/service/icon/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/service/icon/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/service/icon/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/service/icon/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/service/icon/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/service/icon/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/service/icon/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/share.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/shop/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/shop/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/shop/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/shop/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/shop/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/shop/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/slider/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/slider/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/slider/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/slider/thumb/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/slider/thumb/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/slider/thumb/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/team.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/team/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/team/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/team/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/team/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/test/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/images/test/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/js/datepicker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/js/jquery.canvasjs.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/js/mailchimp.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/js/metisMenu.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/js/owl.carousel.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/js/plugins.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/js/scripts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/js/swiper.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/js/vendor/jquery-2.2.4.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/js/vendor/modernizr-2.8.3.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/web/js/vendor/popper.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/create_saving.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/create_saving.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/customer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/customer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/fd_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/fd_account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/fund_transfer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/fund_transfer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/layouts/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/layouts/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/rd_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/rd_account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/saving_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/saving_account.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/saving_transaction.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/saving_transaction.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/transaction.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/transaction.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/transaction_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/transaction_info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/web/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/web/loan.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/web/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/web/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -372,10 +228,43 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/api/views.py">
+        <entry file="file://$PROJECT_DIR$/masteradmin/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="28" column="45" lean-forward="true" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+            <state relative-caret-position="211">
+              <caret line="308" column="17" selection-start-line="308" selection-start-column="17" selection-end-line="308" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/admin/layouts/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1755">
+              <caret line="117" column="75" selection-start-line="117" selection-start-column="75" selection-end-line="117" selection-end-column="75" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/masteradmin/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/admin/all_fd_scheme.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="690">
+              <caret line="46" column="82" selection-start-line="46" selection-start-column="82" selection-end-line="46" selection-end-column="82" />
             </state>
           </provider>
         </entry>
@@ -383,8 +272,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/masteradmin/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1950">
-              <caret line="130" column="32" selection-start-line="130" selection-start-column="32" selection-end-line="130" selection-end-column="32" />
+            <state relative-caret-position="3540">
+              <caret line="236" column="43" selection-start-line="236" selection-start-column="43" selection-end-line="236" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/admin/all_rd_scheme.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="735">
+              <caret line="49" column="49" selection-start-line="49" selection-start-column="49" selection-end-line="49" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/admin/customer.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1140">
+              <caret line="76" column="49" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -396,8 +303,8 @@
       <list>
         <option value="CSS File" />
         <option value="JavaScript File" />
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
     <option name="SCHEME" value="Project" />
@@ -424,6 +331,8 @@
       <find>member_id</find>
       <find>selectedvalue</find>
       <find>fd_account</find>
+      <find>transfer</find>
+      <find>logi</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -432,30 +341,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/web/shareholder.html" />
-        <option value="$PROJECT_DIR$/templates/web/about.html" />
-        <option value="$PROJECT_DIR$/templates/web/team.html" />
-        <option value="$PROJECT_DIR$/templates/web/layouts/saving.html" />
-        <option value="$PROJECT_DIR$/templates/web/csr.html" />
-        <option value="$PROJECT_DIR$/templates/web/career.html" />
-        <option value="$PROJECT_DIR$/templates/web/fixedDeposite.html" />
-        <option value="$PROJECT_DIR$/templates/web/recurringDeposite.html" />
-        <option value="$PROJECT_DIR$/templates/web/loan.html" />
-        <option value="$PROJECT_DIR$/templates/web/lockers.html" />
-        <option value="$PROJECT_DIR$/templates/web/saving.html" />
-        <option value="$PROJECT_DIR$/templates/web/contact.html" />
-        <option value="$PROJECT_DIR$/templates/web/layouts/base.html" />
-        <option value="$PROJECT_DIR$/static/css/mycss.css" />
         <option value="$PROJECT_DIR$/templates/admin/add_employee.html" />
         <option value="$PROJECT_DIR$/templates/transaction.html" />
-        <option value="$PROJECT_DIR$/web/urls.py" />
-        <option value="$PROJECT_DIR$/templates/admin/transaction.html" />
-        <option value="$PROJECT_DIR$/templates/admin/index.html" />
         <option value="$PROJECT_DIR$/templates/admin/layouts/create_fd.html" />
-        <option value="$PROJECT_DIR$/templates/admin/create_saving.html" />
         <option value="$PROJECT_DIR$/templates/admin/create_rd.html" />
         <option value="$PROJECT_DIR$/templates/admin/create_fd.html" />
-        <option value="$PROJECT_DIR$/templates/web/registration.html" />
         <option value="$PROJECT_DIR$/templates/admin/login.html" />
         <option value="$PROJECT_DIR$/templates/Customer/login.html" />
         <option value="$PROJECT_DIR$/templates/Customer/layout/base.html" />
@@ -464,25 +354,44 @@
         <option value="$PROJECT_DIR$/templates/admin/member.html" />
         <option value="$PROJECT_DIR$/templates/admin/add_member.html" />
         <option value="$PROJECT_DIR$/templates/admin/customer_details.html" />
-        <option value="$PROJECT_DIR$/templates/admin/customer.html" />
         <option value="$PROJECT_DIR$/customer/views.py" />
         <option value="$PROJECT_DIR$/templates/Customer/RD.html" />
-        <option value="$PROJECT_DIR$/templates/admin/fd_account.html" />
-        <option value="$PROJECT_DIR$/templates/admin/rd_account.html" />
-        <option value="$PROJECT_DIR$/templates/admin/fund_transfer.html" />
-        <option value="$PROJECT_DIR$/templates/admin/saving_transaction.html" />
-        <option value="$PROJECT_DIR$/templates/admin/saving_account.html" />
-        <option value="$PROJECT_DIR$/masteradmin/models.py" />
-        <option value="$PROJECT_DIR$/templates/admin/transaction_info.html" />
-        <option value="$PROJECT_DIR$/web/views.py" />
-        <option value="$PROJECT_DIR$/masteradmin/urls.py" />
-        <option value="$PROJECT_DIR$/templates/admin/layouts/base.html" />
-        <option value="$PROJECT_DIR$/masteradmin/views.py" />
         <option value="$PROJECT_DIR$/templates/Customer/FD.html" />
         <option value="$PROJECT_DIR$/hbfnidhi/settings.py" />
         <option value="$PROJECT_DIR$/hbfnidhi/urls.py" />
+        <option value="$PROJECT_DIR$/templates/admin/rd_info.html" />
         <option value="$PROJECT_DIR$/api/urls.py" />
         <option value="$PROJECT_DIR$/api/views.py" />
+        <option value="$PROJECT_DIR$/templates/admin/create_saving.html" />
+        <option value="$PROJECT_DIR$/templates/admin/account_transfer.html" />
+        <option value="$PROJECT_DIR$/templates/admin/customer.html" />
+        <option value="$PROJECT_DIR$/templates/admin/fd_account.html" />
+        <option value="$PROJECT_DIR$/templates/admin/fd_info.html" />
+        <option value="$PROJECT_DIR$/templates/admin/index.html" />
+        <option value="$PROJECT_DIR$/templates/admin/rd_account.html" />
+        <option value="$PROJECT_DIR$/templates/admin/saving_account.html" />
+        <option value="$PROJECT_DIR$/templates/admin/transaction.html" />
+        <option value="$PROJECT_DIR$/templates/admin/fund_transfer.html" />
+        <option value="$PROJECT_DIR$/templates/admin/transaction_info.html" />
+        <option value="$PROJECT_DIR$/templates/admin/saving_transaction.html" />
+        <option value="$PROJECT_DIR$/templates/admin/fd_plans.html" />
+        <option value="$PROJECT_DIR$/templates/admin/rd_plans.html" />
+        <option value="$PROJECT_DIR$/masteradmin/models.py" />
+        <option value="$PROJECT_DIR$/static/web/css/images/load.html" />
+        <option value="$PROJECT_DIR$/web/urls.py" />
+        <option value="$PROJECT_DIR$/templates/web/index.html" />
+        <option value="$PROJECT_DIR$/templates/web/registration.html" />
+        <option value="$PROJECT_DIR$/templates/web/doorstep-services.html" />
+        <option value="$PROJECT_DIR$/templates/web/loans.html" />
+        <option value="$PROJECT_DIR$/templates/web/recurring-deposit.html" />
+        <option value="$PROJECT_DIR$/templates/web/fixed-deposit.html" />
+        <option value="$PROJECT_DIR$/templates/web/saving-accounting.html" />
+        <option value="$PROJECT_DIR$/web/views.py" />
+        <option value="$PROJECT_DIR$/masteradmin/urls.py" />
+        <option value="$PROJECT_DIR$/templates/admin/all_rd_scheme.html" />
+        <option value="$PROJECT_DIR$/templates/admin/all_fd_scheme.html" />
+        <option value="$PROJECT_DIR$/masteradmin/views.py" />
+        <option value="$PROJECT_DIR$/templates/admin/layouts/base.html" />
       </list>
     </option>
   </component>
@@ -504,6 +413,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -511,11 +421,38 @@
               <item name="hbfnidhi" type="b2602c69:ProjectViewProjectNode" />
               <item name="hbfnidhi" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="hbfnidhi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hbfnidhi" type="462c0819:PsiDirectoryNode" />
+              <item name="masteradmin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hbfnidhi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hbfnidhi" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hbfnidhi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hbfnidhi" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hbfnidhi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hbfnidhi" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hbfnidhi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hbfnidhi" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -528,19 +465,19 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/web" />
+      <recent name="$PROJECT_DIR$/static/web" />
+      <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$/customer" />
+      <recent name="$PROJECT_DIR$/templates" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates/admin/" />
       <recent name="$PROJECT_DIR$/static/web/images" />
       <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$/templates/admin" />
       <recent name="$PROJECT_DIR$/static" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/static" />
-      <recent name="$PROJECT_DIR$/customer" />
-      <recent name="$PROJECT_DIR$/templates" />
-      <recent name="$PROJECT_DIR$/static/img" />
-      <recent name="$PROJECT_DIR$/static/web/css" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -879,12 +816,74 @@
       <workItem from="1548731958851" duration="1784000" />
       <workItem from="1548733770864" duration="1519000" />
       <workItem from="1548748026469" duration="2213000" />
-      <workItem from="1548750297500" duration="164000" />
+      <workItem from="1548750297500" duration="1016000" />
+      <workItem from="1548751346309" duration="1788000" />
+      <workItem from="1548753162421" duration="1640000" />
+      <workItem from="1548754829557" duration="1784000" />
+      <workItem from="1548756642113" duration="1936000" />
+      <workItem from="1548758606226" duration="1787000" />
+      <workItem from="1548760423062" duration="1795000" />
+      <workItem from="1548762246950" duration="1953000" />
+      <workItem from="1548768702819" duration="20000" />
+      <workItem from="1548835172418" duration="1221000" />
+      <workItem from="1548836443923" duration="425000" />
+      <workItem from="1548837169854" duration="1819000" />
+      <workItem from="1548839059863" duration="1548000" />
+      <workItem from="1548840891037" duration="1663000" />
+      <workItem from="1548842713354" duration="2021000" />
+      <workItem from="1548845448595" duration="1783000" />
+      <workItem from="1548847268204" duration="2038000" />
+      <workItem from="1548849345710" duration="1585000" />
+      <workItem from="1548851157508" duration="1550000" />
+      <workItem from="1548853296059" duration="1693000" />
+      <workItem from="1548877218543" duration="1282000" />
+      <workItem from="1548917767631" duration="1763000" />
+      <workItem from="1548919568314" duration="1793000" />
+      <workItem from="1548921398084" duration="1170000" />
+      <workItem from="1548924905762" duration="1780000" />
+      <workItem from="1548926716925" duration="1781000" />
+      <workItem from="1548928531617" duration="1819000" />
+      <workItem from="1548930383440" duration="1779000" />
+      <workItem from="1548932196078" duration="1928000" />
+      <workItem from="1548947080343" duration="1738000" />
+      <workItem from="1548948860118" duration="1785000" />
+      <workItem from="1548950682523" duration="1785000" />
+      <workItem from="1548952496846" duration="634000" />
+      <workItem from="1548956811462" duration="599000" />
+      <workItem from="1548961312776" duration="1782000" />
+      <workItem from="1548963128376" duration="2393000" />
+      <workItem from="1548965588210" duration="672000" />
+      <workItem from="1549002613404" duration="1279000" />
+      <workItem from="1549004957183" duration="1786000" />
+      <workItem from="1549006775072" duration="2285000" />
+      <workItem from="1549012672221" duration="1781000" />
+      <workItem from="1549014485332" duration="972000" />
+      <workItem from="1549015624577" duration="1798000" />
+      <workItem from="1549017452494" duration="1819000" />
+      <workItem from="1549019302313" duration="1783000" />
+      <workItem from="1549021115554" duration="1848000" />
+      <workItem from="1549024176475" duration="1123000" />
+      <workItem from="1549143191230" duration="20000" />
+      <workItem from="1549265322650" duration="1763000" />
+      <workItem from="1549267119620" duration="1872000" />
+      <workItem from="1549270730891" duration="1781000" />
+      <workItem from="1549272545321" duration="1782000" />
+      <workItem from="1549274423802" duration="1798000" />
+      <workItem from="1549276256118" duration="1782000" />
+      <workItem from="1549278080849" duration="1785000" />
+      <workItem from="1549279898208" duration="781000" />
+      <workItem from="1549360957969" duration="12000" />
+      <workItem from="1549431075082" duration="1759000" />
+      <workItem from="1549432876316" duration="1872000" />
+      <workItem from="1549435378590" duration="1218000" />
+      <workItem from="1549437418295" duration="630000" />
+      <workItem from="1549439471420" duration="597000" />
+      <workItem from="1549446951936" duration="598000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="395452000" />
+    <option name="totallyTimeSpent" value="489360000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -897,9 +896,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1366" height="692" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29166666" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -913,14 +911,14 @@
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49848485" weight="0.3285968" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5037879" side_tool="true" weight="0.27175844" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49621212" visible="true" weight="0.3197158" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49621212" visible="true" weight="0.27353463" />
       <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49924242" weight="0.3285968" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.32954547" />
-      <window_info anchor="right" id="R Graphics" order="4" weight="0.32954547" />
-      <window_info anchor="right" id="R Packages" order="5" weight="0.32954547" />
+      <window_info anchor="right" id="R Graphics" order="3" weight="0.32954547" />
+      <window_info anchor="right" id="R Packages" order="4" weight="0.32954547" />
+      <window_info anchor="right" id="SciView" order="5" weight="0.32954547" />
       <window_info anchor="right" id="Database" order="6" weight="0.2" />
     </layout>
   </component>
@@ -928,122 +926,10 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/web/js/datepicker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/web/css/datepicker.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/web/layouts/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3750">
-          <caret line="250" column="17" selection-start-line="250" selection-start-column="17" selection-end-line="250" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/web/fixedDeposite.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="58" selection-start-line="3" selection-start-column="58" selection-end-line="3" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/web/recurringDeposite.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="37" selection-start-column="37" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/web/loan.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="72" column="34" selection-start-line="72" selection-start-column="34" selection-end-line="72" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/web/career.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/mycss.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="19" selection-start-line="17" selection-start-column="2" selection-end-line="19" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/transaction.html" />
-    <entry file="file://$PROJECT_DIR$/masteradmin/migrations/0001_initial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/masteradmin/migrations/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/masteradmin/migrations/0002_auto_20190118_1749.py" />
-    <entry file="file://$PROJECT_DIR$/templates/admin/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/masteradmin/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/masteradmin/admin.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/create_saving.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="30" column="15" lean-forward="true" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/create_fd.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="70" column="46" lean-forward="true" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/customer/js/pdf/pdf-active.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Customer/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="36" column="103" selection-start-line="36" selection-start-column="103" selection-end-line="36" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/web/registration.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3090">
-          <caret line="206" column="38" selection-start-line="206" selection-start-column="38" selection-end-line="206" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -1078,38 +964,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/member.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="51" column="36" selection-start-line="51" selection-start-column="36" selection-end-line="51" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/customer_details.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="102" column="70" selection-start-line="102" selection-start-column="70" selection-end-line="102" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/add_member.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/fd_account.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="66" column="84" selection-start-line="66" selection-start-column="84" selection-end-line="66" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/transaction.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="77" lean-forward="true" selection-start-line="5" selection-start-column="77" selection-end-line="5" selection-end-column="77" />
         </state>
       </provider>
     </entry>
@@ -1123,96 +981,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/customer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="74" column="63" lean-forward="true" selection-start-line="74" selection-start-column="63" selection-end-line="74" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/customer/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="30" column="29" lean-forward="true" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/customer/models.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/fund_transfer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="66" column="49" selection-start-line="66" selection-start-column="49" selection-end-line="66" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/rd_account.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="45" column="37" selection-end-line="85" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="50" column="18" lean-forward="true" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#55#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Customer/FD.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="77" selection-start-line="24" selection-start-column="77" selection-end-line="24" selection-end-column="77" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/create_rd.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/masteradmin/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="161" lean-forward="true" selection-start-line="161" selection-end-line="161" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/layouts/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="124" column="65" selection-start-line="124" selection-start-column="65" selection-end-line="124" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/transaction_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="80" column="76" selection-start-line="80" selection-start-column="76" selection-end-line="80" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/saving_account.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="58" column="84" selection-start-line="58" selection-start-column="84" selection-end-line="58" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin/saving_transaction.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1223,48 +998,311 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hbfnidhi/urls.py">
+    <entry file="file://$PROJECT_DIR$/templates/admin/rd_info.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <caret line="102" column="39" lean-forward="true" selection-start-line="102" selection-start-column="39" selection-end-line="102" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Customer/FD.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="50" lean-forward="true" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="39" column="44" lean-forward="true" selection-start-line="39" selection-start-column="44" selection-end-line="39" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="41" column="44" selection-start-line="41" selection-start-column="44" selection-end-line="41" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/db/models/fields/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="1154" column="17" selection-start-line="1154" selection-start-column="17" selection-end-line="1154" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/create_saving.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="51" column="70" selection-end-line="79" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/account_transfer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="65" column="62" selection-start-line="65" selection-start-column="62" selection-end-line="65" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/fd_account.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="73" column="63" lean-forward="true" selection-start-line="73" selection-start-column="63" selection-end-line="73" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/fd_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="121" column="62" lean-forward="true" selection-start-line="121" selection-start-column="62" selection-end-line="121" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hbfnidhi/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="13" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/masteradmin/urls.py">
+    <entry file="file://$PROJECT_DIR$/templates/admin/saving_account.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="111">
+          <caret line="63" column="64" selection-start-line="63" selection-start-column="64" selection-end-line="63" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/rd_account.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="76" column="48" selection-start-line="76" selection-start-column="48" selection-end-line="76" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/member.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/customer_details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="102" column="70" selection-start-line="102" selection-start-column="70" selection-end-line="102" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/fund_transfer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="41" column="18" lean-forward="true" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/transaction_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/create_fd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="50" column="59" selection-start-line="50" selection-start-column="59" selection-end-line="50" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/fd_plans.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="48" column="70" selection-end-line="83" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/rd_plans.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" column="67" selection-start-line="42" selection-start-column="67" selection-end-line="42" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/transaction.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="52" column="48" selection-start-line="52" selection-start-column="48" selection-end-line="52" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/saving_transaction.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="107" column="49" selection-start-line="107" selection-start-column="49" selection-end-line="107" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="116" column="80" lean-forward="true" selection-start-line="116" selection-start-column="80" selection-end-line="116" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/web/css/images/load.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="36" lean-forward="true" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/layouts/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="136" column="63" lean-forward="true" selection-start-line="136" selection-start-column="63" selection-end-line="136" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="41" column="13" lean-forward="true" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+        <state relative-caret-position="300">
+          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/urls.py" />
-    <entry file="file://$PROJECT_DIR$/api/views.py">
+    <entry file="file://$PROJECT_DIR$/templates/web/fixed-deposit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="28" column="45" lean-forward="true" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
+        <state relative-caret-position="870">
+          <caret line="58" column="39" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/recurring-deposit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="90" column="29" selection-start-line="90" selection-start-column="29" selection-end-line="90" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/loans.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1005">
+          <caret line="67" column="27" selection-start-line="67" selection-start-column="27" selection-end-line="67" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/doorstep-services.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1635">
+          <caret line="109" column="29" selection-start-line="109" selection-start-column="29" selection-end-line="109" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/saving-accounting.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1560">
+          <caret line="104" column="10" lean-forward="true" selection-start-line="104" selection-start-column="10" selection-end-line="104" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/web/registration.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/masteradmin/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="308" column="17" selection-start-line="308" selection-start-column="17" selection-end-line="308" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/layouts/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1755">
+          <caret line="117" column="75" selection-start-line="117" selection-start-column="75" selection-end-line="117" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/masteradmin/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/all_fd_scheme.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="46" column="82" selection-start-line="46" selection-start-column="82" selection-end-line="46" selection-end-column="82" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/masteradmin/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1950">
-          <caret line="130" column="32" selection-start-line="130" selection-start-column="32" selection-end-line="130" selection-end-column="32" />
+        <state relative-caret-position="3540">
+          <caret line="236" column="43" selection-start-line="236" selection-start-column="43" selection-end-line="236" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/all_rd_scheme.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="49" column="49" selection-start-line="49" selection-start-column="49" selection-end-line="49" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin/customer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1140">
+          <caret line="76" column="49" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
         </state>
       </provider>
     </entry>

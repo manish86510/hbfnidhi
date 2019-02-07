@@ -72,7 +72,7 @@
                                                 {% if data.is_active == 0 %}
                                                     <td><a href="/admin/sactive/{{ data.is_active }}/{{ data.member }}/"><button class="btn btn-info">Activate</button></a></td>
                                                 {% else %}
-                                                    <td><a href="/admin/sactive/{{ data.is_active }}/{{ data.member }}/"><button class="btn btn-info">Not Activate</button></a></td>
+                                                    <td><a href="/admin/sactive/{{ data.is_active }}/{{ data.member }}/"><button class="btn btn-warning">Not Activate</button></a></td>
                                                 {% endif %}
                                             </tr>
                                         {% endfor %}

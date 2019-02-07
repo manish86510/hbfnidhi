@@ -29,6 +29,7 @@ class Customer(models.Model):
     password = models.CharField(max_length=80)
     email = models.EmailField(max_length=60)
     mobile = models.BigIntegerField()
+    age = models.CharField(max_length=20, null=True)
     landline = models.CharField(max_length=15, null=True)
     is_verify = models.IntegerField()
     is_active = models.IntegerField()
@@ -129,7 +130,8 @@ class SavingAccount(models.Model):
 
 
 class Beneficiary(models.Model):
-    associated_member = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    associated_member = models.CharField(max_length=20, null=True)
+    name = models.CharField(max_length=60, null=True)
     account_no = models.CharField(max_length=20, null=True)
     ifsc = models.CharField(max_length=20, null=True)
     branch_code = models.CharField(max_length=20, null=True)
@@ -140,9 +142,9 @@ class Beneficiary(models.Model):
 
 
 class DebitTransaction(models.Model):
-    member = models.CharField(max_length=20, unique=True)
+    member = models.CharField(max_length=20)
     transaction = models.CharField(max_length=20, unique=True)
-    beneficiary = models.ForeignKey(Beneficiary, on_delete=models.CASCADE)
+    beneficiary = models.CharField(max_length=20, null=True)
     amount = models.CharField(max_length=20, null=True)
     transaction_charge = models.CharField(max_length=20, null=True)
     transaction_amount = models.CharField(max_length=20, null=True)
@@ -150,19 +152,20 @@ class DebitTransaction(models.Model):
     bal_after_transaction = models.CharField(max_length=20)
     type_of_transaction = models.CharField(max_length=20, null=True)
     debit_type = models.CharField(max_length=20, null=True)
+    remark = models.CharField(max_length=80, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(null=True)
 
 
 class CreditTransaction(models.Model):
-    member = models.CharField(max_length=20, unique=True)
+    member = models.CharField(max_length=20)
     transaction = models.CharField(max_length=20, unique=True)
     amount = models.CharField(max_length=20, null=True)
     type_of_transaction = models.CharField(max_length=20, null=True)
     sender_account_no = models.CharField(max_length=20, null=True)
     sender_bank_name = models.CharField(max_length=20, null=True)
-    models.CharField(max_length=20, null=True)
     debit_type = models.CharField(max_length=20, null=True)
+    remark = models.CharField(max_length=80, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(null=True)
 

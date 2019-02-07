@@ -47,13 +47,13 @@
                                             <tr>
                                                 <th>SN.</th>
                                                 <th data-field="member">Member Id</th>
-                                                <th data-field="agent">Ac.No</th>
-                                                <th data-field="email">Tenure</th>
-                                                <th data-field="phone">Amount</th>
-                                                <th data-field="pincode">Interest(Quarterly)</th>
-                                                <th data-field="pincode">Maturity Amount</th>
-                                                <th data-field="complete">Opening Date</th>
-                                                <th data-field="date">Active</th>
+                                                <th data-field="Account no">Ac.No</th>
+                                                <th data-field="Tenure">Tenure</th>
+                                                <th data-field="Amount">Amount</th>
+                                                <th data-field="Interest">Interest(Quarterly)</th>
+                                                <th data-field="Maturity">Maturity Amount</th>
+                                                <th data-field="opening_date">Opening Date</th>
+                                                <th data-field="active">Active</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -61,7 +61,7 @@
                                             <tr>
                                                 <td>{{ forloop.counter }}</td>
                                                 <td>{{ data.associated_member }}</td>
-                                                <td><a href="/admin/fd_info/{{ data.account_number }}/"><u>{{ data.account_number }}</u></a></td>
+                                                <td><a href="/admin/fd_info/{{ data.account_number }}/{{ data.associated_member }}/"><u>{{ data.account_number }}</u></a></td>
                                                 <td>{{ data.tenure }}</td>
                                                 <td>{{ data.amount }}</td>
                                                 <td>{{ data.rate_of_interest }}</td>
@@ -70,7 +70,7 @@
                                                     {% if data.is_active == 0 %}
                                                         <td><a href="/admin/fd/active/1/{{ data.account_number }}/"><button class="btn btn-info">Active</button></a></td>
                                                     {% else %}
-                                                        <td><a href="/admin/fd/active/0/{{ data.account_number }}/"><button class="btn btn-info">Not Active</button></a></td>
+                                                        <td><a href="/admin/fd/active/0/{{ data.account_number }}/"><button class="btn btn-warning">Not Active</button></a></td>
                                                     {% endif %}
                                             </tr>
                                         {% endfor %}

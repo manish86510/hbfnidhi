@@ -1,0 +1,181 @@
+{% extends 'admin/layouts/base.html' %}
+{% block content %}
+    <style>
+        #credit{
+            display: none;
+        }
+    </style>
+    <script>
+        function debit() {
+            var ab = document.getElementById("debit_trans");
+            var strUser = ab.options[ab.selectedIndex].text;
+            if(strUser=="Debit"){
+                document.getElementById("debit").style.display = "block";
+                document.getElementById("credit").style.display = "none";
+            }else{
+                document.getElementById("debit").style.display = "none";
+                document.getElementById("credit").style.display = "block";
+            }
+        }
+
+        function credit() {
+            var ab = document.getElementById("credit_trans");
+            var strUser = ab.options[ab.selectedIndex].text;
+            if(strUser=="Credit"){
+                document.getElementById("credit").style.display = "block";
+                document.getElementById("debit").style.display = "none";
+            }else{
+                document.getElementById("credit").style.display = "none";
+                document.getElementById("debit").style.display = "block";
+            }
+        }
+    </script>
+<div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                            <form role="search" class="sr-input-func">
+                                               <!-- <input type="text" placeholder="Search..." class="search-int form-control">
+                                                <a href="#"><i class="fa fa-search"></i></a>-->
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="/admin/login/">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-slash">Transaction List</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- Static Table Start -->
+        <div class="data-table-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd">
+                                    <h1>Transaction List</h1>
+                                </div>
+                                <div class="container">
+                                    <h3>Account Info</h3>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <p><b>Account Holder Name :</b> {{ customer.first_name }} {{ customer.last_name }}</p>
+                                            <p><b> Account Number :</b> {{ fd.account_number }}</p>
+                                            <p><b>Member Id :</b> {{ fd.associated_member }}</p>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <p><b>Account balance :</b> {{ fd.amount }}</p>
+                                            <p><b>Account Opening Date :</b> {{ fd.created_date }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sparkline13-graph">
+                                <div class="datatable-dashv1-list custom-datatable-overright" id="debit">
+                                <div style="width: fit-content; position: relative">
+                                    <select class="form-control dt-tb" id="debit_trans" onchange="debit();">
+                                        <option value="debit">Debit</option>
+                                        <option value="credit">Credit</option>
+                                    </select>
+                                </div>
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+                                                <th data-field="id">ID</th>
+                                                <th data-field="Transaction Id" data-editable="true">Transaction Id</th>
+                                                <th data-field="Member Acc." data-editable="true">Member Acc.</th>
+                                                <th data-field="Sender Acc." data-editable="true">Sender Acc.</th>
+                                                <th data-field="Amount" data-editable="true">Amount</th>
+                                                <th data-field="Sender Bank" data-editable="true">Sender Bank</th>
+                                                <th data-field="Debit Type" data-editable="true">Debit Type</th>
+                                                <th data-field="Transaction Date" data-editable="true">Transaction Date</th>
+                                                <th data-field="Status">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for cdata in fd1 %}
+                                            <tr>
+                                                <td>{{ forloop.counter }}</td>
+                                                <td>{{ cdata.transaction }}</td>
+                                                <td>{{ cdata.member }}</td>
+                                                <td>{{ cdata.sender_account_no }}</td>
+                                                <td>{{ cdata.amount }}</td>
+                                                <td>{{ cdata.sender_bank_name }}</td>
+                                                <td>{{ cdata.debit_type }}</td>
+                                                <td>{{ cdata.created_date }}</td>
+                                                {% if cdata.status == 0 %}
+                                                        <td><a href="/admin/transaction/1/{{ cdata.transaction }}/"><button class="btn btn-warning">Pending</button></a></td>
+                                                    {% else %}
+                                                        <td><a href="/admin/transaction/0/{{ cdata.transaction }}/"><button class="btn btn-info">Success</button></a></td>
+                                                    {% endif %}
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            <div class="datatable-dashv1-list custom-datatable-overright" id="credit">
+                                <div style="width: fit-content; position: relative">
+                                    <select class="form-control dt-tb" id="credit_trans" onchange="credit();">
+                                        <option value="">Transaction Type</option>
+                                        <option value="credit">Credit</option>
+                                        <option value="debit">Debit</option>
+                                    </select>
+                                </div>
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+                                                <th data-field="Id">ID</th>
+                                                <th data-field="Transaction Id" data-editable="true">Transaction Id</th>
+                                                <th data-field="Member Acc." data-editable="true">Member Acc.</th>
+                                                <th data-field="Beneficiary Acc." data-editable="true">Beneficiary Acc.</th>
+                                                <th data-field="Amount" data-editable="true">Amount</th>
+                                                <th data-field="Beneficiary Bank" data-editable="true">Beneficiary Bank</th>
+                                                <th data-field="Transaction Type" data-editable="true">Transaction Type</th>
+                                                <th data-field="Transaction Date" data-editable="true">Transaction Date</th>
+                                                <th data-field="Status">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for ddata in debit %}
+                                            <tr>
+                                                <td>{{ forloop.counter }}</td>
+                                                <td>{{ ddata.transaction }}</td>
+                                                <td>{{ ddata.member }}</td>
+                                                <td>{{ ddata.sender_account_no }}</td>
+                                                <td>{{ ddata.amount }}</td>
+                                                <td>{{ ddata.sender_bank_name }}</td>
+                                                <td>{{ ddata.debit_type }}</td>
+                                                <td>{{ ddata.created_date }}</td>
+                                                {% if ddata.status == 0 %}
+                                                        <td><a href="/admin/transaction/1/{{ ddata.transaction }}/"><button class="btn btn-warning">Pending</button></a></td>
+                                                    {% else %}
+                                                        <td><a href="/admin/transaction/0/{{ ddata.transaction }}/"><button class="btn btn-info">Success</button></a></td>
+                                                    {% endif %}
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

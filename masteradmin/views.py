@@ -1,16 +1,21 @@
 import random
 
-from django.db.models import Q
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.contrib import messages
+from django.shortcuts import render
 from masteradmin.models import *
-import datetime
 
 
 class Dashboard:
     def index(self):
         if self.session['user_name']:
-            return render(self, 'admin/index.html')
+            cust = Customer.objects.count()
+            fd = FD.objects.count()
+            rd = RD.objects.count()
+            try:
+                customer = Customer.objects.filter(is_active=0).all().order_by('-id')
+            except:
+                customer = None
+            return render(self, 'admin/index.html', {'cust': cust, 'fd': fd, 'rd': rd, 'customer': customer})
         else:
             return render(self, 'admin/login.html')
 
@@ -23,7 +28,14 @@ class Dashboard:
                 self.session['user_name'] = result.admin_name
                 self.session['user_id'] = result.id
                 self.session['user_role'] = result.role
-                return render(self, 'admin/index.html', {'result': result, 'username': result.admin_name})
+                cust = Customer.objects.count()
+                fd = FD.objects.count()
+                rd = RD.objects.count()
+                try:
+                    customer = Customer.objects.filter(is_active=0).all().order_by('-id')
+                except:
+                    customer = None
+                return render(self, 'admin/index.html', {'cust': cust, 'fd': fd, 'rd': rd, 'customer': customer, 'result': result})
             except Exception:
                 message = "Email Id & Password is invalid !"
                 return render(self, 'admin/login.html', {'message': message})
@@ -119,16 +131,24 @@ class Dashboard:
         customer_data = Customer.objects.all().order_by('-id')
         return render(self, 'admin/customer.html', {'customer': customer_data})
 
+    def sactive(self, active, member):
+        if active == 0:
+            SavingAccount.objects.filter(member=member).update(is_active=1)
+        else:
+            SavingAccount.objects.filter(member=member).update(is_active=0)
+        member = SavingAccount.objects.all().order_by('-id')
+        return render(self, 'admin/saving_account.html', {'member': member})
+
     def create_saving_account(self):
         if self.method == 'POST':
             try:
                 member = self.POST.get('member_id')
-                memberid = Customer.objects.get(member=member)
                 account = random.randint(1111111111, 9999999999)
+                SavingAccount.objects.exclude(member=member)
                 saving_account = SavingAccount(
-                    member=self.POST.get('member_id'),
+                    member=member,
                     account_no="SA"+str(account),
-                    ifsc=self.POST.get('ifsc'),
+                    ifsc="HBFN900000009",
                     branch_code=self.POST.get('branch_code'),
                     branch_name=self.POST.get('branch_name'),
                     account_balance=self.POST.get('balance'),
@@ -137,6 +157,19 @@ class Dashboard:
                     created_date=models.DateTimeField(auto_now_add=True),
                 )
                 saving_account.save()
+                trans = random.randint(1111111111, 9999999999)
+                credit = CreditTransaction(
+                    member=self.POST.get('member_id'),
+                    transaction=trans,
+                    amount=self.POST.get('balance'),
+                    type_of_transaction="cash",
+                    sender_account_no="SA9000000000",
+                    sender_bank_name="HBFNIDHI",
+                    debit_type="NO",
+                    created_date=models.DateTimeField(auto_now_add=True),
+                    status=1,
+                )
+                credit.save()
                 message = "Saving account created successfully !"
                 return render(self, 'admin/create_saving.html', {'message': message})
             except:
@@ -144,6 +177,78 @@ class Dashboard:
                 return render(self, 'admin/create_saving.html', {'message': message})
         else:
             return render(self, 'admin/create_saving.html')
+
+    def account_transfer(self):
+        if self.method == 'POST':
+            sender_account = self.POST.get('sender_account')
+            receiver_account = self.POST.get('receiver_account')
+            try:
+                debit_data = SavingAccount.objects.get(account_no=receiver_account)
+                credit_data = SavingAccount.objects.get(account_no=sender_account)
+                if int(credit_data.account_balance) > int(self.POST.get('amount')):
+                    bal_remain = int(credit_data.account_balance)-int(self.POST.get('amount'))
+                else:
+                    message = "You have insufficient balance !"
+                    return render(self, 'admin/account_transfer.html', {'message': message})
+                try:
+                    transaction = CreditTransaction.objects.last()
+                    trans = int(transaction.transaction) + 1
+                except:
+                    trans = 1200090990
+                credit = CreditTransaction(
+                    member=debit_data.member,
+                    transaction=trans,
+                    amount=self.POST.get('amount'),
+                    type_of_transaction=self.POST.get('transaction_type'),
+                    sender_account_no=sender_account,
+                    sender_bank_name="HBFNIDHI",
+                    remark=self.POST.get('remark'),
+                    debit_type="NO",
+                    created_date=models.DateTimeField(auto_now_add=True),
+                    status=1,
+                )
+                credit.save()
+                try:
+                    Beneficiary.objects.get(associated_member=debit_data.member, account_no=sender_account)
+                except:
+                    beneficiary = Beneficiary(
+                        associated_member=debit_data.member,
+                        account_no=sender_account,
+                        ifsc="HBFN900000009",
+                        branch_code="HBFN67346450",
+                        bank_name="HBFNIDHI",
+                        contact_no="9090009090",
+                        type_of_account="saving",
+                        remark=self.POST.get('remark'),
+                        created_date=models.DateTimeField(auto_now_add=True),
+                    )
+                    beneficiary.save()
+                try:
+                    transaction = CreditTransaction.objects.last()
+                    trans1 = int(transaction.transaction) + 1
+                except:
+                    trans1 = 9200090990
+                debit = DebitTransaction(
+                    member=credit_data.member,
+                    transaction=trans1,
+                    beneficiary=1,
+                    amount=self.POST.get('amount'),
+                    transaction_charge="no",
+                    bal_before_transaction=credit_data.account_balance,
+                    bal_after_transaction=bal_remain,
+                    type_of_transaction=self.POST.get('transaction_type'),
+                    debit_type="Other",
+                    remark=self.POST.get('remarks'),
+                    created_date=models.DateTimeField(auto_now_add=True),
+                    status=1,
+                )
+                debit.save()
+                SavingAccount.objects.filter(member=credit_data.member).update(account_balance=bal_remain)
+                return render(self, 'admin/account_transfer.html', {'message': "Money Transferred Successfully!"})
+            except:
+                return render(self, 'admin/account_transfer.html', {'message': "Invalid Member Id !"})
+        else:
+            return render(self, 'admin/account_transfer.html')
 
     def saving_account(self):
         member = SavingAccount.objects.all().order_by('-id')
@@ -245,10 +350,10 @@ class Dashboard:
             customer = Customer.objects.get(member=member, is_active=1)
             saving_info = SavingAccount.objects.get(account_no=account, is_active=1)
         except:
-            customer = None;
-            saving_info = None;
+            customer = None
+            saving_info = None
         try:
-            credit = CreditTransaction.objects.get(member=member).order_by('-id')
+            credit = CreditTransaction.objects.all(member=member).order_by('-id')
         except:
             credit = None
         try:
@@ -256,3 +361,61 @@ class Dashboard:
         except:
             debit = None
         return render(self, 'admin/transaction_info.html', {'credit': credit, 'debit': debit, 'saving': saving_info, 'customer': customer})
+
+    def fd_info(self, account_number, associated_member):
+        try:
+            customer = Customer.objects.get(member=associated_member)
+            fd_info = FD.objects.get(account_number=account_number)
+        except:
+            customer = None
+            fd_info = None
+        return render(self, 'admin/fd_info.html', {'fd': fd_info, 'customer': customer})
+
+    def rd_info(self, account_number, associated_member):
+        try:
+            customer = Customer.objects.get(member=associated_member)
+            rd_info = RD.objects.get(account_number=account_number)
+        except:
+            customer = None
+            rd_info = None
+        return render(self, 'admin/rd_info.html', {'rd': rd_info, 'customer': customer})
+
+    def fd_plan(self):
+        if self.method == 'POST':
+            fd = FD_scheme(
+                scheme=self.POST.get('scheme'),
+                interest_rate=self.POST.get('interest_rate'),
+                tenure =self.POST.get('tenure'),
+                breakable = self.POST.get('breakable'),
+                is_applicable = 1,
+                created_date = models.DateTimeField(auto_now_add=True),
+            )
+            fd.save()
+            message = "Scheme Created Successfully !"
+            return render(self, 'admin/fd_plans.html', {'message': message})
+        else:
+            return render(self, 'admin/fd_plans.html')
+
+    def rd_plan(self):
+        if self.method == 'POST':
+            rd = RD_scheme(
+                scheme=self.POST.get('scheme'),
+                interest_rate=self.POST.get('interest_rate'),
+                tenure=self.POST.get('tenure'),
+                breakable=self.POST.get('breakable'),
+                is_applicable=1,
+                created_date=models.DateTimeField(auto_now_add=True),
+            )
+            rd.save()
+            messages.success(self, "Scheme Created Successfully !")
+            return render(self, 'admin/rd_plans.html')
+        else:
+            return render(self, 'admin/rd_plans.html')
+
+    def all_rd_plans(self):
+        rd_scheme = RD_scheme.objects.all().order_by('-id')
+        return render(self, 'admin/all_rd_scheme.html', {'rd_scheme': rd_scheme})
+
+    def all_fd_plans(self):
+        fd_scheme = FD_scheme.objects.all().order_by('-id')
+        return render(self, 'admin/all_fd_scheme.html', {'rd_scheme': fd_scheme})

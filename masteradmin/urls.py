@@ -16,6 +16,7 @@ urlpatterns = [
     path('profile/<str:member>/', Dashboard.view_customers),
     path('verify/<int:verify>/<str:member>/', Dashboard.verify_cust),
     path('active/<int:active>/<str:member>/', Dashboard.active_cust),
+    path('sactive/<int:active>/<str:member>/', Dashboard.sactive),
     path('create_saving_account/', Dashboard.create_saving_account),
     path('saving_account/', Dashboard.saving_account),
     path('saving_account_transaction/',Dashboard.saving_account_transaction),
@@ -27,8 +28,15 @@ urlpatterns = [
     path('add_member/', Dashboard.member_form),
     path('fd/active/<int:active>/<str:account>/', Dashboard.active_fd),
     path('rd/active/<int:active>/<str:account>/', Dashboard.active_rd),
+    path('fd_info/<str:account_number>/<str:associated_member>/', Dashboard.fd_info),
+    path('rd_info/<str:account_number>/<str:associated_member>/', Dashboard.rd_info),
     path('transfer/', Dashboard.transfer),
+    path('account_transfer/', Dashboard.account_transfer),
     path('saving_info/<str:member>/<str:account>/', Dashboard.saving_info),
+    path('fd_plans/', Dashboard.fd_plan),
+    path('rd_plans/', Dashboard.rd_plan),
+    path('all_fd_scheme', Dashboard.all_fd_plans),
+    path('all_rd_scheme', Dashboard.all_rd_plans),
 ]
 
 if settings.DEBUG:
