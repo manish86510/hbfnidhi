@@ -24,7 +24,7 @@ SECRET_KEY = '1p-a623lruwua57syt*72#8d1ei-z!n%l&&td(oi_r@7o*0twb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.hbfnidhi.com', 'https://hbfnidhi.com', '*', '44.229.194.117']
 
 # Application definition
 
@@ -76,15 +76,15 @@ WSGI_APPLICATION = 'hbfnidhi.wsgi.application'
 
 DATABASES = {
     'default': {
-        #  'ENGINE': 'django.db.backends.sqlite3',
-        #  'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hbfnew1',
-        'USER': 'Tech',
-        'PASSWORD': 'Tech#007',
-        'HOST': 'localhost',
-        'PORT': '8000',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'hbfnew1',
+        # 'USER': 'Tech',
+        # 'PASSWORD': 'Tech#007',
+        # 'HOST': 'localhost',
+        # 'PORT': '8000',
     }
 }
 
