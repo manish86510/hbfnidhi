@@ -18,12 +18,15 @@ class Dashboard:
             return render(self, 'admin/index.html', {'cust': cust, 'fd': fd, 'rd': rd, 'customer': customer})
         else:
             return render(self, 'admin/login.html')
-
+        
+    
     def login(self):
         if self.method == 'POST':
             try:
                 email = self.POST.get('email')
                 password = self.POST.get('password')
+                
+                
                 result = Admin.objects.get(email=email, password=password, is_active=1)
                 self.session['user_name'] = result.admin_name
                 self.session['user_id'] = result.id
@@ -47,6 +50,7 @@ class Dashboard:
             try:
                 member = self.POST.get('member')
                 email = self.POST.get('email')
+                
                 Admin.objects.get(admin_name=member, email=email)
                 message = "Member Already Created !"
                 return render(self, 'admin/add_member.html', {'message': message})

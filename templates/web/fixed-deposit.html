@@ -1,106 +1,7 @@
+{% extends 'web/layouts/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="zxx">
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-<head>
-    <title>HBF Nidhi Ltd.| Fixed Deposit</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="HBF NIDHI" />
-    <script>
-        addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
-
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
-    <link href={% static "web/css/bootstrap.css" %} type="text/css" rel="stylesheet" media="all">
-    <link rel="stylesheet" href={% static "web/css/smoothbox.css" %} type='text/css' media="all" />
-    <link rel="stylesheet" href={% static "web/css/jquery.desoslide.css" %}>
-    <link href={% static "web/css/style.css" %} type="text/css" rel="stylesheet" media="all">
-    <link href={% static "web/css/font-awesome.css" %} rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
-</head>
-<body>
-<script src='../../../../../../../ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script><script src="../../../../../../../m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125810435-1"></script>
-<body>
-    <div class="top-nav">
-        <div class="container">
-            <div class="navbar-top">
-                <div class="nav-top-left">
-                    <ul>
-                        <li>
-                            <a href="/customer/" class="log">Login</a>
-                        </li>
-                        <li>
-                            <a href="/registration/" class="log">register</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="nav-top-right">
-                    <ul>
-                        <li>
-                            <i class="fa fa-phone" aria-hidden="true"></i>+91-9971-337-447</li>
-                        <li>
-                            <i class="fa fa-envelope-o list-icon" aria-hidden="true"></i>
-                            <a href="mailto:Info@hbfnidhi.com">Info@hbfnidhi.com</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-        <!-- nav-bottom -->
-        <div class="inner-header">
-            <nav class="navbar navbar-default">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <h1>
-                        <a href="/"  title="HBF NIDHI Ltd.">
-                             <img alt="HBF NIDHI Ltd." src={% static "web/images/logo.png" %}>
-                        </a>
-                    </h1>
-                </div>
-                <!-- navbar-header -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                       <li>
-                            <a href="/">Home</a>
-                        </li>
-                        <li>
-                            <a href="/">About</a>
-                        </li>
-                        <li class="active">
-                            <a href="/">Product</a>
-                        </li>
-                        <li>
-                            <a href="/">Team</a>
-                        </li>
-                        <li>
-                            <a href="/">Career</a>
-                        </li>
-                        <li>
-                            <a href="/" class="scroll">Faq</a>
-                        </li>
-                        <li>
-                            <a href="/">contact</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="clearfix"> </div>
-            </nav>
-        </div>
-    </div>
-    <!--/nav ends here-->
-    <!--about -->
+{% block content %}    
+<!--about -->
     <div id="about" class="section" style="padding: 0em 0;">
         <div class="abt-container">
             <div class="faq-info">
@@ -127,98 +28,92 @@
                         <div class="faqmain-info">
                             <div class="faq-subinfo">
                                 <fieldset>
-                                    <legend>Fixed Deposit: Non- Breakable Scheme</legend>
+                                    <legend>Fixed Deposit: ccNon- Breakable Scheme</legend>
                                     <div class="stats-info" style="padding: 0 0em 8em;">
                                         <div class="col-sm-12 col-xs-12">
                                             <p style="font-size: 20px;"><strong>Fixed Deposit: Non- Breakable Scheme</strong></p>
-                                            HBF Fixed deposits (FDs) are an attractive mode of parking one's money safely. It offers security in terms of savings on one's income.<br/><br/>
-                                            Non-breakable Fixed Deposit as the name suggests cannot be withdrawn prematurely. In other words, Fixed Deposit cannot be broken before maturity date.<br/><br/>
-                                            <p style="font-size: 20px;"><strong>Earn attractive interest for various tenures on your deposits as listed under:</strong></p>
-                                            <div class="table-responsive">
-                                                <table class="table table-hover table-bordered text-center">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Tenure</th>
-                                                            <th>Interest Rate (Quarterly  Compounding)</th>
-                                                            <!--<th>Monthly Interest Scheme- Normal</th>-->
-                                                            <th>Interest Rate Citizen (Annual Yield)</th>
-                                                            <!--<th>Monthly Interest Scheme - Senior Citizen</th>-->
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td> 6 Months</td>
-                                                            <td>7.297%</td>
-                                                            <!--<td>07.35%</td>-->
-                                                            <td>7.5%</td>
-                                                            <!--<td>07.61%</td>-->
-                                                        </tr>
-                                                        <tr>
-                                                            <td>12 Months</td>
-                                                            <td>7.40%</td>
-                                                            <!--<td>07.35%</td>-->
-                                                            <td>07.61%</td>
-                                                            <!--<td>07.61%</td>-->
-                                                        </tr>
-                                                        <tr>
-                                                            <td>24 Months</td>
-                                                            <td>7.77%</td>
-                                                            <!--<td>07.46%</td>-->
-                                                            <td>08.00%</td>
-                                                            <!--<td>07.72%</td>-->
-                                                        </tr>
-                                                        <tr>
-                                                            <td>36 Months</td>
-                                                            <td>8.14%</td>
-                                                            <!--<td>07.61%</td>-->
-                                                            <td>08.40%</td>
-                                                            <!--<td>07.88%</td>-->
-                                                        </tr>
-                                                        <tr>
-                                                            <td>48 Months</td>
-                                                            <td>8.59%</td>
-                                                            <!--<td>08.00</td>-->
-                                                            <td>08.88%</td>
-                                                            <!--<td>8.25%</td>-->
-                                                        </tr>
-                                                        <tr>
-                                                            <td>60 Months</td>
-                                                            <td>9.59%</td>
-                                                            <!--<td>08.25%</td>-->
-                                                            <td>09.95%</td>
-                                                            <!--<td>08.50%</td>-->
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <p style="font-size: 20px;"><strong>Features</strong></p>
+                                            Secure Your Future with High-Interest Fixed Deposits at HBF Nidhi. At HBF Nidhi, we understand the importance of planning for your financial future. Our fixed deposit (FD) scheme offers a safe and reliable way to grow your savings while earning attractive interest rates <br> <br>
+                                           
+                                            
+                                            <p style="font-size: 20px;"><strong>Benefits of HBF Nidhi Fixed Deposits:</strong></p>
                                             <ul>
                                                 <li><i class="fa fa-check-square-o" aria-hidden="true"></i> 
-                                                    Guaranteed Returns
+                                                    <strong>Competitive Interest Rates: </strong> Earn higher interest rates compared to traditional savings accounts. Our rates are designed to help you maximize your returns.</span>
                                                 </li>
-                                                <li><i class="fa fa-check-square-o" aria-hidden="true"></i> 
-                                                    Higher rate of Interest compounded Quarterly.
+                                                
+                                                <li>
+                                                <i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                                <strong>Flexible Tenure:  </strong> Choose a deposit term that aligns with your financial goals, ranging from short-term to long-term deposits (specify the available tenures).</span>
+                                            </li>
+                                        <i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                                    <strong>Security and Trust:  </strong> Your deposits are safe with us. HBF Nidhi is a reputable Nidhi company adhering to strict financial regulations.</span>
                                                 </li>
-                                                <li><i class="fa fa-check-square-o" aria-hidden="true"></i> Quick Loan against deposits</li>
-                                                <li><i class="fa fa-check-square-o" aria-hidden="true"></i> Prompt Doorstep Assistance through our well experienced staff.</li>
-                                                <li><i class="fa fa-check-square-o" aria-hidden="true"></i> Tax is deducted at source, from interest on Fixed Deposits as applicable, as per the Income Tax Act, 1961. </li>
-                                                <li><i class="fa fa-check-square-o" aria-hidden="true"></i> Nomination facility available. </li>
-                                            </ul>
-                                            <p style="font-size: 20px;"><strong>Procedure for appointment of nominee:</strong></p>
+                                                <li>
+                                                    <i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                                    <strong>Flexible Tenure:  </strong> Choose a deposit term that aligns with your financial goals, ranging from short-term to long-term deposits (specify the available tenures).</span>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                                    <strong>Transparent Terms :</strong> We clearly explain all the terms and conditions before you invest, ensuring a smooth experience.</span>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                                    <strong>Premature Withdrawal Option (if offered):   </strong> Access your funds before the maturity date with minimal penalty charges (clearly explain the terms).</span>
+                                                </li>
+
+                                                <li>
+                                                    <i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                                    <strong>Membership Benefits:   </strong> HBF Nidhi members may enjoy additional benefits like higher interest rates or waivers on certain charges (depending on company policy).</span>
+                                                </li></ul> <br>
+                                            <p style="font-size: 20px;"><strong>How HBF Nidhi Fixed Deposits Work:</strong></p>
                                             <ul>
-                                                <li><i class="fa fa-check-square-o" aria-hidden="true"></i> 
-                                                    Individual, single or joint account holders can appoint nominee. Hindu undivided family, trust, society etc. cannot appoint a nominee.
+                                                
+                                                <li>
+                                                    <i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                                    <strong>Choose your Deposit Amount:    </strong> Decide how much you want to invest in your FD.</span>
                                                 </li>
-                                                <li><i class="fa fa-check-square-o" aria-hidden="true"></i> 
-                                                    The nominee must also be an individual.
+                                                <li>
+                                                    <i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                                    <strong>Select your Deposit Term:   </strong> Choose the tenure for which you want to lock in your deposit.</span>
                                                 </li>
-                                                <li><i class="fa fa-check-square-o" aria-hidden="true"></i> 
-                                                    It is advisable to appoint a nominee as there will be less trouble in transferring the money in an event of the account holder’s death.
+                                                <li>
+                                                    <i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                                    <strong>Earn Attractive Interest:    </strong> Receive interest on your deposit at a predetermined rate.</span>
                                                 </li>
-                                                <li><i class="fa fa-check-square-o" aria-hidden="true"></i> 
-                                                    Only one person can be appointed as the nominee (in case of joint accounts also).
+                                                <li>
+                                                    <i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                                    <strong>	Maturity and Payout:   </strong> Upon maturity, receive your principal amount along with the accrued interest.</span>
                                                 </li>
                                             </ul>
+<br>
+                                            <p style="font-size: 20px;"><strong>Who can Invest in HBF Nidhi Fixed Deposits?</strong></p>
+                                            <ul>
+                                                
+                                                <li>
+                                                    <i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                                    Existing members of HBF Nidhi in good standing.  </span>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                                    Individuals seeking a secure and profitable investment option.</span>
+                                                </li> <br>
+
+                                                <p style="font-size: 20px;"><strong>Documents Required:</strong></p>
+                                                <li>
+                                                    <i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                                    Membership documents with HBF Nidhi</span>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                                    KYC documents (identity and address proof)</span>
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                                    PAN Card (if applicable)</span>
+                                                </li>
+                                            </ul> <br>
+                                            <p style="font-size: 20px;"><strong>Start Investing Today!</strong></p>
+                                            Grow your wealth and achieve your long-term financial goals with an HBF Nidhi Fixed Deposit. Visit your nearest branch or contact us to discuss your options and get started today. Our investment specialists are happy to assist you.
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -658,143 +553,6 @@
             </div>
         </div>
         </div>
-    </div>
-    <!-- //about -->
-    <!-- copy right -->
-    <p class="footer-class">© 2019 HBF Nidhi Ltd. All Rights Reserved | Design by
-        <a href="https:\\www.techlopers.com" target="_blank">Techlopers Solution Pvt. Ltd.</a>
-    </p>
-    <!-- //copy right -->
     
-
-    <!-- js -->
-    <script src={% static "web/js/jquery-2.2.3.min.js" %}></script>
-    <!-- //js -->
-    <!-- about numscroller -->
-    <script src={% static "web/js/numscroller-1.0.js" %}></script>
-    <!-- //about numscroller -->
-    <!-- banner Slider starts Here -->
-    <script src={% static "web/js/responsiveslides.min.js" %}></script>
-    <script>
-        // You can also use "$(window).load(function() {"
-        $(function () {
-            // Slideshow 3
-            $("#slider3").responsiveSlides({
-                auto: true,
-                pager: true,
-                nav: false,
-                speed: 500,
-                namespace: "callbacks",
-                before: function () {
-                    $('.events').append("<li>before event fired.</li>");
-                },
-                after: function () {
-                    $('.events').append("<li>after event fired.</li>");
-                }
-            });
-
-        });
-    </script>
-    <!-- //banner slider script ends -->
-    <!-- sign in and signup pop up toggle script -->
-    <script>
-        $('.toggle').click(function () {
-            // Switches the Icon
-            $(this).children('i').toggleClass('fa-pencil');
-            // Switches the forms  
-            $('.form').animate({
-                height: "toggle",
-                'padding-top': 'toggle',
-                'padding-bottom': 'toggle',
-                opacity: "toggle"
-            }, "slow");
-        });
-    </script>
-    <!-- sign in and signup pop up toggle script -->
-    <!-- team desoslide-JavaScript -->
-    <script src={% static "web/js/jquery.desoslide.js" %}></script>
-    <script>
-        $('#demo1_thumbs').desoSlide({
-            main: {
-                container: '#demo1_main_image',
-                cssClass: 'img-responsive'
-            },
-            effect: 'sideFade',
-            caption: true
-        });
-    </script>
-    <!-- //team desoslide-JavaScript -->
-    <!-- Flexslider-js for-testimonials -->
-    <script src={% static "web/js/jquery.flexisel.js" %}></script>
-    <script>
-        $(window).load(function () {
-            $("#flexiselDemo1").flexisel({
-                visibleItems: 1,
-                animationSpeed: 1000,
-                autoPlay: false,
-                autoPlaySpeed: 3000,
-                pauseOnHover: true,
-                enableResponsiveBreakpoints: true,
-                responsiveBreakpoints: {
-                    portrait: {
-                        changePoint: 480,
-                        visibleItems: 1
-                    },
-                    landscape: {
-                        changePoint: 640,
-                        visibleItems: 1
-                    },
-                    tablet: {
-                        changePoint: 768,
-                        visibleItems: 1
-                    }
-                }
-            });
-
-        });
-    </script>
-    <!-- //Flexslider-js for-testimonials -->
-    <!-- start-smooth-scrolling -->
-    <script src={% static "web/js/move-top.js" %}></script>
-    <script src={% static "web/js/easing.js" %}></script>
-    <script>
-        jQuery(document).ready(function ($) {
-            $(".scroll").click(function (event) {
-                event.preventDefault();
-
-                $('html,body').animate({
-                    scrollTop: $(this.hash).offset().top
-                }, 1000);
-            });
-        });
-    </script>
-    <!-- //end-smooth-scrolling -->
-    <!-- smooth-scrolling-of-move-up -->
-    <script>
-        $(document).ready(function () {
-            /*
-            var defaults = {
-                containerID: 'toTop', // fading element id
-                containerHoverID: 'toTopHover', // fading element hover id
-                scrollSpeed: 1200,
-                easingType: 'linear' 
-            };
-            */
-
-            $().UItoTop({
-                easingType: 'easeOutQuart'
-            });
-
-        });
-    </script>
-    <script src={% static "web/js/SmoothScroll.min.js" %}></script>
-    <!-- //smooth-scrolling-of-move-up -->
-    <!-- gallery smoothbox -->
-    <script src={% static "web/js/smoothbox.jquery2.js" %}></script>
-    <!-- //gallery smoothbox -->
-    <!-- Bootstrap core JavaScript
- ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src={% static "web/js/bootstrap.js" %}></script>
-</body>
-</html>
+    <!-- //about -->
+{% endblock %}

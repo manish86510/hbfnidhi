@@ -12,10 +12,13 @@ class Dashboard():
     def index(self):
         return render(self, 'Customer/login.html')
 
+
+# import ipdb
 def Customer_Login(request):
      if request.method == 'POST':
          enter_email = request.POST.get('username')
          enter_password = request.POST.get('pass')
+        #  ipdb.set_trace()
          if Customer.objects.filter(email=enter_email,password=enter_password):
              result = Customer.objects.get(email=enter_email)
              request.session['customer_name'] = result.first_name

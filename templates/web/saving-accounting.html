@@ -1,109 +1,6 @@
+{% extends 'web/layouts/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="zxx">
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-<head>
-    <title>HBF Nidhi Ltd.| Saving Account</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="HBF NIDHI" />
-    <script>
-        addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
-
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
-    <!-- Custom Theme files -->
-    <link href={% static "web/css/bootstrap.css" %} type="text/css" rel="stylesheet" media="all">
-    <!-- gallery smoothbox -->
-    <link rel="stylesheet" href={% static "web/css/smoothbox.css"%} type='text/css' media="all" />
-    <!-- team deoslide -->
-    <link rel="stylesheet" href={% static "web/css/jquery.desoslide.css" %}>
-    <link href={% static "web/css/style.css" %} type="text/css" rel="stylesheet" media="all">
-    <link href={% static "web/css/font-awesome.css"%} rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
-</head>
-<body>
-<script src='../../../../../../../ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
-<script src="../../../../../../../m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125810435-1"></script>
-<body>
-    <div class="top-nav">
-        <div class="container">
-            <div class="navbar-top">
-                <div class="nav-top-left">
-                    <ul>
-                        <li>
-                            <a href="#" class="log" data-toggle="modal" data-target="#myModal">Login</a>
-                        </li>
-                        <li>
-                            <a href="#" class="log" data-toggle="modal" data-target="#myModal">register</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="nav-top-right">
-                    <ul>
-                        <li>
-                            <i class="fa fa-phone" aria-hidden="true"></i>+91-9971-337-447</li>
-                        <li>
-                            <i class="fa fa-envelope-o list-icon" aria-hidden="true"></i>
-                            <a href="mailto:Info@hbfnidhi.com">Info@hbfnidhi.com</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-        <!-- nav-bottom -->
-        <div class="inner-header">
-            <nav class="navbar navbar-default">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <h1>
-                        <a href="/"  title="HBF NIDHI Ltd.">
-                             <img src={% static "web/images/logo.png" %}>
-                        </a>
-                    </h1>
-                </div>
-                <!-- navbar-header -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                       <li>
-                            <a href="/">Home</a>
-                        </li>
-                        <li>
-                            <a href="/">About</a>
-                        </li>
-                        <li class="active">
-                            <a href="/">Product</a>
-                        </li>
-                        <li>
-                            <a href="/">Team</a>
-                        </li>
-                        <li>
-                            <a href="/">Career</a>
-                        </li>
-                        <li>
-                            <a href="/" class="scroll">Faq</a>
-                        </li>
-                        <li>
-                            <a href="/">contact</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="clearfix"> </div>
-            </nav>
-        </div>
-    </div>
-    <!--/nav ends here-->
+{% block content %}
     <!--about -->
     <div id="about" class="section">
         <div class="abt-container">
@@ -112,16 +9,25 @@
                 <div class="stats-info" style="padding: 0 0em 12em;">
                     <div class="col-sm-12 col-xs-12">
                         HBF NIDHI LTD offers an attractive savings account to our members with a interest rate of 6% . We offers this savings account facility to our tie-up housing society members where banking service/solution are not easy for senior citizen, ladies & others.
-                        <p style="size: 20px"><strong>Features of HBF Saving Account:</strong></p>
+                        <p style="size: 20px"><strong>Benefits of a Savings Account with HBF Nidhi LTD:</strong></p>
                             <ul>
                                <li><i class="fa fa-check-square-o" aria-hidden="true"></i> 
-                                     Minimum amount of deposit for opening a Savings Account with a minimum balance of Rs. 100 only which is to be maintained always.
+                                <strong>
+                                Competitive Interest Rates:</strong> Earn interest on your deposited funds, helping your money grow steadily.
+                                </li>
+                                <li><i class="fa fa-check-square-o" aria-hidden="true"></i> <strong>
+                                    Flexible Deposits: </strong> Deposit and withdraw funds conveniently as per your needs.
                                 </li>
                                 <li><i class="fa fa-check-square-o" aria-hidden="true"></i> 
-                                     The money can be withdrawn and deposited by using withdrawal/Deposit slip in the concerned branch(es) or on demand at your doorstep free of charges*
-                                </li>
-                                <li><i class="fa fa-check-square-o" aria-hidden="true"></i> 
-                                     To enable the depositor to earn high rate of Interest below are the slabs for Interest Rates provided:<br /><br/>
+                                    <strong>Security and Trust:</strong> Your savings are secure with us. We prioritize the safety of your funds and adhere to strict financial regulations.
+
+                                    <li><i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                        <strong>Easy Account Management: </strong> Manage your account online or through our mobile app (if offered). Enjoy convenient features like account balance inquiries, transaction history, and fund transfers (depending on functionalities offered).
+                                        
+                                        <li><i class="fa fa-check-square-o" aria-hidden="true"></i> 
+                                            <strong>Membership Benefits: </strong> Being a savings account holder may entitle you to additional benefits like preferential interest rates on loans or other financial products offered by our company (depending on company policy).<br /><br/>
+
+
                                     <div class="table-responsive">
                                        <table class="table table-hover table-bordered">
                                            <thead>
@@ -200,133 +106,4 @@
     </div>
     <!-- //about -->
     <!-- copy right -->
-    <p class="footer-class">© 2019 HBF Nidhi Ltd. All Rights Reserved | Design by
-        <a href="https:\\www.techlopers.com" target="_blank">Techlopers Solution Pvt. Ltd.</a>
-    </p>
-    <!-- //copy right -->
-    
-
-    <!-- js -->
-    <script src={% static "web/js/jquery-2.2.3.min.js" %}></script>
-    <script src={% static "web/js/numscroller-1.0.js" %}></script>
-    <script src="js/responsiveslides.min.js"></script>
-    <script>
-        // You can also use "$(window).load(function() {"
-        $(function () {
-            // Slideshow 3
-            $("#slider3").responsiveSlides({
-                auto: true,
-                pager: true,
-                nav: false,
-                speed: 500,
-                namespace: "callbacks",
-                before: function () {
-                    $('.events').append("<li>before event fired.</li>");
-                },
-                after: function () {
-                    $('.events').append("<li>after event fired.</li>");
-                }
-            });
-
-        });
-    </script>
-    <!-- //banner slider script ends -->
-    <!-- sign in and signup pop up toggle script -->
-    <script>
-        $('.toggle').click(function () {
-            // Switches the Icon
-            $(this).children('i').toggleClass('fa-pencil');
-            // Switches the forms  
-            $('.form').animate({
-                height: "toggle",
-                'padding-top': 'toggle',
-                'padding-bottom': 'toggle',
-                opacity: "toggle"
-            }, "slow");
-        });
-    </script>
-    <!-- sign in and signup pop up toggle script -->
-    <!-- team desoslide-JavaScript -->
-    <script src={% static "web/js/jquery.desoslide.js" %}></script>
-    <script>
-        $('#demo1_thumbs').desoSlide({
-            main: {
-                container: '#demo1_main_image',
-                cssClass: 'img-responsive'
-            },
-            effect: 'sideFade',
-            caption: true
-        });
-    </script>
-    <script src={% static "web/js/jquery.flexisel.js" %}></script>
-    <script>
-        $(window).load(function () {
-            $("#flexiselDemo1").flexisel({
-                visibleItems: 1,
-                animationSpeed: 1000,
-                autoPlay: false,
-                autoPlaySpeed: 3000,
-                pauseOnHover: true,
-                enableResponsiveBreakpoints: true,
-                responsiveBreakpoints: {
-                    portrait: {
-                        changePoint: 480,
-                        visibleItems: 1
-                    },
-                    landscape: {
-                        changePoint: 640,
-                        visibleItems: 1
-                    },
-                    tablet: {
-                        changePoint: 768,
-                        visibleItems: 1
-                    }
-                }
-            });
-
-        });
-    </script>
-    <!-- //Flexslider-js for-testimonials -->
-    <!-- start-smooth-scrolling -->
-    <script src={% static "web/js/move-top.js" %}></script>
-    <script src={% static "web/js/easing.js" %}></script>
-    <script>
-        jQuery(document).ready(function ($) {
-            $(".scroll").click(function (event) {
-                event.preventDefault();
-                $('html,body').animate({
-                    scrollTop: $(this.hash).offset().top
-                }, 1000);
-            });
-        });
-    </script>
-    <!-- //end-smooth-scrolling -->
-    <!-- smooth-scrolling-of-move-up -->
-    <script>
-        $(document).ready(function () {
-            /*
-            var defaults = {
-                containerID: 'toTop', // fading element id
-                containerHoverID: 'toTopHover', // fading element hover id
-                scrollSpeed: 1200,
-                easingType: 'linear' 
-            };
-            */
-
-            $().UItoTop({
-                easingType: 'easeOutQuart'
-            });
-
-        });
-    </script>
-    <script src={% static "web/js/SmoothScroll.min.js" %}></script>
-    <!-- //smooth-scrolling-of-move-up -->
-    <!-- gallery smoothbox -->
-    <script src={% static "web/js/smoothbox.jquery2.js" %}></script>
-    <!-- //gallery smoothbox -->
-    <!-- Bootstrap core JavaScript
- ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src={% static "web/js/bootstrap.js" %}></script>
-</body>
-</html>
+    {% endblock %}
