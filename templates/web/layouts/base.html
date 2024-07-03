@@ -1,304 +1,335 @@
 {% load static %}
-<!doctype html>
-<html class="no-js" lang="">
+<!DOCTYPE html>
+<html lang="zxx">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>HBF NIDHI</title>
-    <meta name="description" content="">
+    <title>HBF Nidhi Ltd.| Recurring Deposit</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png">
-    <link rel="stylesheet" href={% static "web/css/bootstrap.min.css" %}>
-    <link rel="stylesheet" href={% static "web/css/animate.css" %}>
-    <link rel="stylesheet" href={% static "web/css/owl.carousel.min.css" %}>
-    <link rel="stylesheet" href={% static "web/css/swiper.min.css" %}>
-    <link rel="stylesheet" href={% static "web/css/font-awesome.min.css" %}>
-    <link rel="stylesheet" href={% static "web/css/flaticon.css" %}>
-    <link rel="stylesheet" href={% static "web/css/magnific-popup.css" %}>
-    <link rel="stylesheet" href={% static "web/css/metisMenu.min.css" %}>
-    <link rel="stylesheet" href={% static "web/css/styles.css" %}>
-    <link rel="stylesheet" href={% static "web/css/responsive.css" %}>
-    <link rel="stylesheet" href={% static "web/css/datepicker.css" %}>
-    <script src={% static "web/js/vendor/modernizr-2.8.3.min.js" %}></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="HBF NIDHI" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
     <style>
-        .social-icon {
-            padding: 8px 0px;
-        }
-        .contact-info li {
-            padding: 0px 25px;
-            position: relative;
-            line-height: 20px;
-            margin: 5px 0px;
-        }
-        .header-top {
-            border-bottom: 1px solid #eaeaea;
-            height: 54px;
-        }
-        .slider-area2 .slider-items {
-            height: 500px;
-        }
-        .breadcumb-area {
-            min-height: 320px;
-            background: url('{% static "web/images/inner_banner.jpg" %}') no-repeat center center / cover;
-        }
-        .contact-form input, .contact-form textarea {
-            height: 34px;
-            width: 100%;
-            border: 1px solid #e5e5e5;
-            padding-left: 12px;
-            margin-bottom: 25px;
-        }
-        .contact-form input, .contact-form textarea {
-            height: 34px;
-            width: 100%;
-            border: 1px solid #e5e5e5;
-            padding-left: 12px;
-            margin-bottom: 0px;
-        }
-        .contact-form select{
-            height: 30px;
-        }
-        .contact-form input, .contact-form textarea {
-            height: 34px;
-            width: 100%;
-            border: 1px solid #e5e5e5;
-            padding-left: 10px;
-            margin-bottom: 0px;
-        }
-        select.form-control:not([size]):not([multiple]) {
-            height: calc(2.00rem + 2px);
-        }
+        /* Style for the main dropdown */
+    .dropdown1 {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .dropdown1 > a {
+        color: black; /* Change as per your design */
+        text-decoration: none;
+        display: inline-block;
+        padding: 10px 20px; /* Adjust padding as needed */
+    }
+    
+    
+    
+    .dropdown-menu1 {
+        display: none; /* Hide by default */
+        position: absolute;
+        background-color: #f9f9f9; /* Background color of the dropdown */
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Box shadow for dropdown */
+        z-index: 1;
+        min-width: 160px; /* Adjust width as needed */
+    }
+    
+    .dropdown-menu1 li {
+        list-style-type: none; /* Remove default list styling */
+    }
+    
+    .dropdown-menu1 li a {
+        color: black; /* Change link color as per your design */
+        padding: 10px 15px; /* Adjust padding as needed */
+        text-decoration: none;
+        display: block;
+    }
+    
+    .dropdown-menu1 li a:hover {
+        background-color: #ddd; /* Background color on hover */
+    }
+    
+    .dropdown1:hover .dropdown-menu1 {
+        display: block;
+    }
+    
+    /* Style for the sub-dropdown */
+    .dropdown-submenu1 {
+        position: relative;
+    }
+    
+    
+    .dropdown-menu2 {
+        display: none; /* Hide by default */
+        position: absolute;
+        left: 100%;
+        top: 0;
+        background-color: #f9f9f9; /* Background color of the sub-dropdown */
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Box shadow for sub-dropdown */
+        z-index: 1;
+        min-width: 160px; /* Adjust width as needed */
+    }
+    
+    .dropdown-submenu1:hover .dropdown-menu2 {
+        display: block; /* Show the sub-dropdown on hover */
+    }
     </style>
+        
+    <!-- Custom Theme files -->
+    <link href={% static "web/css/bootstrap.css" %} type="text/css" rel="stylesheet" media="all">
+    <!-- gallery smoothbox -->
+    <link rel="stylesheet" href={% static "web/css/smoothbox.css" %} type='text/css' media="all" />
+    <!-- team deoslide -->
+    <link rel="stylesheet" href={% static "web/css/jquery.desoslide.css" %}>
+    <link href={% static "web/css/style.css" %} type="text/css" rel="stylesheet" media="all">
+    <link href={% static "web/css/font-awesome.css" %} rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
 </head>
 <body>
- <header class="header-area header-area2">
-        <div class="header-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-5 col-lg-6 col-md-8 col-12">
-                        <ul class="contact-info d-flex">
-                            <li>
-                                <span><i class="fa fa-phone"></i>0120-4752255</span>
-                                <span><i class="fa fa-mobile"></i>9971-337-447</span>
-                            </li>
-                            <li>
-                                <span><i class="fa fa-envelope"></i> Info@hbfnidhi.com</span>
-                                <span><i class="fa fa-paper-plane-o"></i> www.hbfnidhi.com</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-xl-7 col-lg-6 col-sm-4 col-12 d-none d-md-block">
-                        <ul class="social-icon d-flex justify-content-end">
-                            <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li class="youtube"><a href="#"><i class="fa fa-youtube"></i></a></li>
-                        </ul>
-                    </div>
+<script src='../../../../../../../ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script><script src="../../../../../../../m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125810435-1"></script>
+<body>
+    <div class="top-nav">
+        <!--nav top-->
+		<!---728x90--->
+
+        <div class="container">
+
+            <div class="navbar-top">
+                <div class="nav-top-left">
+                    <ul>
+                        <li>
+                            <a href="/customer/" class="log">Login</a>
+                        </li>
+                        <li>
+                            <a href="/registration/" class="log">register</a>
+                        </li>
+                    </ul>
                 </div>
+                <div class="nav-top-right">
+                    <ul>
+                        <li>
+                            <i class="fa fa-phone" aria-hidden="true"></i>+91-9971-337-447</li>
+                        <li>
+                            <i class="fa fa-envelope-o list-icon" aria-hidden="true"></i>
+                            <a href="mailto:Info@hbfnidhi.com">Info@hbfnidhi.com</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
             </div>
         </div>
-        <div class="header-bottom bg-2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-2 col-sm-7">
-                        <div class="logo">
-                            <a href="/">
-                                <img src={% static "web/images/logo3.png" %} alt="">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-10 col-sm-10 d-none d-lg-block">
-                        <ul class="mainmenu d-flex justify-content-end">
-                            <li class="active"><a href="/">Home </a></li>
-                            <li><a href="javascript:void(0);">About Us</a>
-                                <ul>
-                                    <li><a href="/our_company/">Our Company</a></li>
-                                    <li><a href="/team/">Our Team</a></li>
-                                    <li><a href="/shareholder/">Shareholders</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="javascript:void(0);">Our Products</a>
-                                <ul>
-                                    <li><a href="/saving/">Saving Account</a></li>
-                                    <li><a href="/fixed/">Fixed Deposite</a></li>
-                                    <li><a href="/recurring/">Recurring Deposite</a></li>
-                                    <li><a href="/loans/">Loans</a></li>
-                                    <li><a href="/lockers/">Lockers</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="/doorsteps/">Doorsteps Services</a></li>
-                            <li><a href="/csr/">CSR</a></li>
-                            <li><a href="/career/">Career</a></li>
-                            <li><a href="/contact/">Contact</a></li>
-                            <li><a href="/login/" style="color: #fffaf0">Login</a></li>
-                            <li><a href="/registration/" style="color: #fffaf0">new user</a></li>
-                        </ul>
-                    </div>
-                    <div class="d-block d-lg-none col-4 pull-right col-sm-2">
-                        <ul class="menu">
-                            <li class="first"></li>
-                            <li class="second"></li>
-                            <li class="third"></li>
-                        </ul>
-                    </div>
+        <!-- nav-bottom -->
+        <div class="inner-header">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <h1>
+                        <a href="/"  title="HBF NIDHI Ltd.">
+                             <img href="HBF NIDHI" src={% static "web/images/logo.png" %}>
+                        </a>
+                    </h1>
                 </div>
-            </div>
-            <div class="responsive-menu-area d-block d-sm-none">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <ul class="metismenu">
-                            <li class="active"><a href="/">Home </a></li>
-                            <li><a href="javascript:void(0);">About Us</a>
-                                <ul>
-                                    <li><a href="/our_company/">Our Company</a></li>
-                                    <li><a href="/team/">Our Team</a></li>
-                                    <li><a href="/shareholder/">Shareholders</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="javascript:void(0);">Our Products</a>
-                                <ul>
-                                    <li><a href="/saving/">Saving Account</a></li>
-                                    <li><a href="/fixed/">Fixed Deposite</a></li>
-                                    <li><a href="/recurring/">Recurring Deposite</a></li>
-                                    <li><a href="/loans/">Loans</a></li>
-                                    <li><a href="/lockers/">Lockers</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="/doorsteps/">Doorsteps Services</a></li>
-                            <li><a href="/csr/">CSR</a></li>
-                            <li><a href="/career/">Career</a></li>
-                            <li><a href="/contact/">Contact</a></li>
-                            <li><a href="/login/" style="color: #fffaf0">Login</a></li>
-                            <li><a href="/registration/" style="color: #fffaf0">new user</a></li>
+                <!-- navbar-header -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                       <li>
+                            <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <a href="/">About</a>
+                        </li>
+                        <li class="active">
+                            <a href="/">Product</a>
+                        </li>
+                        
+                        
+                        <li class="dropdown1">
+                            <a>Services</a>
+                            <ul class="dropdown-menu1">
+                                <li class="dropdown-submenu1">
+                                    <a href="/loans/">Loan Products</a>
+                                    <ul class="dropdown-menu2">
+                                        <li><a href="/gold-loan/">Gold Loan</a></li>
+                                        <li><a href="/mortgage/">Mortgage Loan</a></li>
+                                        <li><a href="/deposit-receipt/">Loan against deposit receipt</a></li>
+                                    </ul>
+                                </li>
                             </ul>
-                        </div>
-                    </div>
+                        </li>
+                        
+
+
+                        <li class="dropdown1">
+                            <a>Investment Schemes </a>
+                            <ul class="dropdown-menu1">
+                                <li class="dropdown-submenu1">
+                                    <a href="/fixed/">Fixed Deposit </a>
+                                </li>
+                                <li class="dropdown-submenu1">
+                                    <a href="#">Monthly Income Plan</a>
+                                </li>
+                                <li class="dropdown-submenu1">
+                                    <a href="/recurring/">Recurring Deposit </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li>
+                            <a href="/">Team</a>
+                        </li>
+                        <li>
+                            <a href="/">Career</a>
+                        </li>
+                        <li>
+                            <a href="/" class="scroll">Faq</a>
+                        </li>
+                        <li>
+                            <a href="/">contact</a>
+                        </li>
+                    </ul>
                 </div>
-            </div>
+                <div class="clearfix"> </div>
+            </nav>
         </div>
-    </header>
+    </div>
+    <!--/nav ends here-->
     {% block content %}
 
     {% endblock %}
-    <!-- footer-area start -->
-    <footer class="footer-area">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3  col-sm-6 col-12">
-                        <div class="footer-widget footer-logo">
-                            <img src={% static "web/images/logo3.png" %} alt="" style="height: 60px;width: 160px;float: left">
-                            <div class="clearfix"></div>
-                            <p>HBF Nidhi Limited is launched by Expert Finance Management team members, pioneer in the financial services Industry. We are recognized under Section 406 of the Companies Act 2013. We are operating under the supervision of Reserve Bank of India</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-12">
-                        <div class="footer-widget footer-menu">
-                            <h3>Our Services</h3>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Saving Account</a></li>
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Recurring Deposit</a></li>
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Fixed Deposite</a></li>
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Loans</a></li>
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Lockers</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-sm-6 col-12">
-                        <div class="footer-widget footer-twitter">
-                            <h3>Twitter Feeds</h3>
-                            <ul>
-                                <li><a href="#"><i class="fa fa-twitter"></i>
-                                    https://twitter.com /envatO/ status/944202192013144064 https://twitter.com/envato/status/ 944202192013144064</a> </li>
-                                <li class="mb-0"><a href="#"><i class="fa fa-twitter"></i>
-                                    https://twitter.com /envatO/ status/944202192013144064 https://twitter.com/envato/status/ 944202192013144064</a> </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-12">
-                        <div class="footer-widget footer-contact">
-                            <h3>Contact Information</h3>
-                            <ul class="footer-contact-info">
-                                <li><span>Location: </span> C - 16, Sector - 6, Noida, UP (India) </li>
-                                <li><span>Email: </span> Info@hbfnidhi.com</li>
-                                <li><span>Phone: </span> 9971-337-447 / 0120-4752255</li>
-                            </ul>
-                            <h5>We are Social</h5>
-                            <ul class="social-icon d-flex">
-                                <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li class="youtube"><a href="#"><i class="fa fa-youtube"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 copyright">
-                        <p>
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
-</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <script src={% static "web/js/vendor/jquery-2.2.4.min.js" %}></script>
-    <script src={% static "web/js/vendor/popper.min.js" %}></script>
-    <script src={% static "web/js/bootstrap.min.js" %}></script>
-    <script src={% static "web/js/owl.carousel.min.js" %}></script>
-    <script src={% static "web/js/datepicker.js" %}></script>
-    <script src={% static "web/js/swiper.min.js" %}></script>
-    <script src={% static "web/js/mailchimp.js" %}></script>
-    <script src={% static "web/js/jquery.canvasjs.min.js" %}></script>
-    <script src={% static "web/js/metisMenu.min.js" %}></script>
-    <script src={% static "web/js/plugins.js" %}></script>
- <script>
-    window.onload = function () {
-    var limit = 10000;    //increase number of dataPoints by increasing the limit
-    var y = 100;
-    var data = [];
-    var dataSeries = { type: "line" };
-    var dataPoints = [];
-    for (var i = 0; i < limit; i += 1) {
-        y += Math.round(Math.random() * 10 - 5);
-        dataPoints.push({
-            x: i,
-            y: y
+    <p class="footer-class">© 2019 HBF Nidhi Ltd. All Rights Reserved | Design by
+        <a href="https:\\www.techlopers.com" target="_blank">Techlopers Solution Pvt. Ltd.</a>
+    </p>
+    <script src={% static "web/js/jquery-2.2.3.min.js" %}></script>
+    <script src={% static "web/js/numscroller-1.0.js" %}></script>
+    <script src={% static "web/js/responsiveslides.min.js" %}></script>
+    <script>
+        // You can also use "$(window).load(function() {"
+        $(function () {
+            // Slideshow 3
+            $("#slider3").responsiveSlides({
+                auto: true,
+                pager: true,
+                nav: false,
+                speed: 500,
+                namespace: "callbacks",
+                before: function () {
+                    $('.events').append("<li>before event fired.</li>");
+                },
+                after: function () {
+                    $('.events').append("<li>after event fired.</li>");
+                }
+            });
         });
-    }
-    dataSeries.dataPoints = dataPoints;
-    data.push(dataSeries);
-
-    //Better to construct options first and then pass it as a parameter
-    var options = {
-        zoomEnabled: true,
-        animationEnabled: true,
-        axisY: {
-            includeZero: false
-        },
-        data: data  // random data
-    };
-        $("#chartContainer").CanvasJSChart(options);
-    }
     </script>
-    <script src={% static "web/js/scripts.js" %}></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-23581568-13');
-</script>
+    <!-- //banner slider script ends -->
+    <!-- sign in and signup pop up toggle script -->
+    <script>
+        $('.toggle').click(function () {
+            // Switches the Icon
+            $(this).children('i').toggleClass('fa-pencil');
+            // Switches the forms  
+            $('.form').animate({
+                height: "toggle",
+                'padding-top': 'toggle',
+                'padding-bottom': 'toggle',
+                opacity: "toggle"
+            }, "slow");
+        });
+    </script>
+    <!-- sign in and signup pop up toggle script -->
+    <!-- team desoslide-JavaScript -->
+    <script src={% static "web/js/jquery.desoslide.js" %}></script>
+    <script>
+        $('#demo1_thumbs').desoSlide({
+            main: {
+                container: '#demo1_main_image',
+                cssClass: 'img-responsive'
+            },
+            effect: 'sideFade',
+            caption: true
+        });
+    </script>
+    <!-- //team desoslide-JavaScript -->
+    <!-- Flexslider-js for-testimonials -->
+    <script src={% static "web/js/jquery.flexisel.js" %}></script>
+    <script>
+        $(window).load(function () {
+            $("#flexiselDemo1").flexisel({
+                visibleItems: 1,
+                animationSpeed: 1000,
+                autoPlay: false,
+                autoPlaySpeed: 3000,
+                pauseOnHover: true,
+                enableResponsiveBreakpoints: true,
+                responsiveBreakpoints: {
+                    portrait: {
+                        changePoint: 480,
+                        visibleItems: 1
+                    },
+                    landscape: {
+                        changePoint: 640,
+                        visibleItems: 1
+                    },
+                    tablet: {
+                        changePoint: 768,
+                        visibleItems: 1
+                    }
+                }
+            });
+
+        });
+    </script>
+    <!-- //Flexslider-js for-testimonials -->
+    <!-- start-smooth-scrolling -->
+    <script src={% static "web/js/move-top.js" %}></script>
+    <script src={% static "web/js/easing.js" %}></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear' 
+            };
+            */
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <script src={% static "web/js/SmoothScroll.min.js" %}></script>
+    <script src={% static "web/js/smoothbox.jquery2.js" %}></script>
+    <script src={% static "web/js/bootstrap.js" %}></script>
 </body>
 </html>

@@ -213,7 +213,6 @@ class OtherCharge(models.Model):
     remarks = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
 
-
 class SavingInterest(models.Model):
     associated_member = models.ForeignKey(Customer, on_delete=models.CASCADE)
     charge_amount = models.CharField(max_length=20)

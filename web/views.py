@@ -56,6 +56,17 @@ def lockers(self):
 def contact(self):
     return render(self, 'web/contact.html')
 
+def goldloan(self):
+    return render(self,'web/gold-loan.html')
+
+def mortgageloan(self):
+    return render(self,'web/mortgage.html')
+
+def loanagainstdepositreceipt(self):
+    return render(self, 'web/deposit-receipt.html')
+
+
+
 
 def create_account(self):
     if self.method == 'POST':

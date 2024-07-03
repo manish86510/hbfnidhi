@@ -307,7 +307,7 @@ body {}
 	color: #03a9f4;
 }
 .header-top-menu .navbar-nav>li .dropdown-menu a{
-	padding: 10px 20px;
+	padding: 10px 20px; 
 	display:block;
 	color: #303030;
 }
@@ -358,6 +358,19 @@ body {}
 	display:inline-block;
 	position:relative;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 .header-top-menu ul.header-top-nav li ul.dropdown-header-top{
 	position:absolute;
 	top:130%;
@@ -4718,4 +4731,48 @@ div#sparklinehome canvas {
 .footer-copy-right a{
 	color:#fff;
 	text-decoration:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+.dropdown1 {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu1 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-menu1 li {
+    display: block;
+}
+
+.dropdown-menu1 li a {
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-menu1 li a:hover {
+    background-color: black;
+}
+
+
+.dropdown1:hover .dropdown-menu1 {
+    display: block;
 }
