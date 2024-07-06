@@ -6,6 +6,9 @@ urlpatterns = [
     path('', Dashboard.index),
     path('home',customer_home),
     path('account',customer_account),
+    # path('account/<str:member>/', CustomerAccountInfoView.as_view(), name='customer-account'),
+    
+    
     path('funds',customer_funds),
     path('bill',customer_bill),
     path('services',customer_services),
