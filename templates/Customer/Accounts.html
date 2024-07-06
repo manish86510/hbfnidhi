@@ -1,15 +1,51 @@
 {% extends 'Customer/layout/base.html' %}
+
 {% block content %}
-      <!-- page content -->
-        <div class="right_col" role="main">
-          <div class="">
-            <div class="row top_tiles">
-              <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12" >
-                   <div class="tile-stats" style="background-color: #003b4e; color: #0b2e13 ;">
-                     <a class="site_title" style="background-color: #51a9b5;" >Accounts Statements</a>
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row top_tiles">
+            <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="tile-stats" style="background-color: #003b4e; color: #0b2e13;">
+                    <h2 class="site_title" style="background-color: #51a9b5;">Account Information</h2>
                 </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-left: 60px;">
+                    <div  style=" color: #0b2e13;">
+                        <h3 >Account Number</h3>
+                        <p style="border: 1px solid black; padding: 4px;">{{ account.account_no }}</p> <!-- Display account_no from account -->
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-left: 60px;">
+                    <div  style=" color: #0b2e13;">
+                        <h3 >IFSC Code</h3>
+                        <p style="border: 1px solid black; padding: 4px;">{{ account.ifsc}}</p> <!-- Display account_no from account -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-left: 60px;">
+                  <div  style=" color: #0b2e13;">
+                      <h3 >Branch Code</h3>
+                      <p style="border: 1px solid black; padding: 4px;">{{ account.branch_code}}</p> <!-- Display account_no from account -->
+                  </div>
               </div>
+
+              <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-left: 60px;">
+                <div  style=" color: #0b2e13;">
+                    <h3 >Branch Name</h3>
+                    <p style="border: 1px solid black; padding: 4px;">{{ account.branch_name}}</p> <!-- Display account_no from account -->
+                </div>
             </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-left: 60px;">
+              <div  style=" color: #0b2e13;">
+                  <h3 >Account Balance</h3>
+                  <p style="border: 1px solid black; padding: 4px;">{{ account.account_balance}}</p> <!-- Display account_no from account -->
+              </div>
           </div>
+                        
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
 {% endblock content %}

@@ -269,28 +269,27 @@ class Dashboard:
         del self.session['user_name']
         return render(self, 'admin/login.html')
 
-    def create_rd_account(self):
+
+
+    def create_rd_account(self):            
         if self.method == 'POST':
             try:
                 member = self.POST.get('member_id')
                 memberid = Customer.objects.get(member=member)
                 account = random.randint(1111111111, 9999999999)
-                saving_account = SavingAccount(
-                    member=self.POST.get('member_id'),
-                    account_no="SA"+str(account),
-                    ifsc=self.POST.get('ifsc'),
-                    branch_code=self.POST.get('branch_code'),
-                    branch_name=self.POST.get('branch_name'),
-                    account_balance=self.POST.get('balance'),
-                    status="success",
-                    is_active=1,
-                    created_date=models.DateTimeField(auto_now_add=True),
+                 
+                RD_account = RD(
+                    associated_member=self.POST.get('member_id'),
+                    account_number="RD"+str(account),
+                    rate_of_interest=self.POST.get('rate_of_interest'),
+                    amount=self.POST.get('balance'),
+                    tenure=self.POST.get('tenure'),
                 )
-                saving_account.save()
+                RD_account.save()
                 message = "RD created successfully !"
                 return render(self, 'admin/create_rd.html', {'message': message})
-            except:
-                message = "Invalid Member Id !"
+            except Exception as e:
+                message = f"Invalid Member Id {e} !"
                 return render(self, 'admin/create_rd.html', {'message': message})
         else:
             return render(self, 'admin/create_rd.html')
@@ -301,17 +300,14 @@ class Dashboard:
                 member = self.POST.get('member_id')
                 memberid = Customer.objects.get(member=member)
                 account = random.randint(1111111, 9999999)
-                saving_account = SavingAccount(
-                    member=self.POST.get('member_id'),
-                    account_no="FD"+str(account),
-                    tenure=self.POST.get('tenure'),
+                FD_account = FD(
+                    associated_member=self.POST.get('member_id'),
+                    account_number="FD"+str(account),
                     rate_of_interest=self.POST.get('rate_of_interest'),
-                    maturity_amount=self.POST.get('branch_name'),
-                    status="success",
-                    is_active=1,
-                    created_date=models.DateTimeField(auto_now_add=True),
+                    amount=self.POST.get('balance'),
+                    tenure=self.POST.get('tenure'),
                 )
-                saving_account.save()
+                FD_account.save()
                 message = "FD created successfully !"
                 return render(self, 'admin/create_fd.html', {'message': message})
             except:
@@ -319,10 +315,18 @@ class Dashboard:
                 return render(self, 'admin/create_fd.html', {'message': message})
         else:
             return render(self, 'admin/create_fd.html')
-
+    
+    
     def fd_account(self):
         fd_data = FD.objects.all()
-        return render(self, 'admin/fd_account.html', {'fd_data': fd_data})
+        for fd in fd_data:
+            fd.maturity_amount = fd.calculate_maturity_amount()
+            fd.status = fd.status 
+            fd.is_active = fd.is_active  
+            fd.save()  # Save the updated fields to the database
+            return render(self, 'admin/fd_account.html', {'fd_data': fd_data})
+    
+ 
 
     def rd_account(self):
         rd_data = RD.objects.all()

@@ -6,6 +6,15 @@ from masteradmin.models import *
 from django.http import HttpResponse, JsonResponse
 import datetime
 from django.db import models
+from rest_framework.views import APIView
+from customer.serializer import CustomerSerializer
+from rest_framework.response import Response
+from rest_framework import status
+from masteradmin.models import SavingAccount
+from django.shortcuts import get_object_or_404
+from django.views import View
+from django.contrib.auth import authenticate
+
 
 
 class Dashboard():
@@ -31,19 +40,85 @@ def Customer_Login(request):
          return render(request,'Customer/login.html')
 
 
+
+        
+
+
+
+
 def customer_logout(request):
         del request.session['customer_name']
         del request.session['customer_id']
         return render(request, 'Customer/login.html')
 
 
-def customer_account(self):
-    return render(self,'Customer/Accounts.html')
+def customer_account(request):
+    # Assuming you want to pass some context data to the template
+    context = {
+        'title': 'Customer Account Information',
+        'message': 'Welcome to the customer account page!',
+        # Add more context data as needed
+    }
+    return render(request, 'Customer/Accounts.html', context)
 
 
 def customer_bill(self):
     return render(self,'Customer/Bill.html')
 
+
+
+# class CustomerAccountInfoView(View):
+#     def get(self, request, member):
+#         try:
+#             account = get_object_or_404(SavingAccount, member=member)
+#             context = {
+#                 'title': 'Customer Account Information',
+#                 'account': account,
+                
+#             }
+#             return render(request, 'Customer/Accounts.html', context)
+#         except SavingAccount.DoesNotExist:
+#             return render(request, 'Customer/account_not_found.html', status=404)
+
+# class CustomerAccountInfoView(View):
+#     def get(self, request):
+#         # Get customer_id from session
+#         customer_id = request.session.get('customer_id')
+
+#         if customer_id:
+#             try:
+#                 account = get_object_or_404(SavingAccount, member=customer_id)
+#                 context = {
+#                     'title': 'Customer Account Information',
+#                     'account': account,
+#                 }
+#                 return render(request, 'Customer/Accounts.html', context)
+#             except SavingAccount.DoesNotExist:
+#                 return render(request, 'Customer/account_not_found.html', status=404)
+#         else:
+#             # Handle case where customer_id is not in session (user not logged in)
+#             return redirect('customer-login')  
+
+
+class CustomerAccountInfoView(View):
+    def get(self, request):
+        # Get customer_id from session
+        customer_id = request.session.get('customer_id')
+
+        if customer_id:
+            try:
+                account = get_object_or_404(SavingAccount, member=customer_id)
+                context = {
+                    'title': 'Customer Account Information',
+                    'account': account,
+                }
+                return render(request, 'Customer/Accounts.html', context)
+            except SavingAccount.DoesNotExist:
+                return render(request, 'Customer/account_not_found.html', status=404)
+        else:
+            # Handle case where customer_id is not in session (user not logged in)
+            return redirect('customer-login')
+        
 
 def customer_fd(self):
     if self.method == 'POST':

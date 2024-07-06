@@ -1,5 +1,6 @@
 from django.db import models
-
+from decimal import Decimal, InvalidOperation
+import re
 
 class UserRole(models.Model):
     role = models.CharField(max_length=100, null=True)
@@ -181,8 +182,24 @@ class FD(models.Model):
     is_active = models.IntegerField(null=True)
     scheme = models.IntegerField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
-
-
+    
+    
+    def clean_decimal(self, value):
+        try:
+            # Strip any whitespace and convert to Decimal
+            return Decimal(str(value).strip())
+        except InvalidOperation:
+            return Decimal(0)
+    
+    
+    def calculate_maturity_amount(self):
+        # Ensure the values are correctly converted to Decimal
+        principal = self.clean_decimal(self.amount)
+        rate = self.clean_decimal(self.rate_of_interest) / 100
+        time = self.clean_decimal(self.tenure) / 12  # Assuming tenure is in months, convert to years
+        maturity_amount = principal * (1 + (rate * time))
+        return maturity_amount
+    
 class RD(models.Model):
     associated_member = models.CharField(max_length=20)
     account_number = models.CharField(max_length=20, unique=True)
@@ -194,8 +211,7 @@ class RD(models.Model):
     is_active = models.IntegerField(null=True)
     scheme = models.IntegerField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
-
-
+    
 class TDS(models.Model):
     associated_member = models.ForeignKey(Customer, on_delete=models.CASCADE)
     fd_or_rd = models.CharField(max_length=20)
