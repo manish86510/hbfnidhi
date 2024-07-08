@@ -1,49 +1,59 @@
 import random
-
 from django.forms import forms
 from django.shortcuts import render, redirect
 from masteradmin.models import *
 from django.http import HttpResponse, JsonResponse
 import datetime
 from django.db import models
-from rest_framework.views import APIView
-from customer.serializer import CustomerSerializer
-from rest_framework.response import Response
-from rest_framework import status
-from masteradmin.models import SavingAccount
-from django.shortcuts import get_object_or_404
-from django.views import View
-from django.contrib.auth import authenticate
 
+
+
+def Customer_Login(request):
+    if request.method == 'POST':
+        enter_email = request.POST.get('username')
+        enter_password = request.POST.get('pass')
+        
+        try:
+            customer = Customer.objects.get(email=enter_email, password=enter_password)
+            if customer.is_verify == 0:  # 0 means verified
+                request.session['customer_name'] = customer.first_name
+                request.session['customer_id'] = customer.member
+                
+                # Fetch SavingAccount object for the logged-in customer
+                try:
+                    saving_account = SavingAccount.objects.get(member=customer.member)
+                    request.session['account_no'] = saving_account.account_no
+                    request.session['branch_name'] = saving_account.branch_name
+                    request.session['branch_code'] = saving_account.branch_code
+                    request.session['ifsc'] = saving_account.ifsc
+                    request.session['account_balance'] = saving_account.account_balance
+                except SavingAccount.DoesNotExist:
+                    # Handle case where SavingAccount does not exist for the customer
+                    request.session['account_no'] = None
+                    request.session['branch_name'] = None
+                    request.session['branch_code'] = None
+                    request.session['ifsc']=None
+                    request.session['account_balance']='None'
+                
+                return render(request, 'Customer/Home.html', {'customer_id': customer.member})
+            else:
+                message = "Account not verified by admin"
+                return render(request, 'Customer/login.html', {'message': message})
+        except Customer.DoesNotExist:
+            message = "Invalid Credentials"
+            return render(request, 'Customer/login.html', {'message': message})
+    else:
+        return render(request, 'Customer/login.html')
+
+    
+    
+def customer_account(self):
+    return render(self,'Customer/Accounts.html')
 
 
 class Dashboard():
     def index(self):
         return render(self, 'Customer/login.html')
-
-
-# import ipdb
-def Customer_Login(request):
-     if request.method == 'POST':
-         enter_email = request.POST.get('username')
-         enter_password = request.POST.get('pass')
-        #  ipdb.set_trace()
-         if Customer.objects.filter(email=enter_email,password=enter_password):
-             result = Customer.objects.get(email=enter_email)
-             request.session['customer_name'] = result.first_name
-             request.session['customer_id'] = result.id
-             return render(request, 'Customer/Home.html')
-         else:
-             message = "Invalid Credentials"
-             return render(request,'Customer/login.html', {'message': message})
-     else:
-         return render(request,'Customer/login.html')
-
-
-
-        
-
-
 
 
 def customer_logout(request):
@@ -52,73 +62,11 @@ def customer_logout(request):
         return render(request, 'Customer/login.html')
 
 
-def customer_account(request):
-    # Assuming you want to pass some context data to the template
-    context = {
-        'title': 'Customer Account Information',
-        'message': 'Welcome to the customer account page!',
-        # Add more context data as needed
-    }
-    return render(request, 'Customer/Accounts.html', context)
 
 
 def customer_bill(self):
     return render(self,'Customer/Bill.html')
 
-
-
-# class CustomerAccountInfoView(View):
-#     def get(self, request, member):
-#         try:
-#             account = get_object_or_404(SavingAccount, member=member)
-#             context = {
-#                 'title': 'Customer Account Information',
-#                 'account': account,
-                
-#             }
-#             return render(request, 'Customer/Accounts.html', context)
-#         except SavingAccount.DoesNotExist:
-#             return render(request, 'Customer/account_not_found.html', status=404)
-
-# class CustomerAccountInfoView(View):
-#     def get(self, request):
-#         # Get customer_id from session
-#         customer_id = request.session.get('customer_id')
-
-#         if customer_id:
-#             try:
-#                 account = get_object_or_404(SavingAccount, member=customer_id)
-#                 context = {
-#                     'title': 'Customer Account Information',
-#                     'account': account,
-#                 }
-#                 return render(request, 'Customer/Accounts.html', context)
-#             except SavingAccount.DoesNotExist:
-#                 return render(request, 'Customer/account_not_found.html', status=404)
-#         else:
-#             # Handle case where customer_id is not in session (user not logged in)
-#             return redirect('customer-login')  
-
-
-class CustomerAccountInfoView(View):
-    def get(self, request):
-        # Get customer_id from session
-        customer_id = request.session.get('customer_id')
-
-        if customer_id:
-            try:
-                account = get_object_or_404(SavingAccount, member=customer_id)
-                context = {
-                    'title': 'Customer Account Information',
-                    'account': account,
-                }
-                return render(request, 'Customer/Accounts.html', context)
-            except SavingAccount.DoesNotExist:
-                return render(request, 'Customer/account_not_found.html', status=404)
-        else:
-            # Handle case where customer_id is not in session (user not logged in)
-            return redirect('customer-login')
-        
 
 def customer_fd(self):
     if self.method == 'POST':
