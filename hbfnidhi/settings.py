@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'masteradmin.apps.MasteradminConfig',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+   
+
 ]
 
 MIDDLEWARE = [
@@ -80,7 +82,7 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hbf_nidhi',
+        'NAME': 'banking',
         'USER': 'root',
         'PASSWORD': '987654321',
         'HOST': 'localhost',
@@ -130,3 +132,4 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# AUTH_USER_MODEL = 'masteradmin.admin'

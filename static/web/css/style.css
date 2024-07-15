@@ -2005,6 +2005,10 @@ div#demo1_main_image {
     padding: 0;
 }
 
+div#demo2_main_image {
+    padding: 0;    
+}
+
 .desoSlide-overlay h3 {
     font-size: 1.6em;
 }
@@ -2267,6 +2271,9 @@ ul.social-icons3 {
     .team-left,div#demo1_main_image {
         width: 100%;
     }
+    .team-left,div#demo2_main_image {
+        width: 100%;
+    }
     .desoSlide-overlay {
         padding: 9em 2em 0;
     }
@@ -2464,6 +2471,7 @@ ul.social-icons3 {
     }
     .team-right {
         width: 100%;
+       
     }
     .desoSlide-overlay {
         padding: 5em 2em;

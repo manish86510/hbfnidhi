@@ -163,9 +163,12 @@
                                 <li class="dropdown-submenu1">
                                     <a href="/loans/">Loan Products</a>
                                     <ul class="dropdown-menu2">
+                                        
+
                                         <li><a href="/gold-loan/">Gold Loan</a></li>
-                                        <li><a href="/mortgage/">Mortgage Loan</a></li>
+                                        <li><a href="/loan-against-insurance-policy/">Loan against Insurance Policy</a></li>
                                         <li><a href="/deposit-receipt/">Loan against deposit receipt</a></li>
+                                        <li><a href="/loan-against-govt-bond/">Loan against Govt. Bond</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -258,6 +261,14 @@
         $('#demo1_thumbs').desoSlide({
             main: {
                 container: '#demo1_main_image',
+                cssClass: 'img-responsive'
+            },
+            effect: 'sideFade',
+            caption: true
+        });
+        $('#demo2_thumbs').desoSlide({
+            main: {
+                container: '#demo2_main_image',
                 cssClass: 'img-responsive'
             },
             effect: 'sideFade',

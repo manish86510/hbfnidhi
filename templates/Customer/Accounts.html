@@ -8,19 +8,60 @@
             <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="tile-stats" style="background-color: #e3f0f4; color: #0b2e13;">
                     <h2 class="site_title" style="background-color: #51a9b5;">Accounts Statements</h2>
-                    <!-- Display SavingAccount information here -->
 
-                    <H4>Saving Account</H4>
-                    <p> {{request.session.account_no }}</p>
-                    <br>
-                    <h4>Available Balance</h4>
-                    <p>{{request.session.account_balance}}</p>
-                    <ul>
-                            <li>Member ID: {{ request.session.customer_id }}</li>
-                            <li>Branch Name: {{request.session.branch_name }}</li>
-                            <li>Branch Code: {{request.session.branch_code }}</li>
-                            <li>IFSC: {{request.session.ifsc }}</li>
-                    </ul> 
+                    <h4>Saving Account</h4>
+                    {% if saving_account %}
+                        <p>{{ saving_account.account_no }}</p>
+                        <br>
+                        <h4>Available Balance</h4>
+                        <p>{{ saving_account.account_balance }}</p>
+                        <ul>
+                            <li>Member ID: {{ saving_account.member }}</li>
+                            <li>Branch Name: {{ saving_account.branch_name }}</li>
+                            <li>Branch Code: {{ saving_account.branch_code }}</li>
+                            <li>IFSC: {{ saving_account.ifsc }}</li>
+                        </ul>
+                    {% else %}
+                        <p>Saving account details not found.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="row top_tiles">
+            <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="tile-stats" style="background-color: #e3f0f4; color: #0b2e13;">
+                    <h4>Statement</h4>
+                    <h5>Recent Transactions</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>Beneficiary</th>
+                                <th>Amount</th>
+                                <th>Balance Before Transaction</th>
+                                <th>Balance After Transaction</th>
+                                <th>Date</th>
+                                <th>Type</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for transaction in transactions %}
+                                <tr>
+                                    <td>{{ transaction.transaction }}</td>
+                                    <td>{{ transaction.beneficiary }}</td>
+                                    <td>{{ transaction.amount }}</td>
+                                    <td>{{ transaction.bal_before_transaction }}</td>
+                                    <td>{{ transaction.bal_after_transaction }}</td>
+                                    <td>{{ transaction.transaction_date }}</td> <!-- Assuming you have a transaction_date field -->
+                                    <td>{{ transaction.type_of_transaction }}</td>
+                                    
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

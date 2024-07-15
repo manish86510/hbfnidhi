@@ -59,15 +59,19 @@ def contact(self):
 def goldloan(self):
     return render(self,'web/gold-loan.html')
 
-def mortgageloan(self):
-    return render(self,'web/mortgage.html')
+
+def loanagainstgovtbond(self):
+    return render(self, 'web/loan-against-govt-bond.html')
+
+def loanagainstinsurancepolicy(self):
+    return render(self, 'web/loan-against-insurance-policy.html')
 
 def loanagainstdepositreceipt(self):
     return render(self, 'web/deposit-receipt.html')
 
 
 
-
+# import ipdb;
 def create_account(self):
     if self.method == 'POST':
         first_name = self.POST.get('title')+ ' ' + self.POST.get('first_name')
@@ -118,6 +122,7 @@ def create_account(self):
                 last_login=models.DateTimeField(auto_now_add=True),
                 registration_date=models.DateTimeField(auto_now_add=True),
             )
+            # ipdb.set_trace()
             customer.save()
             message = "Form submitted successfully !"
             return render(self, 'web/registration.html', {'message': message})
