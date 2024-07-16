@@ -1,48 +1,67 @@
 {% extends 'Customer/layout/base.html' %}
 
 {% block content %}
+<!-- page content -->
 <div class="right_col" role="main">
     <div class="">
         <div class="row top_tiles">
             <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="tile-stats" style="background-color: #003b4e; color: #0b2e13;">
-                    <h2 class="site_title" style="background-color: #51a9b5;">Account Information</h2>
-                </div>
+                <div class="tile-stats" style="background-color: #e3f0f4; color: #0b2e13;">
+                    <h2 class="site_title" style="background-color: #51a9b5;">Accounts Statements</h2>
 
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-left: 60px;">
-                    <div  style=" color: #0b2e13;">
-                        <h3 >Account Number</h3>
-                        <p style="border: 1px solid black; padding: 4px;">{{ account.account_no }}</p> <!-- Display account_no from account -->
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-left: 60px;">
-                    <div  style=" color: #0b2e13;">
-                        <h3 >IFSC Code</h3>
-                        <p style="border: 1px solid black; padding: 4px;">{{ account.ifsc}}</p> <!-- Display account_no from account -->
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-left: 60px;">
-                  <div  style=" color: #0b2e13;">
-                      <h3 >Branch Code</h3>
-                      <p style="border: 1px solid black; padding: 4px;">{{ account.branch_code}}</p> <!-- Display account_no from account -->
-                  </div>
-              </div>
-
-              <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-left: 60px;">
-                <div  style=" color: #0b2e13;">
-                    <h3 >Branch Name</h3>
-                    <p style="border: 1px solid black; padding: 4px;">{{ account.branch_name}}</p> <!-- Display account_no from account -->
+                    <h4>Saving Account</h4>
+                    {% if saving_account %}
+                        <p>{{ saving_account.account_no }}</p>
+                        <br>
+                        <h4>Available Balance</h4>
+                        <p>{{ saving_account.account_balance }}</p>
+                        <ul>
+                            <li>Member ID: {{ saving_account.member }}</li>
+                            <li>Branch Name: {{ saving_account.branch_name }}</li>
+                            <li>Branch Code: {{ saving_account.branch_code }}</li>
+                            <li>IFSC: {{ saving_account.ifsc }}</li>
+                        </ul>
+                    {% else %}
+                        <p>Saving account details not found.</p>
+                    {% endif %}
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-left: 60px;">
-              <div  style=" color: #0b2e13;">
-                  <h3 >Account Balance</h3>
-                  <p style="border: 1px solid black; padding: 4px;">{{ account.account_balance}}</p> <!-- Display account_no from account -->
-              </div>
-          </div>
-                        
-                    </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="row top_tiles">
+            <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="tile-stats" style="background-color: #e3f0f4; color: #0b2e13;">
+                    <h4>Statement</h4>
+                    <h5>Recent Transactions</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>Beneficiary</th>
+                                <th>Amount</th>
+                                <th>Balance Before Transaction</th>
+                                <th>Balance After Transaction</th>
+                                <th>Date</th>
+                                <th>Type</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for transaction in transactions %}
+                                <tr>
+                                    <td>{{ transaction.transaction }}</td>
+                                    <td>{{ transaction.beneficiary }}</td>
+                                    <td>{{ transaction.amount }}</td>
+                                    <td>{{ transaction.bal_before_transaction }}</td>
+                                    <td>{{ transaction.bal_after_transaction }}</td>
+                                    <td>{{ transaction.transaction_date }}</td> <!-- Assuming you have a transaction_date field -->
+                                    <td>{{ transaction.type_of_transaction }}</td>
+                                    
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.shortcuts import render
 from masteradmin.models import *
 
-
+import ipdb;
 class Dashboard:
     def index(self):
         if self.session['user_name']:
@@ -19,14 +19,13 @@ class Dashboard:
         else:
             return render(self, 'admin/login.html')
         
-    
+
     def login(self):
         if self.method == 'POST':
             try:
+                ipdb.set_trace()
                 email = self.POST.get('email')
                 password = self.POST.get('password')
-                
-                
                 result = Admin.objects.get(email=email, password=password, is_active=1)
                 self.session['user_name'] = result.admin_name
                 self.session['user_id'] = result.id

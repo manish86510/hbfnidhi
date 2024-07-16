@@ -11,7 +11,7 @@ class UserRole(models.Model):
 class Customer(models.Model):
     member = models.CharField(max_length=30)
     agent = models.CharField(max_length=30, null=True)
-    role = models.ForeignKey(UserRole, on_delete=models.CASCADE)
+    role = models.ForeignKey(UserRole, on_delete=models.CASCADE, null=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     father_name = models.CharField(max_length=60, null=True)
@@ -128,7 +128,40 @@ class SavingAccount(models.Model):
     status = models.CharField(max_length=20)
     is_active = models.IntegerField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
+    
+    
+    
+    
 
+class Transactions(models.Model):
+    TRANSACTION_TYPE_CHOICES = [
+        ('Deposit', 'Deposit'),
+        ('Withdrawal', 'Withdrawal'),
+        ('Transfer', 'Transfer'),
+        ('Payment', 'Payment'),
+    ]
+    member = models.ForeignKey('Customer', on_delete=models.CASCADE)
+    transaction_id = models.AutoField(primary_key=True)
+    account_no = models.ForeignKey('SavingAccount', on_delete=models.CASCADE)
+    transaction_type = models.CharField(max_length=20, choices=TRANSACTION_TYPE_CHOICES)
+    amount = models.DecimalField(max_digits=15, decimal_places=2)
+    transaction_date = models.DateTimeField(auto_now_add=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
+    
+    
+    
+    
+class TransferTransactions(models.Model):
+    transfer_id = models.AutoField(primary_key=True)
+    # from_account = models.ForeignKey(Transactions, related_name='transfers_out', on_delete=models.CASCADE)
+    # to_account = models.ForeignKey(Transactions, related_name='transfers_in', on_delete=models.CASCADE)
+    from_account_no = models.ForeignKey(SavingAccount, related_name='transfers_out', on_delete=models.CASCADE, null=True)
+    to_account_no = models.ForeignKey(SavingAccount, related_name='transfers_in', on_delete=models.CASCADE, null=True)
+    amount = models.DecimalField(max_digits=15, decimal_places=2)
+    transfer_date = models.DateTimeField(auto_now_add=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
+    
+    
 
 class Beneficiary(models.Model):
     associated_member = models.CharField(max_length=20, null=True)

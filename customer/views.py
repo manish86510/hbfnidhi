@@ -1,19 +1,108 @@
 import random
-
 from django.forms import forms
 from django.shortcuts import render, redirect
 from masteradmin.models import *
 from django.http import HttpResponse, JsonResponse
 import datetime
 from django.db import models
-from rest_framework.views import APIView
-from customer.serializer import CustomerSerializer
-from rest_framework.response import Response
-from rest_framework import status
-from masteradmin.models import SavingAccount
-from django.shortcuts import get_object_or_404
-from django.views import View
-from django.contrib.auth import authenticate
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+import time
+from customer.signals import create_transfer_transaction
+from django.shortcuts import render, get_object_or_404
+
+
+def Customer_Login(request):
+    if request.method == 'POST':
+        enter_email = request.POST.get('username')
+        enter_password = request.POST.get('pass')
+        
+        try:
+            customer = Customer.objects.get(email=enter_email, password=enter_password)
+            if customer.is_verify == 0:  # 0 means verified
+                request.session['customer_name'] = customer.first_name
+                request.session['customer_id'] = customer.member
+                # request.session['customer_idd'] = customer.agent
+                
+                
+                # Fetch SavingAccount object for the logged-in customer
+                try:
+                    saving_account = SavingAccount.objects.get(member=customer.member)
+                    request.session['account_no'] = saving_account.account_no
+                    request.session['branch_name'] = saving_account.branch_name
+                    request.session['branch_code'] = saving_account.branch_code
+                    request.session['ifsc'] = saving_account.ifsc
+                    request.session['account_balance'] = saving_account.account_balance
+                except SavingAccount.DoesNotExist:
+                    # Handle case where SavingAccount does not exist for the customer
+                    request.session['account_no'] = None
+                    request.session['branch_name'] = None
+                    request.session['branch_code'] = None
+                    request.session['ifsc']=None
+                    request.session['account_balance']='None'
+                
+                return render(request, 'Customer/Home.html', {'customer_id': customer.member})
+            else:
+                message = "Account not verified by admin"
+                return render(request, 'Customer/login.html', {'message': message})
+        except Customer.DoesNotExist:
+            message = "Invalid Credentials"
+            return render(request, 'Customer/login.html', {'message': message})
+    else:
+        return render(request, 'Customer/login.html')
+
+    
+    
+# def customer_account(self):
+#     return render(self,'Customer/Accounts.html')
+
+
+# def customer_account(request):
+    
+#     member_id = request.session.get('customer_id')
+   
+#     # Fetching all debit transactions for the logged-in user
+#     transactions = DebitTransaction.objects.filter(member=member_id) # Assuming you have a transaction_date field
+
+#     # Fetch the SavingAccount details for the logged-in user
+#     try:
+#         saving_account = SavingAccount.objects.get(member=member_id)
+#     except SavingAccount.DoesNotExist:
+#         saving_account = None
+    
+#     context = {
+#         'transactions': transactions,
+#         'saving_account': saving_account,
+#     }
+    
+#     return render(request, 'Customer/Accounts.html', context)
+
+# import ipdb
+def customer_account(request):
+    # ipdb.set_trace()
+    member_id = request.session.get('customer_id')
+    
+    member  = Customer.objects.get(member=member_id)
+ 
+    transactions = Transactions.objects.filter(member_id=member.id)  # Assuming you have a DebitTransaction model with member and transaction_date fields
+
+    # Fetch the SavingAccount details for the logged-in user
+    try:
+        saving_account = SavingAccount.objects.get(member=member_id)
+    except SavingAccount.DoesNotExist:
+        saving_account = None
+    
+    # Call the signal handler for each 'Transfer' type transaction
+    for transaction in transactions:
+        if transaction.transaction_type == 'Transfer':
+            create_transfer_transaction(sender=Transactions, instance=transaction, created=True)
+    
+    context = {
+        'transactions': transactions,
+        'saving_account': saving_account,
+    }
+    
+    return render(request, 'Customer/Accounts.html', context)
 
 
 
@@ -22,103 +111,17 @@ class Dashboard():
         return render(self, 'Customer/login.html')
 
 
-# import ipdb
-def Customer_Login(request):
-     if request.method == 'POST':
-         enter_email = request.POST.get('username')
-         enter_password = request.POST.get('pass')
-        #  ipdb.set_trace()
-         if Customer.objects.filter(email=enter_email,password=enter_password):
-             result = Customer.objects.get(email=enter_email)
-             request.session['customer_name'] = result.first_name
-             request.session['customer_id'] = result.id
-             return render(request, 'Customer/Home.html')
-         else:
-             message = "Invalid Credentials"
-             return render(request,'Customer/login.html', {'message': message})
-     else:
-         return render(request,'Customer/login.html')
-
-
-
-        
-
-
-
-
 def customer_logout(request):
         del request.session['customer_name']
         del request.session['customer_id']
         return render(request, 'Customer/login.html')
 
 
-def customer_account(request):
-    # Assuming you want to pass some context data to the template
-    context = {
-        'title': 'Customer Account Information',
-        'message': 'Welcome to the customer account page!',
-        # Add more context data as needed
-    }
-    return render(request, 'Customer/Accounts.html', context)
 
 
 def customer_bill(self):
     return render(self,'Customer/Bill.html')
 
-
-
-# class CustomerAccountInfoView(View):
-#     def get(self, request, member):
-#         try:
-#             account = get_object_or_404(SavingAccount, member=member)
-#             context = {
-#                 'title': 'Customer Account Information',
-#                 'account': account,
-                
-#             }
-#             return render(request, 'Customer/Accounts.html', context)
-#         except SavingAccount.DoesNotExist:
-#             return render(request, 'Customer/account_not_found.html', status=404)
-
-# class CustomerAccountInfoView(View):
-#     def get(self, request):
-#         # Get customer_id from session
-#         customer_id = request.session.get('customer_id')
-
-#         if customer_id:
-#             try:
-#                 account = get_object_or_404(SavingAccount, member=customer_id)
-#                 context = {
-#                     'title': 'Customer Account Information',
-#                     'account': account,
-#                 }
-#                 return render(request, 'Customer/Accounts.html', context)
-#             except SavingAccount.DoesNotExist:
-#                 return render(request, 'Customer/account_not_found.html', status=404)
-#         else:
-#             # Handle case where customer_id is not in session (user not logged in)
-#             return redirect('customer-login')  
-
-
-class CustomerAccountInfoView(View):
-    def get(self, request):
-        # Get customer_id from session
-        customer_id = request.session.get('customer_id')
-
-        if customer_id:
-            try:
-                account = get_object_or_404(SavingAccount, member=customer_id)
-                context = {
-                    'title': 'Customer Account Information',
-                    'account': account,
-                }
-                return render(request, 'Customer/Accounts.html', context)
-            except SavingAccount.DoesNotExist:
-                return render(request, 'Customer/account_not_found.html', status=404)
-        else:
-            # Handle case where customer_id is not in session (user not logged in)
-            return redirect('customer-login')
-        
 
 def customer_fd(self):
     if self.method == 'POST':
@@ -202,9 +205,238 @@ def customer_loan(self):
     return render(self, 'Customer/Loan.html')
 
 
-def customer_funds(self):
-    return render(self, 'Customer/Funds.html')
+# def customer_funds(self):
+#     return render(self, 'Customer/Funds.html')
 
+# def customer_funds(request):
+#     if request.method == 'POST':
+#         account = request.POST.get('account')
+#         ifsc = request.POST.get('ifsc')
+#         amount = request.POST.get('amount')
+#         member_id = request.session.get('customer_id')
+        
+#         try:
+#             amount = float(amount) 
+#             saving_account = SavingAccount.objects.get(member=member_id)
+#             account_balance = float(saving_account.account_balance) - amount # Convert to float
+#              # Convert to float
+
+#             after_transaction = account_balance - amount
+
+#             # Save the data to the DebitTransaction model
+#             DebitTransaction.objects.create(
+#                 member=member_id,  # Assuming the member is the logged-in user 
+#                 transaction="T" + str(int(time.time())),  # Example unique transaction ID
+#                 beneficiary=account,
+#                 amount=amount,
+#                 bal_before_transaction=account_balance,
+#                 bal_after_transaction=after_transaction,
+#                 transaction_amount=amount,
+#                 type_of_transaction="Transfer",
+#                 debit_type="Online",
+#                 remark="Fund Transfer",
+#             )
+            
+#             # Redirect to a success page or the same form
+#             # Replace with your success page URL or name
+        
+#         except SavingAccount.DoesNotExist:
+#             # Handle the case where the saving account does not exist
+#             return render(request, 'Customer/Funds.html', {'error': 'Saving account not found'})
+        
+#         except ValueError:
+#             # Handle the case where conversion to float fails
+#             return render(request, 'Customer/Funds.html', {'error': 'Invalid amount or account balance'})
+    
+#     return render(request, 'Customer/Funds.html')
+
+
+# def customer_funds(request):
+#     if request.method == 'POST':
+#         account = request.POST.get('account')
+#         ifsc = request.POST.get('ifsc')
+#         amount = request.POST.get('amount')
+#         member_id = request.session.get('customer_id')
+        
+#         try:
+#             amount = float(amount)
+#             saving_account = SavingAccount.objects.get(member=member_id)
+#             account_balance = float(saving_account.account_balance)
+        
+            
+#             after_transaction = account_balance - amount
+#             account_balance = after_transaction
+
+#             # Save the data to the DebitTransaction model
+#             transaction_id = "T" + str(int(time.time()))
+#             DebitTransaction.objects.create(
+#                 member=member_id,
+#                 transaction=transaction_id,
+#                 beneficiary=account,
+#                 amount=amount,
+#                 bal_before_transaction=account_balance,
+#                 bal_after_transaction=after_transaction,
+#                 transaction_amount=amount,
+#                 type_of_transaction="Transfer",
+#                 debit_type="Online",
+#                 remark="Fund Transfer",
+#             )
+
+#             # Save the data to the CreditTransaction model
+#             CreditTransaction.objects.create(
+#                 member=account,  # Assuming account is the beneficiary member id
+#                 transaction=transaction_id,
+#                 amount=str(amount),
+#                 type_of_transaction="Credit",
+#                 sender_account_no=saving_account.account_no,
+#                 sender_bank_name="Your Bank Name",  # Replace with actual bank name
+#                 debit_type="Online",
+#                 remark="Fund Transfer",
+#                 status=1  # Assuming 1 means successful
+#             )
+            
+        
+#         except SavingAccount.DoesNotExist:
+#             # Handle the case where the saving account does not exist
+#             return render(request, 'Customer/Funds.html', {'error': 'Saving account not found'})
+        
+        
+#     return render(request, 'Customer/Funds.html')
+ 
+ 
+#  The correct code writen by me
+# def customer_funds(request):
+#     if request.method == 'POST':
+#         account = request.POST.get('account')
+#         ifsc = request.POST.get('ifsc')
+#         amount = request.POST.get('amount')
+#         member_id = request.session.get('customer_id')
+        
+#         try:
+#             amount = float(amount)
+#             saving_account = SavingAccount.objects.get(member=member_id)
+#             print(saving_account)
+#             balance_before_transaction = float(saving_account.account_balance)
+
+#             # Check if the account has enough balance
+#             if balance_before_transaction < amount:
+#                 return render(request, 'Customer/Funds.html', {'error': 'Insufficient balance'})
+
+#             balance_after_transaction = balance_before_transaction - amount
+
+#             # Save the data to the DebitTransaction model
+#             transaction_id = "T" + str(int(time.time()))
+#             DebitTransaction.objects.create(
+#                 member=member_id,
+#                 transaction=transaction_id,
+#                 beneficiary=account,
+#                 amount=amount,
+#                 bal_before_transaction=balance_before_transaction,
+#                 bal_after_transaction=balance_after_transaction,
+#                 transaction_amount=amount,
+#                 type_of_transaction="Transfer",
+#                 debit_type="Online",
+#                 remark="Fund Transfer",
+#             )
+
+#             # Update the SavingAccount balance
+#             saving_account.account_balance = balance_after_transaction
+#             saving_account.save()
+
+#             # Save the data to the CreditTransaction model
+#             CreditTransaction.objects.create(
+#                 member=account,  # Assuming account is the beneficiary member id
+#                 transaction=transaction_id,
+#                 amount=str(amount),
+#                 type_of_transaction="Credit",
+#                 sender_account_no=saving_account.account_no,
+#                 sender_bank_name="Your Bank Name",  # Replace with actual bank name
+#                 debit_type="Online",
+#                 remark="Fund Transfer",
+#                 status=1  # Assuming 1 means successful
+#             )
+            
+#             # Redirect to a success page or the same form
+            
+#         except SavingAccount.DoesNotExist:
+#             # Handle the case where the saving account does not exist
+#             return render(request, 'Customer/Funds.html', {'error': 'Saving account not found'})
+        
+#         except ValueError:
+#             # Handle the case where conversion to float fails
+#             return render(request, 'Customer/Funds.html', {'error': 'Invalid amount or account balance'})
+    
+#     return render(request, 'Customer/Funds.html')
+# correct code complete
+
+
+
+# s solution
+# import ipdb;
+def customer_funds(request):
+  
+    if request.method == 'POST':
+        account_no = request.POST.get('account')
+        ifsc = request.POST.get('ifsc')
+        amount = request.POST.get('amount')
+        member_id = request.session.get('customer_id')
+    
+        try:                       
+            ipdb.set_trace()                  
+            saving_account = SavingAccount.objects.get(member=member_id)
+            # this is correct
+            memberC=Customer.objects.get(member=member_id)
+            print(memberC)
+            # Print specific fields of the Customer object
+            # member_id_str = memberC.member
+            # print("Member ID:", member_id_str)
+            
+            # member_id_str = memberC.member  # Assuming this is a string with a prefix like "MA4754197"
+            # print("Member ID:", member_id_str)
+            
+            # Extract the numeric part of the member ID (remove the prefix "MA")
+            # prefix = "MA"
+            # member_id_str.startswith(prefix)
+            # abb = int(member_id_str[len(prefix):]) # Remove prefix
+            
+            
+            # Convert numeric part to integer for processing if needed
+            # member_id_numeric = int(member_id_number)
+            
+            # Combine prefix and numeric part for transaction
+            # member_id_with_prefix = f"{prefix}{abb}"
+            
+            # print("Member ID with Prefix:", member_id_with_prefix)
+            
+                
+            
+            # print("Member ID Number:",abb)
+            # hello = Customer.objects.get(member=member_id_with_prefix)
+            # print(hello)
+            transaction = Transactions(
+                member_id=memberC.id,
+                transaction_type='Transfer',
+                amount=amount,
+                description='Fund Transfer',
+                account_no=saving_account
+            )
+            
+            # print(Customer.objects.get(pk=member_idd))
+            transaction.save()
+            
+            # Update account balance
+            saving_account.account_balance = float(saving_account.account_balance) - float(amount)
+            saving_account.save()
+
+              # Redirect to a success page or show a success message
+        except Customer.DoesNotExist:
+            return render(request, 'Customer/Funds.html', {'error': 'Customer not found.'})
+        except SavingAccount.DoesNotExist:
+            return render(request, 'Customer/Funds.html', {'error': 'Account not found.'})
+        except Exception as e:
+            return render(request, 'Customer/Funds.html', {'error': str(e)})
+
+    return render(request, 'Customer/Funds.html')  
 
 def customer_home(request):
     user_name=request.session['customer_name']
