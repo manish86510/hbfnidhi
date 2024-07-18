@@ -19,5 +19,6 @@ urlpatterns = [
     path('Rd',customer_rd, name='Rd'),
     path('loan',customer_loan),
     path('rate', interest_rate, name='rate'),
+    path('get_bank_statement/', get_bank_statement, name='get_bank_statement'),
 
 ]

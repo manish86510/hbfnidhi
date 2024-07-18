@@ -21,8 +21,8 @@ def shareholder(self):
     return render(self, 'web/shareholder.html')
 
 
-def doorstap(self):
-    return render(self, 'web/doorstep-services.html')
+# def doorstap(self):
+#     return render(self, 'web/doorstep-services.html')
 
 
 def enquiry(self):
@@ -40,6 +40,8 @@ def fixed(self):
 def recurring(self):
     return render(self, 'web/recurring-deposit.html')
 
+def monthlyincome(self):
+    return render(self, 'web/monthly-income-plan.html')
 
 def registration(self):
     return render(self, 'web/registration.html')
@@ -49,8 +51,8 @@ def loans(self):
     return render(self, 'web/loans.html')
 
 
-def lockers(self):
-    return render(self, 'web/lockers.html')
+# def lockers(self):
+#     return render(self, 'web/lockers.html')
 
 
 def contact(self):

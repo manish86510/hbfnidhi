@@ -1,7 +1,6 @@
 {% extends 'Customer/layout/base.html' %}
 
 {% block content %}
-<!-- page content -->
 <div class="right_col" role="main">
     <div class="">
         <div class="row top_tiles">
@@ -28,6 +27,7 @@
             </div>
         </div>
     </div>
+
     <div class="">
         <div class="row top_tiles">
             <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -40,24 +40,24 @@
                                 <th>Transaction ID</th>
                                 <th>Beneficiary</th>
                                 <th>Amount</th>
-                                <th>Balance Before Transaction</th>
                                 <th>Balance After Transaction</th>
                                 <th>Date</th>
                                 <th>Type</th>
-                                
                             </tr>
                         </thead>
                         <tbody>
-                            {% for transaction in transactions %}
+                            {% for transaction, balance in transactions %}
                                 <tr>
-                                    <td>{{ transaction.transaction }}</td>
-                                    <td>{{ transaction.beneficiary }}</td>
+                                    <td>{{ transaction.transaction_id }}</td>
+                                    <td>
+                                        {% if transaction.corresponding_saving_account %}
+                                            {{ transaction.corresponding_saving_account.account_no }}
+                                        {% endif %}
+                                    </td>
                                     <td>{{ transaction.amount }}</td>
-                                    <td>{{ transaction.bal_before_transaction }}</td>
-                                    <td>{{ transaction.bal_after_transaction }}</td>
-                                    <td>{{ transaction.transaction_date }}</td> <!-- Assuming you have a transaction_date field -->
-                                    <td>{{ transaction.type_of_transaction }}</td>
-                                    
+                                    <td>{{ balance }}</td>
+                                    <td>{{ transaction.transaction_date }}</td>
+                                    <td>{{ transaction.transaction_type }}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
@@ -66,5 +66,20 @@
             </div>
         </div>
     </div>
-</div>
+
+    <div class="">
+        <div class="row top_tiles">
+            <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="tile-stats" style="background-color: #e3f0f4; color: #0b2e13;">
+                    <h4>Get Statement</h4>
+                    <form method="POST" action="{% url 'get_bank_statement' %}">
+                        {% csrf_token %}
+                        {{ form.as_p|safe }}
+                        <button type="submit" class="btn btn-primary">Get Statement</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
 {% endblock content %}

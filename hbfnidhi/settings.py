@@ -81,13 +81,30 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'banking',
-        'USER': 'root',
-        'PASSWORD': '987654321',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'OPTIONS': {
+            'options': '-c search_path=general'
+        },
+        'NAME': 'hbfnidhi',
+        'USER': 'admin_user',
+        'PASSWORD': 'Password@123',
+        'HOST': '44.220.239.211',
+        'PORT': '5432',
+    },
+    # 'local': {
+    #     # 'ENGINE': 'django.db.backends.sqlite3',
+    #     # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'OPTIONS': {
+    #         'options': '-c search_path=general'
+    #     },
+    #     'NAME': 'hbfnidhi',
+    #     'USER': 'admin_user',
+    #     'PASSWORD': 'Password@123',
+    #     'HOST': '44.220.239.211',
+    #     'PORT': '5432',
+    # }
 }
 
 # Password validation
