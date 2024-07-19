@@ -9,7 +9,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 import time
 from .forms import BankStatementForm
-
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 
@@ -246,29 +245,16 @@ def customer_account(request):
 
     try:
         saving_account = SavingAccount.objects.get(member=member_id)
-        current_balance = Decimal(saving_account.account_balance)
+        current_balance = Decimal(saving_account.account_balance)  # Ensure balance is a Decimal
     except SavingAccount.DoesNotExist:
         saving_account = None
-        current_balance = Decimal(0)
+        current_balance = Decimal(0)  # Default to 0 if no saving account exists
 
     transactions = Transactions.objects.filter(member_id=member.id)
-    form = BankStatementForm(request.POST or None)
 
-    if request.method == 'POST' and form.is_valid():
-        start_date = form.cleaned_data['start_date']
-        end_date = form.cleaned_data['end_date']
-
-        start_datetime = datetime.datetime.combine(start_date, datetime.time.min)
-        end_datetime = datetime.datetime.combine(end_date, datetime.time.max)
-
-        if timezone.is_naive(start_datetime):
-            start_datetime = timezone.make_aware(start_datetime, timezone.get_current_timezone())
-        if timezone.is_naive(end_datetime):
-            end_datetime = timezone.make_aware(end_datetime, timezone.get_current_timezone())
-
-        transactions = transactions.filter(transaction_date__range=[start_datetime, end_datetime])
-
+    # Calculate balance after each transaction
     balances = []
+
     for transaction in transactions:
         if transaction.transaction_type == 'Transfer':
             from_account = SavingAccount.objects.get(member=member_id)
@@ -277,30 +263,30 @@ def customer_account(request):
             transaction.corresponding_saving_account = corresponding_saving_account
 
             Transfertransaction = TransferTransactions.objects.create(
-                from_account_no=from_account,
+                from_account_no=from_account,  
                 to_account_no=to_account,
                 amount=transaction.amount,
                 description=transaction.description
             )
             Transfertransaction.save()
 
-        current_balance -= Decimal(transaction.amount)
+        # Assuming the transaction amount is being deducted for simplicity
+        current_balance -= Decimal(transaction.amount)  # Convert transaction amount to Decimal
         balances.append(current_balance)
 
     context = {
         'transactions': zip(transactions, balances),
-        'saving_account': saving_account,
-        'form': form,
+        'saving_account': saving_account,    
     }
 
     return render(request, 'Customer/Accounts.html', context)
 
-import ipdb
 
 
+# import ipdb
 
 def get_bank_statement(request):
-    ipdb.set_trace()
+    # ipdb.set_trace()
     member_id = request.session.get('customer_id')
     transactions = []
     saving_account = None

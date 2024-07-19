@@ -1,46 +1,35 @@
+<!-- get_bank_statement.html -->
 {% extends 'Customer/layout/base.html' %}
 
 {% block content %}
 <div class="right_col" role="main">
-  
-
     <div class="">
         <div class="row top_tiles">
             <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="tile-stats" style="background-color: #e3f0f4; color: #0b2e13;">
-                    
-                    <h1>Bank Statement</h1>
-                    <form method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit">Filter</button>
-                    </form>
-                    {% if saving_account %}
-                        <h2>Account: {{ saving_account.account_no }}</h2>
-                        <h3>Balance: {{ saving_account.account_balance }}</h3>
-                    {% endif %}
-                    <table>
+                    <h4>Filtered Statement</h4>
+                    <h5>Filtered Transactions</h5>
+                    <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th>Transaction ID</th>
+                                <!-- <th>Beneficiary</th> -->
+                                <th>Amount</th>
+                                <!-- <th>Balance After Transaction</th> -->
                                 <th>Date</th>
                                 <th>Type</th>
-                                <th>Amount</th>
-                                <th>Description</th>
-                                <th>Balance After Transaction</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for transaction in transactions %}
-                            <tr>
-                                <td>{{ transaction.transaction_date }}</td>
-                                <td>{{ transaction.transaction_type }}</td>
-                                <td>{{ transaction.amount }}</td>
-                                <td>{{ transaction.description }}</td>
-                            </tr>
-                            {% empty %}
-                            <tr>
-                                <td colspan="4">No transactions found for the selected date range.</td>
-                            </tr>
+                                <tr>
+                                    <td>{{ transaction.transaction_id }}</td>
+                                    <!-- <td>{{ transaction.beneficiary }}</td> -->
+                                    <td>{{ transaction.amount }}</td>
+                                    <!-- <td>{{ transaction.balance }}</td> Using 'balance' which is annotated -->
+                                    <td>{{ transaction.transaction_date }}</td>
+                                    <td>{{ transaction.transaction_type }}</td>
+                                </tr>
                             {% endfor %}
                         </tbody>
                     </table>
@@ -48,5 +37,5 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
 {% endblock content %}
