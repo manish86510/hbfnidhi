@@ -261,6 +261,7 @@
                     <li role="presentation">
                         <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Shareholders</a>
                     </li>
+                    
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -799,17 +800,18 @@
                 <div class="col-lg-6 col-md-6  contact-right-grid">
                     <h6>send us a message</h6>
                     <div class="agileits-main-right">
-                        <form action="#" method="post" class="agile_form">
+                        <form action="{% url 'contact_view' %}" method="post" class="agile_form">
+                            {% csrf_token %}
                             <label class="header">Name</label>
                             <div class="icon1 w3ls-name1">
-                                <input placeholder=" " name="first name" type="text" required="">
+                                <input placeholder=" " name="Name" type="text" required="">
                             </div>
                             <div class="icon2">
                                 <label class="header">Email</label>
                                 <input placeholder=" " name="Email" type="email" required="">
                             </div>
-                            <label class="header">your message</label>
-                            <textarea class="w3l_summary" required=""></textarea>
+                            <label class="header">Message</label>
+                            <textarea class="w3l_summary" name="message" required=""></textarea>
                             <input type="submit" value="SEND">
                         </form>
                     </div>

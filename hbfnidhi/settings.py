@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '1p-a623lruwua57syt*72#8d1ei-z!n%l&&td(oi_r@7o*0twb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['www.hbfnidhi.com', 'https://hbfnidhi.com', '*', '44.229.194.117']
 
@@ -38,8 +38,6 @@ INSTALLED_APPS = [
     'masteradmin.apps.MasteradminConfig',
     'rest_framework',
     'rest_framework.authtoken',
-   
-
 ]
 
 MIDDLEWARE = [
@@ -77,23 +75,9 @@ WSGI_APPLICATION = 'hbfnidhi.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    # 'default': {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-
-        'ENGINE': 'django.db.backends.postgresql',
-        'OPTIONS': {
-            'options': '-c search_path=general'
-        },
-        'NAME': 'hbfnidhi',
-        'USER': 'admin_user',
-        'PASSWORD': 'Password@123',
-        'HOST': '44.220.239.211',
-        'PORT': '5432',
-    },
-    # 'local': {
-    #     # 'ENGINE': 'django.db.backends.sqlite3',
-    #     # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
     #     'ENGINE': 'django.db.backends.postgresql',
     #     'OPTIONS': {
@@ -104,7 +88,20 @@ DATABASES = {
     #     'PASSWORD': 'Password@123',
     #     'HOST': '44.220.239.211',
     #     'PORT': '5432',
-    # }
+    # },
+    'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'banking',
+        'USER': 'root',
+        'PASSWORD': '987654321',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    
+    }
 }
 
 # Password validation
@@ -149,4 +146,12 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# AUTH_USER_MODEL = 'masteradmin.admin'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'bigrock.titan.email'  # Replace with your SMTP server
+EMAIL_PORT = 587  # Common port for TLS
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = 'info@hbfnidhi.com'
+EMAIL_HOST_PASSWORD = 'Hbfnidhi@11223344'
+

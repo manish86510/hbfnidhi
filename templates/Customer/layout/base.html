@@ -10,6 +10,8 @@
 
     <title>HBF NIDHI </title>
 
+    <!-- Option 1: Include in HTML -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <!-- Bootstrap -->
     <link href="{% static "customer/css/Customer_dashboard/bootstrap.css" %}" rel="stylesheet">
     <!-- Font Awesome -->
@@ -70,7 +72,7 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>General</h3>
+         
                 <ul class="nav side-menu">
                   <li><a href="home"><i class="fa fa-home"></i> Home </a>
 
@@ -117,7 +119,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="/static/img/bg.jpg" alt="">John Doe
+                    <i class="bi bi-person-circle"></i> {{customer_name }}
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">

@@ -1,3 +1,4 @@
+import csv
 import random
 from django.forms import forms
 from django.shortcuts import render, redirect
@@ -11,7 +12,10 @@ import time
 from .forms import BankStatementForm
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-
+from django.core.paginator import Paginator
+from django.utils.dateparse import parse_date
+from decimal import Decimal
+from datetime import datetime, time as dt_time
 
 
 def Customer_Login(request):
@@ -43,7 +47,7 @@ def Customer_Login(request):
                     request.session['ifsc']=None
                     request.session['account_balance']='None'
                 
-                return render(request, 'Customer/Home.html', {'customer_id': customer.member})
+                return render(request, 'Customer/Home.html', {'customer_id': customer.member, 'customer_name': customer.first_name})
             else:
                 message = "Account not verified by admin"
                 return render(request, 'Customer/login.html', {'message': message})
@@ -194,96 +198,106 @@ def Customer_Login(request):
 #     })
 
 
-
-
-# def customer_account(request):
-#     member_id = request.session.get('customer_id')
-#     member = get_object_or_404(Customer, member=member_id)
-
-#     try:
-#         saving_account = SavingAccount.objects.get(member=member_id)
-#         current_balance = Decimal(saving_account.account_balance)
-#     except SavingAccount.DoesNotExist:
-#         saving_account = None
-#         current_balance = Decimal(0)
-
-#     transactions = Transactions.objects.filter(member_id=member.id)
-
-#     balances = []
-#     for transaction in transactions:
-#         if transaction.transaction_type == 'Transfer':
-#             from_account = SavingAccount.objects.get(member=member_id)
-#             to_account = SavingAccount.objects.get(id=transaction.account_no.id)
-#             corresponding_saving_account = SavingAccount.objects.get(id=transaction.account_no.id)
-#             transaction.corresponding_saving_account = corresponding_saving_account
-
-#             Transfertransaction = TransferTransactions.objects.create(
-#                 from_account_no=from_account,
-#                 to_account_no=to_account,
-#                 amount=transaction.amount,
-#                 description=transaction.description
-#             )
-#             Transfertransaction.save()
-
-#         current_balance -= Decimal(transaction.amount)
-#         balances.append(current_balance)
-
-#     form = BankStatementForm()
-
-#     context = {
-#         'transactions': zip(transactions, balances),
-#         'saving_account': saving_account,
-#         'form': form,
-#     }
-
-#     return render(request, 'Customer/Accounts.html', context)
-
-
 def customer_account(request):
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
+    customer_name = member.first_name 
 
     try:
         saving_account = SavingAccount.objects.get(member=member_id)
-        current_balance = Decimal(saving_account.account_balance)  # Ensure balance is a Decimal
+        current_balance = Decimal(saving_account.account_balance)
     except SavingAccount.DoesNotExist:
         saving_account = None
-        current_balance = Decimal(0)  # Default to 0 if no saving account exists
+        current_balance = Decimal(0)
 
     transactions = Transactions.objects.filter(member_id=member.id)
 
-    # Calculate balance after each transaction
+    start_date = request.GET.get('startDate')
+    end_date = request.GET.get('endDate')
+
+    if start_date and end_date:
+        start_date = parse_date(start_date)
+        end_date = parse_date(end_date)
+        if start_date and end_date:
+            # Adjust end_date to include the entire end day
+            end_date = datetime.combine(end_date, dt_time.max)
+            transactions = transactions.filter(transaction_date__range=(start_date, end_date))
+
     balances = []
+    balance = current_balance
 
     for transaction in transactions:
         if transaction.transaction_type == 'Transfer':
-            from_account = SavingAccount.objects.get(member=member_id)
-            to_account = SavingAccount.objects.get(id=transaction.account_no.id)
-            corresponding_saving_account = SavingAccount.objects.get(id=transaction.account_no.id)
-            transaction.corresponding_saving_account = corresponding_saving_account
+            try:
+                corresponding_saving_account = SavingAccount.objects.get(id=transaction.account_no.id)
+                transaction.corresponding_saving_account = corresponding_saving_account
+            except SavingAccount.DoesNotExist:
+                print("Account does not exist")
 
-            Transfertransaction = TransferTransactions.objects.create(
-                from_account_no=from_account,  
-                to_account_no=to_account,
-                amount=transaction.amount,
-                description=transaction.description
-            )
-            Transfertransaction.save()
+        balance -= Decimal(transaction.amount)
+        balances.append(balance)
 
-        # Assuming the transaction amount is being deducted for simplicity
-        current_balance -= Decimal(transaction.amount)  # Convert transaction amount to Decimal
-        balances.append(current_balance)
+    paginator = Paginator(list(zip(transactions, balances)), 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    form = BankStatementForm()
 
     context = {
-        'transactions': zip(transactions, balances),
-        'saving_account': saving_account,    
+        'page_obj': page_obj,
+        'saving_account': saving_account,
+        'form': form,
+        'start_date': request.GET.get('startDate', ''),
+        'end_date': request.GET.get('endDate', ''),
+        'customer_name': customer_name, 
     }
 
     return render(request, 'Customer/Accounts.html', context)
 
 
 
-# import ipdb
+
+
+def download_transactions(request):
+    member_id = request.session.get('customer_id')
+    member = get_object_or_404(Customer, member=member_id)
+
+    try:
+        saving_account = SavingAccount.objects.get(member=member_id)
+    except SavingAccount.DoesNotExist:
+        saving_account = None
+
+    transactions = Transactions.objects.filter(member_id=member.id)
+
+    # Create an HTTP response with CSV content
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="transactions.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Transaction ID', 'Beneficiary', 'Amount', 'Balance After Transaction', 'Date', 'Type'])
+
+    current_balance = Decimal(saving_account.account_balance) if saving_account else Decimal(0)
+
+    for transaction in transactions:
+        if transaction.transaction_type == 'Transfer':
+            try:
+                corresponding_saving_account = SavingAccount.objects.get(id=transaction.account_no.id)
+                transaction.corresponding_saving_account = corresponding_saving_account
+            except SavingAccount.DoesNotExist:
+                print("Account does not exist")
+
+        current_balance -= Decimal(transaction.amount)
+        
+        writer.writerow([
+            transaction.transaction_id,
+            transaction.corresponding_saving_account.account_no if transaction.corresponding_saving_account else '',
+            transaction.amount,
+            current_balance,
+            transaction.transaction_date,
+            transaction.transaction_type,
+        ])
+
+    return response
 
 def get_bank_statement(request):
     # ipdb.set_trace()
@@ -684,12 +698,21 @@ def customer_loan(self):
 
 # import ipdb;
 
+
 def customer_funds(request):
+    member_id = request.session.get('customer_id')
+    member = get_object_or_404(Customer, member=member_id)
+    customer_name = member.first_name 
+    
+    
+    
     if request.method == 'POST':
         account_no = request.POST.get('account')
         amount = request.POST.get('amount')
         member_id = request.session.get('customer_id')
         # ipdb.set_trace()
+        
+        
         try:
             # Get the source saving account of the logged-in customer
             source_account = SavingAccount.objects.get(member=member_id)
@@ -705,34 +728,27 @@ def customer_funds(request):
                 description='Fund Transfer',
                 account_no=destination_account
             ) 
-            print("hello")
-            transaction.save()
-            
-            # Update source account balance (deduct amount)
-            # source_account.account_balance -= float(amount)
-            # source_account.save()
-            
-            # Update destination account balance (add amount)
-            # destination_account.account_balance += float(amount)
-            # destination_account.save()
-            
-            # Redirect to a success page or show a success message
-            # Replace with your success URL name
+            print("hello 665")
+            # transaction.save()
             
         except SavingAccount.DoesNotExist:
             return render(request, 'Customer/Funds.html', {'error': 'Destination account not found.'})
         except Exception as e:
             return render(request, 'Customer/Funds.html', {'error': str(e)})
     
-    return render(request, 'Customer/Funds.html')
+    return render(request, 'Customer/Funds.html', { 'customer_name': customer_name})
+
 
 
 
 def customer_home(request):
+    member_id = request.session.get('customer_id')
+    member = get_object_or_404(Customer, member=member_id)
+    customer_name = member.first_name 
     user_name=request.session['customer_name']
     member_id=request.session['customer_id']
     if user_name and member_id:
-         return render(request,'Customer/Home.html')
+         return render(request,'Customer/Home.html',{ 'customer_name': customer_name})
     else:
         return render(request, 'Customer/login.html')
 

@@ -2,9 +2,11 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from web.views import *
 
 urlpatterns = [
     path('', views.index),
+    path('contact/', contact_view, name='contact_view'),
     path('our_company/', views.about),
     path('team/', views.team),
     path('shareholder/', views.shareholder),

@@ -5,7 +5,8 @@ from customer.views import *
 urlpatterns = [
     path('', Dashboard.index),
     path('home',customer_home),
-    path('account', customer_account),
+    path('account/', customer_account, name='customer_account'),
+    path('download/', download_transactions,name='download_transactions'),    
     # path('funds',customer_funds),
     path('funds/', customer_funds, name='customer_funds'),
     path('bill',customer_bill),
@@ -22,3 +23,4 @@ urlpatterns = [
     path('get_bank_statement/', get_bank_statement, name='get_bank_statement'),
 
 ]
+

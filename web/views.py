@@ -4,6 +4,38 @@ from django.shortcuts import render
 from masteradmin.models import *
 import datetime, random
 
+from django.core.mail import send_mail
+from web.forms import *
+import socket
+socket.getaddrinfo('localhost', 8000)
+import ipdb;
+def contact_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        ipdb.set_trace()
+        if form.is_valid():
+            name = form.cleaned_data['Name']
+            email = form.cleaned_data['Email']
+            message = form.cleaned_data['message']
+            
+            send_mail(
+                subject=name,
+                message=message,
+                from_email=email,
+                # recipient_list=['priyalsinghal11@gmail.com']
+                recipient_list = ['info@hbfnidhi.com']
+            )
+            
+            print("submit")
+            
+           
+    else:
+        form = ContactForm()
+
+    return render(request, 'web/index.html', {'form': form})
+
+    # return render(request, 'Customer/Accounts.html', context)
+
 
 def index(self):
     return render(self, 'web/index.html')

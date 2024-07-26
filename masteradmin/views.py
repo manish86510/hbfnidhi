@@ -2,7 +2,7 @@ import random
 
 from django.contrib import messages
 from django.shortcuts import render
-from masteradmin.models import *
+from masteradmin.models import * 
 
 # import ipdb;
 class Dashboard:

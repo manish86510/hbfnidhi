@@ -245,6 +245,17 @@ class RD(models.Model):
     scheme = models.IntegerField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     
+    
+    
+
+class RDPayment(models.Model):
+    transaction_id = models.AutoField(primary_key=True)
+    account_no = models.ForeignKey('RD', on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=15, decimal_places=2)
+    transaction_date = models.DateTimeField(auto_now_add=True)
+    
+    
+    
 class TDS(models.Model):
     associated_member = models.ForeignKey(Customer, on_delete=models.CASCADE)
     fd_or_rd = models.CharField(max_length=20)
