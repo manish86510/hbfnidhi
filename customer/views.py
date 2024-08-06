@@ -16,6 +16,9 @@ from django.core.paginator import Paginator
 from django.utils.dateparse import parse_date
 from decimal import Decimal
 from datetime import datetime, time as dt_time
+from datetime import timedelta
+from decimal import Decimal
+from django.contrib import messages
 
 
 def Customer_Login(request):
@@ -38,7 +41,8 @@ def Customer_Login(request):
                     request.session['branch_name'] = saving_account.branch_name
                     request.session['branch_code'] = saving_account.branch_code
                     request.session['ifsc'] = saving_account.ifsc
-                    request.session['account_balance'] = saving_account.account_balance
+                    # request.session['account_balance'] = saving_account.account_balance
+                    request.session['account_balance'] = str(saving_account.account_balance)  # Convert Decimal to string
                 except SavingAccount.DoesNotExist:
                     # Handle case where SavingAccount does not exist for the customer
                     request.session['account_no'] = None
@@ -61,105 +65,6 @@ def Customer_Login(request):
     
 # def customer_account(self):
 #     return render(self,'Customer/Accounts.html')
-
-
-# def customer_account(request):
-    
-#     member_id = request.session.get('customer_id')
-   
-    
-
-#     # Fetch the SavingAccount details for the logged-in user
-#     try:
-#         saving_account = SavingAccount.objects.get(member=member_id)
-#     except SavingAccount.DoesNotExist:
-#         saving_account = None
-    
-#     context = {
-
-#         'saving_account': saving_account,
-#     }
-    
-#     return render(request, 'Customer/Accounts.html', context)
-
-
-
-# import ipdb
-#S Previous solution start
-# def customer_account(request):
-#     # ipdb.set_trace()
-#     member_id = request.session.get('customer_id')
-    
-#     member  = Customer.objects.get(member=member_id)
- 
-#     transactions = Transactions.objects.filter(member_id=member.id)  # Assuming you have a DebitTransaction model with member and transaction_date fields
-
-#     # Fetch the SavingAccount details for the logged-in user
-#     try:
-#         saving_account = SavingAccount.objects.get(member=member_id)
-#     except SavingAccount.DoesNotExist:
-#         saving_account = None
-    
-#     # Call the signal handler for each 'Transfer' type transaction
-#     for transaction in transactions:
-#         if transaction.transaction_type == 'Transfer':
-#             create_transfer_transaction(sender=Transactions, instance=transaction, created=True)
-    
-#     context = {
-#         'transactions': transactions,
-#         'saving_account': saving_account,
-#     }
-    
-#     return render(request, 'Customer/Accounts.html', context)
-##S Previous solution end
-
-
-
-
-# import ipdb
-#the absolute correct code start
-
-# def customer_account(request):
-#     member_id = request.session.get('customer_id')
-#     member = get_object_or_404(Customer, member=member_id)
-
-#     try:
-#         saving_account = SavingAccount.objects.get(member=member_id)
-#         current_balance = Decimal(saving_account.account_balance)
-#     except SavingAccount.DoesNotExist:
-#         saving_account = None
-#         current_balance = Decimal(0)
-
-#     transactions = Transactions.objects.filter(member_id=member.id)
-
-#     balances = []
-#     for transaction in transactions:
-#         if transaction.transaction_type == 'Transfer':
-#             from_account = SavingAccount.objects.get(member=member_id)
-#             to_account = SavingAccount.objects.get(id=transaction.account_no.id)
-#             corresponding_saving_account = SavingAccount.objects.get(id=transaction.account_no.id)
-#             transaction.corresponding_saving_account = corresponding_saving_account
-
-#             Transfertransaction = TransferTransactions.objects.create(
-#                 from_account_no=from_account,
-#                 to_account_no=to_account,
-#                 amount=transaction.amount,
-#                 description=transaction.description
-#             )
-#             Transfertransaction.save()
-
-#         current_balance -= Decimal(transaction.amount)
-#         balances.append(current_balance)
-
-#     form = BankStatementForm()
-
-#     context = {
-#         'transactions': zip(transactions, balances),
-#         'saving_account': saving_account,
-#         'form': form,
-#     }
-
-#     return render(request, 'Customer/Accounts.html', context)
 
 
 # import ipdb
@@ -197,8 +102,9 @@ def Customer_Login(request):
 #         'saving_account': saving_account,  # Pass the saving account to the template
 #     })
 
-
+import ipdb
 def customer_account(request):
+    ipdb.set_trace()
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
     customer_name = member.first_name 
@@ -222,20 +128,35 @@ def customer_account(request):
             # Adjust end_date to include the entire end day
             end_date = datetime.combine(end_date, dt_time.max)
             transactions = transactions.filter(transaction_date__range=(start_date, end_date))
-
+            
+            
+        
     balances = []
-    balance = current_balance
+    running_balance = current_balance
 
     for transaction in transactions:
         if transaction.transaction_type == 'Transfer':
-            try:
-                corresponding_saving_account = SavingAccount.objects.get(id=transaction.account_no.id)
-                transaction.corresponding_saving_account = corresponding_saving_account
-            except SavingAccount.DoesNotExist:
-                print("Account does not exist")
+            # Find the transfer transactions related to this transaction
+            transfers = TransferTransactions.objects.filter(
+                from_account_no=transaction.account_no
+            ) | TransferTransactions.objects.filter(
+                to_account_no=transaction.account_no
+            )
+            
+            for transfer in transfers:
+                if transfer.from_account_no == transaction.account_no:
+                    running_balance = Decimal(transfer.remaining_balance)
+                elif transfer.to_account_no == transaction.account_no:
+                    running_balance = Decimal(transfer.remaining_balance)
+        
+        else:
+            # For non-transfer transactions, adjust the balance
+            running_balance = Decimal(transaction.amount)
 
-        balance -= Decimal(transaction.amount)
-        balances.append(balance)
+        balances.append(running_balance)
+
+ 
+ 
 
     paginator = Paginator(list(zip(transactions, balances)), 10)
     page_number = request.GET.get('page')
@@ -298,6 +219,9 @@ def download_transactions(request):
         ])
 
     return response
+
+
+
 
 def get_bank_statement(request):
     # ipdb.set_trace()
@@ -379,82 +303,274 @@ def customer_bill(self):
     return render(self,'Customer/Bill.html')
 
 
-def customer_fd(self):
-    if self.method == 'POST':
-        if self.POST.get('nonbreak_roi'):
-            tenure = self.POST.get('nonbreak_roi')
-        else:
-            tenure = self.POST.get('break_roi')
-        try:
-            customer = Customer.objects.get(id=self.session['customer_id'])
-            scheme_info = FD_scheme.objects.get(tenure=tenure, breakable=self.POST.get('scheme'))
-            account = random.randint(11111111, 99999999)
-            FD.objects.create(
-                account_number="FD"+str(account),
-                tenure=tenure,
-                amount=self.POST.get('amount'),
-                rate_of_interest=self.POST.get('intrest_rate'),
-                maturity_amount=self.POST.get('maturity'),
-                status="Pending",
-                is_active=0,
-                scheme=scheme_info.id,
-                created_date=models.DateTimeField(auto_now_add=True),
-                associated_member=customer.member,
-            ).save()
-            message = "FD Applied successfully !"
-            scheme_non_breakable = FD_scheme.objects.filter(breakable=0)
-            scheme_breakable = FD_scheme.objects.filter(breakable=1)
-            acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
-            return render(self, 'Customer/FD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num,
-                                                     'scheme_breakable': scheme_breakable, 'message': message})
-        except Exception:
-            message = "Something went wrong !"
-            scheme_non_breakable = FD_scheme.objects.filter(breakable=0)
-            scheme_breakable = FD_scheme.objects.filter(breakable=1)
-            acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
-            return render(self, 'Customer/FD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num,
-                                                     'scheme_breakable': scheme_breakable, 'message': message})
-    else:
-        scheme_non_breakable=FD_scheme.objects.filter(breakable=0)
-        scheme_breakable = FD_scheme.objects.filter(breakable=1)
-        acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
-        return render(self, 'Customer/FD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num, 'scheme_breakable': scheme_breakable})
+# def customer_fd(self):
+#     if self.method == 'POST':
+#         if self.POST.get('nonbreak_roi'):
+#             tenure = self.POST.get('nonbreak_roi')
+#         else:
+#             tenure = self.POST.get('break_roi')
+#         try:
+#             customer = Customer.objects.get(id=self.session['customer_id'])
+#             scheme_info = FD_scheme.objects.get(tenure=tenure, breakable=self.POST.get('scheme'))
+#             account = random.randint(11111111, 99999999)
+#             FD.objects.create(
+#                 account_number="FD"+str(account),
+#                 tenure=tenure,
+#                 amount=self.POST.get('amount'),
+#                 rate_of_interest=self.POST.get('intrest_rate'),
+#                 maturity_amount=self.POST.get('maturity'),
+#                 status="Pending",
+#                 is_active=0,
+#                 scheme=scheme_info.id,
+#                 created_date=models.DateTimeField(auto_now_add=True),
+#                 associated_member=customer.member,
+#             ).save()
+#             message = "FD Applied successfully !"
+#             scheme_non_breakable = FD_scheme.objects.filter(breakable=0)
+#             scheme_breakable = FD_scheme.objects.filter(breakable=1)
+#             acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
+#             return render(self, 'Customer/FD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num,
+#                                                      'scheme_breakable': scheme_breakable, 'message': message})
+#         except Exception:
+#             message = "Something went wrong !"
+#             scheme_non_breakable = FD_scheme.objects.filter(breakable=0)
+#             scheme_breakable = FD_scheme.objects.filter(breakable=1)
+#             acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
+#             return render(self, 'Customer/FD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num,
+#                                                      'scheme_breakable': scheme_breakable, 'message': message})
+#     else:
+#         scheme_non_breakable=FD_scheme.objects.filter(breakable=0)
+#         scheme_breakable = FD_scheme.objects.filter(breakable=1)
+#         acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
+#         return render(self, 'Customer/FD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num, 'scheme_breakable': scheme_breakable})
 
 
-def customer_rd(self):
-    if self.method == 'POST':
-        try:
-            customer = Customer.objects.get(id=self.session['customer_id'])
-            account = random.randint(11111111, 99999999)
-            RD.objects.create(
-                account_number="RD"+str(account),
-                tenure=self.POST.get('tenure'),
-                amount=self.POST.get('amount'),
-                rate_of_interest=self.POST.get('intrest_rate'),
-                maturity_amount=self.POST.get('maturity'),
-                status="Pending",
-                created_date=models.DateTimeField(auto_now_add=True),
-                associated_member=customer.member,
-            ).save()
-            message = "RD Applied successfully !"
-            scheme_non_breakable = RD_scheme.objects.filter(breakable=0)
-            scheme_breakable = RD_scheme.objects.filter(breakable=1)
-            acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
-            return render(self, 'Customer/RD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num,
-                                                     'scheme_breakable': scheme_breakable, 'message': message})
-        except Exception:
-            message = "Something went wrong !"
-            scheme_non_breakable = RD_scheme.objects.filter(breakable=0)
-            scheme_breakable = RD_scheme.objects.filter(breakable=1)
-            acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
-            return render(self, 'Customer/RD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num,
-                                                     'scheme_breakable': scheme_breakable, 'message': message})
-    else:
-        scheme_non_breakable = RD_scheme.objects.filter(breakable=0)
-        scheme_breakable = RD_scheme.objects.filter(breakable=1)
-        acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
-        return render(self, 'Customer/RD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num,
-                                                 'scheme_breakable': scheme_breakable})
+# def customer_rd(self):
+#     if self.method == 'POST':
+#         try:
+#             customer = Customer.objects.get(id=self.session['customer_id'])
+#             account = random.randint(11111111, 99999999)
+#             RecurringDeposit.objects.create(
+#                 account_number="RD"+str(account),
+#                 tenure=self.POST.get('tenure'),
+#                 amount=self.POST.get('amount'),
+#                 rate_of_interest=self.POST.get('intrest_rate'),
+#                 maturity_amount=self.POST.get('maturity'),
+#                 status="Pending",
+#                 created_date=models.DateTimeField(auto_now_add=True),
+#                 associated_member=customer.member,
+#             ).save()
+#             message = "RD Applied successfully !"
+#             scheme_non_breakable = RD_scheme.objects.filter(breakable=0)
+#             scheme_breakable = RD_scheme.objects.filter(breakable=1)
+#             acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
+#             return render(self, 'Customer/RD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num,
+#                                                      'scheme_breakable': scheme_breakable, 'message': message})
+#         except Exception:
+#             message = "Something went wrong !"
+#             scheme_non_breakable = RD_scheme.objects.filter(breakable=0)
+#             scheme_breakable = RD_scheme.objects.filter(breakable=1)
+#             acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
+#             return render(self, 'Customer/RD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num,
+#                                                      'scheme_breakable': scheme_breakable, 'message': message})
+#     else:
+#         scheme_non_breakable = RD_scheme.objects.filter(breakable=0)
+#         scheme_breakable = RD_scheme.objects.filter(breakable=1)
+#         acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
+#         return render(self, 'Customer/RD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num,
+#                                                  'scheme_breakable': scheme_breakable})
+
+
+# old#
+# def customer_rd(self):
+#     return render(self, 'Customer/RD.html')
+def create_fd_view(request):
+    return render(request, 'Customer/create_fd.html')
+
+##### new new fd
+import ipdb
+def customer_fd(request):
+    ipdb.set_trace()
+    member_id = request.session.get('customer_id')
+    customer = get_object_or_404(Customer, member=member_id)
+    
+    try:
+        fd_accounts = FixedDeposit.objects.filter(customer=customer)
+        
+        fd_with_details = []
+        for fd in fd_accounts:
+            # for maturity amount calculation
+            interest_rate = Decimal(fd.interest_rate.interest_rate.strip('%')) / 100
+            time_in_years = (fd.maturity_date - fd.start_date).days / 365
+            maturity_amount =  fd.total_amount*(1 + interest_rate) ** Decimal(time_in_years)
+            fd_with_details.append({
+                'fd_account': fd,
+                'interest_rate': fd.interest_rate.interest_rate,  # Assuming interest_rate is a foreign key
+                'start_date': fd.start_date,
+                'maturity_date': fd.maturity_date,
+                'total_amount':fd.total_amount,
+                'maturity_amount': maturity_amount
+            })
+            context = {
+            'fd_accounts': fd_with_details
+        }
+        print(context)
+        return render(request, 'Customer/FD.html', context)
+    except Customer.DoesNotExist:
+        return render(request, 'Customer/FD.html', {'error': 'Customer not found'})
+
+
+
+
+### new new fd
+
+import ipdb
+def withdraw_fd(request, fd_id):
+    ipdb.set_trace()
+    fd = get_object_or_404(FixedDeposit, pk=fd_id)
+    member_id = request.session.get('customer_id')
+    saving_account = SavingAccount.objects.filter(member=member_id).first()
+    
+    
+    balance = Decimal(saving_account.account_balance) 
+    balance += fd.total_amount
+    saving_account.account_balance = str(balance)
+    saving_account.save() 
+
+    # Update FD status to matured
+    fd.status = 'Matured'
+    fd.save()
+    
+    return render(request, 'Customer/FD.html')
+    
+    
+    
+    
+#new new new 
+import ipdb
+def customer_rd(request):
+    ipdb.set_trace()
+    member_id = request.session.get('customer_id')
+    customer = get_object_or_404(Customer, member=member_id)
+    
+    try:
+        rd_accounts = RecurringDeposit.objects.filter(customer=customer)
+        
+        rd_with_next_payment = []
+        for rd in rd_accounts:
+            # Calculate next payment date
+            last_payment = PaymentSchedule.objects.filter(
+                rd_account=rd,
+                status='Completed'
+            ).order_by('-payment_date').first()
+            
+            if last_payment:
+                next_payment_date = last_payment.payment_date + timedelta(days=30)  # Assuming monthly payments
+            else:
+                next_payment_date = rd.start_date + timedelta(days=30)
+            
+            # next_payment = PaymentSchedule.objects.filter(
+            #     rd_account=rd,
+            #     payment_date=next_payment_date,
+            #     status='Pending'
+            # ).first()  # Use .first() to get the actual object if it exists
+            # print(next_payment)
+            
+            # Get current payment details
+            current_payments = PaymentSchedule.objects.filter(
+                rd_account=rd
+            ).order_by('-payment_date')
+            
+            print(current_payments)
+            print(rd.interest_rate.interest_rate)
+            
+            
+            rd_with_next_payment.append({
+                'rd_account': rd,
+                'next_payment_date': next_payment_date,
+                'current_payments': current_payments,
+                'interest_rate': rd.interest_rate.interest_rate 
+            })
+            
+            payment = PaymentSchedule.objects.filter(rd_account=rd)
+            start_date = request.GET.get('startDate')
+            end_date = request.GET.get('endDate')
+            
+            
+            if start_date and end_date:
+                start_date = parse_date(start_date)
+                end_date = parse_date(end_date)
+                
+                
+                
+                if start_date and end_date:
+                    end_date = datetime.combine(end_date, dt_time.max)
+                    payment = payment.filter(payment_date__range=(start_date, end_date))
+                    
+                    
+            
+            
+            
+            
+
+        
+            paginator = Paginator(rd_with_next_payment, 10)  # Show 10 items per page
+            page_number = request.GET.get('page')
+            page_obj = paginator.get_page(page_number)
+            
+            # context = {'page_obj': page_obj}
+            context = {
+            'rd_with_next_payment': rd_with_next_payment,
+             'start_date': request.GET.get('startDate', ''),
+             'end_date': request.GET.get('endDate', ''),
+            'page_obj': page_obj,
+        }
+            print(context)
+            return render(request, 'Customer/RD.html', context)
+    except Customer.DoesNotExist:
+        return render(request, 'Customer/RD.html', {'error': 'Customer not found'})
+
+
+# new new new
+
+
+
+# new new new
+
+import ipdb
+def download_payment(request):
+    ipdb.set_trace()
+    member_id = request.session.get('customer_id')
+    customer = get_object_or_404(Customer, member=member_id)
+    
+   
+    rd_accounts = RecurringDeposit.objects.filter(customer=customer)
+        
+    # for rd in rd_accounts:
+    #     payment = PaymentSchedule.objects.filter(rd_account=rd) 
+
+    # Create an HTTP response with CSV content
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="payment.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow([	'Payment Date',	'Amount',	'Status'])
+    
+    for rd in rd_accounts:
+        payments = PaymentSchedule.objects.filter(rd_account=rd)
+        for payment in payments:
+            writer.writerow([
+                # payment.transaction_id,
+                payment.payment_date,
+                payment.amount,
+                payment.status,
+            ])
+    
+    return response
+   
+  
+
+
 
 
 def customer_loan(self):
@@ -696,31 +812,36 @@ def customer_loan(self):
 
 
 
-# import ipdb;
+import ipdb;
 
 
 def customer_funds(request):
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
     customer_name = member.first_name 
-    
-    
+
+    ipdb.set_trace()
     
     if request.method == 'POST':
         account_no = request.POST.get('account')
-        amount = request.POST.get('amount')
+        amount =int(request.POST.get('amount'))
         member_id = request.session.get('customer_id')
-        # ipdb.set_trace()
+        ipdb.set_trace()
         
         
         try:
             # Get the source saving account of the logged-in customer
             source_account = SavingAccount.objects.get(member=member_id)
-           
-            # Get the destination saving account based on the provided account number
             destination_account = SavingAccount.objects.get(account_no=account_no)
+            if(source_account.account_balance>=amount):
+                source_account.account_balance-=amount
+                destination_account.account_balance+=amount
+            else:   
+                raise Exception("not sufficient balance to transfer")
+            # Get the destination saving account based on the provided account number
             
             # Create a transaction record for the transfer
+                   # Record transaction for source account
             transaction = Transactions.objects.create(
                 member_id=source_account.id,
                 transaction_type='Transfer',
@@ -728,8 +849,40 @@ def customer_funds(request):
                 description='Fund Transfer',
                 account_no=destination_account
             ) 
+            
+            
+            # Record transaction for destination account
+            Transactions.objects.create(
+                    member_id=destination_account.id,
+                    transaction_type='Transfer',
+                    amount=amount,
+                    description='Fund Transfer from',
+                    account_no=source_account
+                )
+            
+            
+            TransferTransactions.objects.create(
+                    from_account_no=source_account,
+                    to_account_no=destination_account,
+                    amount=-amount,
+                    description='Fund Transfer',
+                    remaining_balance=source_account.account_balance
+                )
+            
+            
+            
+            TransferTransactions.objects.create(
+                from_account_no=destination_account,
+                to_account_no=source_account,
+                amount=amount,  # Amount added to destination account
+                description='Fund Transfer',
+                remaining_balance=destination_account.account_balance
+            )
+                
+                
             print("hello 665")
-            # transaction.save()
+            source_account.save()
+            destination_account.save()
             
         except SavingAccount.DoesNotExist:
             return render(request, 'Customer/Funds.html', {'error': 'Destination account not found.'})
@@ -825,3 +978,57 @@ def interest_rate(request):
     rate = FD_scheme.objects.get(tenure=id, breakable=scheme)
     data = {'rate': rate.interest_rate}
     return JsonResponse(data)
+
+
+
+
+import ipdb    
+def create_fd_account(self):
+    ipdb.set_trace()
+    if self.method == 'POST':
+        try:
+            member = self.POST.get('member_id')
+            interest_rate_value = self.POST.get('interest_rate')
+            start_date = self.POST.get('start_date')
+            maturity_date = self.POST.get('maturity_date')
+            total_amount = self.POST.get('total_amount')
+            print(f"Received interest_rate: {interest_rate_value}")
+            
+            try:
+                customer = Customer.objects.get(member=member)
+            except Customer.DoesNotExist:
+                message = "Invalid Member ID!"
+                interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
+                return render(self, 'admin/create_fd.html', {'message': message, 'interest_rates': interest_rates})
+            interest_rate_qs = FD_scheme.objects.filter(interest_rate=interest_rate_value)
+            if not interest_rate_qs.exists():
+                message = "Invalid interest rate!"
+                interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
+                return render(self, 'admin/create_fd.html', {'message': message, 'interest_rates': interest_rates})
+            interest_rate_obj = interest_rate_qs.first()
+            account_number = "FD" + str(random.randint(1111111111, 9999999999))
+                
+            FD_account = FixedDeposit(
+                account_number=account_number,
+                customer=customer,
+                interest_rate=interest_rate_obj,
+                total_amount=total_amount,
+                status='Active',  # Default status
+                start_date=start_date,
+                maturity_date=maturity_date,
+                )
+            FD_account.save()
+            message = "FD created successfully!"
+            interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
+            return render(self, 'customer/create_fd.html', {'message': message, 'interest_rates': interest_rates})
+        except Exception as e:
+            message = f"An error occurred: {e}"
+            interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
+            return render(self, 'customer/create_fd.html', {'message': message, 'interest_rates': interest_rates})
+            
+    else:
+        interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
+        return render(self, 'customer/create_fd.html', {'interest_rates': interest_rates})
+
+
+

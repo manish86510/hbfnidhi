@@ -1,29 +1,319 @@
+
 {% extends 'Customer/layout/base.html' %}
 {% load static %}
 {% block content %}
-    <script>
-        function maturity() {
-          var intrest = $("#intrest_rate").val();
-          var amount = $("#amount").val();
-          var tenure = $("#tenure").val();
-          var irate =intrest/400;
-          maturity_amount = (1 + irate);
-          time = (tenure/12)*4;
-          mat_amount = amount*Math.pow(maturity_amount, time);
-          $("#maturity").val(mat_amount);
-        }
-    </script>
       <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
             <div class="row top_tiles">
               <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12" >
-                   <div class="tile-stats" style="background-color: #003b4e; color: #0b2e13 ;">
-                     <a class="site_title" style="background-color: #51a9b5;" > Recuring Deposit (RD)</a>
+                   <div class="tile-stats" >
+                     <a class="site_title" > Recuring Deposit (RD)</a>
                 </div>
               </div>
             </div>
-             <div class="row">
+
+
+
+
+            <div class="rd-details">
+              
+              {% if rd_with_next_payment %}
+                  <div class="rd-accounts-container">
+                      {% for item in rd_with_next_payment %}
+                          <div class="rd-account-card">
+                              <h4>RD Account Details</h4>
+                              <div class="account-info">
+                                  <p><strong>Account Number:</strong> {{ item.rd_account.account_number }}</p>
+                                  <p><strong>Interest Rate:</strong> {{ item.interest_rate }}</p>
+                                  <p><strong>Start Date:</strong> {{ item.rd_account.start_date }}</p>
+                                  <p><strong>Maturity Date:</strong> {{ item.rd_account.maturity_date }}</p>
+                                  <p><strong>Monthly Installment:</strong> {{ item.rd_account.monthly_installment }}</p>
+                                  <p><strong>Next Payment Date:</strong> {{ item.next_payment_date }}</p>
+                              </div>
+                              <div style="text-align: right; margin-right:5%;">
+                                <a href="#" class="btn btn-primary">Deposit</a>
+                              </div>
+                          </div>
+                      {% endfor %}
+                  </div>
+              {% else %}
+                  <p>No RD accounts found.</p>
+              {% endif %}
+            </div>
+            
+            
+            <style>
+              .rd-details {
+                  padding: 20px;
+                  background-color: #f4f6f8;
+                  border-radius: 10px;
+                  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                  max-width: 1200px;
+                  margin: auto;
+              }
+            
+              .rd-details h3 {
+                  color: #004d40;
+                  border-bottom: 3px solid #004d40;
+                  padding-bottom: 10px;
+                  margin-bottom: 20px;
+              }
+            
+              .rd-accounts-container {
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: 20px;
+              }
+            
+              .rd-account-card {
+                  background-color: #ffffff;
+                  border: 1px solid #dbe2e8;
+                  border-radius: 10px;
+                  padding: 20px;
+                  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                  width: 80%;
+                  max-width: 1000px;
+                  box-sizing: border-box;
+                  margin:1% 8%;
+              }
+            
+              .rd-account-card h4 {
+                  margin-top: 0;
+                  color: #004d40;
+                  font-size: 18px;
+                  border-bottom: 2px solid #004d40;
+                  padding-bottom: 5px;
+                  margin-bottom: 15px;
+              }
+            
+              .account-info p {
+                  margin: 10px 0;
+                  color: #333;
+              }
+            
+              .account-info strong {
+                  color: #004d40;
+              }
+            </style>
+
+
+<style>
+  .site_title {
+      position: relative;
+      padding: 10px 20px;
+      border-radius: 5px;
+      color: #fff;
+      background-color: #51a9b5;
+      font-size: 1.5em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+
+  .site_title .form-data {
+      display: flex;
+      align-items: center;
+  }
+
+  .site_title .form-data form {
+      display: flex;
+      align-items: center;
+  }
+
+  .site_title .form-data .form-group {
+      margin-right: 15px;
+  }
+
+  .site_title .form-data .form-control {
+      border-radius: 20px;
+      padding: 8px 15px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+  }
+
+  .site_title .form-data .btn-primary {
+      background-color: #81b6eb;
+      border: none;
+      border-radius: 10px;
+  }
+
+  .site_title .form-data .btn-primary:hover {
+      background-color: #51a9b5;
+  }
+
+  .site_title .bi-download {
+      font-size: 1.5em;
+      color: #fff;
+      cursor: pointer;
+  }
+
+  .tile-stats {
+      padding: 20px;
+      border-radius: 10px;
+  }
+
+  .table thead {
+      background-color: #e3f0f4;
+      color: black;
+  }
+
+  .table th, .table td {
+      text-align: center;
+  }
+
+  .pagination {
+      margin: 20px 0;
+      text-align: center;
+  }
+
+  .pagination a {
+      color: #004d99;
+      text-decoration: none;
+      margin: 0 5px;
+  }
+
+  .pagination a:hover {
+      text-decoration: underline;
+  }
+
+  .pagination .current {
+      font-weight: bold;
+      color: #004d99;
+  }
+</style>
+
+            <!-- Statement -->
+             
+            
+            <div>
+              <div class="row top_tiles">
+                  <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <div class="tile-stats" style="background-color: #e3f0f4; color: #0b2e13;">
+                          <div>
+                              <h2 class="site_title">
+                                  Statements
+                                  <div class="form-data">
+                                    <form method="get" action="" >
+                                        <div class="form-group">
+                                            <input type="date" name="startDate" id="startDate" value="{{ start_date }}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="date" name="endDate" id="endDate" value="{{ end_date }}" class="form-control">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+                                       
+                                        
+                                    </form>
+                                    
+                                    <a href="{% url 'download_payment' %}" class="bi-download"></a>
+                                </div>
+                              </h2>
+                          </div>
+          
+                          <table class="table table-striped" id="dataTable">
+                         
+                              <thead>
+                                  <tr>
+                                      <th>Transaction ID</th>
+                                      <th>Payment Date</th>
+                                      <th>Amount</th>
+                                      <th>Status</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                {% for rd in rd_with_next_payment %}
+                                {% for payment in rd.current_payments %}
+                                <tr>
+                                    <td>{{ payment.id }}</td>
+                                    <td>{{ payment.payment_date }}</td>
+                                    <td>{{ payment.amount }}</td>
+                                    <td>{{ payment.status }}</td>
+                                    
+                                </tr>
+                                {% endfor %}
+                                {% endfor %}
+                            </tbody>
+                            
+                          </table>
+                          <div class="pagination">
+                              <span class="step-links">
+                                  {% if page_obj.has_previous %}
+                                      <a href="?page=1&startDate={{ start_date }}&endDate={{ end_date }}">&laquo; First</a>
+                                      <a href="?page={{ page_obj.previous_page_number }}&startDate={{ start_date }}&endDate={{ end_date }}">Previous</a>
+                                  {% endif %}
+                                  <span class="current">
+                                      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                                  </span>
+                                  {% if page_obj.has_next %}
+                                      <a href="?page={{ page_obj.next_page_number }}&startDate={{ start_date }}&endDate={{ end_date }}">Next</a>
+                                      <a href="?page={{ page_obj.paginator.num_pages }}&startDate={{ start_date }}&endDate={{ end_date }}">Last &raquo;</a>
+                                  {% endif %}
+                              </span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>   
+
+
+
+
+
+
+<!-- NEW NEW CODE  -->
+            <!-- <div class="rd-details">
+              
+              {% if rd_with_next_payment %}
+                  <ul>
+                      {% for item in rd_with_next_payment %}
+                          <li>
+                              <strong>Account Number:</strong> {{ item.rd_account.account_number }}<br>
+                              <strong>Interest Rate:</strong> {{ item.rd_account.interest_rate }}<br>
+                              <strong>Start Date:</strong> {{ item.rd_account.start_date }}<br>
+                              <strong>Maturity Date:</strong> {{ item.rd_account.maturity_date }}<br>
+                              <strong>Monthly Installment:</strong> {{ item.rd_account.monthly_installment }}<br>
+                              <strong>Next Payment Date:</strong> {{ item.next_payment_date }}<br>
+                          </li>
+                      {% endfor %}
+                  </ul>
+              {% else %}
+                  <p>No RD accounts found.</p>
+              {% endif %}
+            </div> -->
+            <!--  NEW NEW CODE -->
+
+
+
+
+
+
+
+
+            <!-- new code -->
+<!-- 
+            <div class="rd-details">
+              
+              {% if rd_accounts %}
+                  <ul>
+                      {% for rd in rd_accounts %}
+                          <li>
+                              <strong>Account Number:</strong> {{ rd.account_number }}<br>
+                              <strong>Interest Rate:</strong> {{ rd.interest_rate }}<br>
+                              <strong>Start Date:</strong> {{ rd.start_date }}<br>
+                              <strong>Maturity Date:</strong> {{ rd.maturity_date }}<br>
+                              <strong>Monthly Installment:</strong> {{ rd.monthly_installment }}<br>
+                          </li>
+                      {% endfor %}
+                  </ul>
+              {% else %}
+                  <p>No RD accounts found.</p>
+              {% endif %}
+          </div> -->
+<!-- new code end  -->
+
+
+             <!-- <div class="row">
               <div class="col-md-1 col-sm-1 col-xs-2">
               </div>
               <div class="col-md-10 col-sm-10 col-xs-7">
@@ -87,9 +377,18 @@
                   </div>
                 </div>
               </div>
-             </div>
-          </div>
+             </div> -->
+          
+          
+          
+            </div>
           </div>
 
 
 {% endblock content %}
+
+
+
+
+
+

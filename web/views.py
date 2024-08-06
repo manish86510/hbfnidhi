@@ -9,32 +9,67 @@ from web.forms import *
 import socket
 socket.getaddrinfo('localhost', 8000)
 import ipdb;
+# def contact_view(request):
+#     if request.method == 'POST':
+#         form = ContactForm(request.POST)
+#         ipdb.set_trace()
+#         if form.is_valid():
+#             name = form.cleaned_data['Name']
+#             email = form.cleaned_data['Email']
+#             message = form.cleaned_data['message']
+            
+#             send_mail(
+#                 subject=name,
+#                 message=message,
+#                 from_email=email,
+#                 # recipient_list=['priyalsinghal11@gmail.com']
+#                 recipient_list = ['info@hbfnidhi.com']
+#             )
+            
+#             print("submit")
+            
+           
+#     else:
+#         form = ContactForm()
+
+#     return render(request, 'web/index.html', {'form': form})
+
+#     # return render(request, 'Customer/Accounts.html', context)
+
+
+
 def contact_view(request):
+    ipdb.set_trace()
     if request.method == 'POST':
         form = ContactForm(request.POST)
-        ipdb.set_trace()
         if form.is_valid():
+            # Extracting form data
             name = form.cleaned_data['Name']
             email = form.cleaned_data['Email']
             message = form.cleaned_data['message']
             
-            send_mail(
-                subject=name,
-                message=message,
-                from_email=email,
-                # recipient_list=['priyalsinghal11@gmail.com']
-                recipient_list = ['info@hbfnidhi.com']
-            )
+            try:
+                # Sending email using send_mail function
+                send_mail(
+                    subject=f'Contact Form Submission from {name}',  # Subject of the email
+                    message=message,  # Message body of the email
+                    from_email='info@hbfnidhi.com',  # Sender email address from settings
+                    recipient_list=['info@hbfnidhi.com'],  # Recipient email address
+                    fail_silently=False,  # Raise error if email sending fails
+                )
+                success_message = "Email sent successfully."
+            except Exception as e:
+                success_message = f"Failed to send email: {e}"
             
             print("submit")
-            
-           
+            # Rendering the template with a success message
+            return render(request, 'web/index.html', {'form': form, 'success_message': success_message})
     else:
         form = ContactForm()
 
+    # Rendering the template with the contact form
     return render(request, 'web/index.html', {'form': form})
 
-    # return render(request, 'Customer/Accounts.html', context)
 
 
 def index(self):

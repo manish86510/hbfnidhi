@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '1p-a623lruwua57syt*72#8d1ei-z!n%l&&td(oi_r@7o*0twb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['www.hbfnidhi.com', 'https://hbfnidhi.com', '*', '44.229.194.117']
 
@@ -75,27 +75,27 @@ WSGI_APPLICATION = 'hbfnidhi.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #  'default': {
+    #     # 'ENGINE': 'django.db.backends.sqlite3',
+    #     # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
     #     'ENGINE': 'django.db.backends.postgresql',
     #     'OPTIONS': {
-    #         'options': '-c search_path=general'
+    #         'options': '-c search_path=general',
     #     },
     #     'NAME': 'hbfnidhi',
     #     'USER': 'admin_user',
     #     'PASSWORD': 'Password@123',
     #     'HOST': '44.220.239.211',
     #     'PORT': '5432',
-    # },
+    #  },
     'default': {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
-        'ENGINE': 'django.db.backends.postgresql',
+        # 'ENGINE': 'django.db.backends.postgresql',
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'banking',
+        'NAME': 'Banking Portal',
         'USER': 'root',
         'PASSWORD': '987654321',
         'HOST': 'localhost',
@@ -147,7 +147,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'bigrock.titan.email'  # Replace with your SMTP server
 EMAIL_PORT = 587  # Common port for TLS
 EMAIL_USE_TLS = True

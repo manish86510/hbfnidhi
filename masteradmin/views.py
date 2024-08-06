@@ -3,8 +3,15 @@ import random
 from django.contrib import messages
 from django.shortcuts import render
 from masteradmin.models import * 
-
-# import ipdb;
+from django.http import JsonResponse
+from django.utils import timezone    
+from datetime import timedelta    
+     
+     
+     
+     
+     
+import ipdb;
 class Dashboard:
     def index(self):
         if self.session['user_name']:
@@ -19,6 +26,43 @@ class Dashboard:
         else:
             return render(self, 'admin/login.html')
         
+        
+    def fd_plan(self):
+        if self.method == 'POST':
+            fd = FD_scheme(
+                scheme=self.POST.get('scheme'),
+                interest_rate=self.POST.get('interest_rate'),
+                tenure =self.POST.get('tenure'),
+                breakable = self.POST.get('breakable'),
+                is_applicable = 1,
+                created_date = models.DateTimeField(auto_now_add=True),
+            )
+            fd.save()
+            message = "Scheme Created Successfully !"
+            return render(self, 'admin/fd_plans.html', {'message': message})
+        else:
+            return render(self, 'admin/fd_plans.html')
+
+
+        
+        
+        
+        
+    def rd_plan(self):
+        if self.method == 'POST':
+            rd = RD_scheme(
+                scheme=self.POST.get('scheme'),
+                interest_rate=self.POST.get('interest_rate'),
+                tenure=self.POST.get('tenure'),
+                breakable=self.POST.get('breakable'),
+                is_applicable=1,
+                created_date=models.DateTimeField(auto_now_add=True),
+            )
+            rd.save()
+            messages.success(self, "Scheme Created Successfully !")
+            return render(self, 'admin/rd_plans.html')
+        else:
+            return render(self, 'admin/rd_plans.html')
 
     def login(self):
         if self.method == 'POST':
@@ -31,8 +75,8 @@ class Dashboard:
                 self.session['user_id'] = result.id
                 self.session['user_role'] = result.role
                 cust = Customer.objects.count()
-                fd = FD.objects.count()
-                rd = RD.objects.count()
+                fd = FixedDeposit.objects.count()
+                rd = RecurringDeposit.objects.count()
                 try:
                     customer = Customer.objects.filter(is_active=0).all().order_by('-id')
                 except:
@@ -256,7 +300,64 @@ class Dashboard:
     def saving_account(self):
         member = SavingAccount.objects.all().order_by('-id')
         return render(self, 'admin/saving_account.html', {'member': member})
+            
+   
+   
+    def next_payment_date(request, rd_account):
+        ipdb.set_trace()
+        rd_account = RecurringDeposit.objects.get(id=rd_account)
+        
+        print(f"RD Account: {rd_account}")
+        last_payment = PaymentSchedule.objects.filter(
+        rd_account=rd_account,
+        status='Completed'
+    ).order_by('-payment_date').first()
+        
+        
+        
+        if last_payment:
+            next_payment_date = last_payment.payment_date + timedelta(days=30)  # Assuming monthly payments
+        else:
+            next_payment_date = rd_account.start_date + timedelta(days=30)
+            
+            
+        print(f"Next Payment Date: {next_payment_date}")
+        
+        next_payment = PaymentSchedule.objects.filter(
+            rd_account=rd_account,
+            payment_date=next_payment_date,
+            status='Pending'
+            )
+        
+        if not next_payment.exists():
+            print(f"No PaymentSchedule found for rd_account: {rd_account} on date: {next_payment_date} with status: 'Pending'")
+        else:
+            print(f"Next Payment: {next_payment}")
+            
+            
+                 
+        context = {
+        'payment': next_payment,
+        'next_payment_date': next_payment_date
+    }
+        print(f"Context: {context}")
+        return render(request, 'admin/payment_schedule.html', context)
+        
+       
+        
+        # today = timezone.now().date()
+    
+   
+    
 
+    # Calculate the next payment date based on the last payment or start date
+   
+    # Find the next scheduled payment date for the given rd_account_id
+    
+    # Get today's date
+    
+        
+    
     def saving_account_transaction(self):
         return render(self, 'admin/transaction.html')
 
@@ -268,161 +369,117 @@ class Dashboard:
         del self.session['user_name']
         return render(self, 'admin/login.html')
 
-
-
-    def create_rd_account(self):            
+    
+    
+    import ipdb;
+    def create_rd_account(self):  
+        ipdb.set_trace()          
         if self.method == 'POST':
-            try:
+            try: 
                 member = self.POST.get('member_id')
                 memberid = Customer.objects.get(member=member)
-                account = random.randint(1111111111, 9999999999)
-                 
-                RD_account = RD(
-                    associated_member=self.POST.get('member_id'),
-                    account_number="RD"+str(account),
-                    rate_of_interest=self.POST.get('rate_of_interest'),
-                    amount=self.POST.get('balance'),
-                    tenure=self.POST.get('tenure'),
-                )
+                monthly_installment = self.POST.get('monthly_installment')
+                interest_rate = self.POST.get('interest_rate')
+                start_date = self.POST.get('start_date')
+                maturity_date = self.POST.get('maturity_date')
+
+            # Retrieve customer and interest rate objects
+                customer = Customer.objects.get(member=member)
+                interest_rate = RD_scheme.objects.get(interest_rate=interest_rate)
+
+            # Generate a unique account number
+                account_number = "RD" + str(random.randint(1111111111, 9999999999))
+
+            # Calculate initial total amount, if required
+                total_amount = 0.0
+                
+                RD_account = RecurringDeposit(
+                account_number=account_number,
+                customer=customer,
+                interest_rate=interest_rate,
+                total_amount=total_amount,
+                status='Active',  # Default status
+                start_date=start_date,
+                maturity_date=maturity_date,
+                monthly_installment=monthly_installment
+            )
                 RD_account.save()
-                message = "RD created successfully !"
+                message = "RD created successfully!"
+                return render(self, 'admin/create_rd.html', {'message': message})
+            
+        
+
+            except Customer.DoesNotExist:
+                message = "Invalid Member ID!"
                 return render(self, 'admin/create_rd.html', {'message': message})
             except Exception as e:
-                message = f"Invalid Member Id {e} !"
+                message = f"An error occurred: {e}"
                 return render(self, 'admin/create_rd.html', {'message': message})
         else:
             return render(self, 'admin/create_rd.html')
-
-    def create_fd_account(self):
-        if self.method == 'POST':
-            try:
-                member = self.POST.get('member_id')
-                memberid = Customer.objects.get(member=member)
-                account = random.randint(1111111, 9999999)
-                FD_account = FD(
-                    associated_member=self.POST.get('member_id'),
-                    account_number="FD"+str(account),
-                    rate_of_interest=self.POST.get('rate_of_interest'),
-                    amount=self.POST.get('balance'),
-                    tenure=self.POST.get('tenure'),
-                )
-                FD_account.save()
-                message = "FD created successfully !"
-                return render(self, 'admin/create_fd.html', {'message': message})
-            except:
-                message = "Invalid Member Id !"
-                return render(self, 'admin/create_fd.html', {'message': message})
-        else:
-            return render(self, 'admin/create_fd.html')
-    
-    
+            
     def fd_account(self):
-        fd_data = FD.objects.all()
-        for fd in fd_data:
-            fd.maturity_amount = fd.calculate_maturity_amount()
-            fd.status = fd.status 
-            fd.is_active = fd.is_active  
-            fd.save()  # Save the updated fields to the database
-            return render(self, 'admin/fd_account.html', {'fd_data': fd_data})
-    
- 
-
-    def rd_account(self):
-        rd_data = RD.objects.all()
-        return render(self, 'admin/rd_account.html', {'rd_data': rd_data})
-
-    def active_fd(self, active, account):
-        FD.objects.filter(account_number=account).update(is_active=active)
-        fd_data = FD.objects.all()
+        fd_data = FixedDeposit.objects.all()
         return render(self, 'admin/fd_account.html', {'fd_data': fd_data})
-
-    def active_rd(self, active, account):
-        RD.objects.filter(account_number=account).update(is_active=active)
-        rd_data = RD.objects.all()
-        return render(self, 'admin/rd_account.html', {'rd_data': rd_data})
-
-    def transfer(self):
-        try:
-            credit = CreditTransaction.objects.all().order_by('-id')
-        except:
-            credit = None
-        try:
-            debit = DebitTransaction.objects.all().order_by('-id')
-        except:
-            debit = None
-        return render(self, 'admin/saving_transaction.html', {'credit': credit, 'debit': debit})
-
-    def saving_info(self, member, account):
-        try:
-            customer = Customer.objects.get(member=member, is_active=1)
-            saving_info = SavingAccount.objects.get(account_no=account, is_active=1)
-        except:
-            customer = None
-            saving_info = None
-        try:
-            credit = CreditTransaction.objects.all(member=member).order_by('-id')
-        except:
-            credit = None
-        try:
-            debit = DebitTransaction.objects.all(member=member).order_by('-id')
-        except:
-            debit = None
-        return render(self, 'admin/transaction_info.html', {'credit': credit, 'debit': debit, 'saving': saving_info, 'customer': customer})
-
-    def fd_info(self, account_number, associated_member):
-        try:
-            customer = Customer.objects.get(member=associated_member)
-            fd_info = FD.objects.get(account_number=account_number)
-        except:
-            customer = None
-            fd_info = None
-        return render(self, 'admin/fd_info.html', {'fd': fd_info, 'customer': customer})
-
-    def rd_info(self, account_number, associated_member):
-        try:
-            customer = Customer.objects.get(member=associated_member)
-            rd_info = RD.objects.get(account_number=account_number)
-        except:
-            customer = None
-            rd_info = None
-        return render(self, 'admin/rd_info.html', {'rd': rd_info, 'customer': customer})
-
-    def fd_plan(self):
-        if self.method == 'POST':
-            fd = FD_scheme(
-                scheme=self.POST.get('scheme'),
-                interest_rate=self.POST.get('interest_rate'),
-                tenure =self.POST.get('tenure'),
-                breakable = self.POST.get('breakable'),
-                is_applicable = 1,
-                created_date = models.DateTimeField(auto_now_add=True),
-            )
-            fd.save()
-            message = "Scheme Created Successfully !"
-            return render(self, 'admin/fd_plans.html', {'message': message})
-        else:
-            return render(self, 'admin/fd_plans.html')
-
-    def rd_plan(self):
-        if self.method == 'POST':
-            rd = RD_scheme(
-                scheme=self.POST.get('scheme'),
-                interest_rate=self.POST.get('interest_rate'),
-                tenure=self.POST.get('tenure'),
-                breakable=self.POST.get('breakable'),
-                is_applicable=1,
-                created_date=models.DateTimeField(auto_now_add=True),
-            )
-            rd.save()
-            messages.success(self, "Scheme Created Successfully !")
-            return render(self, 'admin/rd_plans.html')
-        else:
-            return render(self, 'admin/rd_plans.html')
-
-    def all_rd_plans(self):
-        rd_scheme = RD_scheme.objects.all().order_by('-id')
-        return render(self, 'admin/all_rd_scheme.html', {'rd_scheme': rd_scheme})
-
+    
+    
     def all_fd_plans(self):
         fd_scheme = FD_scheme.objects.all().order_by('-id')
         return render(self, 'admin/all_fd_scheme.html', {'rd_scheme': fd_scheme})
+
+
+
+   
+    import ipdb    
+    def create_fd_account(self):
+        ipdb.set_trace()
+        if self.method == 'POST':
+            try:
+                member = self.POST.get('member_id')
+                interest_rate_value = self.POST.get('interest_rate')
+                start_date = self.POST.get('start_date')
+                maturity_date = self.POST.get('maturity_date')
+                total_amount = self.POST.get('total_amount')
+                print(f"Received interest_rate: {interest_rate_value}")
+                
+                try:
+                    customer = Customer.objects.get(member=member)
+                except Customer.DoesNotExist:
+                    message = "Invalid Member ID!"
+                    interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
+                    return render(self, 'admin/create_fd.html', {'message': message, 'interest_rates': interest_rates})
+                
+                
+                interest_rate_qs = FD_scheme.objects.filter(interest_rate=interest_rate_value)
+                if not interest_rate_qs.exists():
+                    message = "Invalid interest rate!"
+                    interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
+                    return render(self, 'admin/create_fd.html', {'message': message, 'interest_rates': interest_rates})
+                interest_rate_obj = interest_rate_qs.first()
+                
+                account_number = "FD" + str(random.randint(1111111111, 9999999999))
+                
+                FD_account = FixedDeposit(
+                    account_number=account_number,
+                    customer=customer,
+                    interest_rate=interest_rate_obj,
+                    total_amount=total_amount,
+                    status='Active',  # Default status
+                    start_date=start_date,
+                    maturity_date=maturity_date,
+                    )
+                FD_account.save()
+                message = "FD created successfully!"
+                interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
+                return render(self, 'admin/create_fd.html', {'message': message, 'interest_rates': interest_rates})
+            
+            except Exception as e:
+                message = f"An error occurred: {e}"
+                interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
+                return render(self, 'admin/create_fd.html', {'message': message, 'interest_rates': interest_rates})
+            
+        else:
+            interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
+            return render(self, 'admin/create_fd.html', {'interest_rates': interest_rates})
+
+

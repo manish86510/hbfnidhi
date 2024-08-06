@@ -124,7 +124,8 @@ class SavingAccount(models.Model):
     ifsc = models.CharField(max_length=20, null=True)
     branch_code = models.CharField(max_length=80, null=True)
     branch_name = models.CharField(max_length=200, null=True)
-    account_balance = models.CharField(max_length=80, null=True)
+    # account_balance = models.CharField(max_length=80, null=True)
+    account_balance = models.DecimalField(max_digits=15, decimal_places=2 ,null=True)
     status = models.CharField(max_length=20)
     is_active = models.IntegerField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -160,6 +161,7 @@ class TransferTransactions(models.Model):
     amount = models.DecimalField(max_digits=15, decimal_places=2)
     transfer_date = models.DateTimeField(auto_now_add=True)
     description = models.CharField(max_length=255, blank=True, null=True)
+    remaining_balance = models.DecimalField(max_digits=15, decimal_places=2, null=True)
     
     
 
@@ -204,63 +206,81 @@ class CreditTransaction(models.Model):
     status = models.IntegerField(null=True)
 
 
-class FD(models.Model):
-    associated_member = models.CharField(max_length=20)
-    account_number = models.CharField(max_length=20, unique=True)
-    tenure = models.CharField(max_length=20)
-    amount = models.CharField(max_length=20)
-    rate_of_interest = models.CharField(max_length=20)
-    maturity_amount = models.CharField(max_length=20)
-    status = models.CharField(max_length=20)
-    is_active = models.IntegerField(null=True)
-    scheme = models.IntegerField(null=True)
-    created_date = models.DateTimeField(auto_now_add=True)
-    
-    
-    def clean_decimal(self, value):
-        try:
-            # Strip any whitespace and convert to Decimal
-            return Decimal(str(value).strip())
-        except InvalidOperation:
-            return Decimal(0)
-    
-    
-    def calculate_maturity_amount(self):
-        # Ensure the values are correctly converted to Decimal
-        principal = self.clean_decimal(self.amount)
-        rate = self.clean_decimal(self.rate_of_interest) / 100
-        time = self.clean_decimal(self.tenure) / 12  # Assuming tenure is in months, convert to years
-        maturity_amount = principal * (1 + (rate * time))
-        return maturity_amount
-    
-class RD(models.Model):
-    associated_member = models.CharField(max_length=20)
-    account_number = models.CharField(max_length=20, unique=True)
-    status = models.CharField(max_length=20)
-    tenure = models.CharField(max_length=20)
-    amount = models.CharField(max_length=20)
-    rate_of_interest = models.CharField(max_length=20)
-    maturity_amount = models.CharField(max_length=20)
-    is_active = models.IntegerField(null=True)
-    scheme = models.IntegerField(null=True)
-    created_date = models.DateTimeField(auto_now_add=True)
-    
-    
+# class FD(models.Model):
+#     associated_member = models.CharField(max_length=20)
+#     account_number = models.CharField(max_length=20, unique=True)
+#     tenure = models.CharField(max_length=20)
+#     amount = models.CharField(max_length=20)
+#     rate_of_interest = models.CharField(max_length=20)
+#     maturity_amount = models.CharField(max_length=20)
+#     status = models.CharField(max_length=20)
+#     is_active = models.IntegerField(null=True)
+#     scheme = models.IntegerField(null=True)
+#     created_date = models.DateTimeField(auto_now_add=True)
     
 
-class RDPayment(models.Model):
-    transaction_id = models.AutoField(primary_key=True)
-    account_no = models.ForeignKey('RD', on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=15, decimal_places=2)
-    transaction_date = models.DateTimeField(auto_now_add=True)
+class FixedDeposit(models.Model):
+  STATUS_CHOICES = [
+    ('Active', 'Active'),
+    ('Closed', 'Closed'),
+    ('Matured', 'Matured'),
+  ]
+  account_number = models.CharField(max_length=20, unique=True)
+  customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+  start_date = models.DateField()
+  maturity_date = models.DateField()
+  total_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.0)
+  status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Active')
+  interest_rate = models.ForeignKey('FD_scheme', on_delete=models.CASCADE, null=True, blank=True)   
+  maturity_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.0)
     
+
+
+
+
+class RecurringDeposit(models.Model):
+  STATUS_CHOICES = [
+    ('Active', 'Active'),
+    ('Closed', 'Closed'),
+    ('Matured', 'Matured'),
+  ]
+  account_number = models.CharField(max_length=20, unique=True)
+  customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+  start_date = models.DateField()
+  maturity_date = models.DateField()
+  monthly_installment = models.DecimalField(max_digits=10, decimal_places=2)
+  total_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.0)
+  status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Active')
+  interest_rate = models.ForeignKey('RD_scheme', on_delete=models.CASCADE, null=True, blank=True)   
     
+ 
+class RecurringDeposit(models.Model):
+  STATUS_CHOICES = [
+    ('Active', 'Active'),
+    ('Closed', 'Closed'),
+    ('Matured', 'Matured'),
+  ]
+  account_number = models.CharField(max_length=20, unique=True)
+  customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+  start_date = models.DateField()
+  maturity_date = models.DateField()
+  monthly_installment = models.DecimalField(max_digits=10, decimal_places=2)
+  total_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.0)
+  status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Active')
+  interest_rate = models.ForeignKey('RD_scheme', on_delete=models.CASCADE, null=True, blank=True)   
     
+       
+class PaymentSchedule(models.Model):
+  rd_account = models.ForeignKey(RecurringDeposit, on_delete=models.CASCADE)
+  payment_date = models.DateField()
+  amount = models.DecimalField(max_digits=10, decimal_places=2)
+  status = models.CharField(max_length=10, default='Pending') # Pending, Completed
+
 class TDS(models.Model):
     associated_member = models.ForeignKey(Customer, on_delete=models.CASCADE)
     fd_or_rd = models.CharField(max_length=20)
-    fd = models.ForeignKey(FD, on_delete=models.CASCADE, null=True)
-    rd = models.ForeignKey(RD, on_delete=models.CASCADE, null=True)
+    # fd = models.ForeignKey(FD, on_delete=models.CASCADE, null=True)
+    rd = models.ForeignKey(RecurringDeposit, on_delete=models.CASCADE, null=True)
     interest_amount = models.CharField(max_length=20)
     tds = models.CharField(max_length=20)
     interest_amt_after_tds = models.CharField(max_length=20)
@@ -297,3 +317,31 @@ class RD_scheme(models.Model):
     breakable = models.IntegerField()
     is_applicable = models.IntegerField()
     created_date = models.DateTimeField(auto_now_add=True)
+
+
+class Personal_loan(models.Model):
+    STATUS_CHOICES = [
+    ('Pending', 'Pending'),
+    ('Approved', 'Approved'),
+    ('Rejected', 'Rejected'),
+  ]
+    user = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=15, decimal_places=2)
+    interest_rate = models.CharField(max_length=20)
+    tenure = models.CharField(max_length=50)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Approved')
+    created_date = models.DateTimeField(auto_now_add=True)
+    
+    
+class EMI(models.Model):
+    loan = models.ForeignKey(Personal_loan, on_delete=models.CASCADE)
+    user = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    due_date = models.DateField()
+    paid = models.BooleanField(default=False)
+    paid_date = models.DateField(null=True, blank=True)
+    interest_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    principal_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    closing_balance = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    
+    
