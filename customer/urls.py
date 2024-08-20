@@ -6,7 +6,7 @@ urlpatterns = [
     # path('create_rd_account/', Dashboard.create_rd_account),
     path('', Dashboard.index),
     path('home',customer_home),
-    path('account/', customer_account, name='customer_account'),
+    path('account/<str:account_no>/', customer_account, name='customer_account'),
     path('download/', download_transactions,name='download_transactions'),    
     # path('funds',customer_funds),
     path('funds/', customer_funds, name='customer_funds'),
@@ -20,11 +20,13 @@ urlpatterns = [
     path('Fd',customer_fd, name='Fd'),
     path('Rd',customer_rd, name='Rd'),
     path('loan',customer_loan),
+    path('create_loan',  create_user_loan, name='create_loan'),
     path('rate', interest_rate, name='rate'),
     path('get_bank_statement/', get_bank_statement, name='get_bank_statement'),
     path('download/', download_payment, name='download_payment'),
     path('customer/fd/<int:fd_id>/withdraw/', withdraw_fd, name='withdraw_fd'),
     path('create_fd',  create_fd_account, name='create_fd'),
+    path('create_rd',  create_rd_account, name='create_rd'),
    
 ]
 

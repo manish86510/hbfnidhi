@@ -154,8 +154,6 @@ class Transactions(models.Model):
     
 class TransferTransactions(models.Model):
     transfer_id = models.AutoField(primary_key=True)
-    # from_account = models.ForeignKey(Transactions, related_name='transfers_out', on_delete=models.CASCADE)
-    # to_account = models.ForeignKey(Transactions, related_name='transfers_in', on_delete=models.CASCADE)
     from_account_no = models.ForeignKey(SavingAccount, related_name='transfers_out', on_delete=models.CASCADE, null=True)
     to_account_no = models.ForeignKey(SavingAccount, related_name='transfers_in', on_delete=models.CASCADE, null=True)
     amount = models.DecimalField(max_digits=15, decimal_places=2)
@@ -233,7 +231,7 @@ class FixedDeposit(models.Model):
   status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Active')
   interest_rate = models.ForeignKey('FD_scheme', on_delete=models.CASCADE, null=True, blank=True)   
   maturity_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.0)
-    
+  is_active = models.IntegerField(null=True)  
 
 
 
@@ -252,23 +250,28 @@ class RecurringDeposit(models.Model):
   total_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.0)
   status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Active')
   interest_rate = models.ForeignKey('RD_scheme', on_delete=models.CASCADE, null=True, blank=True)   
-    
+  maturity_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.0) 
  
-class RecurringDeposit(models.Model):
-  STATUS_CHOICES = [
-    ('Active', 'Active'),
-    ('Closed', 'Closed'),
-    ('Matured', 'Matured'),
-  ]
-  account_number = models.CharField(max_length=20, unique=True)
-  customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-  start_date = models.DateField()
-  maturity_date = models.DateField()
-  monthly_installment = models.DecimalField(max_digits=10, decimal_places=2)
-  total_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.0)
-  status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Active')
-  interest_rate = models.ForeignKey('RD_scheme', on_delete=models.CASCADE, null=True, blank=True)   
-    
+ 
+ 
+# class RecurringDeposit(models.Model):
+#   STATUS_CHOICES = [
+#     ('Active', 'Active'),
+#     ('Closed', 'Closed'),
+#     ('Matured', 'Matured'),
+#   ]
+#   account_number = models.CharField(max_length=20, unique=True)
+#   customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+#   start_date = models.DateField()
+#   maturity_date = models.DateField()
+#   monthly_installment = models.DecimalField(max_digits=10, decimal_places=2)
+#   total_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.0)
+#   status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Active')
+#   interest_rate = models.ForeignKey('RD_scheme', on_delete=models.CASCADE, null=True, blank=True)   
+#   maturity_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.0)   
+   
+   
+   
        
 class PaymentSchedule(models.Model):
   rd_account = models.ForeignKey(RecurringDeposit, on_delete=models.CASCADE)
@@ -332,6 +335,8 @@ class Personal_loan(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Approved')
     created_date = models.DateTimeField(auto_now_add=True)
     
+  
+  
     
 class EMI(models.Model):
     loan = models.ForeignKey(Personal_loan, on_delete=models.CASCADE)

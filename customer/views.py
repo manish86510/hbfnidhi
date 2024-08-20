@@ -62,14 +62,7 @@ def Customer_Login(request):
         return render(request, 'Customer/login.html')
 
     
-    
-# def customer_account(self):
-#     return render(self,'Customer/Accounts.html')
-
-
-# import ipdb
-
-# def get_bank_statement(request):
+# def get_bank_statement(request ):
 #     ipdb.set_trace()
 #     member_id = request.session.get('customer_id')
 #     transactions = []
@@ -102,63 +95,60 @@ def Customer_Login(request):
 #         'saving_account': saving_account,  # Pass the saving account to the template
 #     })
 
+
+
 import ipdb
-def customer_account(request):
+def customer_account(request, account_no):
     ipdb.set_trace()
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
     customer_name = member.first_name 
+ 
 
     try:
-        saving_account = SavingAccount.objects.get(member=member_id)
+        saving_account = SavingAccount.objects.get(member=member_id, account_no=account_no)
         current_balance = Decimal(saving_account.account_balance)
     except SavingAccount.DoesNotExist:
         saving_account = None
         current_balance = Decimal(0)
 
-    transactions = Transactions.objects.filter(member_id=member.id)
-
+    # Fetch only transfer transactions related to the account number
+    transfer_transactions = TransferTransactions.objects.filter(
+        from_account_no__account_no=account_no
+    )
+    
+    TransferTransactions.objects.filter(
+        from_account_no__account_no=account_no
+    )
+            
+    
     start_date = request.GET.get('startDate')
     end_date = request.GET.get('endDate')
-
+    
+    print(start_date)
+    print(end_date)
     if start_date and end_date:
         start_date = parse_date(start_date)
         end_date = parse_date(end_date)
         if start_date and end_date:
             # Adjust end_date to include the entire end day
             end_date = datetime.combine(end_date, dt_time.max)
-            transactions = transactions.filter(transaction_date__range=(start_date, end_date))
-            
-            
-        
+            transfer_transactions = transfer_transactions.filter(transfer_date__range=(start_date, end_date))
+
     balances = []
     running_balance = current_balance
+    for transfer in transfer_transactions:
+        # Update the balance based on the transfer transaction
+        if transfer.from_account_no.account_no == account_no:
+            running_balance = Decimal(transfer.remaining_balance)
+            balances.append(running_balance)
 
-    for transaction in transactions:
-        if transaction.transaction_type == 'Transfer':
-            # Find the transfer transactions related to this transaction
-            transfers = TransferTransactions.objects.filter(
-                from_account_no=transaction.account_no
-            ) | TransferTransactions.objects.filter(
-                to_account_no=transaction.account_no
-            )
-            
-            for transfer in transfers:
-                if transfer.from_account_no == transaction.account_no:
-                    running_balance = Decimal(transfer.remaining_balance)
-                elif transfer.to_account_no == transaction.account_no:
-                    running_balance = Decimal(transfer.remaining_balance)
+    # Pair transactions with their respective balances
+    transactions_and_balances = list(zip(transfer_transactions, balances))
+    
+   
         
-        else:
-            # For non-transfer transactions, adjust the balance
-            running_balance = Decimal(transaction.amount)
-
-        balances.append(running_balance)
-
- 
- 
-
-    paginator = Paginator(list(zip(transactions, balances)), 10)
+    paginator = Paginator(transactions_and_balances, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -170,16 +160,19 @@ def customer_account(request):
         'form': form,
         'start_date': request.GET.get('startDate', ''),
         'end_date': request.GET.get('endDate', ''),
-        'customer_name': customer_name, 
+       
+        'customer_name': customer_name,
+         
     }
 
     return render(request, 'Customer/Accounts.html', context)
 
 
 
-
+import ipdb 
 
 def download_transactions(request):
+    ipdb.set_trace()
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
 
@@ -189,7 +182,7 @@ def download_transactions(request):
         saving_account = None
 
     transactions = Transactions.objects.filter(member_id=member.id)
-
+    
     # Create an HTTP response with CSV content
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="transactions.csv"'
@@ -219,8 +212,6 @@ def download_transactions(request):
         ])
 
     return response
-
-
 
 
 def get_bank_statement(request):
@@ -303,91 +294,11 @@ def customer_bill(self):
     return render(self,'Customer/Bill.html')
 
 
-# def customer_fd(self):
-#     if self.method == 'POST':
-#         if self.POST.get('nonbreak_roi'):
-#             tenure = self.POST.get('nonbreak_roi')
-#         else:
-#             tenure = self.POST.get('break_roi')
-#         try:
-#             customer = Customer.objects.get(id=self.session['customer_id'])
-#             scheme_info = FD_scheme.objects.get(tenure=tenure, breakable=self.POST.get('scheme'))
-#             account = random.randint(11111111, 99999999)
-#             FD.objects.create(
-#                 account_number="FD"+str(account),
-#                 tenure=tenure,
-#                 amount=self.POST.get('amount'),
-#                 rate_of_interest=self.POST.get('intrest_rate'),
-#                 maturity_amount=self.POST.get('maturity'),
-#                 status="Pending",
-#                 is_active=0,
-#                 scheme=scheme_info.id,
-#                 created_date=models.DateTimeField(auto_now_add=True),
-#                 associated_member=customer.member,
-#             ).save()
-#             message = "FD Applied successfully !"
-#             scheme_non_breakable = FD_scheme.objects.filter(breakable=0)
-#             scheme_breakable = FD_scheme.objects.filter(breakable=1)
-#             acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
-#             return render(self, 'Customer/FD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num,
-#                                                      'scheme_breakable': scheme_breakable, 'message': message})
-#         except Exception:
-#             message = "Something went wrong !"
-#             scheme_non_breakable = FD_scheme.objects.filter(breakable=0)
-#             scheme_breakable = FD_scheme.objects.filter(breakable=1)
-#             acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
-#             return render(self, 'Customer/FD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num,
-#                                                      'scheme_breakable': scheme_breakable, 'message': message})
-#     else:
-#         scheme_non_breakable=FD_scheme.objects.filter(breakable=0)
-#         scheme_breakable = FD_scheme.objects.filter(breakable=1)
-#         acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
-#         return render(self, 'Customer/FD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num, 'scheme_breakable': scheme_breakable})
 
-
-# def customer_rd(self):
-#     if self.method == 'POST':
-#         try:
-#             customer = Customer.objects.get(id=self.session['customer_id'])
-#             account = random.randint(11111111, 99999999)
-#             RecurringDeposit.objects.create(
-#                 account_number="RD"+str(account),
-#                 tenure=self.POST.get('tenure'),
-#                 amount=self.POST.get('amount'),
-#                 rate_of_interest=self.POST.get('intrest_rate'),
-#                 maturity_amount=self.POST.get('maturity'),
-#                 status="Pending",
-#                 created_date=models.DateTimeField(auto_now_add=True),
-#                 associated_member=customer.member,
-#             ).save()
-#             message = "RD Applied successfully !"
-#             scheme_non_breakable = RD_scheme.objects.filter(breakable=0)
-#             scheme_breakable = RD_scheme.objects.filter(breakable=1)
-#             acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
-#             return render(self, 'Customer/RD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num,
-#                                                      'scheme_breakable': scheme_breakable, 'message': message})
-#         except Exception:
-#             message = "Something went wrong !"
-#             scheme_non_breakable = RD_scheme.objects.filter(breakable=0)
-#             scheme_breakable = RD_scheme.objects.filter(breakable=1)
-#             acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
-#             return render(self, 'Customer/RD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num,
-#                                                      'scheme_breakable': scheme_breakable, 'message': message})
-#     else:
-#         scheme_non_breakable = RD_scheme.objects.filter(breakable=0)
-#         scheme_breakable = RD_scheme.objects.filter(breakable=1)
-#         acc_num = SavingAccount.objects.get(id=self.session['customer_id'])
-#         return render(self, 'Customer/RD.html', {'scheme_non_breakable': scheme_non_breakable, 'acc_num': acc_num,
-#                                                  'scheme_breakable': scheme_breakable})
-
-
-# old#
-# def customer_rd(self):
-#     return render(self, 'Customer/RD.html')
 def create_fd_view(request):
     return render(request, 'Customer/create_fd.html')
 
-##### new new fd
+###new new fd
 import ipdb
 def customer_fd(request):
     ipdb.set_trace()
@@ -403,6 +314,8 @@ def customer_fd(request):
             interest_rate = Decimal(fd.interest_rate.interest_rate.strip('%')) / 100
             time_in_years = (fd.maturity_date - fd.start_date).days / 365
             maturity_amount =  fd.total_amount*(1 + interest_rate) ** Decimal(time_in_years)
+            fd.maturity_amount = maturity_amount
+            fd.save() 
             fd_with_details.append({
                 'fd_account': fd,
                 'interest_rate': fd.interest_rate.interest_rate,  # Assuming interest_rate is a foreign key
@@ -443,9 +356,30 @@ def withdraw_fd(request, fd_id):
     
     return render(request, 'Customer/FD.html')
     
+
+def calculate_rd_maturity_amount(rd):
+    # P: Monthly installment
+    P = Decimal(rd.monthly_installment)
     
+    # r: Monthly interest rate (annual interest rate divided by 12)
+    # Remove the '%' sign and convert the remaining string to a Decimal
+    annual_rate_str = rd.interest_rate.interest_rate.strip().replace('%', '')
+    annual_rate = Decimal(annual_rate_str)
     
+    # Convert annual interest rate to a monthly rate
+    r = annual_rate / Decimal('1200')  # 12 * 100
     
+    # n: Number of installments (months)
+    start_date = rd.start_date
+    maturity_date = rd.maturity_date
+    n = ((maturity_date.year - start_date.year) * 12) + (maturity_date.month - start_date.month)
+    
+    # Maturity amount formula
+    maturity_amount = P * (((1 + r)**n - 1) / r) * (1 + r)
+    
+    return round(maturity_amount, 2)
+
+
 #new new new 
 import ipdb
 def customer_rd(request):
@@ -457,6 +391,7 @@ def customer_rd(request):
         rd_accounts = RecurringDeposit.objects.filter(customer=customer)
         
         rd_with_next_payment = []
+    
         for rd in rd_accounts:
             # Calculate next payment date
             last_payment = PaymentSchedule.objects.filter(
@@ -481,6 +416,10 @@ def customer_rd(request):
                 rd_account=rd
             ).order_by('-payment_date')
             
+            maturity_amount = calculate_rd_maturity_amount(rd)
+            rd.maturity_amount = maturity_amount
+            rd.save()
+            
             print(current_payments)
             print(rd.interest_rate.interest_rate)
             
@@ -489,12 +428,15 @@ def customer_rd(request):
                 'rd_account': rd,
                 'next_payment_date': next_payment_date,
                 'current_payments': current_payments,
-                'interest_rate': rd.interest_rate.interest_rate 
+                'interest_rate': rd.interest_rate.interest_rate,
+                'maturity_amount': maturity_amount
             })
             
             payment = PaymentSchedule.objects.filter(rd_account=rd)
             start_date = request.GET.get('startDate')
             end_date = request.GET.get('endDate')
+            # print(start_date)
+            # print(end_date)
             
             
             if start_date and end_date:
@@ -571,250 +513,127 @@ def download_payment(request):
   
 
 
-
-
-def customer_loan(self):
-    return render(self, 'Customer/Loan.html')
-
-
-# def customer_funds(self):
-#     return render(self, 'Customer/Funds.html')
-
-# def customer_funds(request):
-#     if request.method == 'POST':
-#         account = request.POST.get('account')
-#         ifsc = request.POST.get('ifsc')
-#         amount = request.POST.get('amount')
-#         member_id = request.session.get('customer_id')
-        
-#         try:
-#             amount = float(amount) 
-#             saving_account = SavingAccount.objects.get(member=member_id)
-#             account_balance = float(saving_account.account_balance) - amount # Convert to float
-#              # Convert to float
-
-#             after_transaction = account_balance - amount
-
-#             # Save the data to the DebitTransaction model
-#             DebitTransaction.objects.create(
-#                 member=member_id,  # Assuming the member is the logged-in user 
-#                 transaction="T" + str(int(time.time())),  # Example unique transaction ID
-#                 beneficiary=account,
-#                 amount=amount,
-#                 bal_before_transaction=account_balance,
-#                 bal_after_transaction=after_transaction,
-#                 transaction_amount=amount,
-#                 type_of_transaction="Transfer",
-#                 debit_type="Online",
-#                 remark="Fund Transfer",
-#             )
-            
-#             # Redirect to a success page or the same form
-#             # Replace with your success page URL or name
-        
-#         except SavingAccount.DoesNotExist:
-#             # Handle the case where the saving account does not exist
-#             return render(request, 'Customer/Funds.html', {'error': 'Saving account not found'})
-        
-#         except ValueError:
-#             # Handle the case where conversion to float fails
-#             return render(request, 'Customer/Funds.html', {'error': 'Invalid amount or account balance'})
+def customer_loan(request):
+    member_id = request.session.get('customer_id')
+    customer = get_object_or_404(Customer, member=member_id)
     
-#     return render(request, 'Customer/Funds.html')
-
-
-# def customer_funds(request):
-#     if request.method == 'POST':
-#         account = request.POST.get('account')
-#         ifsc = request.POST.get('ifsc')
-#         amount = request.POST.get('amount')
-#         member_id = request.session.get('customer_id')
-        
-#         try:
-#             amount = float(amount)
-#             saving_account = SavingAccount.objects.get(member=member_id)
-#             account_balance = float(saving_account.account_balance)
-        
-            
-#             after_transaction = account_balance - amount
-#             account_balance = after_transaction
-
-#             # Save the data to the DebitTransaction model
-#             transaction_id = "T" + str(int(time.time()))
-#             DebitTransaction.objects.create(
-#                 member=member_id,
-#                 transaction=transaction_id,
-#                 beneficiary=account,
-#                 amount=amount,
-#                 bal_before_transaction=account_balance,
-#                 bal_after_transaction=after_transaction,
-#                 transaction_amount=amount,
-#                 type_of_transaction="Transfer",
-#                 debit_type="Online",
-#                 remark="Fund Transfer",
-#             )
-
-#             # Save the data to the CreditTransaction model
-#             CreditTransaction.objects.create(
-#                 member=account,  # Assuming account is the beneficiary member id
-#                 transaction=transaction_id,
-#                 amount=str(amount),
-#                 type_of_transaction="Credit",
-#                 sender_account_no=saving_account.account_no,
-#                 sender_bank_name="Your Bank Name",  # Replace with actual bank name
-#                 debit_type="Online",
-#                 remark="Fund Transfer",
-#                 status=1  # Assuming 1 means successful
-#             )
-            
-        
-#         except SavingAccount.DoesNotExist:
-#             # Handle the case where the saving account does not exist
-#             return render(request, 'Customer/Funds.html', {'error': 'Saving account not found'})
-        
-        
-#     return render(request, 'Customer/Funds.html')
- 
- 
-#  The correct code writen by me
-# def customer_funds(request):
-#     if request.method == 'POST':
-#         account = request.POST.get('account')
-#         ifsc = request.POST.get('ifsc')
-#         amount = request.POST.get('amount')
-#         member_id = request.session.get('customer_id')
-        
-#         try:
-#             amount = float(amount)
-#             saving_account = SavingAccount.objects.get(member=member_id)
-#             print(saving_account)
-#             balance_before_transaction = float(saving_account.account_balance)
-
-#             # Check if the account has enough balance
-#             if balance_before_transaction < amount:
-#                 return render(request, 'Customer/Funds.html', {'error': 'Insufficient balance'})
-
-#             balance_after_transaction = balance_before_transaction - amount
-
-#             # Save the data to the DebitTransaction model
-#             transaction_id = "T" + str(int(time.time()))
-#             DebitTransaction.objects.create(
-#                 member=member_id,
-#                 transaction=transaction_id,
-#                 beneficiary=account,
-#                 amount=amount,
-#                 bal_before_transaction=balance_before_transaction,
-#                 bal_after_transaction=balance_after_transaction,
-#                 transaction_amount=amount,
-#                 type_of_transaction="Transfer",
-#                 debit_type="Online",
-#                 remark="Fund Transfer",
-#             )
-
-#             # Update the SavingAccount balance
-#             saving_account.account_balance = balance_after_transaction
-#             saving_account.save()
-
-#             # Save the data to the CreditTransaction model
-#             CreditTransaction.objects.create(
-#                 member=account,  # Assuming account is the beneficiary member id
-#                 transaction=transaction_id,
-#                 amount=str(amount),
-#                 type_of_transaction="Credit",
-#                 sender_account_no=saving_account.account_no,
-#                 sender_bank_name="Your Bank Name",  # Replace with actual bank name
-#                 debit_type="Online",
-#                 remark="Fund Transfer",
-#                 status=1  # Assuming 1 means successful
-#             )
-            
-#             # Redirect to a success page or the same form
-            
-#         except SavingAccount.DoesNotExist:
-#             # Handle the case where the saving account does not exist
-#             return render(request, 'Customer/Funds.html', {'error': 'Saving account not found'})
-        
-#         except ValueError:
-#             # Handle the case where conversion to float fails
-#             return render(request, 'Customer/Funds.html', {'error': 'Invalid amount or account balance'})
+    # Fetch personal loans for the customer
+    personal_loans = Personal_loan.objects.filter(user=customer)
     
-#     return render(request, 'Customer/Funds.html')
-# correct code complete
+    context = {
+        'customer': customer,
+        'personal_loans': personal_loans
+    }
+    return render(request, 'Customer/Loan.html', context)
 
 
 
-# s solution
-# import ipdb;
-# def customer_funds(request):
-  
-#     if request.method == 'POST':
-#         account_no = request.POST.get('account')
-#         ifsc = request.POST.get('ifsc')
-#         amount = request.POST.get('amount')
-#         member_id = request.session.get('customer_id')
+
+
+
+
+import ipdb
+def customer_fd(request):
+    ipdb.set_trace()
+    member_id = request.session.get('customer_id')
+    customer = get_object_or_404(Customer, member=member_id)
     
-#         try:                       
-#             ipdb.set_trace()                  
-#             saving_account = SavingAccount.objects.get(member=member_id)
-#             # this is correct
-#             memberC=Customer.objects.get(member=member_id)
-#             print(memberC)
-#             # Print specific fields of the Customer object
-#             # member_id_str = memberC.member
-#             # print("Member ID:", member_id_str)
-            
-#             # member_id_str = memberC.member  # Assuming this is a string with a prefix like "MA4754197"
-#             # print("Member ID:", member_id_str)
-            
-#             # Extract the numeric part of the member ID (remove the prefix "MA")
-#             # prefix = "MA"
-#             # member_id_str.startswith(prefix)
-#             # abb = int(member_id_str[len(prefix):]) # Remove prefix
-            
-            
-#             # Convert numeric part to integer for processing if needed
-#             # member_id_numeric = int(member_id_number)
-            
-#             # Combine prefix and numeric part for transaction
-#             # member_id_with_prefix = f"{prefix}{abb}"
-            
-#             # print("Member ID with Prefix:", member_id_with_prefix)
-            
-                
-            
-#             # print("Member ID Number:",abb)
-#             # hello = Customer.objects.get(member=member_id_with_prefix)
-#             # print(hello)
-#             transaction = Transactions(
-#                 member_id=memberC.id,
-#                 transaction_type='Transfer',
-#                 amount=amount,
-#                 description='Fund Transfer',
-#                 account_no=saving_account
-#             )
-            
-#             # print(Customer.objects.get(pk=member_idd))
-#             transaction.save()
-            
-#             # Update account balance
-#             saving_account.account_balance = float(saving_account.account_balance) - float(amount)
-#             saving_account.save()
+    try:
+        fd_accounts = FixedDeposit.objects.filter(customer=customer)
+        
+        fd_with_details = []
+        for fd in fd_accounts:
+            # for maturity amount calculation
+            interest_rate = Decimal(fd.interest_rate.interest_rate.strip('%')) / 100
+            time_in_years = (fd.maturity_date - fd.start_date).days / 365
+            maturity_amount =  fd.total_amount*(1 + interest_rate) ** Decimal(time_in_years)
+            fd.maturity_amount = maturity_amount
+            fd.save() 
+            fd_with_details.append({
+                'fd_account': fd,
+                'interest_rate': fd.interest_rate.interest_rate,  # Assuming interest_rate is a foreign key
+                'start_date': fd.start_date,
+                'maturity_date': fd.maturity_date,
+                'total_amount':fd.total_amount,
+                'maturity_amount': maturity_amount
+            })
+            context = {
+            'fd_accounts': fd_with_details
+        }
+        print(context)
+        return render(request, 'Customer/FD.html', context)
+    except Customer.DoesNotExist:
+        return render(request, 'Customer/FD.html', {'error': 'Customer not found'})
 
-#               # Redirect to a success page or show a success message
-#         except Customer.DoesNotExist:
-#             return render(request, 'Customer/Funds.html', {'error': 'Customer not found.'})
-#         except SavingAccount.DoesNotExist:
-#             return render(request, 'Customer/Funds.html', {'error': 'Account not found.'})
-#         except Exception as e:
-#             return render(request, 'Customer/Funds.html', {'error': str(e)})
 
-#     return render(request, 'Customer/Funds.html')  
+
+
+
+
+
+
+      
+import ipdb
+
+def create_user_loan(request):
+    ipdb.set_trace()  # Debugging breakpoint
+    
+    if request.method == 'POST':
+        try:
+            user_id = request.POST.get('user_id')
+            tenure = request.POST.get('tenure')
+            amount = request.POST.get('amount')
+            interest_rate = request.POST.get('interest_rate')
+
+            try:
+                customer = Customer.objects.get(member=user_id)
+            except Customer.DoesNotExist:
+                message = "Invalid Member ID!"
+                return render(request, 'customer/create_loan.html', {'message': message})
+
+            # If customer exists, create the loan
+            loan = Personal_loan(
+                user=customer,
+                tenure=tenure,
+                amount=amount,
+                interest_rate=interest_rate,
+            )
+            loan.save()  # Save the loan to the database
+            
+            emi_amount = calculate_emi(amount, interest_rate, tenure)
+            message = f"Loan created successfully! EMI Amount: {emi_amount:.2f}"
+            return render(request, 'customer/create_loan.html', {'message': message})
+            
+            # message = "Loan created successfully!"
+            # return render(request, 'customer/create_loan.html', {'message': message})
+
+        except Exception as e:
+            message = f"An error occurred: {str(e)}"
+            return render(request, 'customer/create_loan.html', {'message': message})
+
+    return render(request, 'customer/create_loan.html')
+
+def calculate_emi(amount, interest_rate, tenure):
+    """
+    Function to calculate EMI.
+    """
+    ipdb.set_trace()
+
+    # Convert the inputs to the correct numeric types
+    amount = float(amount)
+    interest_rate = float(interest_rate.replace('%', ''))
+    tenure = int(tenure)
+
+    r = (interest_rate / 12) / 100  # Monthly interest rate
+    n = tenure  # Number of months
+
+    # EMI calculation formula
+    emi = (amount * r * (1 + r) ** n) / ((1 + r) ** n - 1)
+    return emi
 
 
 
 import ipdb;
-
-
 def customer_funds(request):
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
@@ -847,18 +666,19 @@ def customer_funds(request):
                 transaction_type='Transfer',
                 amount=amount,
                 description='Fund Transfer',
-                account_no=destination_account
+                account_no=destination_account,
+               
             ) 
             
             
             # Record transaction for destination account
-            Transactions.objects.create(
-                    member_id=destination_account.id,
-                    transaction_type='Transfer',
-                    amount=amount,
-                    description='Fund Transfer from',
-                    account_no=source_account
-                )
+            # Transactions.objects.create(
+            #         member_id=destination_account.id,
+            #         transaction_type='Transfer',
+            #         amount=amount,
+            #         description='Fund Transfer from',
+            #         account_no=source_account
+            #     )
             
             
             TransferTransactions.objects.create(
@@ -866,7 +686,8 @@ def customer_funds(request):
                     to_account_no=destination_account,
                     amount=-amount,
                     description='Fund Transfer',
-                    remaining_balance=source_account.account_balance
+                    remaining_balance=source_account.account_balance,
+                   
                 )
             
             
@@ -876,7 +697,8 @@ def customer_funds(request):
                 to_account_no=source_account,
                 amount=amount,  # Amount added to destination account
                 description='Fund Transfer',
-                remaining_balance=destination_account.account_balance
+                remaining_balance=destination_account.account_balance,
+               
             )
                 
                 
@@ -980,8 +802,6 @@ def interest_rate(request):
     return JsonResponse(data)
 
 
-
-
 import ipdb    
 def create_fd_account(self):
     ipdb.set_trace()
@@ -1029,6 +849,58 @@ def create_fd_account(self):
     else:
         interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
         return render(self, 'customer/create_fd.html', {'interest_rates': interest_rates})
+
+
+
+
+import ipdb    
+def create_rd_account(self):
+    ipdb.set_trace()
+    if self.method == 'POST':
+        try:
+            member = self.POST.get('member_id')
+            interest_rate_value = self.POST.get('interest_rate')
+            start_date = self.POST.get('start_date')
+            maturity_date = self.POST.get('maturity_date')
+            total_amount = self.POST.get('total_amount')
+            print(f"Received interest_rate: {interest_rate_value}")
+            
+            try:
+                customer = Customer.objects.get(member=member)
+            except Customer.DoesNotExist:
+                message = "Invalid Member ID!"
+                interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
+                return render(self, 'admin/create_rd.html', {'message': message, 'interest_rates': interest_rates})
+            interest_rate_qs = RD_scheme.objects.filter(interest_rate=interest_rate_value)
+            if not interest_rate_qs.exists():
+                message = "Invalid interest rate!"
+                interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
+                return render(self, 'admin/create_rd.html', {'message': message, 'interest_rates': interest_rates})
+            interest_rate_obj = interest_rate_qs.first()
+            account_number = "RD" + str(random.randint(1111111111, 9999999999))
+                
+            RD_account = RecurringDeposit(
+                account_number=account_number,
+                customer=customer,
+                interest_rate=interest_rate_obj,
+                total_amount=total_amount,
+                status='Active',  # Default status
+                start_date=start_date,
+                maturity_date=maturity_date,
+                )
+            RD_account.save()
+            message = "RD created successfully!"
+            interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
+            return render(self, 'customer/create_rd.html', {'message': message, 'interest_rates': interest_rates})
+        except Exception as e:
+            message = f"An error occurred: {e}"
+            interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
+            return render(self, 'customer/create_rd.html', {'message': message, 'interest_rates': interest_rates})
+            
+    else:
+        interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
+        return render(self, 'customer/create_rd.html', {'interest_rates': interest_rates})
+
 
 
 

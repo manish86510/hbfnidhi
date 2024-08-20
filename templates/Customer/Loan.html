@@ -10,6 +10,98 @@
                 </div>
               </div>
             </div>
+
+
+            <div class="rd-details">  
+              
+                  <a href="create_loan" class="btn btn-primary">Apply for Loan</a>
+              
+          
+            <h1>Personal Loans</h1>
+
+            <div class="rd-accounts-container">
+              {% for loan in personal_loans %}
+                  <div class="rd-account-card">
+                      <h4>Loan Account Details</h4>
+                      <div class="account-info">
+                          <p><strong>Loan Amount:</strong> {{ loan.amount }}</p>
+                          <p><strong>Interest Rate: </strong> {{ loan.interest_rate }}</p>
+                          <p><strong>Tenure:</strong>  {{ loan.tenure }}</p>
+                          <p><strong>Status:</strong> {{ loan.status }}</p>
+                          <p><strong>Created Date:</strong> {{ loan.created_date }}</p>
+                        </div>
+                        <div class="emi-payment">
+                          <a href="#" class="btn btn-primary">Pay EMI</a>
+                      </div>
+
+                      
+                    </div>
+
+   
+{% endfor %}
+
+                  
+        
+
+
+
+
+                    </div>
+
+                    <style>
+                      .rd-details {
+                          padding: 20px;
+                          background-color: #f4f6f8;
+                          border-radius: 10px;
+                          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                          max-width: 1200px;
+                          margin: auto;
+                      }
+                    
+                      .rd-details h3 {
+                          color: #004d40;
+                          border-bottom: 3px solid #004d40;
+                          padding-bottom: 10px;
+                          margin-bottom: 20px;
+                      }
+                    
+                      .rd-accounts-container {
+                          display: flex;
+                          flex-wrap: wrap;
+                          gap: 20px;
+                      }
+                    
+                      .rd-account-card {
+                          background-color: #ffffff;
+                          border: 1px solid #dbe2e8;
+                          border-radius: 10px;
+                          padding: 20px;
+                          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                          width: 100%;
+                          max-width: 1000px;
+                          box-sizing: border-box;
+                      
+                      }
+                    
+                      .rd-account-card h4 {
+                          margin-top: 0;
+                          color: #004d40;
+                          font-size: 18px;
+                          border-bottom: 2px solid #004d40;
+                          padding-bottom: 5px;
+                          margin-bottom: 15px;
+                      }
+                    
+                      .account-info p {
+                          margin: 10px 0;
+                          color: #333;
+                      }
+                    
+                      .account-info strong {
+                          color: #004d40;
+                      }
+                    </style>
+              
           </div>
         </div>
 

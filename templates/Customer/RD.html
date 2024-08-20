@@ -17,6 +17,9 @@
 
 
             <div class="rd-details">
+                <div style="text-align: right; margin-right:5%; margin-top:1%;">
+                    <a href="create_rd" class="btn btn-primary">Apply for RD</a>
+                  </div> 
               
               {% if rd_with_next_payment %}
                   <div class="rd-accounts-container">
@@ -30,6 +33,7 @@
                                   <p><strong>Maturity Date:</strong> {{ item.rd_account.maturity_date }}</p>
                                   <p><strong>Monthly Installment:</strong> {{ item.rd_account.monthly_installment }}</p>
                                   <p><strong>Next Payment Date:</strong> {{ item.next_payment_date }}</p>
+                                  <p><strong>Maturity Amount:</strong> {{ item.maturity_amount}}</p>
                               </div>
                               <div style="text-align: right; margin-right:5%;">
                                 <a href="#" class="btn btn-primary">Deposit</a>
@@ -202,8 +206,6 @@
                                             <input type="date" name="endDate" id="endDate" value="{{ end_date }}" class="form-control">
                                         </div>
                                         <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
-                                       
-                                        
                                     </form>
                                     
                                     <a href="{% url 'download_payment' %}" class="bi-download"></a>

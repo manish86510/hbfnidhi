@@ -76,13 +76,13 @@ WSGI_APPLICATION = 'hbfnidhi.wsgi.application'
 
 DATABASES = {
     #  'default': {
-    #     # 'ENGINE': 'django.db.backends.sqlite3',
-    #     # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'OPTIONS': {
-    #         'options': '-c search_path=general',
-    #     },
+    #      'ENGINE': 'django.db.backends.postgresql',
+    #      'OPTIONS': {
+    #          'options': '-c search_path=general',
+    #      },
     #     'NAME': 'hbfnidhi',
     #     'USER': 'admin_user',
     #     'PASSWORD': 'Password@123',
@@ -90,10 +90,10 @@ DATABASES = {
     #     'PORT': '5432',
     #  },
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
-        # 'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql',
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Banking Portal',
         'USER': 'root',

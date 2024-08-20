@@ -1,3 +1,4 @@
+
 {% extends 'admin/layouts/base.html' %}
 {% block content %}
 <div class="breadcome-area">
@@ -18,7 +19,7 @@
                                         <ul class="breadcome-menu">
                                             <li><a href="/admin/dashboard/">Home</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-slash">FD Account</span>
+                                            <li><span class="bread-slash">Loan Account</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -36,9 +37,10 @@
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
-                                    <h1>List Of FD Account</h1>
+                                    <h1>List Of Loan Account</h1>
                                 </div>
                             </div>
+
                             <div class="sparkline13-graph">
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
@@ -58,20 +60,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        {% for data in fd_data %}
+                                        {% for data in loan %}
                                             <tr>
                                                 <td>{{ forloop.counter }}</td>
-                                                <td>{{ data.customer.member }}</td>
-                                                <td><a href="/admin/fd_info/{{ data.account_number }}/{{ data.associated_member }}/"><u>{{ data.account_number }}</u></a></td>
+                                                <td>{{ data.user.member }}</td>
+                                                <td>{{data.account_number}}</td>
+                                                <!-- <td><a href="/admin/fd_info/{{ data.account_number }}/{{ data.associated_member }}/"><u>{{ data.account_number }}</u></a></td> -->
                                                 <td>{{ data.tenure }}</td>
-                                                <td>{{ data.total_amount }}</td>
-                                                <td>{{ data.interest_rate.interest_rate }}</td>
+                                                <td>{{ data.amount }}</td>
+                                                <td>{{ data.interest_rate }}</td>
                                                 <td>{{ data.maturity_amount }}</td>
                                                 <td>{{ data.start_date}}</td>
 
 
                                                 <td>
-                                                    <a href="edit_fd/{{ data.account_number }}">
+                                                    <a href="edit_loan/{{ data.user.member}}">
                                                         <img src="https://img.icons8.com/?size=100&id=114092&format=png&color=000000" alt="icon" width="20" height="20">
                                                     </a>
                                                 </td>
@@ -87,9 +90,15 @@
                                     </table>
                                 </div>
                             </div>
+                          
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 {% endblock %}
+
+
+
+
+
