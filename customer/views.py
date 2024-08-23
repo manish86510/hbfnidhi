@@ -19,9 +19,16 @@ from datetime import datetime, time as dt_time
 from datetime import timedelta
 from decimal import Decimal
 from django.contrib import messages
+from .tasks import send_email_task
+from django.urls import reverse
+from django.core.mail import send_mail
+from django.conf import settings
+import math
 
 
+import ipdb
 def Customer_Login(request):
+    ipdb.set_trace()
     if request.method == 'POST':
         enter_email = request.POST.get('username')
         enter_password = request.POST.get('pass')
@@ -33,7 +40,8 @@ def Customer_Login(request):
                 request.session['customer_id'] = customer.member
                 # request.session['customer_idd'] = customer.agent
                 
-                
+                saving_account = SavingAccount.objects.filter(member=customer.member).first()
+
                 # Fetch SavingAccount object for the logged-in customer
                 try:
                     saving_account = SavingAccount.objects.get(member=customer.member)
@@ -97,9 +105,10 @@ def Customer_Login(request):
 
 
 
-import ipdb
+# import ipdb
 def customer_account(request, account_no):
-    ipdb.set_trace()
+    
+    # ipdb.set_trace()
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
     customer_name = member.first_name 
@@ -169,10 +178,10 @@ def customer_account(request, account_no):
 
 
 
-import ipdb 
+# import ipdb 
 
 def download_transactions(request):
-    ipdb.set_trace()
+    # ipdb.set_trace()
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
 
@@ -333,8 +342,6 @@ def customer_fd(request):
         return render(request, 'Customer/FD.html', {'error': 'Customer not found'})
 
 
-
-
 ### new new fd
 
 import ipdb
@@ -449,13 +456,6 @@ def customer_rd(request):
                     end_date = datetime.combine(end_date, dt_time.max)
                     payment = payment.filter(payment_date__range=(start_date, end_date))
                     
-                    
-            
-            
-            
-            
-
-        
             paginator = Paginator(rd_with_next_payment, 10)  # Show 10 items per page
             page_number = request.GET.get('page')
             page_obj = paginator.get_page(page_number)
@@ -474,8 +474,6 @@ def customer_rd(request):
 
 
 # new new new
-
-
 
 # new new new
 
@@ -509,26 +507,69 @@ def download_payment(request):
             ])
     
     return response
-   
-  
 
 
+def calculate_amortization_schedule(amount, annual_rate, tenure_months):
+    # Convert annual rate percentage to a decimal and calculate monthly rate
+    monthly_rate = Decimal(annual_rate) / Decimal(12 * 100)  # Convert annual rate to monthly rate
+    tenure_months = Decimal(tenure_months)
+    
+    # Avoid division by zero
+    if monthly_rate == 0:
+        monthly_payment = amount / tenure_months
+    else:
+        # Calculate monthly payment
+        numerator = monthly_rate * (Decimal(1) + monthly_rate) ** tenure_months
+        denominator = (Decimal(1) + monthly_rate) ** tenure_months - 1
+        monthly_payment = amount * numerator / denominator
+    
+    schedule = []
+    balance = Decimal(amount)
+
+    for month in range(1, int(tenure_months) + 1):
+        interest = balance * monthly_rate
+        principal = monthly_payment - interest
+        balance -= principal
+        
+        # Append schedule entry
+        schedule.append({
+            'month': month,
+            'principal': round(principal, 2),
+            'interest': round(interest, 2),
+            'total_payment': round(monthly_payment, 2),
+            'balance': round(balance, 2) if balance > 0 else 0
+        })
+        
+    return schedule
+
+
+import ipdb
 def customer_loan(request):
+    ipdb.set_trace()
     member_id = request.session.get('customer_id')
+    ipdb.set_trace()
     customer = get_object_or_404(Customer, member=member_id)
     
     # Fetch personal loans for the customer
     personal_loans = Personal_loan.objects.filter(user=customer)
     
+    # Calculate EMI for each loan
+    for loan in personal_loans:
+        try:
+            loan_amount = Decimal(loan.amount)
+            loan_tenure = int(loan.tenure)
+            annual_rate = Decimal(loan.interest_rate.replace('%', '').strip())  # Strip any '%' and whitespace
+            loan.schedule = calculate_amortization_schedule(loan_amount, annual_rate, loan_tenure)
+        except InvalidOperation:
+            loan.schedule = []  # Handle invalid conversion by setting an empty schedule
+
+    print(loan.schedule)
+  
     context = {
         'customer': customer,
         'personal_loans': personal_loans
     }
     return render(request, 'Customer/Loan.html', context)
-
-
-
-
 
 
 
@@ -566,13 +607,7 @@ def customer_fd(request):
         return render(request, 'Customer/FD.html', {'error': 'Customer not found'})
 
 
-
-
-
-
-
-
-      
+   
 import ipdb
 
 def create_user_loan(request):
@@ -601,6 +636,7 @@ def create_user_loan(request):
             loan.save()  # Save the loan to the database
             
             emi_amount = calculate_emi(amount, interest_rate, tenure)
+        
             message = f"Loan created successfully! EMI Amount: {emi_amount:.2f}"
             return render(request, 'customer/create_loan.html', {'message': message})
             
@@ -612,6 +648,8 @@ def create_user_loan(request):
             return render(request, 'customer/create_loan.html', {'message': message})
 
     return render(request, 'customer/create_loan.html')
+
+
 
 def calculate_emi(amount, interest_rate, tenure):
     """
@@ -633,19 +671,20 @@ def calculate_emi(amount, interest_rate, tenure):
 
 
 
-import ipdb;
+# import ipdb
 def customer_funds(request):
+    # ipdb.set_trace()
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
     customer_name = member.first_name 
 
-    ipdb.set_trace()
+    
     
     if request.method == 'POST':
         account_no = request.POST.get('account')
         amount =int(request.POST.get('amount'))
         member_id = request.session.get('customer_id')
-        ipdb.set_trace()
+        # ipdb.set_trace()
         
         
         try:
@@ -714,6 +753,8 @@ def customer_funds(request):
     return render(request, 'Customer/Funds.html', { 'customer_name': customer_name})
 
 
+import ipdb
+
 
 
 def customer_home(request):
@@ -722,6 +763,8 @@ def customer_home(request):
     customer_name = member.first_name 
     user_name=request.session['customer_name']
     member_id=request.session['customer_id']
+    
+    
     if user_name and member_id:
          return render(request,'Customer/Home.html',{ 'customer_name': customer_name})
     else:
@@ -903,4 +946,10 @@ def create_rd_account(self):
 
 
 
-
+def send_email_view(request):
+    subject = "Test Subject"
+    message = "This is a test email."
+    recipient_list = ["priyalsinghal11@gmail.com"]
+    # Call the Celery task
+    send_email_task(subject, message, recipient_list)
+    return HttpResponse("Email sent!")

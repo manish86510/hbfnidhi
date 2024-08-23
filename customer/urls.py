@@ -5,7 +5,7 @@ from customer.views import *
 urlpatterns = [
     # path('create_rd_account/', Dashboard.create_rd_account),
     path('', Dashboard.index),
-    path('home',customer_home),
+    # path('home',customer_home),
     path('account/<str:account_no>/', customer_account, name='customer_account'),
     path('download/', download_transactions,name='download_transactions'),    
     # path('funds',customer_funds),
@@ -27,6 +27,6 @@ urlpatterns = [
     path('customer/fd/<int:fd_id>/withdraw/', withdraw_fd, name='withdraw_fd'),
     path('create_fd',  create_fd_account, name='create_fd'),
     path('create_rd',  create_rd_account, name='create_rd'),
-   
+    path('send-email/', send_email_view, name='send_email'),
 ]
 

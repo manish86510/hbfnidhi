@@ -334,10 +334,9 @@ class Personal_loan(models.Model):
     tenure = models.CharField(max_length=50)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Approved')
     created_date = models.DateTimeField(auto_now_add=True)
-    
-  
-  
-    
+
+
+
 class EMI(models.Model):
     loan = models.ForeignKey(Personal_loan, on_delete=models.CASCADE)
     user = models.ForeignKey(Customer, on_delete=models.CASCADE)
