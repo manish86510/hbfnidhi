@@ -74,24 +74,24 @@
               <div class="menu_section">
          
                 <ul class="nav side-menu">
-                  <li><a href="home"><i class="fa fa-home"></i> Home </a>
+                  <li><a href="{%url 'customer_home' %}"><i class="fa fa-home"></i> Home </a>
 
                   </li>
                   <li><a href="{% url 'customer_account' request.session.account_no %}"><i class="fa fa-edit"></i> Accounts <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                     </ul>
                   </li>
-                  <li><a href="funds"><i class="fa fa-desktop"></i> Funds Trasnfer <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="{% url 'customer_funds' %}"><i class="fa fa-desktop"></i> Funds Trasnfer <span class="fa fa-chevron-down"></span></a>
                   </li>
-                  <li><a href="bill"><i class="fa fa-table"></i> Bill Payment <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="{% url 'customer_bill' %}"><i class="fa fa-table"></i> Bill Payment <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i> Services  <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="Fd">Fixed Deposit (FD)</a></li>
-                      <li><a href="Rd">recurring deposit (RD)</a></li>
-                      <li><a href="loan">Loan</a></li>
+                      <li><a href="{% url 'Fd' %}">Fixed Deposit (FD)</a></li>
+                      <li><a href="{% url 'Rd' %}">recurring deposit (RD)</a></li>
+                      <li><a href="{% url 'loan' %}">Loan</a></li>
                     </ul>
                   </li>
                   <li><a href="invest"><i class="fa fa-clone"></i>Invest<span class="fa fa-chevron-down"></span></a>
