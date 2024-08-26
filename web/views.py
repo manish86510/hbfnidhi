@@ -8,7 +8,7 @@ from django.core.mail import send_mail
 from web.forms import *
 import socket
 socket.getaddrinfo('localhost', 8000)
-import ipdb;
+# import ipdb;
 # def contact_view(request):
 #     if request.method == 'POST':
 #         form = ContactForm(request.POST)

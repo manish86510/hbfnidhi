@@ -14,7 +14,6 @@
             <a href="create_loan" class="btn btn-primary">Apply for Loan</a>
             <h1>Personal Loans</h1>
             <div class="rd-accounts-container">
-
                 {% for loan in personal_loans %}
                     <div class="rd-account-card">
                         <h4>Loan Account Details</h4>
@@ -41,33 +40,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                             {% if loan.schedule %}
-                                {% for entry in loan.schedule %}
-                                    <tr>
-                                        <td>Month {{ entry.month }}</td>
-                                        <td>₹ {{ entry.principal }}</td>
-                                        <td>₹ {{ entry.interest }}</td>
-                                        <td>₹ {{ entry.total_payment }}</td>
-                                        <td>₹ {{ entry.balance }}</td>
-                                    </tr>
-                                {% endfor %}
+                                {% if loan.schedule %}
+                                    {% for entry in loan.schedule %}
+                                        <tr>
+                                            <td>Month {{ entry.month }}</td>
+                                            <td>₹ {{ entry.principal }}</td>
+                                            <td>₹ {{ entry.interest }}</td>
+                                            <td>₹ {{ entry.total_payment }}</td>
+                                            <td>₹ {{ entry.balance }}</td>
+                                        </tr>
+                                    {% endfor %}
                                 {% else %}
-                                               <tr>
-                                                   <td colspan="5">No schedule available</td>
-                                               </tr>
-                                           {% endif %}
+                                    <tr>
+                                        <td colspan="5">No schedule available</td>
+                                    </tr>
+                                {% endif %}
                             </tbody>
                         </table>
-                        
                     </div>
-
-                 <!-- EMI Table -->
-               
-
+                {% endfor %} <!-- Missing endfor tag was added here -->
             </div>
+        </div>
 
-            <style>
-                .rd-details {
+        <style>
+            /* Styles remain unchanged */
+            .rd-details {
                     padding: 20px;
                     background-color: #f4f6f8;
                     border-radius: 10px;
@@ -137,8 +134,7 @@
                 .table-striped tbody tr:nth-of-type(odd) {
                     background-color: #f9f9f9;
                 }
-            </style>
-        </div>
+        </style>
     </div>
 </div>
-{% endblock content %}
+{% endblock %}

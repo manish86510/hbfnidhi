@@ -1,3 +1,4 @@
+import pdb
 import random
 
 from django.contrib import messages
@@ -12,7 +13,7 @@ from django.shortcuts import render, get_object_or_404
      
      
      
-import ipdb;
+# import ipdb;
 class Dashboard:
     def index(self):
         if self.session['user_name']:
@@ -305,7 +306,7 @@ class Dashboard:
    
    
     def next_payment_date(request, rd_account):
-        ipdb.set_trace()
+        # ipdb.set_trace()
         rd_account = RecurringDeposit.objects.get(id=rd_account)
         
         print(f"RD Account: {rd_account}")
@@ -364,9 +365,9 @@ class Dashboard:
     
     
     
-    import ipdb        
+    # import ipdb        
     def loan(self):
-        ipdb.set_trace()
+        # ipdb.set_trace()
        
         loan = Personal_loan.objects.all()
 
@@ -383,9 +384,9 @@ class Dashboard:
         
         
         
-    import ipdb
+    # import ipdb
     def edit_loan(request,account):
-        ipdb.set_trace()
+        # ipdb.set_trace()
         loan_data = get_object_or_404(Personal_loan, user__member=account)
         user = loan_data.user
         loan_accounts = Personal_loan.objects.filter(user=user)
@@ -403,9 +404,9 @@ class Dashboard:
 
     
     
-    import ipdb;
+    # import ipdb;
     def create_rd_account(self):  
-        ipdb.set_trace()          
+        # ipdb.set_trace()          
         if self.method == 'POST':
             try: 
                 member = self.POST.get('member_id')
@@ -463,9 +464,9 @@ class Dashboard:
   
         
         
-    import ipdb        
+    # import ipdb        
     def rd_account(self):
-        ipdb.set_trace()
+        # ipdb.set_trace()
         # specific_account_number = 'FD8512473318' 
         rd_data = RecurringDeposit.objects.all()
         # fd_data = FixedDeposit.objects.filter(account_number=specific_account_number)
@@ -483,9 +484,9 @@ class Dashboard:
             return render(self, 'admin/rd_account.html', {'rd_data': rd_data})
         
   
-    import ipdb
+    # import ipdb
     def edit_rd(request,account):
-        ipdb.set_trace()
+        # ipdb.set_trace()
         rd_data = get_object_or_404(RecurringDeposit, account_number=account)
         customer = rd_data.customer
         print(customer)
@@ -493,9 +494,9 @@ class Dashboard:
         print(rd_accounts)
         return render(request, 'admin/edit_rd.html', {'rd_accounts': rd_accounts})
         
-    import ipdb        
+    # import ipdb        
     def fd_account(self):
-        ipdb.set_trace()
+        # ipdb.set_trace()
         # specific_account_number = 'FD8512473318' 
         fd_data = FixedDeposit.objects.all()
         # fd_data = FixedDeposit.objects.filter(account_number=specific_account_number)
@@ -526,9 +527,9 @@ class Dashboard:
     # def edit_fd(self):
     #     return render(self,'admin/edit_fd.html')
     
-    import ipdb
+    # import ipdb
     def edit_fd(request,account):
-        ipdb.set_trace()
+        # ipdb.set_trace()
         fd_data = get_object_or_404(FixedDeposit, account_number=account)
         customer = fd_data.customer
         fd_accounts = FixedDeposit.objects.filter(customer=customer)
@@ -536,9 +537,9 @@ class Dashboard:
 
 
    
-    import ipdb    
+    # import ipdb    
     def create_fd_account(self):
-        ipdb.set_trace()
+        # ipdb.set_trace()
         if self.method == 'POST':
             try:
                 member = self.POST.get('member_id')
