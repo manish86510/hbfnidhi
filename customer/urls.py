@@ -23,11 +23,12 @@ urlpatterns = [
     path('rate', interest_rate, name='rate'),
     path('get_bank_statement/', get_bank_statement, name='get_bank_statement'),
     path('download/', download_payment, name='download_payment'),
-    path('customer/fd/<int:fd_id>/withdraw/', withdraw_fd, name='withdraw_fd'),
+    # path('customer/fd/<int:fd_id>/withdraw/', withdraw_fd, name='withdraw_fd'),
     path('create_fd',  create_fd_account, name='create_fd'),
     path('create_rd',  create_rd_account, name='create_rd'),
     path('send-email/', send_email_view, name='send_email'),
-    path('matured/', withdraw_fd, name='withdraw_fd'),
+    # path('matured/', withdraw_fd, name='withdraw_fd'),
+    path('withdraw_fd/<int:fd_id>/', withdraw_fd, name='withdraw_fd'),
     path('home/', fd_home, name='fd_home'),
     
 ]

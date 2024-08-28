@@ -449,9 +449,8 @@ def withdraw_fd(request, fd_id):
 #     return render(request, 'Customer/fd_matured.html')
 
 
-import ipdb
-def fd_home(request):
-    ipdb.set_trace()
+
+def fd_home(request):  
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
     print(customer)

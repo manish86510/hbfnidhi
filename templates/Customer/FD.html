@@ -28,8 +28,13 @@
                                 <p><strong>Amount:</strong> {{ fd.total_amount }}</p>
                                 <p><strong>Maturity Amount:</strong> {{ fd.maturity_amount }}</p>
                             </div>
+                            
                             <div style="text-align: right; margin-right:5%; margin-top:1%;">
-                               
+                                {% if fd.status == 'Active' %}
+                                    <a href="{% url 'withdraw_fd' fd.id %}" class="btn btn-primary">Withdraw</a>
+                                {% elif fd.status == 'Matured' %}
+                                    <a href="{% url 'withdraw_fd' fd.id %}" class="btn btn-primary">View Matured FD</a>
+                                {% endif %}
                             </div>
                         </div>
                     {% endfor %}
