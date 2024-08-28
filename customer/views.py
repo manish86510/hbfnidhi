@@ -26,9 +26,9 @@ from django.conf import settings
 import math
 
 
-# import ipdb
+
 def Customer_Login(request):
-    # ipdb.set_trace()
+    
     if request.method == 'POST':
         enter_email = request.POST.get('username')
         enter_password = request.POST.get('pass')
@@ -71,7 +71,7 @@ def Customer_Login(request):
 
     
 # def get_bank_statement(request ):
-#     ipdb.set_trace()
+
 #     member_id = request.session.get('customer_id')
 #     transactions = []
 
@@ -105,10 +105,9 @@ def Customer_Login(request):
 
 
 
-# import ipdb
+
 def customer_account(request, account_no):
-    
-    # ipdb.set_trace()
+
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
     customer_name = member.first_name 
@@ -175,10 +174,9 @@ def customer_account(request, account_no):
 
 
 
-# import ipdb 
+
 
 def download_transactions(request):
-    # ipdb.set_trace()
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
 
@@ -221,7 +219,6 @@ def download_transactions(request):
 
 
 def get_bank_statement(request):
-    # ipdb.set_trace()
     member_id = request.session.get('customer_id')
     transactions = []
     saving_account = None
@@ -305,9 +302,7 @@ def create_fd_view(request):
     return render(request, 'Customer/create_fd.html')
 
 ###new new fd
-# import ipdb
 # def customer_fd(request):
-#     # ipdb.set_trace()
 #     member_id = request.session.get('customer_id')
 #     customer = get_object_or_404(Customer, member=member_id)
     
@@ -382,9 +377,8 @@ def customer_fd(request):
 
 ### new new fd
 
-# import ipdb
+
 def withdraw_fd(request, fd_id):
-    # ipdb.set_trace()
     fd = get_object_or_404(FixedDeposit, pk=fd_id)
     member_id = request.session.get('customer_id')
     print(member_id)
@@ -456,10 +450,32 @@ def fd_home(request):
     print(customer)
     
     fd_accounts = FixedDeposit.objects.filter(customer=customer)
+    print(fd_accounts)
     if not fd_accounts.exists():
         # No FD accounts found, render fd_Home.html
         return render(request, 'Customer/fd_Home.html')
-    
+    fd_with_details = []
+    for fd in fd_accounts:
+            # for maturity amount calculation
+            interest_rate = Decimal(fd.interest_rate.interest_rate.strip('%')) / 100
+            time_in_years = (fd.maturity_date - fd.start_date).days / 365
+            maturity_amount =  fd.total_amount*(1 + interest_rate) ** Decimal(time_in_years)
+            fd.maturity_amount = maturity_amount
+            fd.save() 
+            fd_with_details.append({
+                'fd_account': fd.account_number,
+                'interest_rate': fd.interest_rate.interest_rate,  # Assuming interest_rate is a foreign key
+                'start_date': fd.start_date,
+                'maturity_date': fd.maturity_date,
+                'total_amount':fd.total_amount,
+                'maturity_amount': maturity_amount
+            })
+            context = {
+            'fd_accounts': fd_with_details
+        }
+     
+     
+        
     fd_status = fd_accounts.values_list('status', flat=True).distinct()
     
     if 'Matured' in fd_status:
@@ -507,9 +523,7 @@ def calculate_rd_maturity_amount(rd):
 
 
 #new new new 
-# import ipdb
 def customer_rd(request):
-    # ipdb.set_trace()
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
     
@@ -596,9 +610,8 @@ def customer_rd(request):
 
 # new new new
 
-# import ipdb
+
 def download_payment(request):
-    # ipdb.set_trace()
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
     
@@ -662,11 +675,11 @@ def calculate_amortization_schedule(amount, annual_rate, tenure_months):
     return schedule
 
 
-# import ipdb
+
 def customer_loan(request):
-    # ipdb.set_trace()
+    
     member_id = request.session.get('customer_id')
-    # ipdb.set_trace()
+    
     customer = get_object_or_404(Customer, member=member_id)
     
     # Fetch personal loans for the customer
@@ -691,9 +704,8 @@ def customer_loan(request):
 
 
 
-# import ipdb
+
 def customer_fd(request):
-    # ipdb.set_trace()
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
     
@@ -714,7 +726,7 @@ def customer_fd(request):
             fd.maturity_amount = maturity_amount
             fd.save() 
             fd_with_details.append({
-                'fd_account': fd,
+                'fd_account': fd.account_number,
                 'interest_rate': fd.interest_rate.interest_rate,  # Assuming interest_rate is a foreign key
                 'start_date': fd.start_date,
                 'maturity_date': fd.maturity_date,
@@ -731,11 +743,10 @@ def customer_fd(request):
 
 
    
-# import ipdb
+
 
 def create_user_loan(request):
-    # ipdb.set_trace()  # Debugging breakpoint
-    
+ 
     if request.method == 'POST':
         try:
             user_id = request.POST.get('user_id')
@@ -778,7 +789,7 @@ def calculate_emi(amount, interest_rate, tenure):
     """
     Function to calculate EMI.
     """
-    # ipdb.set_trace()
+    
 
     # Convert the inputs to the correct numeric types
     amount = float(amount)
@@ -793,10 +804,8 @@ def calculate_emi(amount, interest_rate, tenure):
     return emi
 
 
-
-import ipdb
 def customer_funds(request):
-    ipdb.set_trace()
+  
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
     customer_name = member.first_name 
@@ -807,9 +816,7 @@ def customer_funds(request):
         account_no = request.POST.get('account')
         amount =int(request.POST.get('amount'))
         member_id = request.session.get('customer_id')
-        # ipdb.set_trace()
-        
-        
+   
         try:
             # Get the source saving account of the logged-in customer
             source_account = SavingAccount.objects.get(member=member_id)
@@ -883,8 +890,6 @@ def customer_funds(request):
 
     return render(request, 'Customer/Funds.html', { 'customer_name': customer_name})
 
-
-# import ipdb
 
 
 
@@ -976,9 +981,9 @@ def interest_rate(request):
     return JsonResponse(data)
 
 
-# import ipdb    
+    
 def create_fd_account(self):
-    # ipdb.set_trace()
+  
     if self.method == 'POST':
         try:
             member = self.POST.get('member_id')
@@ -1027,9 +1032,9 @@ def create_fd_account(self):
 
 
 
-# import ipdb    
+
 def create_rd_account(self):
-    # ipdb.set_trace()
+  
     if self.method == 'POST':
         try:
             member = self.POST.get('member_id')

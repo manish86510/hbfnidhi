@@ -8,11 +8,10 @@ from django.core.mail import send_mail
 from web.forms import *
 import socket
 socket.getaddrinfo('localhost', 8000)
-# import ipdb;
+
 # def contact_view(request):
 #     if request.method == 'POST':
 #         form = ContactForm(request.POST)
-#         ipdb.set_trace()
 #         if form.is_valid():
 #             name = form.cleaned_data['Name']
 #             email = form.cleaned_data['Email']
@@ -39,7 +38,6 @@ socket.getaddrinfo('localhost', 8000)
 
 
 def contact_view(request):
-    ipdb.set_trace()
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -140,7 +138,7 @@ def loanagainstdepositreceipt(self):
 
 
 
-# import ipdb;
+
 def create_account(self):
     if self.method == 'POST':
         first_name = self.POST.get('title')+ ' ' + self.POST.get('first_name')
@@ -191,7 +189,7 @@ def create_account(self):
                 last_login=models.DateTimeField(auto_now_add=True),
                 registration_date=models.DateTimeField(auto_now_add=True),
             )
-            # ipdb.set_trace()
+            
             customer.save()
             message = "Form submitted successfully !"
             return render(self, 'web/registration.html', {'message': message})
