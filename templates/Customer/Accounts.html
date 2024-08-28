@@ -157,9 +157,13 @@
                             {% for transaction, balance in page_obj %}
                                 <tr>
                                     <td>{{ transaction.transfer_id }}</td>
-                                    <td>
-                                        {% if transaction.description == 'Fund Transfer' %}
-                                            {{ transaction.to_account_no.account_no }} <!-- Outgoing transfer -->
+                                    <td> 
+                                        {% if transaction.description == 'Fund Transfer' or transaction.description == 'Withdrawn amount from FD account' %}
+                                            {% if transaction.description == 'Fund Transfer' %}
+                                            {{ transaction.to_account_no.account_no }}
+                                            {% else %}
+                                            FD
+                                            {% endif %}
                                         {% else %}
                                             N/A
                                         {% endif %}
@@ -167,8 +171,7 @@
                                     <td>{{ transaction.amount  }}</td>
                                     <td>{{ balance }}</td>
                                     <td>{{ transaction.transfer_date }}</td>
-                                    <td>{{ transaction.transaction_type }}</td>
-                                    <td>Fund Transfer</td>
+                                    <td>{{ transaction.description }}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>

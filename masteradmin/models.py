@@ -140,6 +140,7 @@ class Transactions(models.Model):
         ('Withdrawal', 'Withdrawal'),
         ('Transfer', 'Transfer'),
         ('Payment', 'Payment'),
+        ('FD Withdrawal', 'FD Withdrawal'), 
     ]
     member = models.ForeignKey('Customer', on_delete=models.CASCADE)
     transaction_id = models.AutoField(primary_key=True)

@@ -27,5 +27,8 @@ urlpatterns = [
     path('create_fd',  create_fd_account, name='create_fd'),
     path('create_rd',  create_rd_account, name='create_rd'),
     path('send-email/', send_email_view, name='send_email'),
+    path('matured/', withdraw_fd, name='withdraw_fd'),
+    path('home/', fd_home, name='fd_home'),
+    
 ]
 

@@ -112,7 +112,6 @@ def customer_account(request, account_no):
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
     customer_name = member.first_name 
- 
 
     try:
         saving_account = SavingAccount.objects.get(member=member_id, account_no=account_no)
@@ -155,7 +154,6 @@ def customer_account(request, account_no):
     # Pair transactions with their respective balances
     transactions_and_balances = list(zip(transfer_transactions, balances))
     
-   
         
     paginator = Paginator(transactions_and_balances, 10)
     page_number = request.GET.get('page')
@@ -169,9 +167,8 @@ def customer_account(request, account_no):
         'form': form,
         'start_date': request.GET.get('startDate', ''),
         'end_date': request.GET.get('endDate', ''),
-       
         'customer_name': customer_name,
-         
+        
     }
 
     return render(request, 'Customer/Accounts.html', context)
@@ -309,37 +306,78 @@ def create_fd_view(request):
 
 ###new new fd
 # import ipdb
+# def customer_fd(request):
+#     # ipdb.set_trace()
+#     member_id = request.session.get('customer_id')
+#     customer = get_object_or_404(Customer, member=member_id)
+    
+#     try:
+#         fd_accounts = FixedDeposit.objects.filter(customer=customer)
+        
+        
+        
+#         fd_with_details = []
+#         for fd in fd_accounts:
+#             # for maturity amount calculation
+#             interest_rate = Decimal(fd.interest_rate.interest_rate.strip('%')) / 100
+#             time_in_years = (fd.maturity_date - fd.start_date).days / 365
+#             maturity_amount =  fd.total_amount*(1 + interest_rate) ** Decimal(time_in_years)
+#             fd.maturity_amount = maturity_amount
+#             fd.save() 
+#             fd_with_details.append({
+#                 'fd_account': fd,
+#                 'interest_rate': fd.interest_rate.interest_rate,  # Assuming interest_rate is a foreign key
+#                 'start_date': fd.start_date,
+#                 'maturity_date': fd.maturity_date,
+#                 'total_amount':fd.total_amount,
+#                 'maturity_amount': maturity_amount
+#             })
+#             context = {
+#             'fd_accounts': fd_with_details
+#         }
+#         print(context)
+#         return render(request, 'Customer/FD.html', context)
+#     except Customer.DoesNotExist:
+#         return render(request, 'Customer/FD.html', {'error': 'Customer not found'})
+
+
+
+
+
+
+
 def customer_fd(request):
-    # ipdb.set_trace()
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
-    
-    try:
-        fd_accounts = FixedDeposit.objects.filter(customer=customer)
-        
-        fd_with_details = []
-        for fd in fd_accounts:
-            # for maturity amount calculation
-            interest_rate = Decimal(fd.interest_rate.interest_rate.strip('%')) / 100
-            time_in_years = (fd.maturity_date - fd.start_date).days / 365
-            maturity_amount =  fd.total_amount*(1 + interest_rate) ** Decimal(time_in_years)
-            fd.maturity_amount = maturity_amount
-            fd.save() 
-            fd_with_details.append({
-                'fd_account': fd,
-                'interest_rate': fd.interest_rate.interest_rate,  # Assuming interest_rate is a foreign key
-                'start_date': fd.start_date,
-                'maturity_date': fd.maturity_date,
-                'total_amount':fd.total_amount,
-                'maturity_amount': maturity_amount
-            })
-            context = {
-            'fd_accounts': fd_with_details
-        }
-        print(context)
-        return render(request, 'Customer/FD.html', context)
-    except Customer.DoesNotExist:
-        return render(request, 'Customer/FD.html', {'error': 'Customer not found'})
+    fd_accounts = FixedDeposit.objects.filter(customer=customer)
+
+    if not fd_accounts.exists():
+        return render(request, 'Customer/fd_Home.html')
+
+    fd_with_details = []
+    for fd in fd_accounts:
+        # Determine FD status and calculate details
+        # Add status-specific handling here if needed
+        interest_rate = Decimal(fd.interest_rate.interest_rate.strip('%')) / 100
+        time_in_years = (fd.maturity_date - fd.start_date).days / 365
+        maturity_amount = fd.total_amount * (1 + interest_rate) ** Decimal(time_in_years)
+        fd.maturity_amount = maturity_amount
+        fd.save()
+
+        fd_with_details.append({
+            'fd_account': fd,
+            'interest_rate': fd.interest_rate.interest_rate,
+            'start_date': fd.start_date,
+            'maturity_date': fd.maturity_date,
+            'total_amount': fd.total_amount,
+            'maturity_amount': maturity_amount
+        })
+
+    # Check FD status and render appropriate template
+    if any(fd.status == 'Active' for fd in fd_accounts):
+        return render(request, 'Customer/FD.html', {'fd_accounts': fd_with_details})
+
+    return render(request, 'Customer/fd_Home.html')
 
 
 ### new new fd
@@ -349,11 +387,30 @@ def withdraw_fd(request, fd_id):
     # ipdb.set_trace()
     fd = get_object_or_404(FixedDeposit, pk=fd_id)
     member_id = request.session.get('customer_id')
-    saving_account = SavingAccount.objects.filter(member=member_id).first()
+    print(member_id)
     
+    customer = get_object_or_404(Customer, member=member_id)
+    print(customer)
+    print(customer.id)
+    saving_account = SavingAccount.objects.filter(member=member_id).first()
+    print(saving_account)
+    
+    if saving_account is None:
+        # Handle the case where no saving account is found
+        return render(request, 'Customer/FD.html', {'error': 'No saving account found for the customer.'})
+    print("ds")
+    print(fd.total_amount)
+    print(fd.maturity_amount)
+    
+    
+    if fd.status != 'Active':
+        # Handle the case where FD status is not Active
+        return render(request, 'Customer/FD.html', {'error': 'FD status is not active.'})
+
     
     balance = Decimal(saving_account.account_balance) 
-    balance += fd.total_amount
+    balance += fd.maturity_amount
+    print(balance)
     saving_account.account_balance = str(balance)
     saving_account.save() 
 
@@ -361,8 +418,71 @@ def withdraw_fd(request, fd_id):
     fd.status = 'Matured'
     fd.save()
     
-    return render(request, 'Customer/FD.html')
     
+    TransferTransactions.objects.create(
+                from_account_no=saving_account,
+                to_account_no=None,  # or specify another account if needed
+                amount=fd.maturity_amount,
+                transfer_date=datetime.now().date(),
+                remaining_balance=saving_account.account_balance,
+                
+                description=f'Withdrawn amount from FD account'
+            )
+    
+    
+    Transactions.objects.create(
+        member_id=customer.id,
+        account_no=saving_account,
+        transaction_type='FD Withdrawal',
+        amount=fd.maturity_amount,
+        description=f'Withdrawn from FD account {fd.account_number}'
+    )
+    
+    
+    return render(request, 'Customer/fd_matured.html',  {'message': 'Your FD account has been successfully withdrawn.'})
+    
+
+
+
+
+# def fd_matured(request):
+#     return render(request, 'Customer/fd_matured.html')
+
+
+import ipdb
+def fd_home(request):
+    ipdb.set_trace()
+    member_id = request.session.get('customer_id')
+    customer = get_object_or_404(Customer, member=member_id)
+    print(customer)
+    
+    fd_accounts = FixedDeposit.objects.filter(customer=customer)
+    if not fd_accounts.exists():
+        # No FD accounts found, render fd_Home.html
+        return render(request, 'Customer/fd_Home.html')
+    
+    fd_status = fd_accounts.values_list('status', flat=True).distinct()
+    
+    if 'Matured' in fd_status:
+        # If any FD status is 'Matured', render fd_matured.html
+        return render(request, 'Customer/fd_matured.html', {'fd_accounts': fd_accounts})
+    elif 'Active' in fd_status:
+        # If any FD status is 'Active', render FD.html
+        context = {'fd_accounts': fd_accounts}
+        return render(request, 'Customer/FD.html', context)
+    else:
+        # Default case if no specific FD status is found
+        return render(request, 'Customer/fd_Home.html')
+    
+    
+    
+    
+    
+    
+      
+
+
+
 
 def calculate_rd_maturity_amount(rd):
     # P: Monthly installment
@@ -561,8 +681,7 @@ def customer_loan(request):
             annual_rate = Decimal(loan.interest_rate.replace('%', '').strip())  # Strip any '%' and whitespace
             loan.schedule = calculate_amortization_schedule(loan_amount, annual_rate, loan_tenure)
         except InvalidOperation:
-            loan.schedule = []  # Handle invalid conversion by setting an empty schedule
-
+            loan.schedule = []# Handle invalid conversion by setting an empty schedule
     print(loan.schedule)
   
     context = {
@@ -581,6 +700,11 @@ def customer_fd(request):
     
     try:
         fd_accounts = FixedDeposit.objects.filter(customer=customer)
+        
+        if not fd_accounts:
+            # No FD accounts found for the customer
+            context = {'message': 'No FD accounts created'}
+            return render(request, 'Customer/FD.html', context)
         
         fd_with_details = []
         for fd in fd_accounts:
@@ -671,9 +795,9 @@ def calculate_emi(amount, interest_rate, tenure):
 
 
 
-# import ipdb
+import ipdb
 def customer_funds(request):
-    # ipdb.set_trace()
+    ipdb.set_trace()
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
     customer_name = member.first_name 
@@ -700,7 +824,7 @@ def customer_funds(request):
             
             # Create a transaction record for the transfer
                    # Record transaction for source account
-            transaction = Transactions.objects.create(
+            Transactions.objects.create(
                 member_id=source_account.id,
                 transaction_type='Transfer',
                 amount=amount,
@@ -749,7 +873,15 @@ def customer_funds(request):
             return render(request, 'Customer/Funds.html', {'error': 'Destination account not found.'})
         except Exception as e:
             return render(request, 'Customer/Funds.html', {'error': str(e)})
-    
+        
+        # transactions = Transactions.objects.filter(member_id=member_id).order_by('-transfer_date')
+        # print([transaction.transaction_type for transaction in transactions])
+        
+        
+        transactions = Transactions.objects.all()
+        for transaction in transactions:
+           print(transaction.transaction_type)
+
     return render(request, 'Customer/Funds.html', { 'customer_name': customer_name})
 
 

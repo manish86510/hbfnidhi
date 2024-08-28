@@ -18,8 +18,8 @@ class Dashboard:
     def index(self):
         if self.session['user_name']:
             cust = Customer.objects.count()
-            fd = FD.objects.count()
-            rd = RD.objects.count()
+            fd = FixedDeposit.objects.count()
+            rd = RecurringDeposit.objects.count()
             try:
                 customer = Customer.objects.filter(is_active=0).all().order_by('-id')
             except:
