@@ -124,14 +124,10 @@ class SavingAccount(models.Model):
     ifsc = models.CharField(max_length=20, null=True)
     branch_code = models.CharField(max_length=80, null=True)
     branch_name = models.CharField(max_length=200, null=True)
-    # account_balance = models.CharField(max_length=80, null=True)
     account_balance = models.DecimalField(max_digits=15, decimal_places=2 ,null=True)
     status = models.CharField(max_length=20)
     is_active = models.IntegerField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
-    
-    
-    
     
 
 class Transactions(models.Model):
@@ -150,9 +146,7 @@ class Transactions(models.Model):
     transaction_date = models.DateTimeField(auto_now_add=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     
-    
-    
-    
+
 class TransferTransactions(models.Model):
     transfer_id = models.AutoField(primary_key=True)
     from_account_no = models.ForeignKey(SavingAccount, related_name='transfers_out', on_delete=models.CASCADE, null=True)
@@ -161,7 +155,6 @@ class TransferTransactions(models.Model):
     transfer_date = models.DateTimeField(auto_now_add=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     remaining_balance = models.DecimalField(max_digits=15, decimal_places=2, null=True)
-    
     
 
 class Beneficiary(models.Model):
@@ -205,19 +198,6 @@ class CreditTransaction(models.Model):
     status = models.IntegerField(null=True)
 
 
-# class FD(models.Model):
-#     associated_member = models.CharField(max_length=20)
-#     account_number = models.CharField(max_length=20, unique=True)
-#     tenure = models.CharField(max_length=20)
-#     amount = models.CharField(max_length=20)
-#     rate_of_interest = models.CharField(max_length=20)
-#     maturity_amount = models.CharField(max_length=20)
-#     status = models.CharField(max_length=20)
-#     is_active = models.IntegerField(null=True)
-#     scheme = models.IntegerField(null=True)
-#     created_date = models.DateTimeField(auto_now_add=True)
-    
-
 class FixedDeposit(models.Model):
   STATUS_CHOICES = [
     ('Active', 'Active'),
@@ -233,8 +213,6 @@ class FixedDeposit(models.Model):
   interest_rate = models.ForeignKey('FD_scheme', on_delete=models.CASCADE, null=True, blank=True)   
   maturity_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.0)
   is_active = models.IntegerField(null=True)  
-
-
 
 
 class RecurringDeposit(models.Model):
@@ -272,8 +250,6 @@ class RecurringDeposit(models.Model):
 #   maturity_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.0)   
    
    
-   
-       
 class PaymentSchedule(models.Model):
   rd_account = models.ForeignKey(RecurringDeposit, on_delete=models.CASCADE)
   payment_date = models.DateField()
@@ -313,7 +289,6 @@ class FD_scheme(models.Model):
     is_applicable = models.IntegerField()
     created_date = models.DateTimeField(auto_now_add=True)
 
-
 class RD_scheme(models.Model):
     scheme = models.CharField(max_length=200)
     interest_rate = models.CharField(max_length=100)
@@ -335,8 +310,6 @@ class Personal_loan(models.Model):
     tenure = models.CharField(max_length=50)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Approved')
     created_date = models.DateTimeField(auto_now_add=True)
-
-
 
 class EMI(models.Model):
     loan = models.ForeignKey(Personal_loan, on_delete=models.CASCADE)

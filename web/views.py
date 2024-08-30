@@ -24,8 +24,7 @@ socket.getaddrinfo('localhost', 8000)
 #                 # recipient_list=['priyalsinghal11@gmail.com']
 #                 recipient_list = ['info@hbfnidhi.com']
 #             )
-            
-#             print("submit")
+
             
            
 #     else:
@@ -59,7 +58,7 @@ def contact_view(request):
             except Exception as e:
                 success_message = f"Failed to send email: {e}"
             
-            print("submit")
+            
             # Rendering the template with a success message
             return render(request, 'web/index.html', {'form': form, 'success_message': success_message})
     else:

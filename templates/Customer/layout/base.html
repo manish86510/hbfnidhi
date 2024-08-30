@@ -92,16 +92,47 @@
                   <li><a><i class="fa fa-bar-chart-o"></i> Services  <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
 
-                      {% if fd.status == 'Active' %}
+                      <!-- {% if fd.status == 'Active' %}
                       <li><a href="{% url 'Fd' %}">Fixed Deposit (FD)</a></li>
                       {% elif fd.status == 'Matured' %}
                       <li><a href="{% url 'withdraw_fd' fd.fd_account.id %}">View Matured FD</a></li>
                       {%else%}
                       <li><a href="{% url 'fd_home' %}">FD</a></li>
+                      {% endif %} -->
+
+                      <!-- Fixed Deposit (FD) Section -->
+
+                      {% if fd %}
+                      {% if fd.status == 'Active' %}
+                      <li><a href="{% url 'Fd' %}">Fixed Deposit (FD)</a></li>
+                      {% elif fd.status == 'Matured' %}
+                      <li><a href="{% url 'withdraw_fd' fd.fd_account.id %}">View Matured FD</a></li>
+                      {% else %}
+                      <li><a href="{% url 'fd_home' %}">FD</a></li>
+                      {% endif %}
+                      {% else %}
+                      <li><a href="{% url 'fd_home' %}">FD</a></li>
                       {% endif %}
 
-                      <!-- <li><a href="{% url 'Fd' %}">Fixed Deposit (FD)</a></li> -->
-                      <li><a href="{% url 'Rd' %}">recurring deposit (RD)</a></li>
+
+                      <!-- Recurring Deposit (RD) Section -->
+                      {% if rd %}
+                      {% if rd.status == 'Active' %}
+                      <li><a href="{% url 'Rd' %}">Recurring Deposit (RD)</a></li>
+                      {% else %}
+                      <li><a href="{% url 'rd_home' %}">RD</a></li>
+                      {% endif %}
+                      {% else %}
+                      <li><a href="{% url 'rd_home' %}">RD</a></li>
+                      {% endif %}
+               
+<!--                       
+                      {% if rd.status == 'Active' %}
+                      <li><a href="{% url 'Rd' %}">Recurring Deposit (RD)</a></li>
+                      {%else%}
+                      <li><a href="{% url 'rd_home' %}">RD</a></li>
+                      {% endif %} -->
+                      
                       <li><a href="{% url 'loan' %}">Loan</a></li>
                     </ul>
                   </li>

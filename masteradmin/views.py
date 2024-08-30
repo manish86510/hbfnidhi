@@ -1,6 +1,5 @@
 import pdb
 import random
-
 from django.contrib import messages
 from django.shortcuts import render
 from masteradmin.models import * 
@@ -307,7 +306,7 @@ class Dashboard:
     def next_payment_date(request, rd_account):
         rd_account = RecurringDeposit.objects.get(id=rd_account)
         
-        print(f"RD Account: {rd_account}")
+        
         last_payment = PaymentSchedule.objects.filter(
         rd_account=rd_account,
         status='Completed'
@@ -321,7 +320,7 @@ class Dashboard:
             next_payment_date = rd_account.start_date + timedelta(days=30)
             
             
-        print(f"Next Payment Date: {next_payment_date}")
+        
         
         next_payment = PaymentSchedule.objects.filter(
             rd_account=rd_account,
@@ -340,12 +339,12 @@ class Dashboard:
         'payment': next_payment,
         'next_payment_date': next_payment_date
     }
-        print(f"Context: {context}")
+        
         return render(request, 'admin/payment_schedule.html', context)
         
        
         
-        # today = timezone.now().date()
+        
     
 
     
@@ -369,13 +368,6 @@ class Dashboard:
         loan = Personal_loan.objects.all()
 
         for obj in loan:
-            # print(f"Account Number: {obj.account_number}")
-            print(f"Customer: {obj.user.member}")
-            print(f"Tenure: {obj.tenure}")
-            print(f"Total Amount: {obj.amount}")
-            print(f"Status: {obj.status}")
-            print(f"Interest Rate: {obj.interest_rate}")
-          
             
             return render(self, 'admin/loans.html', {'loan': loan})
         
@@ -396,11 +388,9 @@ class Dashboard:
         del self.session['user_name']
         return render(self, 'admin/login.html')
     
- 
-  
+    
+     
 
-    
-    
     def create_rd_account(self):           
         if self.method == 'POST':
             try: 
@@ -410,10 +400,7 @@ class Dashboard:
                 interest_rate_value = self.POST.get('interest_rate')
                 start_date = self.POST.get('start_date')
                 maturity_date = self.POST.get('maturity_date')
-                print(f"Received interest_rate: {interest_rate_value}")
-            # Retrieve customer and interest rate objects
-                # customer = Customer.objects.get(member=member)
-                # interest_rate = RD_scheme.objects.get(interest_rate=interest_rate)
+            
                 try:
                     customer = Customer.objects.get(member=member)
                 except Customer.DoesNotExist:
@@ -444,6 +431,8 @@ class Dashboard:
                     monthly_installment=monthly_installment,
                     )
                 RD_account.save()
+                
+            
                 message = "RD created successfully!"
                 interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
                 return render(self, 'admin/create_rd.html', {'message': message,'interest_rates': interest_rates})
@@ -456,25 +445,17 @@ class Dashboard:
             interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
             return render(self, 'admin/create_rd.html',  {'interest_rates': interest_rates})
         
-  
+
+
+       
         
-        
+    
        
     def rd_account(self):
         # specific_account_number = 'FD8512473318' 
         rd_data = RecurringDeposit.objects.all()
         # fd_data = FixedDeposit.objects.filter(account_number=specific_account_number)
-        for obj in rd_data:
-            print(f"Account Number: {obj.account_number}")
-            print(f"Customer: {obj.customer.member}")
-            print(f"Start Date: {obj.start_date}")
-            print(f"Maturity Date: {obj.maturity_date}")
-            print(f"Maturity Amount: {obj.maturity_amount}")
-            print(f"Total Amount: {obj.total_amount}")
-            print(f"Status: {obj.status}")
-            print(f"Interest Rate: {obj.interest_rate.interest_rate}")
-            # print(f"Maturity Amount: {obj.maturity_amount}")
-            
+        for obj in rd_data: 
             return render(self, 'admin/rd_account.html', {'rd_data': rd_data})
         
   
@@ -482,9 +463,7 @@ class Dashboard:
     def edit_rd(request,account):
         rd_data = get_object_or_404(RecurringDeposit, account_number=account)
         customer = rd_data.customer
-        print(customer)
         rd_accounts = RecurringDeposit.objects.filter(customer=customer, account_number=account)
-        print(rd_accounts)
         return render(request, 'admin/edit_rd.html', {'rd_accounts': rd_accounts})
         
      
@@ -493,15 +472,6 @@ class Dashboard:
         fd_data = FixedDeposit.objects.all()
         # fd_data = FixedDeposit.objects.filter(account_number=specific_account_number)
         for obj in fd_data:
-            print(f"Account Number: {obj.account_number}")
-            print(f"Customer: {obj.customer.member}")
-            print(f"Start Date: {obj.start_date}")
-            print(f"Maturity Date: {obj.maturity_date}")
-            print(f"Total Amount: {obj.total_amount}")
-            print(f"Status: {obj.status}")
-            print(f"Interest Rate: {obj.interest_rate.interest_rate}")
-            print(f"Maturity Amount: {obj.maturity_amount}")
-            
             return render(self, 'admin/fd_account.html', {'fd_data': fd_data})
     
     
@@ -526,9 +496,7 @@ class Dashboard:
         fd_accounts = FixedDeposit.objects.filter(customer=customer)
         return render(request,'admin/edit_fd.html/',{'fd_accounts': fd_accounts})
 
-
-   
-      
+  
     def create_fd_account(self):
         if self.method == 'POST':
             try:
@@ -537,7 +505,7 @@ class Dashboard:
                 start_date = self.POST.get('start_date')
                 maturity_date = self.POST.get('maturity_date')
                 total_amount = self.POST.get('total_amount')
-                print(f"Received interest_rate: {interest_rate_value}")
+                
                 
                 try:
                     customer = Customer.objects.get(member=member)

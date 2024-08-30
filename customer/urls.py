@@ -30,6 +30,7 @@ urlpatterns = [
     # path('matured/', withdraw_fd, name='withdraw_fd'),
     path('withdraw_fd/<int:fd_id>/', withdraw_fd, name='withdraw_fd'),
     path('home/', fd_home, name='fd_home'),
-    
+    path('rd_home/', rd_home, name='rd_home')
 ]
+
 

@@ -1,10 +1,15 @@
 import csv
+from django.contrib.auth.forms import PasswordChangeForm
 import random
+from django.contrib.auth.hashers import make_password
+
 from django.forms import forms
 from django.shortcuts import render, redirect
 from masteradmin.models import *
 from django.http import HttpResponse, JsonResponse
 import datetime
+from django.contrib.auth import update_session_auth_hash
+
 from django.db import models
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
@@ -90,8 +95,7 @@ def Customer_Login(request):
 #                 account_no=saving_account.id,
 #                 transaction_date__range=[start_date, end_date]
 #             )
-            
-#             print(f"Transactions: {transactions}")
+        
             
 #     else:
 #         form = BankStatementForm()
@@ -132,8 +136,7 @@ def customer_account(request, account_no):
     start_date = request.GET.get('startDate')
     end_date = request.GET.get('endDate')
     
-    print(start_date)
-    print(end_date)
+    
     if start_date and end_date:
         start_date = parse_date(start_date)
         end_date = parse_date(end_date)
@@ -239,37 +242,15 @@ def get_bank_statement(request):
             if timezone.is_naive(end_datetime):
                 end_datetime = timezone.make_aware(end_datetime, timezone.get_current_timezone())
             
-            # Debugging: Print member_id and date range
-            print(f"Member ID: {member_id}, Start Date: {start_datetime}, End Date: {end_datetime}")
-            
-            # Retrieve the saving account
-            # saving_account = get_object_or_404(SavingAccount, member=member_id)
-            # print(f"Saving Account: {saving_account}")
-            
-            # Retrieve all transactions for the account
-            # all_transactions = Transactions.objects.filter(account_no=saving_account)
-            # print(f"All Transactions for account: {all_transactions}")
-
-            # Retrieve transactions for the user within the date range
-            # transactions = Transactions.objects.filter(
-            #     account_no=saving_account,
-            #     transaction_date__range=[start_datetime, end_datetime]
-            # )
             customer = get_object_or_404(Customer, member=member_id)
             
-            # Retrieve the saving account for the customer
-            # saving_account = get_object_or_404(SavingAccount, account_no=customer)
-            # print(f"Saving Account: {saving_account}")
             
             
             transactions = Transactions.objects.filter(
                 # member=customer,
                 transaction_date__range=[start_datetime, end_datetime]
             )
-            
-            
-            # Debugging: Print the retrieved transactions
-            print(f"Transactions: {transactions}")
+       
     else:
         form = BankStatementForm()
 
@@ -301,47 +282,10 @@ def customer_bill(self):
 def create_fd_view(request):
     return render(request, 'Customer/create_fd.html')
 
-###new new fd
-# def customer_fd(request):
-#     member_id = request.session.get('customer_id')
-#     customer = get_object_or_404(Customer, member=member_id)
-    
-#     try:
-#         fd_accounts = FixedDeposit.objects.filter(customer=customer)
-        
-        
-        
-#         fd_with_details = []
-#         for fd in fd_accounts:
-#             # for maturity amount calculation
-#             interest_rate = Decimal(fd.interest_rate.interest_rate.strip('%')) / 100
-#             time_in_years = (fd.maturity_date - fd.start_date).days / 365
-#             maturity_amount =  fd.total_amount*(1 + interest_rate) ** Decimal(time_in_years)
-#             fd.maturity_amount = maturity_amount
-#             fd.save() 
-#             fd_with_details.append({
-#                 'fd_account': fd,
-#                 'interest_rate': fd.interest_rate.interest_rate,  # Assuming interest_rate is a foreign key
-#                 'start_date': fd.start_date,
-#                 'maturity_date': fd.maturity_date,
-#                 'total_amount':fd.total_amount,
-#                 'maturity_amount': maturity_amount
-#             })
-#             context = {
-#             'fd_accounts': fd_with_details
-#         }
-#         print(context)
-#         return render(request, 'Customer/FD.html', context)
-#     except Customer.DoesNotExist:
-#         return render(request, 'Customer/FD.html', {'error': 'Customer not found'})
-
-
-
-
-
 
 
 def customer_fd(request):
+    
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
     fd_accounts = FixedDeposit.objects.filter(customer=customer)
@@ -365,7 +309,8 @@ def customer_fd(request):
             'start_date': fd.start_date,
             'maturity_date': fd.maturity_date,
             'total_amount': fd.total_amount,
-            'maturity_amount': maturity_amount
+            'maturity_amount': maturity_amount,
+            'account_number': fd.account_number,
         })
 
     # Check FD status and render appropriate template
@@ -375,27 +320,23 @@ def customer_fd(request):
     return render(request, 'Customer/fd_Home.html')
 
 
-### new new fd
+
 
 
 def withdraw_fd(request, fd_id):
     fd = get_object_or_404(FixedDeposit, pk=fd_id)
     member_id = request.session.get('customer_id')
-    print(member_id)
+   
     
     customer = get_object_or_404(Customer, member=member_id)
-    print(customer)
-    print(customer.id)
+  
     saving_account = SavingAccount.objects.filter(member=member_id).first()
-    print(saving_account)
+   
     
     if saving_account is None:
         # Handle the case where no saving account is found
         return render(request, 'Customer/FD.html', {'error': 'No saving account found for the customer.'})
-    print("ds")
-    print(fd.total_amount)
-    print(fd.maturity_amount)
-    
+   
     
     if fd.status != 'Active':
         # Handle the case where FD status is not Active
@@ -404,7 +345,6 @@ def withdraw_fd(request, fd_id):
     
     balance = Decimal(saving_account.account_balance) 
     balance += fd.maturity_amount
-    print(balance)
     saving_account.account_balance = str(balance)
     saving_account.save() 
 
@@ -447,10 +387,9 @@ def withdraw_fd(request, fd_id):
 def fd_home(request):  
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
-    print(customer)
+    
     
     fd_accounts = FixedDeposit.objects.filter(customer=customer)
-    print(fd_accounts)
     if not fd_accounts.exists():
         # No FD accounts found, render fd_Home.html
         return render(request, 'Customer/fd_Home.html')
@@ -463,12 +402,13 @@ def fd_home(request):
             fd.maturity_amount = maturity_amount
             fd.save() 
             fd_with_details.append({
-                'fd_account': fd.account_number,
-                'interest_rate': fd.interest_rate.interest_rate,  # Assuming interest_rate is a foreign key
+                'fd_account': fd,
+                'interest_rate': fd.interest_rate.interest_rate, 
                 'start_date': fd.start_date,
                 'maturity_date': fd.maturity_date,
                 'total_amount':fd.total_amount,
-                'maturity_amount': maturity_amount
+                'maturity_amount': maturity_amount,
+                'account_number': fd.account_number,
             })
             context = {
             'fd_accounts': fd_with_details
@@ -491,8 +431,81 @@ def fd_home(request):
     
     
     
+  
+def rd_home(request):
+    member_id = request.session.get('customer_id')
+    customer = get_object_or_404(Customer, member=member_id)
     
+    rd_accounts = RecurringDeposit.objects.filter(customer=customer)
     
+    rd_with_next_payment = []
+    
+    for rd in rd_accounts:
+        # Calculate next payment date
+        last_payment = PaymentSchedule.objects.filter(
+            rd_account=rd,
+            status='Completed'
+        ).order_by('-payment_date').first()
+        
+        if last_payment:
+            next_payment_date = last_payment.payment_date + timedelta(days=30)  # Assuming monthly payments
+        else:
+            next_payment_date = rd.start_date + timedelta(days=30)
+        
+        # Get current payment details
+        current_payments = PaymentSchedule.objects.filter(
+            rd_account=rd
+        ).order_by('-payment_date')
+        
+        maturity_amount = calculate_rd_maturity_amount(rd)
+        rd.maturity_amount = maturity_amount
+        rd.save()
+        
+        rd_with_next_payment.append({
+            'rd_account': rd,
+            'next_payment_date': next_payment_date,
+            'current_payments': current_payments,
+            'interest_rate': rd.interest_rate.interest_rate,
+            'maturity_amount': maturity_amount
+        })
+    
+    # Handle date filtering
+    start_date = request.GET.get('startDate')
+    end_date = request.GET.get('endDate')
+    
+    if start_date and end_date:
+        start_date = parse_date(start_date)
+        end_date = parse_date(end_date)
+        
+        if start_date and end_date:
+            end_date = dt.combine(end_date, dt.max.time())
+            payment = PaymentSchedule.objects.filter(rd_account__in=rd_accounts, payment_date__range=(start_date, end_date))
+        else:
+            payment = PaymentSchedule.objects.filter(rd_account__in=rd_accounts)
+    else:
+        payment = PaymentSchedule.objects.filter(rd_account__in=rd_accounts)
+    
+    paginator = Paginator(rd_with_next_payment, 10)  # Show 10 items per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    context = {
+        'rd_with_next_payment': rd_with_next_payment,
+        'start_date': start_date or '',
+        'end_date': end_date or '',
+        'page_obj': page_obj,
+    }
+    
+    rd_status = rd_accounts.values_list('status', flat=True).distinct()
+    
+    if 'Matured' in rd_status:
+        return render(request, 'Customer/rd_matured.html', {'rd_accounts': rd_accounts})
+    elif 'Active' in rd_status:
+        return render(request, 'Customer/RD.html', context)
+    else:
+        return render(request, 'Customer/rd_Home.html')
+    
+       
     
       
 
@@ -549,7 +562,8 @@ def customer_rd(request):
             #     payment_date=next_payment_date,
             #     status='Pending'
             # ).first()  # Use .first() to get the actual object if it exists
-            # print(next_payment)
+            # 
+            
             
             # Get current payment details
             current_payments = PaymentSchedule.objects.filter(
@@ -559,9 +573,6 @@ def customer_rd(request):
             maturity_amount = calculate_rd_maturity_amount(rd)
             rd.maturity_amount = maturity_amount
             rd.save()
-            
-            print(current_payments)
-            print(rd.interest_rate.interest_rate)
             
             
             rd_with_next_payment.append({
@@ -575,9 +586,6 @@ def customer_rd(request):
             payment = PaymentSchedule.objects.filter(rd_account=rd)
             start_date = request.GET.get('startDate')
             end_date = request.GET.get('endDate')
-            # print(start_date)
-            # print(end_date)
-            
             
             if start_date and end_date:
                 start_date = parse_date(start_date)
@@ -600,15 +608,40 @@ def customer_rd(request):
              'end_date': request.GET.get('endDate', ''),
             'page_obj': page_obj,
         }
-            print(context)
+            
             return render(request, 'Customer/RD.html', context)
     except Customer.DoesNotExist:
         return render(request, 'Customer/RD.html', {'error': 'Customer not found'})
 
 
-# new new new
 
-# new new new
+# def deposit(request):
+#     member_id = request.session.get('customer_id')
+#     customer = get_object_or_404(Customer, member=member_id)
+    
+#     try:
+#         # Assuming you're dealing with one RecurringDeposit per customer
+#         rd_account = RecurringDeposit.objects.get(customer=customer)
+        
+        
+#         # Create a new payment schedule entry
+#         new_payment = PaymentSchedule.objects.create(
+#             rd_account=rd_account,
+#             payment_date='2024-06-20',
+#             amount=4000,
+#             status='Completed'
+#         )
+        
+
+#         return render(request, 'Customer/RD.html')
+    
+#     except RecurringDeposit.DoesNotExist:
+#         # Handle the case where no RecurringDeposit exists for this customer
+#         return render(request, 'Customer/RD.html', {'error': 'No RecurringDeposit found for this customer.'})
+    
+#     except Customer.DoesNotExist:
+#         # Handle the case where no customer exists
+#         return render(request, 'Customer/RD.html', {'error': 'Customer not found.'})
 
 
 def download_payment(request):
@@ -694,7 +727,7 @@ def customer_loan(request):
             loan.schedule = calculate_amortization_schedule(loan_amount, annual_rate, loan_tenure)
         except InvalidOperation:
             loan.schedule = []# Handle invalid conversion by setting an empty schedule
-    print(loan.schedule)
+    
   
     context = {
         'customer': customer,
@@ -736,7 +769,7 @@ def customer_fd(request):
             context = {
             'fd_accounts': fd_with_details
         }
-        print(context)
+        
         return render(request, 'Customer/FD.html', context)
     except Customer.DoesNotExist:
         return render(request, 'Customer/FD.html', {'error': 'Customer not found'})
@@ -871,7 +904,7 @@ def customer_funds(request):
             )
                 
                 
-            print("hello 665")
+            
             source_account.save()
             destination_account.save()
             
@@ -881,8 +914,6 @@ def customer_funds(request):
             return render(request, 'Customer/Funds.html', {'error': str(e)})
         
         # transactions = Transactions.objects.filter(member_id=member_id).order_by('-transfer_date')
-        # print([transaction.transaction_type for transaction in transactions])
-        
         
         transactions = Transactions.objects.all()
         for transaction in transactions:
@@ -913,64 +944,120 @@ def customer_invest(self):
 def customer_services(self):
     return render(self,'Customer/Services.html')
 
-def customer_profile(request):
-    if request.method == "POST":
-           personal= {'first-name': request.POST.get("first-name"),'last-name':request.POST.get("last-name"),
-                      'father_name': request.POST.get("father_name"),'gender':request.POST.get("gender"),
-                      'dob': request.POST.get("dob")}
-           Customer.objects.filter(email='ankur@gmail.com').update(first_name=personal['first-name'],
-                                                                   last_name=personal['last-name'],
-                                                                   father_name=personal['father_name'],
-                                                                   gender=personal['gender'],
-                                                                   dob=personal['dob'])
-           contact = {'state': request.POST.get("state"), 'city': request.POST.get("city"),
-                      'current-add': request.POST.get("current-add"), 'postal': request.POST.get("postal"),
-                      'email': request.POST.get("email"), 'mobile': request.POST.get("mobile")}
-           Customer.objects.filter(email='ankur@gmail.com').update(state=contact['state'],
-                                                                   city=contact['city'],
-                                                                   current_address=contact['current-add'],
-                                                                   post_office=contact['postal'],
-                                                                   email=contact['email'],
-                                                                   mobile=contact['mobile'])
 
-           bank = {'bank-name': request.POST.get("bank-name"), 'account': request.POST.get("account"),
-                   'branch': request.POST.get("branch"), 'ifsc': request.POST.get("ifsc"),
-                   'account-holder': request.POST.get("account-holder")}
-           SavingAccount.objects.filter(member_id=2).update(branch_name=bank['bank-name'],
-                                                            account_no=bank['account'],
-                                                            branch_code=bank['branch'],
-                                                            ifsc=bank['ifsc'],
-                                                            status=bank['account-holder'])
-           nominee = {'nominee-name': request.POST.get("nominee-name"), 'relation': request.POST.get("relation"),
-                      'nominee-dob': request.POST.get("nominee-dob")}
-           UserFamily.objects.filter(user_id=2).update(nominee_name=nominee['nominee-name'],
-                                                       nominee_relationship=nominee['relation'],
-                                                       nominee_dob=nominee['nominee-dob'])
-           return redirect('profile')
+def customer_profile(request):
+    member_id = request.session.get('customer_id')
+    
+    # Fetch the customer object based on the member ID
+    customer = get_object_or_404(Customer, member=member_id)
+
+    if request.method == "POST":
+        # Updating personal details
+        personal_details = {
+            'first_name': request.POST.get("first-name"),
+            'last_name': request.POST.get("last-name"),
+            'father_name': request.POST.get("father_name"),
+            'gender': request.POST.get("gender"),
+            'dob': request.POST.get("dob"),
+        }
+        Customer.objects.filter(member=member_id).update(**personal_details)
+
+        # Updating contact details
+        contact_details = {
+            'state': request.POST.get("state"),
+            'city': request.POST.get("city"),
+            'current_address': request.POST.get("current-add"),
+            'post_office': request.POST.get("postal"),
+            'email': request.POST.get("email"),
+            'mobile': request.POST.get("mobile"),
+        }
+        Customer.objects.filter(member=member_id).update(**contact_details)
+
+        # Updating bank details
+        bank_details = {
+            'branch_name': request.POST.get("bank-name"),
+            'account_no': request.POST.get("account"),
+            'branch_code': request.POST.get("branch"),
+            'ifsc': request.POST.get("ifsc"),
+            'status': request.POST.get("account-holder"),
+        }
+        SavingAccount.objects.filter(member=member_id).update(**bank_details)
+
+        # Updating nominee details
+        nominee_details = {
+            'nominee_name': request.POST.get("nominee-name"),
+            'nominee_relationship': request.POST.get("relation"),
+            'nominee_dob': request.POST.get("nominee-dob"),
+        }
+        UserFamily.objects.filter(user_id=customer.user.id).update(**nominee_details)
+
+        return redirect('profile')
+
     else:
-        result = Customer.objects.get(email='ankur@gmail.com')
-        payment=SavingAccount.objects.get(member_id=2)
-        nominee=UserFamily.objects.get(user_id=2)
-        return render(request,'Customer/Profile.html',{'result': result, 'payment': payment, 'nominee': nominee})
+        # Retrieve the customer profile and related data
+        payment = get_object_or_404(SavingAccount, member=member_id)
+        nominee = get_object_or_404(UserFamily, user=customer)
+
+        return render(request, 'Customer/Profile.html', {
+            'result': customer,
+            'payment': payment,
+            'nominee': nominee
+        })
+
+
+
+
 
 def customer_setting(request):
+    # Fetching session data (if needed)
+    customer_id = request.session.get('customer_id')
+    
     if request.method == "POST":
-            oldpass = request.POST.get("oldpassword")
-            personal = {'newpass': request.POST.get("newpassword"), 'conpass': request.POST.get("conpassword")}
-            result= Customer.objects.get(email='ankur@gmail.com')
-            if result.password == oldpass :
-                if personal['newpass'] == personal['conpass']:
-                    Customer.objects.filter(email='ankur@gmail.com').update(password=personal['newpass'])
-                    message = 'Password successfully change'
-                    return render(request, 'Customer/Settings.html', {'message': message})
-                else:
-                   message='Password does not match'
-                   return render(request,'Customer/Settings.html',{'message': message})
-            else:
-                message = 'Password incorrect'
-                return render(request, 'Customer/Settings.html', {'message': message})
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        
+        if form.is_valid():
+            # Save the new password in the Django User model
+            user = form.save()
+            update_session_auth_hash(request, user)  # Keep the user logged in
+
+            # Optionally update the password in the Customer model
+            if customer_id:
+                try:
+                    # Fetch the Customer record
+                    customer = Customer.objects.get(id=customer_id)
+
+                    # Get the new password from the form
+                    new_password = form.cleaned_data['new_password1']
+                    
+                    
+
+                    # Ensure the password is a string
+                    if not isinstance(new_password, str):
+                        raise TypeError("Password must be a string.")
+
+                    # Hash the password
+                    hashed_password = make_password(new_password)
+
+                
+                    # Update the password field with the hashed password
+                    customer.password = hashed_password
+                    customer.save()
+
+                    
+                except Customer.DoesNotExist:
+                    messages.error(request, 'Customer profile not found.')
+                except Exception as e:
+                    messages.error(request, f'An error occurred: {e}')
+    
+            messages.success(request, 'Password successfully changed')
+            return redirect('customer_settings')
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    
     else:
-        return render(request,'Customer/Settings.html')
+        form = PasswordChangeForm(user=request.user)
+    
+    return render(request, 'Customer/Settings.html', {'form': form})
 
 
 def interest_rate(request):
@@ -991,7 +1078,7 @@ def create_fd_account(self):
             start_date = self.POST.get('start_date')
             maturity_date = self.POST.get('maturity_date')
             total_amount = self.POST.get('total_amount')
-            print(f"Received interest_rate: {interest_rate_value}")
+            
             
             try:
                 customer = Customer.objects.get(member=member)
@@ -1032,8 +1119,8 @@ def create_fd_account(self):
 
 
 
-
 def create_rd_account(self):
+    
   
     if self.method == 'POST':
         try:
@@ -1042,7 +1129,7 @@ def create_rd_account(self):
             start_date = self.POST.get('start_date')
             maturity_date = self.POST.get('maturity_date')
             total_amount = self.POST.get('total_amount')
-            print(f"Received interest_rate: {interest_rate_value}")
+            
             
             try:
                 customer = Customer.objects.get(member=member)
@@ -1068,6 +1155,8 @@ def create_rd_account(self):
                 maturity_date=maturity_date,
                 )
             RD_account.save()
+        
+            
             message = "RD created successfully!"
             interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
             return render(self, 'customer/create_rd.html', {'message': message, 'interest_rates': interest_rates})
