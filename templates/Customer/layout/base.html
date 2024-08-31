@@ -10,6 +10,8 @@
 
     <title>HBF NIDHI </title>
 
+    <!-- Option 1: Include in HTML -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <!-- Bootstrap -->
     <link href="{% static "customer/css/Customer_dashboard/bootstrap.css" %}" rel="stylesheet">
     <!-- Font Awesome -->
@@ -70,26 +72,68 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>General</h3>
+         
                 <ul class="nav side-menu">
-                  <li><a href="home"><i class="fa fa-home"></i> Home </a>
+                  <li><a href="{%url 'customer_home' %}"><i class="fa fa-home"></i> Home </a>
 
                   </li>
-                  <li><a href="account"><i class="fa fa-edit"></i> Accounts <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="{% url 'customer_account' request.session.account_no %}"><i class="fa fa-edit"></i> Accounts <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                     </ul>
                   </li>
-                  <li><a href="funds"><i class="fa fa-desktop"></i> Funds Trasnfer <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="{% url 'customer_funds' %}"><i class="fa fa-desktop"></i> Funds Trasnfer <span class="fa fa-chevron-down"></span></a>
                   </li>
-                  <li><a href="bill"><i class="fa fa-table"></i> Bill Payment <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="{% url 'customer_bill' %}"><i class="fa fa-table"></i> Bill Payment <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                     </ul>
                   </li>
+                  
+
                   <li><a><i class="fa fa-bar-chart-o"></i> Services  <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="Fd">Fixed Deposit (FD)</a></li>
-                      <li><a href="Rd">recurring deposit (RD)</a></li>
-                      <li><a href="loan">Loan</a></li>
+
+                      <!-- {% if fd.status == 'Active' %}
+                      <li><a href="{% url 'Fd' %}">Fixed Deposit (FD)</a></li>
+                      {% elif fd.status == 'Matured' %}
+                      <li><a href="{% url 'withdraw_fd' fd.fd_account.id %}">View Matured FD</a></li>
+                      {%else%}
+                      <li><a href="{% url 'fd_home' %}">FD</a></li>
+                      {% endif %} -->
+
+                      <!-- Fixed Deposit (FD) Section -->
+
+                      {% if fd %}
+                      {% if fd.status == 'Active' %}
+                      <li><a href="{% url 'Fd' %}">Fixed Deposit (FD)</a></li>
+                      {% elif fd.status == 'Matured' %}
+                      <li><a href="{% url 'withdraw_fd' fd.fd_account.id %}">View Matured FD</a></li>
+                      {% else %}
+                      <li><a href="{% url 'fd_home' %}">FD</a></li>
+                      {% endif %}
+                      {% else %}
+                      <li><a href="{% url 'fd_home' %}">FD</a></li>
+                      {% endif %}
+
+
+                      <!-- Recurring Deposit (RD) Section -->
+                      {% if rd %}
+                      {% if rd.status == 'Active' %}
+                      <li><a href="{% url 'Rd' %}">Recurring Deposit (RD)</a></li>
+                      {% else %}
+                      <li><a href="{% url 'rd_home' %}">RD</a></li>
+                      {% endif %}
+                      {% else %}
+                      <li><a href="{% url 'rd_home' %}">RD</a></li>
+                      {% endif %}
+               
+<!--                       
+                      {% if rd.status == 'Active' %}
+                      <li><a href="{% url 'Rd' %}">Recurring Deposit (RD)</a></li>
+                      {%else%}
+                      <li><a href="{% url 'rd_home' %}">RD</a></li>
+                      {% endif %} -->
+                      
+                      <li><a href="{% url 'loan' %}">Loan</a></li>
                     </ul>
                   </li>
                   <li><a href="invest"><i class="fa fa-clone"></i>Invest<span class="fa fa-chevron-down"></span></a>
@@ -117,7 +161,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="/static/img/bg.jpg" alt="">John Doe
+                    <i class="bi bi-person-circle"></i> {{customer_name }}
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">

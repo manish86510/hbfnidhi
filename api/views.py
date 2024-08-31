@@ -13,7 +13,7 @@ from rest_framework.status import (
 from masteradmin.models import *
 
 
-@csrf_exempt
+
 @api_view(["POST"])
 @permission_classes((AllowAny,))
 def login(self):

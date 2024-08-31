@@ -1,0 +1,104 @@
+
+{% extends 'admin/layouts/base.html' %}
+{% block content %}
+<div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                            <form role="search" class="sr-input-func">
+                                               <!-- <input type="text" placeholder="Search..." class="search-int form-control">
+                                                <a href="#"><i class="fa fa-search"></i></a>-->
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+                                            <li><a href="/admin/dashboard/">Home</a> <span class="bread-slash">/</span>
+                                            </li>
+                                            <li><span class="bread-slash">Loan Account</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- Static Table Start -->
+        <div class="data-table-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd">
+                                    <h1>List Of Loan Account</h1>
+                                </div>
+                            </div>
+
+                            <div class="sparkline13-graph">
+                                <div class="datatable-dashv1-list custom-datatable-overright">
+                                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
+                                                <th>SN.</th>
+                                                <th data-field="member">Member Id</th>
+                                                <th data-field="Account no">Ac.No</th>
+                                                <th data-field="Tenure">Tenure</th>
+                                                <th data-field="Amount">Amount</th>
+                                                <th data-field="Interest">Interest(Quarterly)</th>
+                                                <th data-field="Maturity">Maturity Amount</th>
+                                                <th data-field="opening_date">Opening Date</th>
+                                                <th>Icon</th>
+                                                <th data-field="active">Active</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for data in loan %}
+                                            <tr>
+                                                <td>{{ forloop.counter }}</td>
+                                                <td>{{ data.user.member }}</td>
+                                                <td>{{data.account_number}}</td>
+                                                <!-- <td><a href="/admin/fd_info/{{ data.account_number }}/{{ data.associated_member }}/"><u>{{ data.account_number }}</u></a></td> -->
+                                                <td>{{ data.tenure }}</td>
+                                                <td>{{ data.amount }}</td>
+                                                <td>{{ data.interest_rate }}</td>
+                                                <td>{{ data.maturity_amount }}</td>
+                                                <td>{{ data.start_date}}</td>
+
+
+                                                <td>
+                                                    <a href="edit_loan/{{ data.user.member}}">
+                                                        <img src="https://img.icons8.com/?size=100&id=114092&format=png&color=000000" alt="icon" width="20" height="20">
+                                                    </a>
+                                                </td>
+
+                                                    {% if data.is_active == 0 %}
+                                                        <td><a href="/admin/fd/active/1/{{ data.account_number }}/"><button class="btn btn-info">Active</button></a></td>
+                                                    {% else %}
+                                                        <td><a href="/admin/fd/active/0/{{ data.account_number }}/"><button class="btn btn-warning">Not Active</button></a></td>
+                                                    {% endif %}
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+
+
+
+

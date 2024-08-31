@@ -4,6 +4,70 @@ from django.shortcuts import render
 from masteradmin.models import *
 import datetime, random
 
+from django.core.mail import send_mail
+from web.forms import *
+import socket
+socket.getaddrinfo('localhost', 8000)
+
+# def contact_view(request):
+#     if request.method == 'POST':
+#         form = ContactForm(request.POST)
+#         if form.is_valid():
+#             name = form.cleaned_data['Name']
+#             email = form.cleaned_data['Email']
+#             message = form.cleaned_data['message']
+            
+#             send_mail(
+#                 subject=name,
+#                 message=message,
+#                 from_email=email,
+#                 # recipient_list=['priyalsinghal11@gmail.com']
+#                 recipient_list = ['info@hbfnidhi.com']
+#             )
+
+            
+           
+#     else:
+#         form = ContactForm()
+
+#     return render(request, 'web/index.html', {'form': form})
+
+#     # return render(request, 'Customer/Accounts.html', context)
+
+
+
+def contact_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Extracting form data
+            name = form.cleaned_data['Name']
+            email = form.cleaned_data['Email']
+            message = form.cleaned_data['message']
+            
+            try:
+                # Sending email using send_mail function
+                send_mail(
+                    subject=f'Contact Form Submission from {name}',  # Subject of the email
+                    message=message,  # Message body of the email
+                    from_email='info@hbfnidhi.com',  # Sender email address from settings
+                    recipient_list=['info@hbfnidhi.com'],  # Recipient email address
+                    fail_silently=False,  # Raise error if email sending fails
+                )
+                success_message = "Email sent successfully."
+            except Exception as e:
+                success_message = f"Failed to send email: {e}"
+            
+            
+            # Rendering the template with a success message
+            return render(request, 'web/index.html', {'form': form, 'success_message': success_message})
+    else:
+        form = ContactForm()
+
+    # Rendering the template with the contact form
+    return render(request, 'web/index.html', {'form': form})
+
+
 
 def index(self):
     return render(self, 'web/index.html')
@@ -21,8 +85,8 @@ def shareholder(self):
     return render(self, 'web/shareholder.html')
 
 
-def doorstap(self):
-    return render(self, 'web/doorstep-services.html')
+# def doorstap(self):
+#     return render(self, 'web/doorstep-services.html')
 
 
 def enquiry(self):
@@ -40,6 +104,8 @@ def fixed(self):
 def recurring(self):
     return render(self, 'web/recurring-deposit.html')
 
+def monthlyincome(self):
+    return render(self, 'web/monthly-income-plan.html')
 
 def registration(self):
     return render(self, 'web/registration.html')
@@ -49,8 +115,8 @@ def loans(self):
     return render(self, 'web/loans.html')
 
 
-def lockers(self):
-    return render(self, 'web/lockers.html')
+# def lockers(self):
+#     return render(self, 'web/lockers.html')
 
 
 def contact(self):
@@ -59,8 +125,12 @@ def contact(self):
 def goldloan(self):
     return render(self,'web/gold-loan.html')
 
-def mortgageloan(self):
-    return render(self,'web/mortgage.html')
+
+def loanagainstgovtbond(self):
+    return render(self, 'web/loan-against-govt-bond.html')
+
+def loanagainstinsurancepolicy(self):
+    return render(self, 'web/loan-against-insurance-policy.html')
 
 def loanagainstdepositreceipt(self):
     return render(self, 'web/deposit-receipt.html')
@@ -118,6 +188,7 @@ def create_account(self):
                 last_login=models.DateTimeField(auto_now_add=True),
                 registration_date=models.DateTimeField(auto_now_add=True),
             )
+            
             customer.save()
             message = "Form submitted successfully !"
             return render(self, 'web/registration.html', {'message': message})

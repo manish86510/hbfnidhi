@@ -37,18 +37,29 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'masteradmin.apps.MasteradminConfig',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'corsheaders',
+
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    "http://192.168.1.32:8000",
+]
+
+CORS_ALLOW_ALL_ORIGINS=False
 
 ROOT_URLCONF = 'hbfnidhi.urls'
 
@@ -75,17 +86,20 @@ WSGI_APPLICATION = 'hbfnidhi.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+     'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
-        #'ENGINE': 'django.db.backends.mysql',
-        #'NAME': 'hbf_nidhi',
-        #'USER': 'root',
-        #'PASSWORD': '987654321',
-        #'HOST': 'localhost',
-        #'PORT': '3306',
-    }
+         'ENGINE': 'django.db.backends.postgresql',
+         'OPTIONS': {
+             'options': '-c search_path=general',
+         },
+        'NAME': 'hbfnidhi',
+        'USER': 'admin_user',
+        'PASSWORD': 'Password@123',
+        'HOST': '44.220.239.211',
+        'PORT': '5432',
+     }
 }
 
 # Password validation
@@ -130,3 +144,44 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'bigrock.titan.email'  # Replace with your SMTP server
+# EMAIL_PORT = 587  # Common port for TLS
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
+# EMAIL_HOST_USER = 'info@hbfnidhi.com'
+# EMAIL_HOST_PASSWORD = 'Hbfnidhi@11223344'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Replace with your SMTP server
+EMAIL_PORT = 587  # Common port for TLS
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = 'priyalsinghal38@gmail.com'
+EMAIL_HOST_PASSWORD = 'bjbn pekm xnam gvbr'
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
+
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://localhost:6379/1',
+    }
+}
+
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+
+
+

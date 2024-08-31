@@ -1,0 +1,75 @@
+{% extends 'admin/layouts/base.html' %}
+{% block content %}
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row top_tiles">
+            <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="tile-stats" style="background-color: hsl(195, 12%, 93%); color: #0b2e13;">
+                    <div class="single-pro-review-area mt-t-30 mg-b-15">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="product-payment-inner-st">
+                                        <div class="tab-content custom-product-edit">
+                                            <div class="product-tab-list tab-pane fade active in" id="persional">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="review-content-section">
+                                                            <h3>Fixed Deposit Create</h3>
+                                                            {% for fd in fd_accounts %}
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label>Account Number:</label>
+                                                                <input type="text" class="form-control" value="{{ fd.account_number }}" readonly>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Start Date:</label>
+                                                                <input type="text" class="form-control" value="{{ fd.start_date }}" readonly>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Maturity Date:</label>
+                                                                <input type="text" class="form-control" value="{{ fd.maturity_date }}" readonly>
+                                                            </div>
+                                                          </div>
+                                                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label>Total Amount:</label>
+                                                                <input type="text" class="form-control" value="{{ fd.total_amount }}" readonly>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Status:</label>
+                                                                <input type="text" class="form-control" value="{{ fd.status }}" readonly>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Interest Rate:</label>
+                                                                <input type="text" class="form-control" value="{{ fd.interest_rate.interest_rate }}" readonly>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Maturity Amount:</label>
+                                                                <input type="text" class="form-control" value="{{ fd.maturity_amount }}" readonly>
+                                                            </div>
+                                                            </div>
+                                                            </div>
+                                                            </div> 
+                                                            {% endfor %}
+                                                            <div class="form-group"> 
+                                                              <button class="btn btn-primary">Create</button>
+                                                          </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

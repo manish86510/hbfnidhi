@@ -1,0 +1,75 @@
+{% extends 'Customer/layout/base.html' %}
+{% block content %}
+<div class="right_col" role="main">
+    <div class="">
+      <div class="row top_tiles">
+        <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+             <div class="tile-stats" style="background-color: #003b4e; color: #0b2e13 ;">
+               <a class="site_title" style="background-color: #51a9b5;" > FD</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="single-pro-review-area mt-t-30 mg-b-15">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="product-payment-inner-st">
+                        <div class="tab-content custom-product-edit">
+                            <div class="product-tab-list tab-pane fade active in" id="persional">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="review-content-section"></div>
+                                        <h3>Create FD Account</h3>
+                                            <form id="dropzone1" action="" method="post">
+                                                {% csrf_token %}
+                                                <div class="row">
+                                                    <p>{{ message }}</p>
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="form-group">
+                                                                <input name="member_id" type="text" class="form-control" placeholder="Member Id">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input name="total_amount" type="text" class="form-control" placeholder="Amount">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input name="start_date" type="text" class="form-control" placeholder="Start Date">
+                                                            </div>
+                                                        </div>
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="form-group">
+                                                                <input name="tenure" type="text" class="form-control" placeholder="Tenure">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <select name="interest_rate" class="form-control" required>
+                                                                   
+                                                                    {% for rate in interest_rates %}
+                                                                        <option value="{{ rate }}">{{ rate }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                            </div>
+                                                           
+                                                          
+                                                            <div class="form-group">
+                                                                <input name="maturity_date" type="text" class="form-control" placeholder="Maturity date">
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                                <button type="submit" class="btn btn-primary waves-effect waves-light" style="float: right">Create Fixed Deposit</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+  </div>       
+{% endblock %}

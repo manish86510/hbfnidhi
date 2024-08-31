@@ -53,6 +53,7 @@
                                                 <th data-field="Interest">Interest(Quarterly)</th>
                                                 <th data-field="Maturity">Maturity Amount</th>
                                                 <th data-field="opening_date">Opening Date</th>
+                                                <th>Icon</th>
                                                 <th data-field="active">Active</th>
                                             </tr>
                                         </thead>
@@ -60,13 +61,21 @@
                                         {% for data in fd_data %}
                                             <tr>
                                                 <td>{{ forloop.counter }}</td>
-                                                <td>{{ data.associated_member }}</td>
+                                                <td>{{ data.customer.member }}</td>
                                                 <td><a href="/admin/fd_info/{{ data.account_number }}/{{ data.associated_member }}/"><u>{{ data.account_number }}</u></a></td>
                                                 <td>{{ data.tenure }}</td>
-                                                <td>{{ data.amount }}</td>
-                                                <td>{{ data.rate_of_interest }}</td>
+                                                <td>{{ data.total_amount }}</td>
+                                                <td>{{ data.interest_rate.interest_rate }}</td>
                                                 <td>{{ data.maturity_amount }}</td>
-                                                <td>{{ data.created_date }}</td>
+                                                <td>{{ data.start_date}}</td>
+
+
+                                                <td>
+                                                    <a href="edit_fd/{{ data.account_number }}">
+                                                        <img src="https://img.icons8.com/?size=100&id=114092&format=png&color=000000" alt="icon" width="20" height="20">
+                                                    </a>
+                                                </td>
+
                                                     {% if data.is_active == 0 %}
                                                         <td><a href="/admin/fd/active/1/{{ data.account_number }}/"><button class="btn btn-info">Active</button></a></td>
                                                     {% else %}

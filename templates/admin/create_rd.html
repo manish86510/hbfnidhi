@@ -48,17 +48,30 @@
                                                                     <input name="member_id" type="text" class="form-control" placeholder="Member Id">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <input name="balance" type="text" class="form-control" placeholder="Amount">
+                                                                    <input name="monthly_installment" type="text" class="form-control" placeholder="Monthly Installment">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input name="start_date" type="text" class="form-control" placeholder="Start Date">
                                                                 </div>
                                                             </div>
-                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                                 <div class="form-group">
                                                                     <input name="tenure" type="text" class="form-control" placeholder="Tenure">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <input name="rate_of_interest" type="text" class="form-control" placeholder="Interest Rate">
+                                                                    <select name="interest_rate" class="form-control" required>
+                                                                       
+                                                                        {% for rate in interest_rates %}
+                                                                            <option value="{{ rate }}">{{ rate }} </option>
+                                                                        {% endfor %}
+                                                                    </select>
                                                                 </div>
+                                                                
+                                                                <div class="form-group">
+                                                                    <input name="maturity_date" type="text" class="form-control" placeholder="Maturity date">
                                                                 </div>
+            
+                                                            </div>
                                                             </div>
                                                         <div class="row">
                                                             <div class="col-lg-12">

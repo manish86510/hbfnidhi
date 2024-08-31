@@ -1,136 +1,99 @@
 {% extends 'Customer/layout/base.html' %}
+{% load static %}
 {% block content %}
-    {% load static %}
-    <script>
-        function non_break_roi() {
-              var ab = document.getElementById("nonbreak_roi");
-              var strUser = ab.options[ab.selectedIndex].text;
-              var e = document.getElementById("scheme");
-              var scheme = e.options[e.selectedIndex].value;
-              $.ajax({
-              url: "rate",
-              data: {'strUser' : strUser ,'scheme' : scheme},
-              dataType: "json",
-              success: function (data) {
-                  $("#intrest_rate").val(data.rate);
-                  var amount = $("#amount").val();
-                  var irate =data.rate/100;
-                  var maturity_amount = (1+irate);
-                  var time = (strUser/12);
-                  var power = Math.pow(maturity_amount, time);
-                  var mat_amount = amount*power;
-                  $("#maturity").val(mat_amount);
-              },
-              failure: function(data) {
-                  document.getElementById("account").value = "Not Available";
-              }
-              });
-        }
-    </script>
-    <script src="{% static "customer/js/Customer_dashboard/Editable.js" %}"></script>
-      <!-- page content -->
-    <div class="right_col" role="main" xmlns="http://www.w3.org/1999/html">
-          <div class="">
-            <div class="row top_tiles">
-              <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12" >
-                   <div class="tile-stats" style="background-color: #003b4e; color: #0b2e13 ;">
-                     <a class="site_title" style="background-color: #51a9b5;" > Fixed Deposit (FD)</a>
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row top_tiles">
+            <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="tile-stats">
+                    <a class="site_title" style="background-color: #51a9b5;">Fixed Deposit (FD)</a>
                 </div>
-              </div>
             </div>
-             <div class="row">
-              <div class="col-md-1 col-sm-1 col-xs-2">
-              </div>
-              <div class="col-md-10 col-sm-10 col-xs-7">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Apply for FD</h2>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <br />
-                    <form class="form-horizontal form-label-left input_mask"  method="POST" action="Fd">
-                            {% csrf_token %}
-                    <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Amount : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text"  id="amount" name="amount" class="form-control">
+        </div>
+        <div class="rd-details">
+            <div style="text-align: right; margin-right:5%; margin-top:1%;">
+                <a href="{% url 'create_fd' %}" class="btn btn-primary">Apply for FD</a>
+            </div>
+            {% if fd_accounts %}
+                <div class="rd-accounts-container">
+                    {% for fd in fd_accounts %}
+                        <div class="rd-account-card">
+                            <h4>FD Account Details</h4>
+                            <div class="account-info">
+                                <p><strong>Account Number:</strong> {{ fd.account_number }}</p>
+                                <p><strong>Interest Rate:</strong> {{ fd.interest_rate.interest_rate }}</p>
+                                <p><strong>Start Date:</strong> {{ fd.start_date }}</p>
+                                <p><strong>Maturity Date:</strong> {{ fd.maturity_date }}</p>
+                                <p><strong>Amount:</strong> {{ fd.total_amount }}</p>
+                                <p><strong>Maturity Amount:</strong> {{ fd.maturity_amount }}</p>
+                            </div>
+                            
+                            <div style="text-align: right; margin-right:5%; margin-top:1%;">
+                                {% if fd.status == 'Active' %}
+                                    <a href="{% url 'withdraw_fd' fd.id %}" class="btn btn-primary">Withdraw</a>
+                                {% elif fd.status == 'Matured' %}
+                                    <a href="{% url 'withdraw_fd' fd.id %}" class="btn btn-primary">View Matured FD</a>
+                                {% endif %}
+                            </div>
                         </div>
-                    </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Account No :</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text"  id="account" name="account" value="{{ acc_num.account_no }}" class="form-control" readonly="readonly" placeholder="Read-Only Input" >
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Scheme : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select id="scheme" name="scheme" onclick="selectedvalue()" class="form-control">
-                              <option value="0">Non-Breakable</option>
-                              <option value="1">Breakable</option>
-                          </select>
-                        </div>
-                       </div>
-
-                      <div class="form-group my" id="Non-Breakable">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Tenure :</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-
-                        <select id="nonbreak_roi" name="nonbreak_roi" onclick="non_break_roi()" class="form-control">
-                            {% for data in scheme_non_breakable %}
-                              <option>{{ data.tenure }} </option>
-                            {% endfor %}
-                        </select>
-                        </div>
-                      </div>
-
-                     <div class="form-group my" id="Breakable" >
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Tenure :</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-
-                        <select id="break_roi" name="break_roi" oncuechange="non_break_roi()" class="form-control">
-                            {% for data in scheme_breakable %}
-                              <option>{{ data.tenure }}</option>
-                            {% endfor %}
-                        </select>
-                        </div>
-                      </div>
-
-                      <div class="form-group " >
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Rate of interest : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="intrest_rate" name="intrest_rate" value="{{ rate.values }}" class="form-control" readonly="readonly" placeholder="Read-Only Input" >
-                        </div>
-                      </div>
-
-                       <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Maturity Amount : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="maturity" name="maturity" class="form-control"  readonly>
-                        </div>
-                      </div>
-
-                      <div class="ln_solid"></div>
-
-                      <div class="form-group">
-                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                          {{ message }}
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                          <button type="submit" class="btn btn-success" >Submit</button>
-                        </div>
-                      </div>
-                 </form>
-                  </div>
+                    {% endfor %}
                 </div>
-              </div>
-             </div>
-          </div>
-          </div>
+            {% else %}
+                <h3>Yourrrr FD account not created</h3>
+            {% endif %}
+        </div>
+        <style>
+            .rd-details {
+                padding: 20px;
+                background-color: #f4f5f5;
+                border-radius: 10px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                max-width: 1200px;
+                margin: auto;
+            }
+            
+            .rd-details h3 {
+                color: #060808;
+                padding-bottom: 10px;
+                margin-bottom: 20px;
+            }
+            
+            .rd-accounts-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .rd-account-card {
+                background-color: #ffffff;
+                border: 1px solid #dbe2e8;
+                border-radius: 10px;
+                padding: 20px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                width: 100%;
+                max-width: 1000px;
+                box-sizing: border-box;
+            }
+            
+            .rd-account-card h4 {
+                margin-top: 0;
+                color: #004d40;
+                font-size: 18px;
+                border-bottom: 2px solid #004d40;
+                padding-bottom: 5px;
+                margin-bottom: 15px;
+            }
+            
+            .account-info p {
+                margin: 10px 0;
+                color: #333;
+            }
+            
+            .account-info strong {
+                color: #004d40;
+            }
+        </style>
+    </div>
+</div>
 {% endblock content %}

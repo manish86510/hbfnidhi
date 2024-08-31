@@ -163,9 +163,12 @@
                                 <li class="dropdown-submenu1">
                                     <a href="/loans/">Loan Products</a>
                                     <ul class="dropdown-menu2">
+                                        
+
                                         <li><a href="/gold-loan/">Gold Loan</a></li>
-                                        <li><a href="/mortgage/">Mortgage Loan</a></li>
+                                        <li><a href="/loan-against-insurance-policy/">Loan against Insurance Policy</a></li>
                                         <li><a href="/deposit-receipt/">Loan against deposit receipt</a></li>
+                                        <li><a href="/loan-against-govt-bond/">Loan against Govt. Bond</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -180,7 +183,7 @@
                                     <a href="/fixed/">Fixed Deposit </a>
                                 </li>
                                 <li class="dropdown-submenu1">
-                                    <a href="#">Monthly Income Plan</a>
+                                    <a href="/monthly-income-plan/">Monthly Income Plan</a>
                                 </li>
                                 <li class="dropdown-submenu1">
                                     <a href="/recurring/">Recurring Deposit </a>
@@ -263,6 +266,14 @@
             effect: 'sideFade',
             caption: true
         });
+        $('#demo2_thumbs').desoSlide({
+            main: {
+                container: '#demo2_main_image',
+                cssClass: 'img-responsive'
+            },
+            effect: 'sideFade',
+            caption: true
+        });
     </script>
     <!-- //team desoslide-JavaScript -->
     <!-- Flexslider-js for-testimonials -->
@@ -327,6 +338,37 @@
             });
 
         });
+    </script>
+    <script>
+        function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+const csrftoken = getCookie('csrftoken');
+
+fetch('/your-url/', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': csrftoken
+    },
+    body: JSON.stringify({your_data: 'value'})
+}).then(response => {
+    // handle the response
+});
+
     </script>
     <script src={% static "web/js/SmoothScroll.min.js" %}></script>
     <script src={% static "web/js/smoothbox.jquery2.js" %}></script>

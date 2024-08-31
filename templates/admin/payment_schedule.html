@@ -1,0 +1,24 @@
+<!-- templates/payment_schedule.html -->
+
+{% extends 'admin/layouts/base.html' %}
+
+{% block content %}
+<div>
+    <br>
+    <br>
+    <h1>Next Payment Schedule</h1>
+    {% if payment %}
+        {% for p in payment %}
+            <p><strong>Account ID:</strong> {{ p.rd_account.account_number }}</p>
+            <p><strong>Payment Date:</strong> {{ p.payment_date }}</p>
+            <p><strong>Status:</strong> {{ p.status }}</p>
+            <br>
+        {% endfor %}
+    {% else %}
+        <p> </p>
+        
+    {% endif %}
+    <!-- This will display the next payment date regardless of the payment queryset state -->
+    <p><strong>Next Payment Date:</strong> {{ next_payment_date }}</p>
+</div>
+{% endblock %}
