@@ -99,17 +99,7 @@ DATABASES = {
         'PASSWORD': 'Password@123',
         'HOST': '44.220.239.211',
         'PORT': '5432',
-     },
-    # 'default': {
-       
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'Banking Portal',
-    #     'USER': 'root',
-    #     'PASSWORD': '987654321',
-    #     'HOST': 'localhost',
-    #     'PORT': '3306',
-    
-    # }
+     }
 }
 
 # Password validation
