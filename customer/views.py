@@ -5,6 +5,7 @@ from django.contrib.auth.hashers import make_password
 
 from django.forms import forms
 from django.shortcuts import render, redirect
+from customer.tasks import enable_next_payment
 from masteradmin.models import *
 from django.http import HttpResponse, JsonResponse
 import datetime
@@ -24,7 +25,7 @@ from datetime import datetime, time as dt_time
 from datetime import timedelta
 from decimal import Decimal
 from django.contrib import messages
-from .tasks import send_email_task
+# from .tasks import send_email_task
 from django.urls import reverse
 from django.core.mail import send_mail
 from django.conf import settings
@@ -536,6 +537,7 @@ def calculate_rd_maturity_amount(rd):
 
 
 #new new new 
+
 def customer_rd(request):
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
@@ -554,6 +556,12 @@ def customer_rd(request):
             
             if last_payment:
                 next_payment_date = last_payment.payment_date + timedelta(days=30)  # Assuming monthly payments
+                
+                # Trigger the Celery task to enable the next payment after 5 minutes
+                # enable_next_payment.delay(rd.id)
+                enable_next_payment.apply_async((rd.id,), countdown=120)
+                
+                
             else:
                 next_payment_date = rd.start_date + timedelta(days=30)
             
@@ -567,7 +575,8 @@ def customer_rd(request):
             
             # Get current payment details
             current_payments = PaymentSchedule.objects.filter(
-                rd_account=rd
+                rd_account=rd,
+                status__in=['Completed', 'Open']
             ).order_by('-payment_date')
             
             maturity_amount = calculate_rd_maturity_amount(rd)
@@ -989,6 +998,7 @@ def customer_profile(request):
             'nominee_relationship': request.POST.get("relation"),
             'nominee_dob': request.POST.get("nominee-dob"),
         }
+        
         UserFamily.objects.filter(user_id=customer.user.id).update(**nominee_details)
 
         return redirect('profile')
