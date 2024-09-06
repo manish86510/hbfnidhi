@@ -28,14 +28,13 @@ from django.contrib import messages
 # from .tasks import send_email_task
 from django.urls import reverse
 from django.core.mail import send_mail
-from django.conf import settings
-import math
 
 
 from customer.tasks import add
 # result=add(5,7)
-result = add.apply_async((4, 6), countdown=10)
-print(result)
+result = add.apply_async((4, 6), countdown=5)
+import time
+# print(result)
 # This will print the result once the task completes
 # if result.ready():
 #     print("Task result:", result.result)  # This prints in the terminal where you run this Python code
@@ -188,9 +187,7 @@ def customer_account(request, account_no):
     return render(request, 'Customer/Accounts.html', context)
 
 
-
-
-
+#Accounts Statement download transaction
 def download_transactions(request):
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
@@ -199,9 +196,28 @@ def download_transactions(request):
         saving_account = SavingAccount.objects.get(member=member_id)
     except SavingAccount.DoesNotExist:
         saving_account = None
+        
+         # Get startDate and endDate from GET parameters
+    start_date = request.GET.get('startDate')
+    end_date = request.GET.get('endDate')
 
-    transactions = Transactions.objects.filter(member_id=member.id)
+    # Convert start_date and end_date to datetime objects
+    start_date = parse_date(start_date) if start_date else None
+    end_date = parse_date(end_date) if end_date else None
     
+    if end_date:
+        end_date = end_date + timedelta(days=1)
+    
+    # transactions = Transactions.objects.filter(member_id=member.id)
+    transactions = TransferTransactions.objects.filter(from_account_no=saving_account)
+    
+    if start_date and end_date:
+        transactions = transactions.filter(transfer_date__range=[start_date, end_date])
+    elif start_date:
+        transactions = transactions.filter(transfer_date__gte=start_date)
+    elif end_date:
+        transactions = transactions.filter(transfer_date__lte=end_date)
+
     # Create an HTTP response with CSV content
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="transactions.csv"'
@@ -209,28 +225,18 @@ def download_transactions(request):
     writer = csv.writer(response)
     writer.writerow(['Transaction ID', 'Beneficiary', 'Amount', 'Balance After Transaction', 'Date', 'Type'])
 
-    current_balance = Decimal(saving_account.account_balance) if saving_account else Decimal(0)
-
-    for transaction in transactions:
-        if transaction.transaction_type == 'Transfer':
-            try:
-                corresponding_saving_account = SavingAccount.objects.get(id=transaction.account_no.id)
-                transaction.corresponding_saving_account = corresponding_saving_account
-            except SavingAccount.DoesNotExist:
-                print("Account does not exist")
-
-        current_balance -= Decimal(transaction.amount)
-        
+    for transaction in transactions: 
         writer.writerow([
-            transaction.transaction_id,
-            transaction.corresponding_saving_account.account_no if transaction.corresponding_saving_account else '',
+            transaction.transfer_id,
+            transaction.to_account_no.account_no if transaction.to_account_no else '',
             transaction.amount,
-            current_balance,
-            transaction.transaction_date,
-            transaction.transaction_type,
+            transaction.remaining_balance,  # Use the balance from the transaction directly
+            transaction.transfer_date,
+            transaction.description,
         ])
 
     return response
+
 
 
 def get_bank_statement(request):

@@ -80,6 +80,7 @@ TEMPLATES = [
     },
 ] 
 
+
 WSGI_APPLICATION = 'hbfnidhi.wsgi.application'
 
 # Database
@@ -186,6 +187,14 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
         'LOCATION': 'redis://localhost:6379/1',
     }
+}
+
+
+
+
+# settings.py
+CELERY_TASK_ROUTES = {
+    'customer.tasks.add': {'queue': 'default'},
 }
 
 
