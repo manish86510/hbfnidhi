@@ -16,6 +16,8 @@ urlpatterns = [
     path('profile',customer_profile, name='profile'),
     path('setting',customer_setting),
     path('logout',customer_logout ,name='logout'),
+    
+    path('customer/fd/<str:account_number>/', customer_fd, name='customer_fd'),
     path('Fd',customer_fd, name='Fd'),
     path('Rd',customer_rd, name='Rd'),
     path('loan',customer_loan, name='loan'),

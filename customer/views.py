@@ -5,7 +5,7 @@ from django.contrib.auth.hashers import make_password
 
 from django.forms import forms
 from django.shortcuts import render, redirect
-from customer.tasks import enable_next_payment
+# from customer.tasks import enable_next_payment
 from masteradmin.models import *
 from django.http import HttpResponse, JsonResponse
 import datetime
@@ -30,6 +30,17 @@ from django.urls import reverse
 from django.core.mail import send_mail
 from django.conf import settings
 import math
+
+
+from customer.tasks import add
+# result=add(5,7)
+result = add.apply_async((4, 6), countdown=10)
+print(result)
+# This will print the result once the task completes
+# if result.ready():
+#     print("Task result:", result.result)  # This prints in the terminal where you run this Python code
+# else:
+#     print("Task is still running...")
 
 
 
@@ -286,7 +297,7 @@ def create_fd_view(request):
 
 
 def customer_fd(request):
-    
+ 
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
     fd_accounts = FixedDeposit.objects.filter(customer=customer)
@@ -327,10 +338,7 @@ def customer_fd(request):
 def withdraw_fd(request, fd_id):
     fd = get_object_or_404(FixedDeposit, pk=fd_id)
     member_id = request.session.get('customer_id')
-   
-    
     customer = get_object_or_404(Customer, member=member_id)
-  
     saving_account = SavingAccount.objects.filter(member=member_id).first()
    
     
@@ -384,8 +392,8 @@ def withdraw_fd(request, fd_id):
 #     return render(request, 'Customer/fd_matured.html')
 
 
+def fd_home(request): 
 
-def fd_home(request):  
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
     
@@ -746,45 +754,6 @@ def customer_loan(request):
 
 
 
-
-def customer_fd(request):
-    member_id = request.session.get('customer_id')
-    customer = get_object_or_404(Customer, member=member_id)
-    
-    try:
-        fd_accounts = FixedDeposit.objects.filter(customer=customer)
-        
-        if not fd_accounts:
-            # No FD accounts found for the customer
-            context = {'message': 'No FD accounts created'}
-            return render(request, 'Customer/FD.html', context)
-        
-        fd_with_details = []
-        for fd in fd_accounts:
-            # for maturity amount calculation
-            interest_rate = Decimal(fd.interest_rate.interest_rate.strip('%')) / 100
-            time_in_years = (fd.maturity_date - fd.start_date).days / 365
-            maturity_amount =  fd.total_amount*(1 + interest_rate) ** Decimal(time_in_years)
-            fd.maturity_amount = maturity_amount
-            fd.save() 
-            fd_with_details.append({
-                'fd_account': fd.account_number,
-                'interest_rate': fd.interest_rate.interest_rate,  # Assuming interest_rate is a foreign key
-                'start_date': fd.start_date,
-                'maturity_date': fd.maturity_date,
-                'total_amount':fd.total_amount,
-                'maturity_amount': maturity_amount
-            })
-            context = {
-            'fd_accounts': fd_with_details
-        }
-        
-        return render(request, 'Customer/FD.html', context)
-    except Customer.DoesNotExist:
-        return render(request, 'Customer/FD.html', {'error': 'Customer not found'})
-
-
-   
 
 
 def create_user_loan(request):

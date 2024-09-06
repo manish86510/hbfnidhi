@@ -346,13 +346,6 @@ class Dashboard:
         
         return render(request, 'admin/payment_schedule.html', context)
         
-       
-        
-        
-    
-
-    
-        
     
     def saving_account_transaction(self):
         return render(self, 'admin/transaction.html')
