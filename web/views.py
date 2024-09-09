@@ -137,7 +137,6 @@ def loanagainstdepositreceipt(self):
 
 
 
-
 def create_account(self):
     if self.method == 'POST':
         first_name = self.POST.get('title')+ ' ' + self.POST.get('first_name')
@@ -145,9 +144,9 @@ def create_account(self):
         d = datetime.datetime.strptime(date_of_birth, "%Y-%m-%d").date()
         today = datetime.date.today()
         age = today.year - d.year - ((today.month, today.day) < (d.month, d.day))
-
         try:
             Customer.objects.exclude(email=self.POST.get('email'), mobile=self.POST.get('mobile'))
+            
         except:
             message = "Email and Contact details already exists !"
             return render(self, 'web/registration.html', {'message': message})
@@ -159,7 +158,7 @@ def create_account(self):
             rend_num = random.randint(1111111, 9999999)
 
         try:
-            customer = Customer(
+            customer = Customer.objects.create(
                 first_name=first_name,
                 last_name=self.POST.get('last_name'),
                 member="MA"+str(rend_num),
@@ -188,15 +187,15 @@ def create_account(self):
                 last_login=models.DateTimeField(auto_now_add=True),
                 registration_date=models.DateTimeField(auto_now_add=True),
             )
-            
             customer.save()
             message = "Form submitted successfully !"
-            return render(self, 'web/registration.html', {'message': message})
-        except:
+            # return render(self, 'web/registration.html', {'message': message})
+        except :
             customer = None
 
+            
         try:
-            payment = UserPayment(
+            payment = UserPayment.objects.create(
                 user=Customer.objects.last(),
                 payment_mode=self.POST.get('pay_mode'),
                 amount=self.POST.get('amount'),
@@ -213,12 +212,13 @@ def create_account(self):
                 dd_branch_name=self.POST.get('dd_branch_name'),
                 dd_branch_ifsc=self.POST.get('dd_branch_ifsc'),
             )
+         
             payment.save()
             message = "Form submitted successfully !"
-        except:
-            payment = None
+        except :
+            print("Error saving payment")
         try:
-            family = UserFamily(
+            family = UserFamily.objects.create(
                 user=Customer.objects.last(),
                 nominee_name=self.POST.get('nominee'),
                 nominee_relationship=self.POST.get('nrelation'),
@@ -233,8 +233,8 @@ def create_account(self):
             )
             family.save()
             message = "Form submitted successfully !"
-        except:
-            family = None
+        except :
+            print("Error saving  family:")
         try:
             if self.FILES['aadhar_doc']:
                 aadhardoc = self.FILES['aadhar_doc']
@@ -268,7 +268,7 @@ def create_account(self):
                 other_id_doc=otherdoc.name,
             )
             document.save()
-            other = UserOther(
+            other = UserOther.objects.create(
                 user=Customer.objects.last(),
                 qualification=self.POST.get('qualification'),
                 occupation=self.POST.get('occupation'),

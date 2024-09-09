@@ -5,6 +5,7 @@ from django.contrib.auth.hashers import make_password
 
 from django.forms import forms
 from django.shortcuts import render, redirect
+# from customer.tasks import enable_next_payment
 from masteradmin.models import *
 from django.http import HttpResponse, JsonResponse
 import datetime
@@ -24,11 +25,21 @@ from datetime import datetime, time as dt_time
 from datetime import timedelta
 from decimal import Decimal
 from django.contrib import messages
-from .tasks import send_email_task
+# from .tasks import send_email_task
 from django.urls import reverse
 from django.core.mail import send_mail
-from django.conf import settings
-import math
+
+
+from customer.tasks import add
+# result=add(5,7)
+result = add.apply_async((4, 6), countdown=5)
+import time
+# print(result)
+# This will print the result once the task completes
+# if result.ready():
+#     print("Task result:", result.result)  # This prints in the terminal where you run this Python code
+# else:
+#     print("Task is still running...")
 
 
 
@@ -176,9 +187,7 @@ def customer_account(request, account_no):
     return render(request, 'Customer/Accounts.html', context)
 
 
-
-
-
+#Accounts Statement download transaction
 def download_transactions(request):
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
@@ -187,9 +196,27 @@ def download_transactions(request):
         saving_account = SavingAccount.objects.get(member=member_id)
     except SavingAccount.DoesNotExist:
         saving_account = None
+        
+    # Get startDate and endDate from GET parameters
+    start_date = request.GET.get('startDate')
+    end_date = request.GET.get('endDate')
 
-    transactions = Transactions.objects.filter(member_id=member.id)
+    # Convert start_date and end_date to datetime objects
+    start_date = parse_date(start_date) if start_date else None
+    end_date = parse_date(end_date) if end_date else None
     
+    if end_date:
+        end_date = end_date + timedelta(days=1)
+    
+    transactions = TransferTransactions.objects.filter(from_account_no=saving_account)
+    
+    if start_date and end_date:
+        transactions = transactions.filter(transfer_date__range=[start_date, end_date])
+    elif start_date:
+        transactions = transactions.filter(transfer_date__gte=start_date)
+    elif end_date:
+        transactions = transactions.filter(transfer_date__lte=end_date)
+
     # Create an HTTP response with CSV content
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="transactions.csv"'
@@ -197,28 +224,18 @@ def download_transactions(request):
     writer = csv.writer(response)
     writer.writerow(['Transaction ID', 'Beneficiary', 'Amount', 'Balance After Transaction', 'Date', 'Type'])
 
-    current_balance = Decimal(saving_account.account_balance) if saving_account else Decimal(0)
-
-    for transaction in transactions:
-        if transaction.transaction_type == 'Transfer':
-            try:
-                corresponding_saving_account = SavingAccount.objects.get(id=transaction.account_no.id)
-                transaction.corresponding_saving_account = corresponding_saving_account
-            except SavingAccount.DoesNotExist:
-                print("Account does not exist")
-
-        current_balance -= Decimal(transaction.amount)
-        
+    for transaction in transactions: 
         writer.writerow([
-            transaction.transaction_id,
-            transaction.corresponding_saving_account.account_no if transaction.corresponding_saving_account else '',
+            transaction.transfer_id,
+            transaction.to_account_no.account_no if transaction.to_account_no else '',
             transaction.amount,
-            current_balance,
-            transaction.transaction_date,
-            transaction.transaction_type,
+            transaction.remaining_balance,  # Use the balance from the transaction directly
+            transaction.transfer_date,
+            transaction.description,
         ])
 
     return response
+
 
 
 def get_bank_statement(request):
@@ -285,7 +302,7 @@ def create_fd_view(request):
 
 
 def customer_fd(request):
-    
+ 
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
     fd_accounts = FixedDeposit.objects.filter(customer=customer)
@@ -326,10 +343,7 @@ def customer_fd(request):
 def withdraw_fd(request, fd_id):
     fd = get_object_or_404(FixedDeposit, pk=fd_id)
     member_id = request.session.get('customer_id')
-   
-    
     customer = get_object_or_404(Customer, member=member_id)
-  
     saving_account = SavingAccount.objects.filter(member=member_id).first()
    
     
@@ -383,8 +397,8 @@ def withdraw_fd(request, fd_id):
 #     return render(request, 'Customer/fd_matured.html')
 
 
+def fd_home(request): 
 
-def fd_home(request):  
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
     
@@ -536,6 +550,7 @@ def calculate_rd_maturity_amount(rd):
 
 
 #new new new 
+
 def customer_rd(request):
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
@@ -554,6 +569,12 @@ def customer_rd(request):
             
             if last_payment:
                 next_payment_date = last_payment.payment_date + timedelta(days=30)  # Assuming monthly payments
+                
+                # Trigger the Celery task to enable the next payment after 5 minutes
+                # enable_next_payment.delay(rd.id)
+                enable_next_payment.apply_async((rd.id,), countdown=120)
+                
+                
             else:
                 next_payment_date = rd.start_date + timedelta(days=30)
             
@@ -567,7 +588,8 @@ def customer_rd(request):
             
             # Get current payment details
             current_payments = PaymentSchedule.objects.filter(
-                rd_account=rd
+                rd_account=rd,
+                status__in=['Completed', 'Open']
             ).order_by('-payment_date')
             
             maturity_amount = calculate_rd_maturity_amount(rd)
@@ -727,8 +749,6 @@ def customer_loan(request):
             loan.schedule = calculate_amortization_schedule(loan_amount, annual_rate, loan_tenure)
         except InvalidOperation:
             loan.schedule = []# Handle invalid conversion by setting an empty schedule
-    
-  
     context = {
         'customer': customer,
         'personal_loans': personal_loans
@@ -737,45 +757,6 @@ def customer_loan(request):
 
 
 
-
-def customer_fd(request):
-    member_id = request.session.get('customer_id')
-    customer = get_object_or_404(Customer, member=member_id)
-    
-    try:
-        fd_accounts = FixedDeposit.objects.filter(customer=customer)
-        
-        if not fd_accounts:
-            # No FD accounts found for the customer
-            context = {'message': 'No FD accounts created'}
-            return render(request, 'Customer/FD.html', context)
-        
-        fd_with_details = []
-        for fd in fd_accounts:
-            # for maturity amount calculation
-            interest_rate = Decimal(fd.interest_rate.interest_rate.strip('%')) / 100
-            time_in_years = (fd.maturity_date - fd.start_date).days / 365
-            maturity_amount =  fd.total_amount*(1 + interest_rate) ** Decimal(time_in_years)
-            fd.maturity_amount = maturity_amount
-            fd.save() 
-            fd_with_details.append({
-                'fd_account': fd.account_number,
-                'interest_rate': fd.interest_rate.interest_rate,  # Assuming interest_rate is a foreign key
-                'start_date': fd.start_date,
-                'maturity_date': fd.maturity_date,
-                'total_amount':fd.total_amount,
-                'maturity_amount': maturity_amount
-            })
-            context = {
-            'fd_accounts': fd_with_details
-        }
-        
-        return render(request, 'Customer/FD.html', context)
-    except Customer.DoesNotExist:
-        return render(request, 'Customer/FD.html', {'error': 'Customer not found'})
-
-
-   
 
 
 def create_user_loan(request):
@@ -851,7 +832,6 @@ def customer_funds(request):
         member_id = request.session.get('customer_id')
    
         try:
-            # Get the source saving account of the logged-in customer
             source_account = SavingAccount.objects.get(member=member_id)
             destination_account = SavingAccount.objects.get(account_no=account_no)
             if(source_account.account_balance>=amount):
@@ -897,7 +877,7 @@ def customer_funds(request):
             TransferTransactions.objects.create(
                 from_account_no=destination_account,
                 to_account_no=source_account,
-                amount=amount,  # Amount added to destination account
+                amount=amount,  
                 description='Fund Transfer',
                 remaining_balance=destination_account.account_balance,
                
@@ -979,7 +959,8 @@ def customer_profile(request):
             'account_no': request.POST.get("account"),
             'branch_code': request.POST.get("branch"),
             'ifsc': request.POST.get("ifsc"),
-            'status': request.POST.get("account-holder"),
+            'status': request.POST.get("account-holder", 'success'),  
+            
         }
         SavingAccount.objects.filter(member=member_id).update(**bank_details)
 
@@ -989,12 +970,13 @@ def customer_profile(request):
             'nominee_relationship': request.POST.get("relation"),
             'nominee_dob': request.POST.get("nominee-dob"),
         }
-        UserFamily.objects.filter(user_id=customer.user.id).update(**nominee_details)
+        
+ 
+        UserFamily.objects.filter(user_id=customer.id).update(**nominee_details)
 
         return redirect('profile')
 
     else:
-        # Retrieve the customer profile and related data
         payment = get_object_or_404(SavingAccount, member=member_id)
         nominee = get_object_or_404(UserFamily, user=customer)
 
@@ -1006,40 +988,72 @@ def customer_profile(request):
 
 
 
+# def customer_edit(request):
+#     member_id=request.session.get('customer_id')
+#     customer=get_object_or_404(Customer,member=member_id)  
+    
+#     if request.method == "PUT":
+#         personal_details = {
+#             'first_name':request.post.get("first-name"),
+#             'last_name':request.post.get("last-name"),
+#             'father_name':request.post.get("father_name"),
+#             'gender':request.post.get("gender"),
+#             'dob':request.post.get("dob")
+#         }
+#         edit_mode = request.GET.get('edit_mode', 'false') == 'true'
+#         Customer.objects.filter(member=member_id).update(**personal_details)
+        
+#         return render(request, 'Customer/Profile.html')
+    
+#     return HttpResponse("Customer information retrieved successfully.")
+    
+#     # return response 
+
+def customer_edit(request):
+    
+    member_id = request.session.get('customer_id')
+    customer = get_object_or_404(Customer, member=member_id)
+
+    if request.method == "POST":
+        customer.first_name = request.POST.get("first-name")
+        customer.last_name = request.POST.get("last-name")
+        customer.father_name = request.POST.get("father_name")
+        customer.gender = request.POST.get("gender")
+        customer.dob = request.POST.get("dob")
+        
+        
+        customer.save()
+
+        return redirect('profile')
+
+    
+    edit_mode = request.GET.get('edit_mode', 'false') == 'true'
+
+    return render(request, 'customer/profile.html', {'customer': customer, 'edit_mode': edit_mode})
 
 
 def customer_setting(request):
-    # Fetching session data (if needed)
     customer_id = request.session.get('customer_id')
     
     if request.method == "POST":
         form = PasswordChangeForm(user=request.user, data=request.POST)
         
         if form.is_valid():
-            # Save the new password in the Django User model
             user = form.save()
-            update_session_auth_hash(request, user)  # Keep the user logged in
+            update_session_auth_hash(request, user)  
 
-            # Optionally update the password in the Customer model
+            
             if customer_id:
                 try:
-                    # Fetch the Customer record
                     customer = Customer.objects.get(id=customer_id)
-
-                    # Get the new password from the form
                     new_password = form.cleaned_data['new_password1']
-                    
-                    
-
-                    # Ensure the password is a string
+            
+                   
                     if not isinstance(new_password, str):
                         raise TypeError("Password must be a string.")
 
-                    # Hash the password
+                    
                     hashed_password = make_password(new_password)
-
-                
-                    # Update the password field with the hashed password
                     customer.password = hashed_password
                     customer.save()
 
@@ -1120,8 +1134,6 @@ def create_fd_account(self):
 
 
 def create_rd_account(self):
-    
-  
     if self.method == 'POST':
         try:
             member = self.POST.get('member_id')
@@ -1150,7 +1162,7 @@ def create_rd_account(self):
                 customer=customer,
                 interest_rate=interest_rate_obj,
                 total_amount=total_amount,
-                status='Active',  # Default status
+                status='Active',  
                 start_date=start_date,
                 maturity_date=maturity_date,
                 )

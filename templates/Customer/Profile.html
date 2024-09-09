@@ -1,216 +1,221 @@
 {% extends 'Customer/layout/base.html' %}
 {% block content %}
 
- {% load static %}
- <script src="{% static "/js/Customer_dashboard/Editable.js" %}"></script>
+{% load static %}
+<script src="{% static "/js/Customer_dashboard/Editable.js" %}"></script>
 
-
-      <!-- page content -->
-        <div class="right_col" role="main">
-          <div class="">
-            <div class="row top_tiles">
-              <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12" >
-                   <div class="tile-stats" style="background-color: #003b4e; color: #0b2e13 ;">
-                     <a class="site_title" style="background-color: #51a9b5;" >Member Details </a>
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row top_tiles">
+            <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="tile-stats" style="background-color: #003b4e; color: #0b2e13;">
+                    <a class="site_title" style="background-color: #51a9b5;">Member Details </a>
                 </div>
-              </div>
             </div>
-
-            <div class="row">
-              <div class="col-md-1 col-sm-1 col-xs-2">
-              </div>
-              <div class="col-md-10 col-sm-10 col-xs-7">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Personal Details</h2>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <br />
-                    <form class="form-horizontal form-label-left input_mask"  method="POST" action="profile">
-                            {% csrf_token %}
-                      <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Member ID :</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ result.member }}" class="form-control" readonly="readonly" placeholder="Read-Only Input">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">First Name :</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ result.first_name }}" id="first-name" name="first-name"class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-
-                       <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Last Name : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ result.last_name }}" id="last-name" name="last-name" class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">S/o / D/o : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ result.father_name }}" id="father_name" name="father_name" class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-
-                       <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Gender : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ result.gender }}" id="gender" name="gender" class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-
-                       <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Date Of Birth : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ result.dob }}" id="dob" name="dob" class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-
-
-                  </div>
-                    <br/>
-                  <div class="x_title">
-                    <h2>Contact Details</h2>
-                    <div class="clearfix"></div>
-                  </div>
-                    <div class="x_content"></div>
-                    <br />
-                      <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">State :</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ result.state }}" id="state" name="state"class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">City :</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ result.city }}" id="city"  name="city"class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-
-                        <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Current Address : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ result.current_address }}" id="current-add" name="current-add" class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-
-                       <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Postal Address : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ result.post_office }}" id="postal" name="postal" class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Email Address : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ result.email }}" id="email" name="email" class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-
-                       <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Mobile No : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ result.mobile }}" id="mobile" name="mobile" class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-                        <br/>
-
-                    <div class="x_title">
-                    <h2>Banking Details</h2>
-                    <div class="clearfix"></div>
-                  </div>
-                        <br/>
-                      <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Bank Name :</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ payment.branch_name }}" id="bank-name" name="bank-name"class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Account Number :</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ payment.account_no }}" id="account"  name="account"class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-
-                       <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Branch Address : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ payment.branch_code }}" id="branch" name="branch" class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">IFSC code : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ payment.ifsc }}" id="ifsc" name="ifsc" class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-
-                       <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Account holder name : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ payment.status }}" id="account-holder" name="account-holder" class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-
-                        <br/>
-                    <div class="x_title">
-                    <h2>Nominee Details</h2>
-                    <div class="clearfix"></div>
-                  </div>
-                        <br/>
-                      <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Name :</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ nominee.nominee_name }}" id="nominee-name" name="nominee-name" class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Relation :</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ nominee.nominee_relationship }}" id="relation"  name="relation" class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-
-                       <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Date of Birth : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" value="{{ nominee.nominee_dob }}" id="nominee-dob" name="nominee-dob" class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                          <button type="button" class="btn btn-primary" onclick="UserDetails();">
-                               <i class="fa fa-edit"></i> Edit
-                          </button>
-                          <button type="submit" class="btn btn-success" name="nominee">Submit</button>
-                        </div>
-                      </div>
-
-                    </form>
-                  </div>
-
-                </div>
-                </div>
-              </div>
-            </div>
-
         </div>
 
+        <div class="row">
+            <div class="col-md-1 col-sm-1 col-xs-2"></div>
+            <div class="col-md-10 col-sm-10 col-xs-7">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Personal Details</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        <form class="form-horizontal form-label-left input_mask" method="POST" action="profile">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">Member ID :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="{{ result.member }}" class="form-control" readonly="readonly" placeholder="Read-Only Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">First Name :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="{{ result.first_name }}" id="first-name" name="first-name" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">Last Name :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="{{ result.last_name }}" id="last-name" name="last-name" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">S/o / D/o :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="{{ result.father_name }}" id="father_name" name="father_name" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">Gender :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="{{ result.gender }}" id="gender" name="gender" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">Date Of Birth :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="{{ result.dob }}" id="dob" name="dob" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                </div>
+                            </div>
+
+                            <br/>
+                            <div class="x_title">
+                                <h2>Contact Details</h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content"></div>
+                            <br />
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">State :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="{{ result.state }}" id="state" name="state" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">City :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="{{ result.city }}" id="city" name="city" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">Current Address :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="{{ result.current_address }}" id="current-add" name="current-add" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">Postal Address :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="{{ result.post_office }}" id="postal" name="postal" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">Email Address :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="{{ result.email }}" id="email" name="email" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">Mobile No :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="{{ result.mobile }}" id="mobile" name="mobile" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="x_title">
+                                <h2>Banking Details</h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <br/>
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">Bank Name :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="{{ payment.branch_name }}" id="bank-name" name="bank-name" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">Account Number :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="{{ payment.account_no }}" id="account" name="account" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">Branch Address :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="{{ payment.branch_code }}" id="branch" name="branch" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">IFSC Code :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="{{ payment.ifsc }}" id="ifsc" name="ifsc" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">Account Balance :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" value="{{ payment.account_balance }}" id="balance" name="balance" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="x_title">
+                              <h2>Nominee Details</h2>
+                              <div class="clearfix"></div>
+                          </div>
+
+                          <br>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-4 col-sm-4 col-xs-12">Name :</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" value="{{ nominee.nominee_name }}" id="nominee-name" name="nominee-name" class="form-control" disabled="disabled" placeholder="Disabled Input">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-4 col-sm-4 col-xs-12">Relation :</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" value="{{ nominee.nominee_relationship }}" id="relation"  name="relation" class="form-control" disabled="disabled" placeholder="Disabled Input">
+                            </div>
+                          </div>
 
 
+                          <div class="form-group">
+                            <label class="control-label col-md-4 col-sm-4 col-xs-12">Date of Birth : </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" value="{{ nominee.nominee_dob }}" id="nominee-dob" name="nominee-dob" class="form-control" disabled="disabled" placeholder="Disabled Input">
+                            </div>
+                          </div>
 
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <a class="btn btn-success" onclick="toggleEdit()">Edit</a>
+                                    <button type="submit" class="btn btn-primary" {% if not edit_mode %}disabled{% endif %}>Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1 col-sm-1 col-xs-1"></div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
 
-{% endblock content %}
+<script>
+    function toggleEdit() {
+        // Assuming you have some logic to toggle `edit_mode`
+        var isEditing = document.getElementById('first-name').disabled;
+        var inputs = document.querySelectorAll('.form-control');
+        var saveButton = document.querySelector('button[type="submit"]');
+        inputs.forEach(function(input) {
+            input.disabled = !isEditing;
+        });
+        saveButton.disabled = !isEditing;
+    }
+</script>
+
+{% endblock %}

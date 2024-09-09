@@ -7,6 +7,10 @@ from django.http import JsonResponse
 from django.utils import timezone    
 from datetime import timedelta   
 from django.shortcuts import render, get_object_or_404 
+from datetime import timedelta
+from dateutil.relativedelta import relativedelta
+from datetime import date
+from datetime import datetime
      
      
      
@@ -342,13 +346,6 @@ class Dashboard:
         
         return render(request, 'admin/payment_schedule.html', context)
         
-       
-        
-        
-    
-
-    
-        
     
     def saving_account_transaction(self):
         return render(self, 'admin/transaction.html')
@@ -356,44 +353,30 @@ class Dashboard:
     def show_account_transaction(self):
         return render(self, 'admin/saving_transaction.html')
     
-    
-    
-    
-    
-    
-    
          
     def loan(self):
-      
         loan = Personal_loan.objects.all()
-
-        for obj in loan:
-            
+        for obj in loan:  
             return render(self, 'admin/loans.html', {'loan': loan})
-        
-        
         
    
     def edit_loan(request,account):
-       
         loan_data = get_object_or_404(Personal_loan, user__member=account)
         user = loan_data.user
         loan_accounts = Personal_loan.objects.filter(user=user)
         return render(request,'admin/edit_loan.html/',{'loan_accounts': loan_accounts})
 
-
-
     def logout(self):
         del self.session['user_id']
         del self.session['user_name']
         return render(self, 'admin/login.html')
-    
-    
-     
 
+
+    
     def create_rd_account(self):           
         if self.method == 'POST':
             try: 
+                
                 member = self.POST.get('member_id')
                 # memberid = Customer.objects.get(member=member)
                 monthly_installment = self.POST.get('monthly_installment')
@@ -432,6 +415,28 @@ class Dashboard:
                     )
                 RD_account.save()
                 
+                start_date_obj = datetime.strptime(start_date, '%Y-%m-%d').date()
+                maturity_date_obj = datetime.strptime(maturity_date, '%Y-%m-%d').date()
+            
+            # Calculate tenure in months
+                tenure_months = (maturity_date_obj.year - start_date_obj.year) * 12 + (maturity_date_obj.month - start_date_obj.month)
+            
+                
+           
+                
+                current_payment_date = start_date_obj
+                # Generate payment schedule
+                for i in range(tenure_months):
+                    
+                    PaymentSchedule.objects.create(
+                    rd_account=RD_account,
+                    payment_date=current_payment_date,
+                    amount=monthly_installment,
+                    status='Pending'  
+                )
+                    
+                    current_payment_date = current_payment_date + relativedelta(months=1)
+                
             
                 message = "RD created successfully!"
                 interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
@@ -447,10 +452,6 @@ class Dashboard:
         
 
 
-       
-        
-    
-       
     def rd_account(self):
         # specific_account_number = 'FD8512473318' 
         rd_data = RecurringDeposit.objects.all()
