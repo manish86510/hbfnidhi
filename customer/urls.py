@@ -14,9 +14,9 @@ urlpatterns = [
     path('invest',customer_invest),
     path('customer',Customer_Login),
     path('profile',customer_profile, name='profile'),
+    path('profile',customer_edit,name='customer_edit'),
     path('setting',customer_setting),
     path('logout',customer_logout ,name='logout'),
-    
     path('customer/fd/<str:account_number>/', customer_fd, name='customer_fd'),
     path('Fd',customer_fd, name='Fd'),
     path('Rd',customer_rd, name='Rd'),

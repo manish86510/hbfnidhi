@@ -197,7 +197,7 @@ def download_transactions(request):
     except SavingAccount.DoesNotExist:
         saving_account = None
         
-         # Get startDate and endDate from GET parameters
+    # Get startDate and endDate from GET parameters
     start_date = request.GET.get('startDate')
     end_date = request.GET.get('endDate')
 
@@ -208,7 +208,6 @@ def download_transactions(request):
     if end_date:
         end_date = end_date + timedelta(days=1)
     
-    # transactions = Transactions.objects.filter(member_id=member.id)
     transactions = TransferTransactions.objects.filter(from_account_no=saving_account)
     
     if start_date and end_date:
@@ -750,8 +749,6 @@ def customer_loan(request):
             loan.schedule = calculate_amortization_schedule(loan_amount, annual_rate, loan_tenure)
         except InvalidOperation:
             loan.schedule = []# Handle invalid conversion by setting an empty schedule
-    
-  
     context = {
         'customer': customer,
         'personal_loans': personal_loans
@@ -835,7 +832,6 @@ def customer_funds(request):
         member_id = request.session.get('customer_id')
    
         try:
-            # Get the source saving account of the logged-in customer
             source_account = SavingAccount.objects.get(member=member_id)
             destination_account = SavingAccount.objects.get(account_no=account_no)
             if(source_account.account_balance>=amount):
@@ -881,7 +877,7 @@ def customer_funds(request):
             TransferTransactions.objects.create(
                 from_account_no=destination_account,
                 to_account_no=source_account,
-                amount=amount,  # Amount added to destination account
+                amount=amount,  
                 description='Fund Transfer',
                 remaining_balance=destination_account.account_balance,
                
@@ -963,7 +959,8 @@ def customer_profile(request):
             'account_no': request.POST.get("account"),
             'branch_code': request.POST.get("branch"),
             'ifsc': request.POST.get("ifsc"),
-            'status': request.POST.get("account-holder"),
+            'status': request.POST.get("account-holder", 'success'),  
+            
         }
         SavingAccount.objects.filter(member=member_id).update(**bank_details)
 
@@ -974,12 +971,12 @@ def customer_profile(request):
             'nominee_dob': request.POST.get("nominee-dob"),
         }
         
-        UserFamily.objects.filter(user_id=customer.user.id).update(**nominee_details)
+ 
+        UserFamily.objects.filter(user_id=customer.id).update(**nominee_details)
 
         return redirect('profile')
 
     else:
-        # Retrieve the customer profile and related data
         payment = get_object_or_404(SavingAccount, member=member_id)
         nominee = get_object_or_404(UserFamily, user=customer)
 
@@ -991,40 +988,72 @@ def customer_profile(request):
 
 
 
+# def customer_edit(request):
+#     member_id=request.session.get('customer_id')
+#     customer=get_object_or_404(Customer,member=member_id)  
+    
+#     if request.method == "PUT":
+#         personal_details = {
+#             'first_name':request.post.get("first-name"),
+#             'last_name':request.post.get("last-name"),
+#             'father_name':request.post.get("father_name"),
+#             'gender':request.post.get("gender"),
+#             'dob':request.post.get("dob")
+#         }
+#         edit_mode = request.GET.get('edit_mode', 'false') == 'true'
+#         Customer.objects.filter(member=member_id).update(**personal_details)
+        
+#         return render(request, 'Customer/Profile.html')
+    
+#     return HttpResponse("Customer information retrieved successfully.")
+    
+#     # return response 
+
+def customer_edit(request):
+    
+    member_id = request.session.get('customer_id')
+    customer = get_object_or_404(Customer, member=member_id)
+
+    if request.method == "POST":
+        customer.first_name = request.POST.get("first-name")
+        customer.last_name = request.POST.get("last-name")
+        customer.father_name = request.POST.get("father_name")
+        customer.gender = request.POST.get("gender")
+        customer.dob = request.POST.get("dob")
+        
+        
+        customer.save()
+
+        return redirect('profile')
+
+    
+    edit_mode = request.GET.get('edit_mode', 'false') == 'true'
+
+    return render(request, 'customer/profile.html', {'customer': customer, 'edit_mode': edit_mode})
 
 
 def customer_setting(request):
-    # Fetching session data (if needed)
     customer_id = request.session.get('customer_id')
     
     if request.method == "POST":
         form = PasswordChangeForm(user=request.user, data=request.POST)
         
         if form.is_valid():
-            # Save the new password in the Django User model
             user = form.save()
-            update_session_auth_hash(request, user)  # Keep the user logged in
+            update_session_auth_hash(request, user)  
 
-            # Optionally update the password in the Customer model
+            
             if customer_id:
                 try:
-                    # Fetch the Customer record
                     customer = Customer.objects.get(id=customer_id)
-
-                    # Get the new password from the form
                     new_password = form.cleaned_data['new_password1']
-                    
-                    
-
-                    # Ensure the password is a string
+            
+                   
                     if not isinstance(new_password, str):
                         raise TypeError("Password must be a string.")
 
-                    # Hash the password
+                    
                     hashed_password = make_password(new_password)
-
-                
-                    # Update the password field with the hashed password
                     customer.password = hashed_password
                     customer.save()
 
@@ -1105,8 +1134,6 @@ def create_fd_account(self):
 
 
 def create_rd_account(self):
-    
-  
     if self.method == 'POST':
         try:
             member = self.POST.get('member_id')
@@ -1135,7 +1162,7 @@ def create_rd_account(self):
                 customer=customer,
                 interest_rate=interest_rate_obj,
                 total_amount=total_amount,
-                status='Active',  # Default status
+                status='Active',  
                 start_date=start_date,
                 maturity_date=maturity_date,
                 )
