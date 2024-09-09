@@ -398,16 +398,13 @@ def withdraw_fd(request, fd_id):
 
 
 def fd_home(request): 
-
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
-    
-    
     fd_accounts = FixedDeposit.objects.filter(customer=customer)
     if not fd_accounts.exists():
         # No FD accounts found, render fd_Home.html
         return render(request, 'Customer/fd_Home.html')
-    fd_with_details = []
+    fd_with_details = []    
     for fd in fd_accounts:
             # for maturity amount calculation
             interest_rate = Decimal(fd.interest_rate.interest_rate.strip('%')) / 100
@@ -1140,7 +1137,7 @@ def create_rd_account(self):
             interest_rate_value = self.POST.get('interest_rate')
             start_date = self.POST.get('start_date')
             maturity_date = self.POST.get('maturity_date')
-            total_amount = self.POST.get('total_amount')
+            monthly_installment=self.POST.get('monthly_installment')
             
             
             try:
@@ -1161,7 +1158,7 @@ def create_rd_account(self):
                 account_number=account_number,
                 customer=customer,
                 interest_rate=interest_rate_obj,
-                total_amount=total_amount,
+                monthly_installment=monthly_installment,
                 status='Active',  
                 start_date=start_date,
                 maturity_date=maturity_date,

@@ -7,6 +7,9 @@
 
         
         <div class="fd-accounts">
+            <div style="text-align: right; margin-right:5%; margin-top:1%;">
+                <a href="{% url 'create_fd' %}" class="btn btn-primary">Apply for FD</a>
+            </div>
             {% if fd_accounts %}
                 <table>
                     <thead>
@@ -18,7 +21,10 @@
                             <h2> FD is Matured {{fd.account_number}}</h2>
                             <br> <br>
                         </tr>
+                        
+                       
                         {% endif %}
+                        
                         {% if fd.status == 'Active' %}
                     
                         <div class="rd-account-card">
