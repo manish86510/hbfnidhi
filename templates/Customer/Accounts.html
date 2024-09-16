@@ -158,9 +158,11 @@
                                 <tr>
                                     <td>{{ transaction.transfer_id }}</td>
                                     <td> 
-                                        {% if transaction.description == 'Fund Transfer' or transaction.description == 'Withdrawn amount from FD account' %}
+                                        {% if transaction.description == 'Fund Transfer' or transaction.description == 'Withdrawn amount from FD account' or transaction.description == 'hello'%}
                                             {% if transaction.description == 'Fund Transfer' %}
                                             {{ transaction.to_account_no.account_no }}
+                                            {% elif transaction.description == 'hello' %}
+                                            rd
                                             {% else %}
                                             FD
                                             {% endif %}
@@ -168,6 +170,19 @@
                                             N/A
                                         {% endif %}
                                     </td>
+                                    
+                                    <!-- <td> 
+                                        {% if transaction.description == 'Fund Transfer' or transaction.description == 'Withdrawn amount from FD account'%}
+                                            {% if transaction.description == 'Fund Transfer' %}
+                                            {{ transaction.to_account_no.account_no }}
+                                            
+                                            {% else %}
+                                            FD
+                                            {% endif %}
+                                        {% else %}
+                                            N/A
+                                        {% endif %}
+                                    </td> -->
                                     <td>{{ transaction.amount  }}</td>
                                     <td>{{ balance }}</td>
                                     <td>{{ transaction.transfer_date }}</td>

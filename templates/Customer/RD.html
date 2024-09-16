@@ -13,9 +13,6 @@
               </div>
             </div>
 
-
-
-
             <div class="rd-details">
                 <div style="text-align: right; margin-right:5%; margin-top:1%;">
                     <a href="{% url 'create_rd' %}" class="btn btn-primary">Apply for RD</a>
@@ -36,13 +33,16 @@
                                   <p><strong>Maturity Amount:</strong> {{ item.maturity_amount}}</p>
                               </div>
                               <div style="text-align: right; margin-right:5%;">
-                                <a href="#" class="btn btn-primary">Deposit</a>
+                                 <a href="{% url 'mark_next_payment_completed' item.rd_account.id %}" 
+                                 class="btn btn-primary" 
+                                 onclick="return confirm('Are you sure you want to deposit the next installment for Account Number {{ item.rd_account.account_number }}');">
+                                 Deposit</a>
                               </div>
                           </div>
                       {% endfor %}
                   </div>
               {% else %}
-                  <p>No RD accounts found.</p>
+                  <p>No RD accounts found.</p>3
               {% endif %}
             </div>
             

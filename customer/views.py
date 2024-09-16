@@ -29,17 +29,16 @@ from django.contrib import messages
 from django.urls import reverse
 from django.core.mail import send_mail
 
+# from customer.tasks import add
+# result = add.apply_async((4, 6), countdown=5)
+# result=add(4,6)
 
 from customer.tasks import add
-# result=add(5,7)
-result = add.apply_async((4, 6), countdown=5)
-import time
-# print(result)
-# This will print the result once the task completes
-# if result.ready():
-#     print("Task result:", result.result)  # This prints in the terminal where you run this Python code
-# else:
-#     print("Task is still running...")
+def add_view(request):
+    # Call the 'add' task asynchronously
+    result=add.delay(4, 5)
+    return HttpResponse(f"Task ID: {result.id}, Result: {result.result}")
+    # return HttpResponse(f"Task completed! Result: {value}")
 
 
 
@@ -122,7 +121,6 @@ def Customer_Login(request):
 
 
 def customer_account(request, account_no):
-
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
     customer_name = member.first_name 
@@ -302,7 +300,6 @@ def create_fd_view(request):
 
 
 def customer_fd(request):
- 
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
     fd_accounts = FixedDeposit.objects.filter(customer=customer)
@@ -364,6 +361,15 @@ def withdraw_fd(request, fd_id):
 
     # Update FD status to matured
     fd.status = 'Matured'
+    
+    
+    
+    
+    
+    
+    
+    
+    
     fd.save()
     
     
@@ -373,7 +379,6 @@ def withdraw_fd(request, fd_id):
                 amount=fd.maturity_amount,
                 transfer_date=datetime.now().date(),
                 remaining_balance=saving_account.account_balance,
-                
                 description=f'Withdrawn amount from FD account'
             )
     
@@ -442,11 +447,11 @@ def fd_home(request):
     
     
     
-  
+
 def rd_home(request):
+    
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
-    
     rd_accounts = RecurringDeposit.objects.filter(customer=customer)
     
     rd_with_next_payment = []
@@ -455,13 +460,11 @@ def rd_home(request):
         # Calculate next payment date
         last_payment = PaymentSchedule.objects.filter(
             rd_account=rd,
-            status='Completed'
-        ).order_by('-payment_date').first()
+            status='pending'
+        ).first()
         
         if last_payment:
-            next_payment_date = last_payment.payment_date + timedelta(days=30)  # Assuming monthly payments
-        else:
-            next_payment_date = rd.start_date + timedelta(days=30)
+            next_payment_date = last_payment.payment_date 
         
         # Get current payment details
         current_payments = PaymentSchedule.objects.filter(
@@ -474,13 +477,19 @@ def rd_home(request):
         
         rd_with_next_payment.append({
             'rd_account': rd,
-            'next_payment_date': next_payment_date,
+            # 'next_payment_date': next_payment_date,
             'current_payments': current_payments,
             'interest_rate': rd.interest_rate.interest_rate,
             'maturity_amount': maturity_amount
         })
-    
-    # Handle date filtering
+    # if start_date and end_date:
+    #     start_date = parse_date(start_date)
+    #     end_date = parse_date(end_date)
+    #     if start_date and end_date:
+    #         # Adjust end_date to include the entire end day
+    #         end_date = datetime.combine(end_date, dt_time.max)
+    #         transfer_transactions = transfer_transactions.filter(transfer_date__range=(start_date, end_date))
+    # # Handle date filtering
     start_date = request.GET.get('startDate')
     end_date = request.GET.get('endDate')
     
@@ -489,12 +498,12 @@ def rd_home(request):
         end_date = parse_date(end_date)
         
         if start_date and end_date:
-            end_date = dt.combine(end_date, dt.max.time())
+            end_date = datetime.combine(end_date, dt_time.max)
             payment = PaymentSchedule.objects.filter(rd_account__in=rd_accounts, payment_date__range=(start_date, end_date))
-        else:
-            payment = PaymentSchedule.objects.filter(rd_account__in=rd_accounts)
-    else:
-        payment = PaymentSchedule.objects.filter(rd_account__in=rd_accounts)
+        # else:
+        #     payment = PaymentSchedule.objects.filter(rd_account__in=rd_accounts)
+    # else:
+    #     payment = PaymentSchedule.objects.filter(rd_account__in=rd_accounts)
     
     paginator = Paginator(rd_with_next_payment, 10)  # Show 10 items per page
     page_number = request.GET.get('page')
@@ -502,8 +511,10 @@ def rd_home(request):
     
     context = {
         'rd_with_next_payment': rd_with_next_payment,
-        'start_date': start_date or '',
-        'end_date': end_date or '',
+        # 'start_date': start_date or '',
+        # 'end_date': end_date or '',
+        'start_date': request.GET.get('startDate', ''),
+        'end_date': request.GET.get('endDate', ''),
         'page_obj': page_obj,
     }
     
@@ -518,8 +529,80 @@ def rd_home(request):
     
        
     
-      
 
+def mark_next_payment_completed(request, rd_id):
+  
+    # Fetch member ID from session
+    member_id = request.session.get('customer_id')
+  
+    
+    # Get customer and saving account
+    customer = get_object_or_404(Customer, member=member_id)
+    saving_account = SavingAccount.objects.filter(member=member_id).first()
+   
+
+    # Get the RD account
+    rd_account = get_object_or_404(RecurringDeposit, id=rd_id, customer=customer)
+    
+    
+    # Get the first TransferTransaction related to the saving account
+    # transfer_transaction = TransferTransactions.objects.filter(
+    #     from_account_no=saving_account.id
+    # )
+    
+    
+    
+    
+    balance = Decimal(saving_account.account_balance) 
+    balance -= rd_account.monthly_installment
+    saving_account.account_balance = str(balance)
+    saving_account.save()
+    
+    
+    
+    
+    
+    
+    # if transfer_transaction:
+    #     # Access the remaining_balance from the transaction instance
+    #     balance = TransferTransactions.remaining_balance
+    #     balance -= Decimal(rd_account.monthly_installment)  # Subtract installment
+        
+        # Update saving account balance
+        # saving_account.account_balance = str(balance)
+        # saving_account.save()
+
+        # Get the next pending payment
+    next_payment = PaymentSchedule.objects.filter(
+            rd_account=rd_account,
+            status='Pending'  # Assuming 'Pending' is the status for unpaid payments
+        ).order_by('payment_date').first()
+
+    if next_payment:
+            # Mark as completed
+            next_payment.status = 'Completed'
+            next_payment.save()
+
+            # Create transfer transaction record
+            TransferTransactions.objects.create(
+                amount=Decimal(rd_account.monthly_installment),
+                transfer_date=datetime.now().date(),
+                description="RD Payment",
+                from_account_no=saving_account,
+                to_account_no=None,  # Add actual value if needed
+                remaining_balance=saving_account.account_balance,
+            )
+
+            # Create a general transaction record
+            Transactions.objects.create(
+                transaction_type='Transfer',
+                amount=Decimal(rd_account.monthly_installment),
+                description="RD Payment",
+                account_no=saving_account,
+                member_id=customer.id,
+            )
+
+    return redirect('rd_home') 
 
 
 
@@ -549,6 +632,8 @@ def calculate_rd_maturity_amount(rd):
 #new new new 
 
 def customer_rd(request):
+    
+    
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
     
@@ -614,7 +699,14 @@ def customer_rd(request):
                 
                 if start_date and end_date:
                     end_date = datetime.combine(end_date, dt_time.max)
-                    payment = payment.filter(payment_date__range=(start_date, end_date))
+                    # payment = payment.filter(payment_date__range=(start_date, end_date))
+                    PaymentSchedule.objects.filter(rd_account__in=rd_accounts, payment_date__range=(start_date, end_date))
+                    
+                    
+                    
+                    
+                    
+                    
                     
             paginator = Paginator(rd_with_next_payment, 10)  # Show 10 items per page
             page_number = request.GET.get('page')

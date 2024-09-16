@@ -37,7 +37,7 @@
 #         next_payment.status = 'Open'
 #         next_payment.save()
 
-#         print(f"Next payment for RD {rd_id} is now Open.")
+
 
 
 from celery import shared_task
@@ -45,4 +45,4 @@ from celery import shared_task
 @shared_task
 def add(x, y):
     return x+y
-# print(add)
+
