@@ -42,14 +42,15 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <select name="interest_rate" class="form-control" required>
+
+                                                                    <option value="" disabled selected>Select Interest</option>
                                                                    
                                                                     {% for rate in interest_rates %}
-                                                                        <option value="{{ rate }}">{{ rate }}</option>
+                                                                        <option value= "{{ rate }}">{{ rate }}</option>
                                                                     {% endfor %}
                                                                 </select>
                                                             </div>
-                                                           
-                                                          
+                                                            
                                                             <div class="form-group">
                                                                 <input name="maturity_date" type="text" class="form-control" placeholder="Maturity date">
                                                             </div>

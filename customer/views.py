@@ -2,7 +2,6 @@ import csv
 from django.contrib.auth.forms import PasswordChangeForm
 import random
 from django.contrib.auth.hashers import make_password
-
 from django.forms import forms
 from django.shortcuts import render, redirect
 # from customer.tasks import enable_next_payment
@@ -10,7 +9,6 @@ from masteradmin.models import *
 from django.http import HttpResponse, JsonResponse
 import datetime
 from django.contrib.auth import update_session_auth_hash
-
 from django.db import models
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
@@ -32,8 +30,9 @@ from django.core.mail import send_mail
 # from customer.tasks import add
 # result = add.apply_async((4, 6), countdown=5)
 # result=add(4,6)
-
 from customer.tasks import add
+
+
 def add_view(request):
     # Call the 'add' task asynchronously
     result=add.delay(4, 5)
@@ -83,41 +82,6 @@ def Customer_Login(request):
             return render(request, 'Customer/login.html', {'message': message})
     else:
         return render(request, 'Customer/login.html')
-
-    
-# def get_bank_statement(request ):
-
-#     member_id = request.session.get('customer_id')
-#     transactions = []
-
-#     if request.method == 'POST':
-#         form = BankStatementForm(request.POST)
-#         if form.is_valid():
-            
-#             start_date = form.cleaned_data['start_date']
-#             end_date = form.cleaned_data['end_date']
-            
-            
-#             saving_account = get_object_or_404(SavingAccount, member=member_id)
-            
-#             # Retrieve transactions for the user within the date range
-#             transactions = Transactions.objects.filter(
-#                 account_no=saving_account.id,
-#                 transaction_date__range=[start_date, end_date]
-#             )
-        
-            
-#     else:
-#         form = BankStatementForm()
-        
-        
-#         return render(request, 'Customer/get_bank_statement.html', {
-#         'form': form,
-#         'transactions': transactions,
-#         'saving_account': saving_account,  # Pass the saving account to the template
-#     })
-
-
 
 
 def customer_account(request, account_no):
@@ -235,47 +199,6 @@ def download_transactions(request):
     return response
 
 
-
-def get_bank_statement(request):
-    member_id = request.session.get('customer_id')
-    transactions = []
-    saving_account = None
-
-    if request.method == 'POST':
-        form = BankStatementForm(request.POST)
-        if form.is_valid():
-            start_date = form.cleaned_data['start_date']
-            end_date = form.cleaned_data['end_date']
-
-            # Convert dates to datetime
-            start_datetime = datetime.datetime.combine(start_date, datetime.time.min)
-            end_datetime = datetime.datetime.combine(end_date, datetime.time.max)
-            
-            # Convert naive datetimes to aware datetimes if necessary
-            if timezone.is_naive(start_datetime):
-                start_datetime = timezone.make_aware(start_datetime, timezone.get_current_timezone())
-            if timezone.is_naive(end_datetime):
-                end_datetime = timezone.make_aware(end_datetime, timezone.get_current_timezone())
-            
-            customer = get_object_or_404(Customer, member=member_id)
-            
-            
-            
-            transactions = Transactions.objects.filter(
-                # member=customer,
-                transaction_date__range=[start_datetime, end_datetime]
-            )
-       
-    else:
-        form = BankStatementForm()
-
-    return render(request, 'Customer/get_bank_statement.html', {
-        'form': form,
-        'transactions': transactions,
-        'saving_account': saving_account,
-    })
-
-
 class Dashboard():
     def index(self):
         return render(self, 'Customer/login.html')
@@ -333,6 +256,54 @@ def customer_fd(request):
 
     return render(request, 'Customer/fd_Home.html')
 
+
+    
+def create_fd_account(self):
+  
+    if self.method == 'POST':
+        try:
+            member = self.POST.get('member_id')
+            interest_rate_value = self.POST.get('interest_rate')
+            start_date = self.POST.get('start_date')
+            maturity_date = self.POST.get('maturity_date')
+            total_amount = self.POST.get('total_amount')
+            
+            
+            try:
+                customer = Customer.objects.get(member=member)
+            except Customer.DoesNotExist:
+                message = "Invalid Member ID!"
+                interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
+                return render(self, 'admin/create_fd.html', {'message': message, 'interest_rates': interest_rates})
+            interest_rate_qs = FD_scheme.objects.filter(interest_rate=interest_rate_value)
+            if not interest_rate_qs.exists():
+                message = "Invalid interest rate!"
+                interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
+                return render(self, 'admin/create_fd.html', {'message': message, 'interest_rates': interest_rates})
+            interest_rate_obj = interest_rate_qs.first()
+            account_number = "FD" + str(random.randint(1111111111, 9999999999))
+                
+            FD_account = FixedDeposit(
+                account_number=account_number,
+                customer=customer,
+                interest_rate=interest_rate_obj,
+                total_amount=total_amount,
+                status='Active',  # Default status
+                start_date=start_date,
+                maturity_date=maturity_date,
+                )
+            FD_account.save()
+            message = "FD created successfully!"
+            interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
+            return render(self, 'customer/create_fd.html', {'message': message, 'interest_rates': interest_rates})
+        except Exception as e:
+            message = f"An error occurred: {e}"
+            interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
+            return render(self, 'customer/create_fd.html', {'message': message, 'interest_rates': interest_rates})
+            
+    else:
+        interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
+        return render(self, 'customer/create_fd.html', {'interest_rates': interest_rates})
 
 
 
@@ -396,8 +367,6 @@ def withdraw_fd(request, fd_id):
     
 
 
-
-
 # def fd_matured(request):
 #     return render(request, 'Customer/fd_matured.html')
 
@@ -446,14 +415,10 @@ def fd_home(request):
         return render(request, 'Customer/fd_Home.html')
     
     
-    
-
 def rd_home(request):
-    
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
     rd_accounts = RecurringDeposit.objects.filter(customer=customer)
-    
     rd_with_next_payment = []
     
     for rd in rd_accounts:
@@ -477,19 +442,11 @@ def rd_home(request):
         
         rd_with_next_payment.append({
             'rd_account': rd,
-            # 'next_payment_date': next_payment_date,
+            'next_payment_date': next_payment_date,
             'current_payments': current_payments,
             'interest_rate': rd.interest_rate.interest_rate,
             'maturity_amount': maturity_amount
         })
-    # if start_date and end_date:
-    #     start_date = parse_date(start_date)
-    #     end_date = parse_date(end_date)
-    #     if start_date and end_date:
-    #         # Adjust end_date to include the entire end day
-    #         end_date = datetime.combine(end_date, dt_time.max)
-    #         transfer_transactions = transfer_transactions.filter(transfer_date__range=(start_date, end_date))
-    # # Handle date filtering
     start_date = request.GET.get('startDate')
     end_date = request.GET.get('endDate')
     
@@ -499,7 +456,10 @@ def rd_home(request):
         
         if start_date and end_date:
             end_date = datetime.combine(end_date, dt_time.max)
-            payment = PaymentSchedule.objects.filter(rd_account__in=rd_accounts, payment_date__range=(start_date, end_date))
+            # payment = PaymentSchedule.objects.filter(rd_account__in=rd_accounts, payment_date__range=(start_date, end_date))
+            filtered_payments = PaymentSchedule.objects.filter(rd_account__in=rd_accounts, payment_date__range=(start_date, end_date))
+        
+            
         # else:
         #     payment = PaymentSchedule.objects.filter(rd_account__in=rd_accounts)
     # else:
@@ -513,9 +473,11 @@ def rd_home(request):
         'rd_with_next_payment': rd_with_next_payment,
         # 'start_date': start_date or '',
         # 'end_date': end_date or '',
+        'filtered_payments': filtered_payments if start_date and end_date else None,  
         'start_date': request.GET.get('startDate', ''),
         'end_date': request.GET.get('endDate', ''),
         'page_obj': page_obj,
+
     }
     
     rd_status = rd_accounts.values_list('status', flat=True).distinct()
@@ -527,39 +489,118 @@ def rd_home(request):
     else:
         return render(request, 'Customer/rd_Home.html')
     
-       
+
+
+
+# RD Downlaod statement 
+def rd_download_payment(request):
+    member_id = request.session.get('customer_id')
+    customer = get_object_or_404(Customer, member=member_id)
+    rd_accounts = RecurringDeposit.objects.filter(customer=customer)
+    # Get startDate and endDate from GET parameters
+    start_date = request.GET.get('startDate')
+    end_date = request.GET.get('endDate')
+
+    # Convert start_date and end_date to datetime objects
+    start_date = parse_date(start_date) if start_date else None
+    end_date = parse_date(end_date) if end_date else None
+    
+    if end_date:
+        end_date = end_date + timedelta(days=1)
+    
+    # for rd in rd_accounts:
+    #     payment = PaymentSchedule.objects.filter(rd_account=rd) 
+
+    # Create an HTTP response with CSV content
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="payment.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow([	'Payment Date',	'Amount',	'Status'])
+    
+    for rd in rd_accounts:
+        payments = PaymentSchedule.objects.filter(
+            rd_account=rd,
+            payment_date__gte=start_date if start_date else None,
+            payment_date__lte=end_date if end_date else None
+            )
+        for payment in payments:
+            writer.writerow([
+                # payment.transaction_id,
+                payment.payment_date,
+                payment.amount,
+                payment.status,
+            ])
+    return response
+
+ 
+
+
+def create_rd_account(self):
+    if self.method == 'POST':
+        try:
+            member = self.POST.get('member_id')
+            interest_rate_value = self.POST.get('interest_rate')
+            start_date = self.POST.get('start_date')
+            maturity_date = self.POST.get('maturity_date')
+            monthly_installment=self.POST.get('monthly_installment')
+      
+            try:
+                customer = Customer.objects.get(member=member)
+            except Customer.DoesNotExist:
+                message = "Invalid Member ID!"
+                interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
+                return render(self, 'admin/create_rd.html', {'message': message, 'interest_rates': interest_rates})
+            interest_rate_qs = RD_scheme.objects.filter(interest_rate=interest_rate_value)
+            if not interest_rate_qs.exists():
+                message = "Invalid interest rate!"
+                interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
+                return render(self, 'admin/create_rd.html', {'message': message, 'interest_rates': interest_rates})
+            interest_rate_obj = interest_rate_qs.first()
+            account_number = "RD" + str(random.randint(1111111111, 9999999999))
+                
+            RD_account = RecurringDeposit(
+                account_number=account_number,
+                customer=customer,
+                interest_rate=interest_rate_obj,
+                monthly_installment=monthly_installment,
+                status='Active',  
+                start_date=start_date,
+                maturity_date=maturity_date,
+                )
+            RD_account.save()
+        
+            
+            message = "RD created successfully!"
+            interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
+            return render(self, 'customer/create_rd.html', {'message': message, 'interest_rates': interest_rates})
+        except Exception as e:
+            message = f"An error occurred: {e}"
+            interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
+            return render(self, 'customer/create_rd.html', {'message': message, 'interest_rates': interest_rates})
+            
+    else:
+        interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
+        return render(self, 'customer/create_rd.html', {'interest_rates': interest_rates})
+
+   
     
 
 def mark_next_payment_completed(request, rd_id):
-  
     # Fetch member ID from session
     member_id = request.session.get('customer_id')
-  
-    
     # Get customer and saving account
     customer = get_object_or_404(Customer, member=member_id)
     saving_account = SavingAccount.objects.filter(member=member_id).first()
    
 
     # Get the RD account
-    rd_account = get_object_or_404(RecurringDeposit, id=rd_id, customer=customer)
-    
-    
-    # Get the first TransferTransaction related to the saving account
-    # transfer_transaction = TransferTransactions.objects.filter(
-    #     from_account_no=saving_account.id
-    # )
-    
-    
-    
+    rd_account = get_object_or_404(Personal_loan, id=rd_id, customer=customer)
     
     balance = Decimal(saving_account.account_balance) 
     balance -= rd_account.monthly_installment
     saving_account.account_balance = str(balance)
     saving_account.save()
-    
-    
-    
     
     
     
@@ -632,8 +673,6 @@ def calculate_rd_maturity_amount(rd):
 #new new new 
 
 def customer_rd(request):
-    
-    
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
     
@@ -650,29 +689,16 @@ def customer_rd(request):
             ).order_by('-payment_date').first()
             
             if last_payment:
-                next_payment_date = last_payment.payment_date + timedelta(days=30)  # Assuming monthly payments
-                
-                # Trigger the Celery task to enable the next payment after 5 minutes
-                # enable_next_payment.delay(rd.id)
-                enable_next_payment.apply_async((rd.id,), countdown=120)
-                
-                
+                next_payment_date = last_payment.payment_date + timedelta(days=30)  # Assuming monthly payments                
             else:
                 next_payment_date = rd.start_date + timedelta(days=30)
             
-            # next_payment = PaymentSchedule.objects.filter(
-            #     rd_account=rd,
-            #     payment_date=next_payment_date,
-            #     status='Pending'
-            # ).first()  # Use .first() to get the actual object if it exists
-            # 
-            
             
             # Get current payment details
-            current_payments = PaymentSchedule.objects.filter(
-                rd_account=rd,
-                status__in=['Completed', 'Open']
-            ).order_by('-payment_date')
+            # current_payments = PaymentSchedule.objects.filter(
+            #     rd_account=rd,
+            #     status__in=['Completed', 'Open']
+            # ).order_by('-payment_date')
             
             maturity_amount = calculate_rd_maturity_amount(rd)
             rd.maturity_amount = maturity_amount
@@ -682,32 +708,11 @@ def customer_rd(request):
             rd_with_next_payment.append({
                 'rd_account': rd,
                 'next_payment_date': next_payment_date,
-                'current_payments': current_payments,
+                # 'current_payments': current_payments,
                 'interest_rate': rd.interest_rate.interest_rate,
                 'maturity_amount': maturity_amount
             })
-            
-            payment = PaymentSchedule.objects.filter(rd_account=rd)
-            start_date = request.GET.get('startDate')
-            end_date = request.GET.get('endDate')
-            
-            if start_date and end_date:
-                start_date = parse_date(start_date)
-                end_date = parse_date(end_date)
-                
-                
-                
-                if start_date and end_date:
-                    end_date = datetime.combine(end_date, dt_time.max)
-                    # payment = payment.filter(payment_date__range=(start_date, end_date))
-                    PaymentSchedule.objects.filter(rd_account__in=rd_accounts, payment_date__range=(start_date, end_date))
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+                   
             paginator = Paginator(rd_with_next_payment, 10)  # Show 10 items per page
             page_number = request.GET.get('page')
             page_obj = paginator.get_page(page_number)
@@ -715,8 +720,8 @@ def customer_rd(request):
             # context = {'page_obj': page_obj}
             context = {
             'rd_with_next_payment': rd_with_next_payment,
-             'start_date': request.GET.get('startDate', ''),
-             'end_date': request.GET.get('endDate', ''),
+            'start_date': request.GET.get('startDate', ''),
+            'end_date': request.GET.get('endDate', ''),
             'page_obj': page_obj,
         }
             
@@ -726,63 +731,6 @@ def customer_rd(request):
 
 
 
-# def deposit(request):
-#     member_id = request.session.get('customer_id')
-#     customer = get_object_or_404(Customer, member=member_id)
-    
-#     try:
-#         # Assuming you're dealing with one RecurringDeposit per customer
-#         rd_account = RecurringDeposit.objects.get(customer=customer)
-        
-        
-#         # Create a new payment schedule entry
-#         new_payment = PaymentSchedule.objects.create(
-#             rd_account=rd_account,
-#             payment_date='2024-06-20',
-#             amount=4000,
-#             status='Completed'
-#         )
-        
-
-#         return render(request, 'Customer/RD.html')
-    
-#     except RecurringDeposit.DoesNotExist:
-#         # Handle the case where no RecurringDeposit exists for this customer
-#         return render(request, 'Customer/RD.html', {'error': 'No RecurringDeposit found for this customer.'})
-    
-#     except Customer.DoesNotExist:
-#         # Handle the case where no customer exists
-#         return render(request, 'Customer/RD.html', {'error': 'Customer not found.'})
-
-
-def download_payment(request):
-    member_id = request.session.get('customer_id')
-    customer = get_object_or_404(Customer, member=member_id)
-    
-   
-    rd_accounts = RecurringDeposit.objects.filter(customer=customer)
-        
-    # for rd in rd_accounts:
-    #     payment = PaymentSchedule.objects.filter(rd_account=rd) 
-
-    # Create an HTTP response with CSV content
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="payment.csv"'
-
-    writer = csv.writer(response)
-    writer.writerow([	'Payment Date',	'Amount',	'Status'])
-    
-    for rd in rd_accounts:
-        payments = PaymentSchedule.objects.filter(rd_account=rd)
-        for payment in payments:
-            writer.writerow([
-                # payment.transaction_id,
-                payment.payment_date,
-                payment.amount,
-                payment.status,
-            ])
-    
-    return response
 
 
 def calculate_amortization_schedule(amount, annual_rate, tenure_months):
@@ -813,17 +761,19 @@ def calculate_amortization_schedule(amount, annual_rate, tenure_months):
             'principal': round(principal, 2),
             'interest': round(interest, 2),
             'total_payment': round(monthly_payment, 2),
-            'balance': round(balance, 2) if balance > 0 else 0
+            'balance': round(balance, 2) if balance > 0 else 0,
+           
         })
         
     return schedule
 
 
 
+
+
+
 def customer_loan(request):
-    
     member_id = request.session.get('customer_id')
-    
     customer = get_object_or_404(Customer, member=member_id)
     
     # Fetch personal loans for the customer
@@ -836,14 +786,192 @@ def customer_loan(request):
             loan_tenure = int(loan.tenure)
             annual_rate = Decimal(loan.interest_rate.replace('%', '').strip())  # Strip any '%' and whitespace
             loan.schedule = calculate_amortization_schedule(loan_amount, annual_rate, loan_tenure)
+            # LOANEMISchedule=LOANEMISchedule.objects.filter()
+            
+            for entry in loan.schedule:
+                # LOANEMISchedule.objects.create(
+                #     user=customer,
+                #     loan=loan,
+                #     month=entry['month'],
+                #     principal=entry['principal'],
+                #     interest=entry['interest'],
+                #     total_payment=entry['total_payment'],
+                #     balance=entry['balance'],
+                #     status='pending',  # Default status as 'pending'
+                #     payment_date=datetime.now().date(),
+                #     )
+                
+                emi_record, created = LOANEMISchedule.objects.get_or_create(
+                    user=customer,
+                    loan=loan,
+                    month=entry['month'],
+                    defaults={
+                        'principal': entry['principal'],
+                        'interest': entry['interest'],
+                        'total_payment': entry['total_payment'],
+                        'balance': entry['balance'],
+                        'status': 'pending',  # Default status as 'pending'
+                        'payment_date': datetime.now().date(),
+                    }
+                )
+                
+                
+                for entry in loan.schedule:
+                    emi_record = LOANEMISchedule.objects.filter(
+                        user=customer, 
+                        loan=loan, 
+                        month=entry['month']
+                        ).first()
+                    
+                    if emi_record:
+                        entry['status'] = emi_record.status  # Fetch status from the database
+                        
+                        loan.total_payment= LOANEMISchedule.objects.filter(user=customer, loan=loan, status='pending').first()
+        
+                
         except InvalidOperation:
-            loan.schedule = []# Handle invalid conversion by setting an empty schedule
+            loan.schedule = []
     context = {
         'customer': customer,
         'personal_loans': personal_loans
     }
     return render(request, 'Customer/Loan.html', context)
 
+
+
+
+
+
+
+
+# def customer_loan(request):
+#     member_id = request.session.get('customer_id')
+#     customer = get_object_or_404(Customer, member=member_id)
+    
+#     # Fetch personal loans for the customer
+#     personal_loans = Personal_loan.objects.filter(user=customer)
+    
+#     # Calculate EMI for each loan
+#     for loan in personal_loans:
+#         try:
+#             loan_amount = Decimal(loan.amount)
+#             loan_tenure = int(loan.tenure)
+#             annual_rate = Decimal(loan.interest_rate.replace('%', '').strip())  # Strip any '%' and whitespace
+#             loan.schedule = calculate_amortization_schedule(loan_amount, annual_rate, loan_tenure)
+            
+#             for entry in loan.schedule:
+#                 LOANEMISchedule.objects.create(
+#                     user=customer,
+#                     loan=loan,
+#                     month=entry['month'],
+#                     principal=entry['principal'],
+#                     interest=entry['interest'],
+#                     total_payment=entry['total_payment'],
+#                     balance=entry['balance'],
+#                     status='pending',  # Default status as 'pending'
+#                     payment_date=datetime.now().date(),
+#                     )
+                
+                
+#                 for entry in loan.schedule:
+#                     emi_record = LOANEMISchedule.objects.filter(
+#                         user=customer, 
+#                         loan=loan, 
+#                         month=entry['month']
+#                         ).first()
+                    
+#                     if emi_record:
+#                         entry['status'] = emi_record.status  # Fetch status from the database
+                        
+#                         next_emi = LOANEMISchedule.objects.filter(user=customer, loan=loan, status='pending').first()
+#             if next_emi:
+#                 loan.next_emi_amount = next_emi.total_payment
+#                 loan.next_emi_due_date = next_emi.month 
+               
+                
+#         except InvalidOperation:
+#             loan.schedule = []# Handle invalid conversion by setting an empty schedule
+#     context = {
+#         'customer': customer,
+#         'personal_loans': personal_loans
+#     }
+#     return render(request, 'Customer/Loan.html', context)
+
+
+    
+
+def loan_emipay(request, loan_id):
+    # Fetch member ID from session
+    member_id = request.session.get('customer_id')
+    # Get customer and saving account
+    customer = get_object_or_404(Customer, member=member_id)
+    
+    saving_account = SavingAccount.objects.filter(member=member_id).first()
+    # customer_instance = Customer.objects.get(id=member_id)
+   
+
+    # Get the RD account
+    loan_account = get_object_or_404(Personal_loan, id=loan_id, user=customer)
+    loan_queryset = LOANEMISchedule.objects.filter(user=customer)
+    
+    # LOANEMISchedule=get_object_or_404(LOANEMISchedule,user=customer)
+    # LOANEMISchedule=LOANEMISchedule.objects.filter(user=customer)
+
+ 
+    
+    next_payment = loan_queryset.filter(status='Pending').order_by('payment_date').first()
+
+    if next_payment:
+        print("Total Payment:", next_payment.total_payment)
+
+  
+    balance = Decimal(saving_account.account_balance) 
+    balance -= next_payment.total_payment
+    saving_account.account_balance = str(balance)
+    saving_account.save()
+    
+    
+    
+    # if transfer_transaction:
+    #     # Access the remaining_balance from the transaction instance
+    #     balance = TransferTransactions.remaining_balance
+    #     balance -= Decimal(rd_account.monthly_installment)  # Subtract installment
+        
+        # Update saving account balance
+        # saving_account.account_balance = str(balance)
+        # saving_account.save()
+
+        # Get the next pending payment
+    next_payment = LOANEMISchedule.objects.filter(
+            loan=loan_account.id,
+            status='Pending'  # Assuming 'Pending' is the status for unpaid payments
+        ).order_by('payment_date').first()
+
+    if next_payment:
+            # Mark as completed
+            next_payment.status = 'Completed'
+            next_payment.save()
+
+            # Create transfer transaction record
+            TransferTransactions.objects.create(
+                amount=Decimal(next_payment.total_payment),
+                transfer_date=datetime.now().date(),
+                description="EMI LOAN",
+                from_account_no=saving_account,
+                to_account_no=None,  # Add actual value if needed
+                remaining_balance=saving_account.account_balance,
+            )
+
+            # Create a general transaction record
+            Transactions.objects.create(
+                transaction_type='Transfer',
+                amount=Decimal(next_payment.total_payment),
+                description="EMI LOAN",
+                account_no=saving_account,
+                member_id=customer.id,
+            )
+
+    return redirect('loan') 
 
 
 
@@ -877,9 +1005,7 @@ def create_user_loan(request):
             message = f"Loan created successfully! EMI Amount: {emi_amount:.2f}"
             return render(request, 'customer/create_loan.html', {'message': message})
             
-            # message = "Loan created successfully!"
-            # return render(request, 'customer/create_loan.html', {'message': message})
-
+            
         except Exception as e:
             message = f"An error occurred: {str(e)}"
             return render(request, 'customer/create_loan.html', {'message': message})
@@ -1077,27 +1203,6 @@ def customer_profile(request):
 
 
 
-# def customer_edit(request):
-#     member_id=request.session.get('customer_id')
-#     customer=get_object_or_404(Customer,member=member_id)  
-    
-#     if request.method == "PUT":
-#         personal_details = {
-#             'first_name':request.post.get("first-name"),
-#             'last_name':request.post.get("last-name"),
-#             'father_name':request.post.get("father_name"),
-#             'gender':request.post.get("gender"),
-#             'dob':request.post.get("dob")
-#         }
-#         edit_mode = request.GET.get('edit_mode', 'false') == 'true'
-#         Customer.objects.filter(member=member_id).update(**personal_details)
-        
-#         return render(request, 'Customer/Profile.html')
-    
-#     return HttpResponse("Customer information retrieved successfully.")
-    
-#     # return response 
-
 def customer_edit(request):
     
     member_id = request.session.get('customer_id')
@@ -1169,106 +1274,6 @@ def interest_rate(request):
     rate = FD_scheme.objects.get(tenure=id, breakable=scheme)
     data = {'rate': rate.interest_rate}
     return JsonResponse(data)
-
-
-    
-def create_fd_account(self):
-  
-    if self.method == 'POST':
-        try:
-            member = self.POST.get('member_id')
-            interest_rate_value = self.POST.get('interest_rate')
-            start_date = self.POST.get('start_date')
-            maturity_date = self.POST.get('maturity_date')
-            total_amount = self.POST.get('total_amount')
-            
-            
-            try:
-                customer = Customer.objects.get(member=member)
-            except Customer.DoesNotExist:
-                message = "Invalid Member ID!"
-                interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
-                return render(self, 'admin/create_fd.html', {'message': message, 'interest_rates': interest_rates})
-            interest_rate_qs = FD_scheme.objects.filter(interest_rate=interest_rate_value)
-            if not interest_rate_qs.exists():
-                message = "Invalid interest rate!"
-                interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
-                return render(self, 'admin/create_fd.html', {'message': message, 'interest_rates': interest_rates})
-            interest_rate_obj = interest_rate_qs.first()
-            account_number = "FD" + str(random.randint(1111111111, 9999999999))
-                
-            FD_account = FixedDeposit(
-                account_number=account_number,
-                customer=customer,
-                interest_rate=interest_rate_obj,
-                total_amount=total_amount,
-                status='Active',  # Default status
-                start_date=start_date,
-                maturity_date=maturity_date,
-                )
-            FD_account.save()
-            message = "FD created successfully!"
-            interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
-            return render(self, 'customer/create_fd.html', {'message': message, 'interest_rates': interest_rates})
-        except Exception as e:
-            message = f"An error occurred: {e}"
-            interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
-            return render(self, 'customer/create_fd.html', {'message': message, 'interest_rates': interest_rates})
-            
-    else:
-        interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
-        return render(self, 'customer/create_fd.html', {'interest_rates': interest_rates})
-
-
-
-
-def create_rd_account(self):
-    if self.method == 'POST':
-        try:
-            member = self.POST.get('member_id')
-            interest_rate_value = self.POST.get('interest_rate')
-            start_date = self.POST.get('start_date')
-            maturity_date = self.POST.get('maturity_date')
-            monthly_installment=self.POST.get('monthly_installment')
-            
-            
-            try:
-                customer = Customer.objects.get(member=member)
-            except Customer.DoesNotExist:
-                message = "Invalid Member ID!"
-                interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
-                return render(self, 'admin/create_rd.html', {'message': message, 'interest_rates': interest_rates})
-            interest_rate_qs = RD_scheme.objects.filter(interest_rate=interest_rate_value)
-            if not interest_rate_qs.exists():
-                message = "Invalid interest rate!"
-                interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
-                return render(self, 'admin/create_rd.html', {'message': message, 'interest_rates': interest_rates})
-            interest_rate_obj = interest_rate_qs.first()
-            account_number = "RD" + str(random.randint(1111111111, 9999999999))
-                
-            RD_account = RecurringDeposit(
-                account_number=account_number,
-                customer=customer,
-                interest_rate=interest_rate_obj,
-                monthly_installment=monthly_installment,
-                status='Active',  
-                start_date=start_date,
-                maturity_date=maturity_date,
-                )
-            RD_account.save()
-        
-            
-            message = "RD created successfully!"
-            interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
-            return render(self, 'customer/create_rd.html', {'message': message, 'interest_rates': interest_rates})
-        except Exception as e:
-            message = f"An error occurred: {e}"
-            interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
-            return render(self, 'customer/create_rd.html', {'message': message, 'interest_rates': interest_rates})
-            
-    else:
-        interest_rates = RD_scheme.objects.values_list('interest_rate', flat=True)
-        return render(self, 'customer/create_rd.html', {'interest_rates': interest_rates})
 
 
 

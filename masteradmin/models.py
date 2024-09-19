@@ -323,3 +323,14 @@ class EMI(models.Model):
     closing_balance = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     
     
+class LOANEMISchedule(models.Model):
+    loan = models.ForeignKey(Personal_loan,  on_delete=models.CASCADE)
+    user = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    month = models.IntegerField()
+    principal = models.DecimalField(max_digits=10, decimal_places=2)
+    interest = models.DecimalField(max_digits=10, decimal_places=2)
+    total_payment = models.DecimalField(max_digits=10, decimal_places=2)
+    balance = models.DecimalField(max_digits=10, decimal_places=2)
+    payment_date = models.DateField()
+    status = models.CharField(max_length=50, default='pending')
+    

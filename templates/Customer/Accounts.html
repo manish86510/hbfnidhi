@@ -158,11 +158,13 @@
                                 <tr>
                                     <td>{{ transaction.transfer_id }}</td>
                                     <td> 
-                                        {% if transaction.description == 'Fund Transfer' or transaction.description == 'Withdrawn amount from FD account' or transaction.description == 'hello'%}
+                                        {% if transaction.description == 'Fund Transfer' or transaction.description == 'Withdrawn amount from FD account' or transaction.description == 'hello' or transaction.description == 'EMI LOAN'%}
                                             {% if transaction.description == 'Fund Transfer' %}
                                             {{ transaction.to_account_no.account_no }}
                                             {% elif transaction.description == 'hello' %}
                                             rd
+                                            {% elif transaction.description == 'EMI LOAN' %}
+                                            LOAN
                                             {% else %}
                                             FD
                                             {% endif %}

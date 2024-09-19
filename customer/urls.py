@@ -3,7 +3,6 @@ from django.urls import path, include
 from customer.views import *
 
 urlpatterns = [
-    # path('create_rd_account/', Dashboard.create_rd_account),
     path('', Dashboard.index),
     path('home',customer_home, name='customer_home'),
     path('account/<str:account_no>/', customer_account, name='customer_account'),
@@ -23,8 +22,7 @@ urlpatterns = [
     path('loan',customer_loan, name='loan'),
     path('create_loan',  create_user_loan, name='create_loan'),
     path('rate', interest_rate, name='rate'),
-    path('get_bank_statement/', get_bank_statement, name='get_bank_statement'),
-    path('download/', download_payment, name='download_payment'),
+    path('rddownload/', rd_download_payment, name='rd_download_payment'),
     # path('customer/fd/<int:fd_id>/withdraw/', withdraw_fd, name='withdraw_fd'),
     path('create_fd',  create_fd_account, name='create_fd'),
     path('create_rd',  create_rd_account, name='create_rd'),
@@ -33,7 +31,7 @@ urlpatterns = [
     path('withdraw_fd/<int:fd_id>/', withdraw_fd, name='withdraw_fd'),
     path('home/', fd_home, name='fd_home'),
     path('rd_home/', rd_home, name='rd_home'),
-    
+    path('emii/<int:loan_id>/',loan_emipay, name='loan_emipay'),
     path('celery/',add_view,name='celery'),
     path('rd/deposit/<int:rd_id>/', mark_next_payment_completed, name='mark_next_payment_completed'),
 ]

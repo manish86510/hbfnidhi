@@ -23,10 +23,15 @@
                             <p><strong>Tenure:</strong> {{ loan.tenure }} months</p>
                             <p><strong>Status:</strong> {{ loan.status }}</p>
                             <p><strong>Created Date:</strong> {{ loan.created_date }}</p>
+                             <p><strong>Next EMI Amount:</strong> {{ loan.total_payment.total_payment }}</p>  
+                            <!-- <p><strong>Next EMI Date:</strong> {{ item.next_payment_date }}</p> -->
                         </div>
                         <div class="emi-payment">
-                            <a href="#" class="btn btn-primary">Pay EMI</a>
+                            <a href="{% url 'loan_emipay' loan.id %}" class="btn btn-primary" onclick="return confirm('Would you like to  pay the Loan EMI');">Pay EMI</a>
                         </div>
+
+
+                        
 
                         <h2>EMI Table</h2>
                         <table class="table table-striped">
@@ -37,6 +42,7 @@
                                     <th>Interest</th>
                                     <th>Total Payment</th>
                                     <th>Balance</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,6 +54,7 @@
                                             <td>₹ {{ entry.interest }}</td>
                                             <td>₹ {{ entry.total_payment }}</td>
                                             <td>₹ {{ entry.balance }}</td>
+                                            <td>{{ entry.status }}</td>
                                         </tr>
                                     {% endfor %}
                                 {% else %}
