@@ -310,6 +310,9 @@ class Personal_loan(models.Model):
     tenure = models.CharField(max_length=50)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Approved')
     created_date = models.DateTimeField(auto_now_add=True)
+    
+
+
 
 class EMI(models.Model):
     loan = models.ForeignKey(Personal_loan, on_delete=models.CASCADE)
@@ -322,15 +325,17 @@ class EMI(models.Model):
     principal_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     closing_balance = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     
+
     
-class LOANEMISchedule(models.Model):
+    
+class LOANEMIPayment(models.Model):
     loan = models.ForeignKey(Personal_loan,  on_delete=models.CASCADE)
     user = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    month = models.IntegerField()
     principal = models.DecimalField(max_digits=10, decimal_places=2)
     interest = models.DecimalField(max_digits=10, decimal_places=2)
     total_payment = models.DecimalField(max_digits=10, decimal_places=2)
     balance = models.DecimalField(max_digits=10, decimal_places=2)
     payment_date = models.DateField()
     status = models.CharField(max_length=50, default='pending')
+    
     

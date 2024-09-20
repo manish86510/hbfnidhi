@@ -26,11 +26,13 @@ from django.contrib import messages
 # from .tasks import send_email_task
 from django.urls import reverse
 from django.core.mail import send_mail
+from django.db.models import Sum
+
 
 # from customer.tasks import add
 # result = add.apply_async((4, 6), countdown=5)
 # result=add(4,6)
-from customer.tasks import add
+# from customer.tasks import add
 
 
 def add_view(request):
@@ -732,43 +734,40 @@ def customer_rd(request):
 
 
 
-
-def calculate_amortization_schedule(amount, annual_rate, tenure_months):
-    # Convert annual rate percentage to a decimal and calculate monthly rate
+def calculate_amortization_schedule(amount, annual_rate, tenure_months, start_date):
     monthly_rate = Decimal(annual_rate) / Decimal(12 * 100)  # Convert annual rate to monthly rate
     tenure_months = Decimal(tenure_months)
     
-    # Avoid division by zero
     if monthly_rate == 0:
         monthly_payment = amount / tenure_months
     else:
-        # Calculate monthly payment
         numerator = monthly_rate * (Decimal(1) + monthly_rate) ** tenure_months
         denominator = (Decimal(1) + monthly_rate) ** tenure_months - 1
         monthly_payment = amount * numerator / denominator
     
     schedule = []
     balance = Decimal(amount)
+    current_date = start_date
 
     for month in range(1, int(tenure_months) + 1):
         interest = balance * monthly_rate
         principal = monthly_payment - interest
         balance -= principal
         
-        # Append schedule entry
+        due_date = current_date
+        current_date += timedelta(days=30)  # Increment date by 30 days
+
         schedule.append({
-            'month': month,
+            # 'month': month,  # Placeholder value for month
+            'payment_date': due_date.strftime('%Y-%m-%d'),  # Format date to YYYY-MM-DD
             'principal': round(principal, 2),
             'interest': round(interest, 2),
             'total_payment': round(monthly_payment, 2),
             'balance': round(balance, 2) if balance > 0 else 0,
-           
         })
-        
+
+       
     return schedule
-
-
-
 
 
 
@@ -779,70 +778,97 @@ def customer_loan(request):
     # Fetch personal loans for the customer
     personal_loans = Personal_loan.objects.filter(user=customer)
     
-    # Calculate EMI for each loan
+    # Set the start date (assuming loan starts today)
+    start_date = datetime.now().date()
+    
     for loan in personal_loans:
         try:
             loan_amount = Decimal(loan.amount)
             loan_tenure = int(loan.tenure)
             annual_rate = Decimal(loan.interest_rate.replace('%', '').strip())  # Strip any '%' and whitespace
-            loan.schedule = calculate_amortization_schedule(loan_amount, annual_rate, loan_tenure)
-            # LOANEMISchedule=LOANEMISchedule.objects.filter()
+            
+            # Pass start_date to calculate_amortization_schedule
+            loan.schedule = calculate_amortization_schedule(loan_amount, annual_rate, loan_tenure, start_date)
             
             for entry in loan.schedule:
-                # LOANEMISchedule.objects.create(
-                #     user=customer,
-                #     loan=loan,
-                #     month=entry['month'],
-                #     principal=entry['principal'],
-                #     interest=entry['interest'],
-                #     total_payment=entry['total_payment'],
-                #     balance=entry['balance'],
-                #     status='pending',  # Default status as 'pending'
-                #     payment_date=datetime.now().date(),
-                #     )
+                payment_date = entry['payment_date']  # Use due_date for payment_date
                 
-                emi_record, created = LOANEMISchedule.objects.get_or_create(
+                emi_record, created = LOANEMIPayment.objects.get_or_create(
                     user=customer,
                     loan=loan,
-                    month=entry['month'],
+                    payment_date=payment_date,  # Ensure payment_date is provided
                     defaults={
                         'principal': entry['principal'],
                         'interest': entry['interest'],
                         'total_payment': entry['total_payment'],
                         'balance': entry['balance'],
                         'status': 'pending',  # Default status as 'pending'
-                        'payment_date': datetime.now().date(),
                     }
                 )
                 
+          
+                # Fetch status and update total_payment
+                emi_record = LOANEMIPayment.objects.filter(
+                    user=customer, 
+                    loan=loan, 
+                    payment_date=payment_date  # Match by payment_date
+                ).first()
                 
-                for entry in loan.schedule:
-                    emi_record = LOANEMISchedule.objects.filter(
-                        user=customer, 
-                        loan=loan, 
-                        month=entry['month']
-                        ).first()
+                if emi_record:
+                    entry['status'] = emi_record.status  # Fetch status from the database
+                    loan.total_payment = LOANEMIPayment.objects.filter(user=customer, loan=loan, status='pending').first()
                     
-                    if emi_record:
-                        entry['status'] = emi_record.status  # Fetch status from the database
-                        
-                        loan.total_payment= LOANEMISchedule.objects.filter(user=customer, loan=loan, status='pending').first()
+                    loan.payment_date = LOANEMIPayment.objects.filter(user=customer, loan=loan, status='pending').first()
+                  
         
-                
         except InvalidOperation:
             loan.schedule = []
+    
     context = {
         'customer': customer,
         'personal_loans': personal_loans
     }
     return render(request, 'Customer/Loan.html', context)
 
+# def calculate_amortization_schedule(amount, annual_rate, tenure_months, start_date):
+#     # Convert annual rate percentage to a decimal and calculate monthly rate
+#     monthly_rate = Decimal(annual_rate) / Decimal(12 * 100)  # Convert annual rate to monthly rate
+#     tenure_months = Decimal(tenure_months)
+    
+#     # Avoid division by zero
+#     if monthly_rate == 0:
+#         monthly_payment = amount / tenure_months
+#     else:
+#         # Calculate monthly payment
+#         numerator = monthly_rate * (Decimal(1) + monthly_rate) ** tenure_months
+#         denominator = (Decimal(1) + monthly_rate) ** tenure_months - 1
+#         monthly_payment = amount * numerator / denominator
+    
+#     schedule = []
+#     balance = Decimal(amount)
+#     current_date = start_date
 
+#     for month in range(1, int(tenure_months) + 1):
+#         interest = balance * monthly_rate
+#         principal = monthly_payment - interest
+#         balance -= principal
+        
+#         # Increment the current date by 30 days
+#         due_date = current_date
+#         current_date += timedelta(days=30)  # Increment date by 30 days
 
+#         # Append schedule entry with month and due_date
+#         schedule.append({
+#             'month': month,  # Keep month as a fallback or placeholder
+#             'due_date': due_date.strftime('%Y-%m-%d'),  # Format date to YYYY-MM-DD
+#             'principal': round(principal, 2),
+#             'interest': round(interest, 2),
+#             'total_payment': round(monthly_payment, 2),
+#             'balance': round(balance, 2) if balance > 0 else 0,
+#         })
 
-
-
-
+#        
+#     return schedule
 
 # def customer_loan(request):
 #     member_id = request.session.get('customer_id')
@@ -851,46 +877,48 @@ def customer_loan(request):
 #     # Fetch personal loans for the customer
 #     personal_loans = Personal_loan.objects.filter(user=customer)
     
+#     # Set the start date (assuming loan starts today)
+#     start_date = datetime.now().date()
+    
 #     # Calculate EMI for each loan
 #     for loan in personal_loans:
 #         try:
 #             loan_amount = Decimal(loan.amount)
 #             loan_tenure = int(loan.tenure)
 #             annual_rate = Decimal(loan.interest_rate.replace('%', '').strip())  # Strip any '%' and whitespace
-#             loan.schedule = calculate_amortization_schedule(loan_amount, annual_rate, loan_tenure)
+            
+#             # Pass start_date to calculate_amortization_schedule
+#             loan.schedule = calculate_amortization_schedule(loan_amount, annual_rate, loan_tenure, start_date)
             
 #             for entry in loan.schedule:
-#                 LOANEMISchedule.objects.create(
+#                 emi_record, created = LOANEMISchedule.objects.get_or_create(
 #                     user=customer,
 #                     loan=loan,
-#                     month=entry['month'],
-#                     principal=entry['principal'],
-#                     interest=entry['interest'],
-#                     total_payment=entry['total_payment'],
-#                     balance=entry['balance'],
-#                     status='pending',  # Default status as 'pending'
-#                     payment_date=datetime.now().date(),
-#                     )
+#                     month=entry['month'],  # Placeholder value for month
+#                     payment_date=entry['due_date'],  # Store the due date
+#                     defaults={
+#                         'principal': entry['principal'],
+#                         'interest': entry['interest'],
+#                         'total_payment': entry['total_payment'],
+#                         'balance': entry['balance'],
+#                         'status': 'pending',  # Default status as 'pending'
+#                     }
+#                 )
                 
+#                 # Fetch status and update total_payment
+#                 emi_record = LOANEMISchedule.objects.filter(
+#                     user=customer, 
+#                     loan=loan, 
+#                     payment_date=entry['due_date']  # Match by due date
+#                 ).first()
                 
-#                 for entry in loan.schedule:
-#                     emi_record = LOANEMISchedule.objects.filter(
-#                         user=customer, 
-#                         loan=loan, 
-#                         month=entry['month']
-#                         ).first()
-                    
-#                     if emi_record:
-#                         entry['status'] = emi_record.status  # Fetch status from the database
-                        
-#                         next_emi = LOANEMISchedule.objects.filter(user=customer, loan=loan, status='pending').first()
-#             if next_emi:
-#                 loan.next_emi_amount = next_emi.total_payment
-#                 loan.next_emi_due_date = next_emi.month 
-               
-                
+#                 if emi_record:
+#                     entry['status'] = emi_record.status  # Fetch status from the database
+#                     loan.total_payment = LOANEMISchedule.objects.filter(user=customer, loan=loan, status='pending').first()
+        
 #         except InvalidOperation:
-#             loan.schedule = []# Handle invalid conversion by setting an empty schedule
+#             loan.schedule = []
+    
 #     context = {
 #         'customer': customer,
 #         'personal_loans': personal_loans
@@ -898,7 +926,6 @@ def customer_loan(request):
 #     return render(request, 'Customer/Loan.html', context)
 
 
-    
 
 def loan_emipay(request, loan_id):
     # Fetch member ID from session
@@ -912,7 +939,7 @@ def loan_emipay(request, loan_id):
 
     # Get the RD account
     loan_account = get_object_or_404(Personal_loan, id=loan_id, user=customer)
-    loan_queryset = LOANEMISchedule.objects.filter(user=customer)
+    loan_queryset = LOANEMIPayment.objects.filter(user=customer)
     
     # LOANEMISchedule=get_object_or_404(LOANEMISchedule,user=customer)
     # LOANEMISchedule=LOANEMISchedule.objects.filter(user=customer)
@@ -942,7 +969,7 @@ def loan_emipay(request, loan_id):
         # saving_account.save()
 
         # Get the next pending payment
-    next_payment = LOANEMISchedule.objects.filter(
+    next_payment = LOANEMIPayment.objects.filter(
             loan=loan_account.id,
             status='Pending'  # Assuming 'Pending' is the status for unpaid payments
         ).order_by('payment_date').first()
@@ -1086,8 +1113,7 @@ def customer_funds(request):
                     remaining_balance=source_account.account_balance,
                    
                 )
-            
-            
+        
             
             TransferTransactions.objects.create(
                 from_account_no=destination_account,
@@ -1097,9 +1123,7 @@ def customer_funds(request):
                 remaining_balance=destination_account.account_balance,
                
             )
-                
-                
-            
+         
             source_account.save()
             destination_account.save()
             

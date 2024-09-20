@@ -23,11 +23,12 @@ class Dashboard:
             cust = Customer.objects.count()
             fd = FixedDeposit.objects.count()
             rd = RecurringDeposit.objects.count()
+            loan=Personal_loan.objects.count()
             try:
                 customer = Customer.objects.filter(is_active=0).all().order_by('-id')
             except:
                 customer = None
-            return render(self, 'admin/index.html', {'cust': cust, 'fd': fd, 'rd': rd, 'customer': customer})
+            return render(self, 'admin/index.html', {'cust': cust, 'fd': fd, 'rd': rd, 'loan':loan, 'customer': customer })
         else:
             return render(self, 'admin/login.html')
         
@@ -355,9 +356,8 @@ class Dashboard:
     
          
     def loan(self):
-        loan = Personal_loan.objects.all()
-        for obj in loan:  
-            return render(self, 'admin/loans.html', {'loan': loan})
+        loans = Personal_loan.objects.all().prefetch_related('loanemipayment_set')
+        return render(self, 'admin/loans.html', {'loans': loans})
         
    
     def edit_loan(request,account):
