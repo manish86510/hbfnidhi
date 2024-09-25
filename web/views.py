@@ -139,6 +139,7 @@ def loanagainstdepositreceipt(self):
 
 def create_account(self):
     if self.method == 'POST':
+        
         first_name = self.POST.get('title')+ ' ' + self.POST.get('first_name')
         date_of_birth = self.POST.get('dob')
         d = datetime.datetime.strptime(date_of_birth, "%Y-%m-%d").date()
@@ -162,7 +163,7 @@ def create_account(self):
                 first_name=first_name,
                 last_name=self.POST.get('last_name'),
                 member="MA"+str(rend_num),
-                agent=self.POST.get('agent_id'),
+                
                 role=UserRole.objects.last(),
                 father_name=self.POST.get('father_name'),
                 mother_name=self.POST.get('mother_name'),

@@ -1,7 +1,7 @@
 
-# from celery import shared_task
-# from django.core.mail import send_mail
-# import logging
+from celery import shared_task
+from django.core.mail import send_mail
+import logging
 
 # logger = logging.getLogger(__name__)
 
@@ -40,9 +40,9 @@
 
 
 
-# from celery import shared_task
+from celery import shared_task
 
-# @shared_task
-# def add(x, y):
-#     return x+y
+@shared_task
+def add(x, y):
+    return x+y
 

@@ -469,7 +469,6 @@ class Dashboard:
         
      
     def fd_account(self):
-        # specific_account_number = 'FD8512473318' 
         fd_data = FixedDeposit.objects.all()
         # fd_data = FixedDeposit.objects.filter(account_number=specific_account_number)
         for obj in fd_data:
@@ -482,10 +481,52 @@ class Dashboard:
     
     
     def active_fd(self, active, account):
-        FixedDeposit.objects.filter(account_number=account).update(is_active=active)
+        
+        if active == 1:
+            FixedDeposit.objects.filter(account_number=account).update(is_active=1)
+            
+        else:
+            FixedDeposit.objects.filter(account_number=account).update(is_active=0) 
+            
         fd_data = FixedDeposit.objects.all()
         return render(self, 'admin/fd_account.html', {'fd_data': fd_data})
     
+    
+    def active_rd(self, active, account):
+        if active == 1:
+            RecurringDeposit.objects.filter(account_number=account).update(is_active=1)
+            
+        else:
+            RecurringDeposit.objects.filter(account_number=account).update(is_active=0) 
+            
+        rd_data = RecurringDeposit.objects.all()
+        return render(self, 'admin/rd_account.html', {'rd_data': rd_data})
+    
+    
+    def active_loan(self, active, account):
+        try:
+            customer = Customer.objects.get(member=account)  # account is the ID of the user (Customer)
+            member_value = customer.member
+        except Customer.DoesNotExist:
+            print(f"No customer found with ID: {account}")
+            return
+            
+        if active == 1:
+            Personal_loan.objects.filter(user=customer).update(is_active=1) 
+        else:
+            Personal_loan.objects.filter(user=customer).update(is_active=0)     
+        loans = Personal_loan.objects.all().order_by('-id')
+        return render(self, 'admin/loans.html', {'loans': loans})
+     
+    
+    
+    # def sactive(self, active, member):
+    #     if active == 0:
+    #         SavingAccount.objects.filter(member=member).update(is_active=1)
+    #     else:
+    #         SavingAccount.objects.filter(member=member).update(is_active=0)
+    #     member = SavingAccount.objects.all().order_by('-id')
+    #     return render(self, 'admin/saving_account.html', {'member': member})
     
     # def edit_fd(self):
     #     return render(self,'admin/edit_fd.html')

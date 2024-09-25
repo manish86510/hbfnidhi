@@ -1,19 +1,19 @@
-# from __future__ import absolute_import, unicode_literals
-# import os
-# from celery import Celery
+from __future__ import absolute_import, unicode_literals
+import os
+from celery import Celery
 
-# # Default Django settings module set karte hain
-# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hbfnidhi.settings')
+# Default Django settings module set karte hain
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hbfnidhi.settings')
 
-# app = Celery('hbfnidhi')
+app = Celery('hbfnidhi')
 
-# # Celery ke liye settings Django se load karte hain
-# app.config_from_object('django.conf:settings', namespace='CELERY')
+# Celery ke liye settings Django se load karte hain
+app.config_from_object('django.conf:settings', namespace='CELERY')
 
-# # Auto-discover tasks from all registered Django app configs.
-# app.autodiscover_tasks()
+# Auto-discover tasks from all registered Django app configs.
+app.autodiscover_tasks()
 
 
-# @app.task(bind=True)
-# def debug_task(self):
-#     print(f'Request: {self.request!r}')
+@app.task(bind=True)
+def debug_task(self):
+    print(f'Request: {self.request!r}')

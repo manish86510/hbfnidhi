@@ -16,32 +16,41 @@
                 <a href="{% url 'create_fd' %}" class="btn btn-primary">Apply for FD</a>
             </div>
             {% if fd_accounts %}
-                <div class="rd-accounts-container">
-                    {% for fd in fd_accounts %}
-                        <div class="rd-account-card">
-                            <h4>FD Account Details</h4>
-                            <div class="account-info">
-                                <p><strong>Account Number:</strong> {{ fd.account_number }}</p>
-                                <p><strong>Interest Rate:</strong> {{ fd.interest_rate.interest_rate }}</p>
-                                <p><strong>Start Date:</strong> {{ fd.start_date }}</p>
-                                <p><strong>Maturity Date:</strong> {{ fd.maturity_date }}</p>
-                                <p><strong>Amount:</strong> {{ fd.total_amount }}</p>
-                                <p><strong>Maturity Amount:</strong> {{ fd.maturity_amount }}</p>
-                            </div>
-                            
-                            <div style="text-align: right; margin-right:5%; margin-top:1%;">
-                                {% if fd.status == 'Active' %}
-                                    <a href="{% url 'withdraw_fd' fd.id %}" class="btn btn-primary">Withdraw</a>
-                                {% elif fd.status == 'Matured' %}
-                                    <a href="{% url 'withdraw_fd' fd.id %}" class="btn btn-primary">View Matured FD</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    {% endfor %}
+    <div class="rd-accounts-container">
+        {% for fd in fd_accounts %}
+            <div class="rd-account-card">
+                <h4>FD Account Details</h4>
+                <div class="account-info">
+                    <p><strong>Account Number:</strong> {{ fd.fd_account.account_number }}</p>
+                    {% if fd.status_message %}
+                    
+                        <p class="status-message">{{ fd.status_message }}</p>
+                    {% else %}
+                        <p><strong>Interest Rate:</strong> {{ fd.interest_rate }}</p>
+                        <p><strong>Start Date:</strong> {{ fd.start_date }}</p>
+                        <p><strong>Maturity Date:</strong> {{ fd.maturity_date }}</p>
+                        <p><strong>Amount:</strong> {{ fd.total_amount }}</p>
+                        <p><strong>Maturity Amount:</strong> {{ fd.maturity_amount }}</p>
+                    {% endif %}
                 </div>
-            {% else %}
-                <h3>Your FD account not created</h3>
-            {% endif %}
+                <div style="text-align: right; margin-right:5%; margin-top:1%;">
+                    {% if fd.fd_account.is_active == 1 %}
+                        {% if fd.fd_account.status == 'Active' %}
+                            <a href="{% url 'withdraw_fd' fd.fd_account.id %}" class="btn btn-primary">Withdraw</a>
+                        {% elif fd.fd_account.status == 'Matured' %}
+                            <a href="{% url 'withdraw_fd' fd.fd_account.id %}" class="btn btn-primary">View Matured FD</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No FD accounts available.</p>
+{% endif %}
+
+          
+        
         </div>
         <style>
             .rd-details {

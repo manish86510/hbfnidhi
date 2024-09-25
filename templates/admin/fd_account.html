@@ -75,12 +75,13 @@
                                                         <img src="https://img.icons8.com/?size=100&id=114092&format=png&color=000000" alt="icon" width="20" height="20">
                                                     </a>
                                                 </td>
-
-                                                    {% if data.is_active == 0 %}
-                                                        <td><a href="/admin/fd/active/1/{{ data.account_number }}/"><button class="btn btn-info">Active</button></a></td>
+                                                
+                                                    {% if data.is_active == 1 %}
+                                                        <td><a href="/admin/fd/active/0/{{ data.account_number }}/"><button class="btn btn-info">Active</button></a></td>
                                                     {% else %}
-                                                        <td><a href="/admin/fd/active/0/{{ data.account_number }}/"><button class="btn btn-warning">Not Active</button></a></td>
+                                                        <td><a href="/admin/fd/active/1/{{ data.account_number }}/"><button class="btn btn-warning">Not Active</button></a></td>
                                                     {% endif %}
+                                                
                                             </tr>
                                         {% endfor %}
                                         </tbody>

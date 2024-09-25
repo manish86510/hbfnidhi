@@ -18,6 +18,9 @@
                     <div class="rd-account-card">
                         <h4>Loan Account Details</h4>
                         <div class="account-info">
+                            {% if loan.status_message %}
+                            <p class="status-message"> {{loan.status_message}}</p>
+                            {% else %}
                             <p><strong>Loan Amount:</strong> {{ loan.amount }}</p>
                             <p><strong>Interest Rate: </strong> {{ loan.interest_rate }}</p>
                             <p><strong>Tenure:</strong> {{ loan.tenure }} months</p>
@@ -25,9 +28,12 @@
                             <p><strong>Created Date:</strong> {{ loan.created_date }}</p>
                             <p><strong>Next EMI Amount:</strong> {{ loan.total_payment.total_payment }}</p>  
                             <p><strong>Next EMI Date:</strong> {{ loan.payment_date.payment_date}}</p>
+                            {% endif %}
                         </div>
                         <div class="emi-payment">
+                            {% if loan.id %}
                             <a href="{% url 'loan_emipay' loan.id %}" class="btn btn-primary" onclick="return confirm('Would you like to  pay the Loan EMI');">Pay EMI</a>
+                            {% endif %}
                         </div>
 
 

@@ -32,15 +32,25 @@ from django.db.models import Sum
 # from customer.tasks import add
 # result = add.apply_async((4, 6), countdown=5)
 # result=add(4,6)
-# from customer.tasks import add
+from customer.tasks import add
+
+
+# def add_view(request):
+#     # Call the 'add' task asynchronously
+#     result=add.delay(4, 5)
+#     return HttpResponse(f"Task ID: {result.id}, Result: {result.result}")
+#     # return HttpResponse(f"Task completed! Result: {value}")
 
 
 def add_view(request):
+    breakpoint()
     # Call the 'add' task asynchronously
-    result=add.delay(4, 5)
-    return HttpResponse(f"Task ID: {result.id}, Result: {result.result}")
+    # result=add.delay(4, 5)
+    result = add.apply_async((2, 3), countdown=5)
+   
+    # return HttpResponse("Result": {result})
+    return HttpResponse(result)
     # return HttpResponse(f"Task completed! Result: {value}")
-
 
 
 def Customer_Login(request):
@@ -373,19 +383,74 @@ def withdraw_fd(request, fd_id):
 #     return render(request, 'Customer/fd_matured.html')
 
 
+# def fd_home(request): 
+#     member_id = request.session.get('customer_id')
+#     customer = get_object_or_404(Customer, member=member_id)
+#     fd_accounts = FixedDeposit.objects.filter(customer=customer)
+#     if not fd_accounts.exists():
+#         # No FD accounts found, render fd_Home.html
+#         return render(request, 'Customer/fd_Home.html')
+#     fd_with_details = []    
+#     for fd in fd_accounts:
+#         if fd.is_active == 1: 
+            
+#             # for maturity amount calculation
+#             interest_rate = Decimal(fd.interest_rate.interest_rate.strip('%')) / 100
+#             time_in_years = (fd.maturity_date - fd.start_date).days / 365
+#             maturity_amount =  fd.total_amount*(1 + interest_rate) ** Decimal(time_in_years)
+#             fd.maturity_amount = maturity_amount
+#             fd.save() 
+#             fd_with_details.append({
+#                 'fd_account': fd,
+#                 'interest_rate': fd.interest_rate.interest_rate, 
+#                 'start_date': fd.start_date,
+#                 'maturity_date': fd.maturity_date,
+#                 'total_amount':fd.total_amount,
+#                 'maturity_amount': maturity_amount,
+#                 'account_number': fd.account_number,
+#             })
+#         else:
+#             fd_with_details.append({
+#                 'fd_account': fd,
+#                 'status_message': 'Not active FD by admin',
+#             })
+            
+#     context = {
+#         'fd_accounts': fd_with_details
+#         }
+     
+     
+        
+#     fd_status = fd_accounts.values_list('status', flat=True).distinct()
+    
+#     if 'Matured' in fd_status:
+#         # If any FD status is 'Matured', render fd_matured.html
+#         return render(request, 'Customer/fd_matured.html', {'fd_accounts': fd_accounts})
+#     elif 'Active' in fd_status:
+#         # If any FD status is 'Active', render FD.html
+#         context = {'fd_accounts': fd_accounts}
+#         return render(request, 'Customer/FD.html', context)
+#     else:
+#         # Default case if no specific FD status is found
+#         return render(request, 'Customer/fd_Home.html')
+    
+
 def fd_home(request): 
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
     fd_accounts = FixedDeposit.objects.filter(customer=customer)
+
     if not fd_accounts.exists():
         # No FD accounts found, render fd_Home.html
         return render(request, 'Customer/fd_Home.html')
+
     fd_with_details = []    
     for fd in fd_accounts:
-            # for maturity amount calculation
+        if fd.is_active == 1: 
+            # For maturity amount calculation
             interest_rate = Decimal(fd.interest_rate.interest_rate.strip('%')) / 100
             time_in_years = (fd.maturity_date - fd.start_date).days / 365
-            maturity_amount =  fd.total_amount*(1 + interest_rate) ** Decimal(time_in_years)
+            maturity_amount = fd.total_amount * (1 + interest_rate) ** Decimal(time_in_years)
             fd.maturity_amount = maturity_amount
             fd.save() 
             fd_with_details.append({
@@ -393,93 +458,178 @@ def fd_home(request):
                 'interest_rate': fd.interest_rate.interest_rate, 
                 'start_date': fd.start_date,
                 'maturity_date': fd.maturity_date,
-                'total_amount':fd.total_amount,
+                'total_amount': fd.total_amount,
                 'maturity_amount': maturity_amount,
                 'account_number': fd.account_number,
             })
-            context = {
-            'fd_accounts': fd_with_details
-        }
-     
-     
-        
+        else:
+            # FD not active
+            fd_with_details.append({
+                'fd_account': fd,
+                'status_message': 'FD is not active by admin',
+            })
+
+    context = {
+        'fd_accounts': fd_with_details
+    }
+
     fd_status = fd_accounts.values_list('status', flat=True).distinct()
-    
+
     if 'Matured' in fd_status:
         # If any FD status is 'Matured', render fd_matured.html
         return render(request, 'Customer/fd_matured.html', {'fd_accounts': fd_accounts})
     elif 'Active' in fd_status:
         # If any FD status is 'Active', render FD.html
-        context = {'fd_accounts': fd_accounts}
         return render(request, 'Customer/FD.html', context)
     else:
         # Default case if no specific FD status is found
         return render(request, 'Customer/fd_Home.html')
     
     
+ 
+# def rd_home(request):
+#     member_id = request.session.get('customer_id')
+#     customer = get_object_or_404(Customer, member=member_id)
+#     rd_accounts = RecurringDeposit.objects.filter(customer=customer)
+#     rd_with_next_payment = []
+    
+#     start_date = None
+#     end_date = None
+#     filtered_payments = None
+    
+#     for rd in rd_accounts:
+#         if rd.is_active == 1: 
+#             last_payment = PaymentSchedule.objects.filter(
+#                 rd_account=rd,
+#                 status='pending'
+#                 ).first()
+            
+#             if last_payment:
+#                 next_payment_date = last_payment.payment_date 
+#                 # Get current payment details
+#                 current_payments = PaymentSchedule.objects.filter(
+#                     rd_account=rd
+#                     ).order_by('-payment_date')
+#                 maturity_amount = calculate_rd_maturity_amount(rd)
+#                 rd.maturity_amount = maturity_amount
+#                 rd.save()
+#                 rd_with_next_payment.append({     
+#                     'rd_account': rd,
+#                     'next_payment_date': next_payment_date,
+#                     'current_payments': current_payments,
+#                     'interest_rate': rd.interest_rate.interest_rate,
+#                     'maturity_amount': maturity_amount
+#                 })
+#                 start_date = request.GET.get('startDate')
+#                 end_date = request.GET.get('endDate')
+#                 if start_date and end_date:
+#                     start_date = parse_date(start_date)
+#                     end_date = parse_date(end_date)
+            
+#                 if start_date and end_date:
+#                     end_date = datetime.combine(end_date, dt_time.max)
+#                     # payment = PaymentSchedule.objects.filter(rd_account__in=rd_accounts, payment_date__range=(start_date, end_date))
+#                     filtered_payments = PaymentSchedule.objects.filter(rd_account__in=rd_accounts, payment_date__range=(start_date, end_date))
+                
+#             paginator = Paginator(rd_with_next_payment, 10)  # Show 10 items per page
+#             page_number = request.GET.get('page')
+#             page_obj = paginator.get_page(page_number)
+                    
+#         else:
+#             # FD not active
+#             rd_with_next_payment.append({
+#                 'rd_account': rd,
+#                 'status_message': 'RD is not active by admin',
+#             })
+                
+                    
+       
+    
+#     context = {
+#         'rd_with_next_payment': rd_with_next_payment,
+#         # 'start_date': start_date or '',
+#         # 'end_date': end_date or '',
+#         'filtered_payments': filtered_payments,  # Safe because initialized
+#         'start_date': start_date or '',  # Default to an empty string if not set
+#         'end_date': end_date or '', 
+        
+        
+#         # 'filtered_payments': filtered_payments if start_date and end_date else None,  
+#         # 'start_date': request.GET.get('startDate', ''),
+#         # 'end_date': request.GET.get('endDate', ''),
+#         'page_obj': page_obj,
+
+#     }
+    
+#     rd_status = rd_accounts.values_list('status', flat=True).distinct()
+    
+#     if 'Matured' in rd_status:
+#         return render(request, 'Customer/rd_matured.html', {'rd_accounts': rd_accounts})
+#     elif 'Active' in rd_status:
+#         return render(request, 'Customer/RD.html', context)
+#     else:
+#         return render(request, 'Customer/rd_Home.html')
+
 def rd_home(request):
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
     rd_accounts = RecurringDeposit.objects.filter(customer=customer)
     rd_with_next_payment = []
-    
+    start_date = None
+    end_date = None
+    filtered_payments = None
+    page_obj = None 
+
     for rd in rd_accounts:
-        # Calculate next payment date
-        last_payment = PaymentSchedule.objects.filter(
-            rd_account=rd,
-            status='pending'
-        ).first()
-        
-        if last_payment:
-            next_payment_date = last_payment.payment_date 
-        
-        # Get current payment details
-        current_payments = PaymentSchedule.objects.filter(
-            rd_account=rd
-        ).order_by('-payment_date')
-        
-        maturity_amount = calculate_rd_maturity_amount(rd)
-        rd.maturity_amount = maturity_amount
-        rd.save()
-        
-        rd_with_next_payment.append({
-            'rd_account': rd,
-            'next_payment_date': next_payment_date,
-            'current_payments': current_payments,
-            'interest_rate': rd.interest_rate.interest_rate,
-            'maturity_amount': maturity_amount
-        })
-    start_date = request.GET.get('startDate')
-    end_date = request.GET.get('endDate')
-    
-    if start_date and end_date:
-        start_date = parse_date(start_date)
-        end_date = parse_date(end_date)
-        
-        if start_date and end_date:
-            end_date = datetime.combine(end_date, dt_time.max)
-            # payment = PaymentSchedule.objects.filter(rd_account__in=rd_accounts, payment_date__range=(start_date, end_date))
-            filtered_payments = PaymentSchedule.objects.filter(rd_account__in=rd_accounts, payment_date__range=(start_date, end_date))
-        
+        if rd.is_active == 1: 
+            last_payment = PaymentSchedule.objects.filter(
+                rd_account=rd,
+                status='pending'
+            ).first()
             
-        # else:
-        #     payment = PaymentSchedule.objects.filter(rd_account__in=rd_accounts)
-    # else:
-    #     payment = PaymentSchedule.objects.filter(rd_account__in=rd_accounts)
-    
-    paginator = Paginator(rd_with_next_payment, 10)  # Show 10 items per page
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    
+            if last_payment:
+                next_payment_date = last_payment.payment_date 
+                # Get current payment details
+                current_payments = PaymentSchedule.objects.filter(
+                    rd_account=rd
+                ).order_by('-payment_date')
+                maturity_amount = calculate_rd_maturity_amount(rd)
+                rd.maturity_amount = maturity_amount
+                rd.save()
+                rd_with_next_payment.append({     
+                    'rd_account': rd,
+                    'next_payment_date': next_payment_date,
+                    'current_payments': current_payments,
+                    'interest_rate': rd.interest_rate.interest_rate,
+                    'maturity_amount': maturity_amount
+                })
+                start_date = request.GET.get('startDate')
+                end_date = request.GET.get('endDate')
+                if start_date and end_date:
+                    start_date = parse_date(start_date)
+                    end_date = parse_date(end_date)
+
+                if start_date and end_date:
+                    end_date = datetime.combine(end_date, dt_time.max)
+                    filtered_payments = PaymentSchedule.objects.filter(rd_account__in=rd_accounts, payment_date__range=(start_date, end_date))
+                
+            paginator = Paginator(rd_with_next_payment, 10)  # Show 10 items per page
+            page_number = request.GET.get('page')
+            page_obj = paginator.get_page(page_number)
+                    
+        else:
+            # RD not active
+            rd_with_next_payment.append({
+                'rd_account': rd,
+                'status_message': 'RD is not active by admin',
+            })
+                
     context = {
         'rd_with_next_payment': rd_with_next_payment,
-        # 'start_date': start_date or '',
-        # 'end_date': end_date or '',
-        'filtered_payments': filtered_payments if start_date and end_date else None,  
-        'start_date': request.GET.get('startDate', ''),
-        'end_date': request.GET.get('endDate', ''),
+        'filtered_payments': filtered_payments,  # Safe because initialized
+        'start_date': start_date or '',  # Default to an empty string if not set
+        'end_date': end_date or '',  # Default to an empty string if not set
         'page_obj': page_obj,
-
     }
     
     rd_status = rd_accounts.values_list('status', flat=True).distinct()
@@ -490,7 +640,6 @@ def rd_home(request):
         return render(request, 'Customer/RD.html', context)
     else:
         return render(request, 'Customer/rd_Home.html')
-    
 
 
 
@@ -771,64 +920,141 @@ def calculate_amortization_schedule(amount, annual_rate, tenure_months, start_da
 
 
 
+# def customer_loan(request):
+#     member_id = request.session.get('customer_id')
+#     customer = get_object_or_404(Customer, member=member_id)
+    
+#     # Fetch personal loans for the customer
+#     personal_loans = Personal_loan.objects.filter(user=customer)
+    
+#     # Set the start date (assuming loan starts today)
+#     start_date = datetime.now().date()
+    
+#     for loan in personal_loans:
+#         if loan.is_active == 1:
+#             try:
+#                 loan_amount = Decimal(loan.amount)
+#                 loan_tenure = int(loan.tenure)
+#                 annual_rate = Decimal(loan.interest_rate.replace('%', '').strip())  # Strip any '%' and whitespace
+                
+#                 # Pass start_date to calculate_amortization_schedule
+#                 loan.schedule = calculate_amortization_schedule(loan_amount, annual_rate, loan_tenure, start_date)
+                
+#                 for entry in loan.schedule:
+#                     payment_date = entry['payment_date']  # Use due_date for payment_date
+                    
+#                     emi_record, created = LOANEMIPayment.objects.get_or_create(
+#                         user=customer,
+#                         loan=loan,
+#                         payment_date=payment_date,  # Ensure payment_date is provided
+#                         defaults={
+#                             'principal': entry['principal'],
+#                             'interest': entry['interest'],
+#                             'total_payment': entry['total_payment'],
+#                             'balance': entry['balance'],
+#                             'status': 'pending',  # Default status as 'pending'
+#                         }
+#                     )
+                    
+            
+#                     # Fetch status and update total_payment
+#                     emi_record = LOANEMIPayment.objects.filter(
+#                         user=customer, 
+#                         loan=loan, 
+#                         payment_date=payment_date  # Match by payment_date
+#                     ).first()
+                    
+#                     if emi_record:
+#                         entry['status'] = emi_record.status  # Fetch status from the database
+#                         loan.total_payment = LOANEMIPayment.objects.filter(user=customer, loan=loan, status='pending').first()
+                        
+#                         loan.payment_date = LOANEMIPayment.objects.filter(user=customer, loan=loan, status='pending').first()
+                    
+            
+#             except InvalidOperation:
+#                 loan.schedule = []
+                
+#         else:
+#             personal_loans.append({
+#                 'status_message': 'RD is not active by admin',
+#             })
+    
+#     context = {
+#         'customer': customer,
+#         'personal_loans': personal_loans
+#     }
+#     return render(request, 'Customer/Loan.html', context)
+
 def customer_loan(request):
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
     
     # Fetch personal loans for the customer
-    personal_loans = Personal_loan.objects.filter(user=customer)
+    personal_loans = list(Personal_loan.objects.filter(user=customer))  # Convert to list
+    
+    # Initialize an empty list for the final display
+    personal_loan_data = []
     
     # Set the start date (assuming loan starts today)
     start_date = datetime.now().date()
     
     for loan in personal_loans:
-        try:
-            loan_amount = Decimal(loan.amount)
-            loan_tenure = int(loan.tenure)
-            annual_rate = Decimal(loan.interest_rate.replace('%', '').strip())  # Strip any '%' and whitespace
-            
-            # Pass start_date to calculate_amortization_schedule
-            loan.schedule = calculate_amortization_schedule(loan_amount, annual_rate, loan_tenure, start_date)
-            
-            for entry in loan.schedule:
-                payment_date = entry['payment_date']  # Use due_date for payment_date
+        if loan.is_active == 1:
+            try:
+                loan_amount = Decimal(loan.amount)
+                loan_tenure = int(loan.tenure)
+                annual_rate = Decimal(loan.interest_rate.replace('%', '').strip())  # Strip any '%' and whitespace
                 
-                emi_record, created = LOANEMIPayment.objects.get_or_create(
-                    user=customer,
-                    loan=loan,
-                    payment_date=payment_date,  # Ensure payment_date is provided
-                    defaults={
-                        'principal': entry['principal'],
-                        'interest': entry['interest'],
-                        'total_payment': entry['total_payment'],
-                        'balance': entry['balance'],
-                        'status': 'pending',  # Default status as 'pending'
-                    }
-                )
+                # Pass start_date to calculate_amortization_schedule
+                loan.schedule = calculate_amortization_schedule(loan_amount, annual_rate, loan_tenure, start_date)
                 
-          
-                # Fetch status and update total_payment
-                emi_record = LOANEMIPayment.objects.filter(
-                    user=customer, 
-                    loan=loan, 
-                    payment_date=payment_date  # Match by payment_date
-                ).first()
-                
-                if emi_record:
-                    entry['status'] = emi_record.status  # Fetch status from the database
-                    loan.total_payment = LOANEMIPayment.objects.filter(user=customer, loan=loan, status='pending').first()
+                for entry in loan.schedule:
+                    payment_date = entry['payment_date']  # Use due_date for payment_date
                     
-                    loan.payment_date = LOANEMIPayment.objects.filter(user=customer, loan=loan, status='pending').first()
-                  
+                    emi_record, created = LOANEMIPayment.objects.get_or_create(
+                        user=customer,
+                        loan=loan,
+                        payment_date=payment_date,  # Ensure payment_date is provided
+                        defaults={
+                            'principal': entry['principal'],
+                            'interest': entry['interest'],
+                            'total_payment': entry['total_payment'],
+                            'balance': entry['balance'],
+                            'status': 'pending',  # Default status as 'pending'
+                        }
+                    )
+                    
+                    # Fetch status and update total_payment
+                    emi_record = LOANEMIPayment.objects.filter(
+                        user=customer, 
+                        loan=loan, 
+                        payment_date=payment_date  # Match by payment_date
+                    ).first()
+                    
+                    if emi_record:
+                        entry['status'] = emi_record.status  # Fetch status from the database
+                        loan.total_payment = LOANEMIPayment.objects.filter(user=customer, loan=loan, status='pending').first()
+                        loan.payment_date = LOANEMIPayment.objects.filter(user=customer, loan=loan, status='pending').first()
+                
+                # Append the loan details with its schedule to the display list
+                personal_loan_data.append(loan)
+            
+            except InvalidOperation:
+                loan.schedule = []
         
-        except InvalidOperation:
-            loan.schedule = []
+        else:
+            personal_loan_data.append({
+                'status_message': 'Loan is not activate by admin',
+                'loan': loan
+            })
     
     context = {
         'customer': customer,
-        'personal_loans': personal_loans
+        'personal_loans': personal_loan_data  # Use the modified list with loan data and status messages
     }
     return render(request, 'Customer/Loan.html', context)
+
+
 
 # def calculate_amortization_schedule(amount, annual_rate, tenure_months, start_date):
 #     # Convert annual rate percentage to a decimal and calculate monthly rate

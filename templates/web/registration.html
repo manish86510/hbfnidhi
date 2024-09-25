@@ -29,9 +29,16 @@
         label{
             width: 130px
         }
+        .error {
+            color: red;
+            display: none; /* Initially hidden */
+            margin-bottom: 10px;
+        }
     </style>
 </head>
+
 <body>
+    
 <script src='../../../../../../../ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
 <script src="../../../../../../../m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
 <script>
@@ -175,16 +182,16 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                 <a class="nav-link" data-toggle="tab" href="#additional"><b>Additional Details</b></a>
             </li>
           </ul>
-            <form action="/create_account/" method="post" enctype="multipart/form-data" class="form-inline contact-form">
+            <form name="myForm" action="/create_account/" method="post" enctype="multipart/form-data" class="form-inline contact-form" onsubmit=" validateForm"  id="myRegisterForm">
                 {% csrf_token %}
           <div class="tab-content">
             <div id="personal" class="container tab-pane active">
               <br/>
                             <div class="row">
-                                 <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
+                                 <!-- <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
                                     <label for="agent_code">Agent Or Emp. Code: </label>
                                     <input type="text" class="form-control" name="agent_id" id="agent_id" placeholder="Agent Or Emp. Code">
-                                </div>
+                                </div> -->
                                 <div class="col-lg-6 col-md-6" style="margin-bottom: 10px">&nbsp;</div>
                                 <div class="col-lg-6 col-md-6" style="margin-bottom: 10px">&nbsp;</div>
                                 <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
@@ -264,7 +271,9 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                                 </div>
                                 <div class="col-lg-6 form-group" style="margin-bottom: 10px">
                                     <label for="mobile">Mobile: </label>
-                                    <input type="text" name="mobile" class="form-control" placeholder="Mobile" required>
+                                    <input type="number" id="mobile" name="mobile" class="form-control"  placeholder="Mobile" 
+                                    >
+                                   
                                 </div>
                                 <div class="col-lg-6 form-group" style="margin-bottom: 10px">
                                     <label for="landline">Landline: </label>
@@ -507,7 +516,8 @@ MEMBERSHIP Conditions
 * Paid Up Capital: Rs. 10000000, Authorized Capital: 100000000
     </pre>
                       <div class="col-12">
-                    <button class="btn btn-danger">Register Now</button>
+                        <input type="submit" value="Submit">
+                    <!-- <button class="btn btn-danger">Register Now</button> -->
                 </div>
                   </div>
               </div>
@@ -641,6 +651,10 @@ MEMBERSHIP Conditions
 
         });
     </script>
+     
+      
+
+       
     <script src={% static "web/js/SmoothScroll.min.js" %}></script>
     <!-- //smooth-scrolling-of-move-up -->
     <!-- gallery smoothbox -->
@@ -650,5 +664,26 @@ MEMBERSHIP Conditions
  ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src={% static "web/js/bootstrap.js" %}></script>
+
+    <script>
+
+        
+
+        const form = document.getElementById('myRegisterForm');
+            form.addEventListener('submit', (e) => {
+
+                e.preventDefault();
+                let phone = document.getElementById('mobile').value.trim();
+                console.log(phone); 
+                let phoneregex = /^[6-9]\d{9}$/;
+                if (!phoneregex.test(phone)) {
+                    alert("Insert a valid phone number");
+                }
+                console.log('Form submission prevented.');
+            });
+
+    </script>
+
+
 </body>
 </html>

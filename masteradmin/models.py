@@ -10,7 +10,7 @@ class UserRole(models.Model):
 
 class Customer(models.Model):
     member = models.CharField(max_length=30)
-    agent = models.CharField(max_length=30, null=True)
+    # agent = models.CharField(max_length=30, null=True)
     role = models.ForeignKey(UserRole, on_delete=models.CASCADE, null=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
@@ -26,10 +26,10 @@ class Customer(models.Model):
     permanent_address = models.CharField(max_length=255)
     locality = models.CharField(max_length=150, null=True)
     landmark = models.CharField(max_length=80, null=True)
-    pincode = models.IntegerField()
+    pincode = models.IntegerField(max_length=6)
     password = models.CharField(max_length=80)
     email = models.EmailField(max_length=60)
-    mobile = models.BigIntegerField()
+    mobile = models.BigIntegerField(max_length=10, unique=True)
     age = models.CharField(max_length=20, null=True)
     landline = models.CharField(max_length=15, null=True)
     is_verify = models.IntegerField()
@@ -229,7 +229,8 @@ class RecurringDeposit(models.Model):
   total_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.0)
   status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Active')
   interest_rate = models.ForeignKey('RD_scheme', on_delete=models.CASCADE, null=True, blank=True)   
-  maturity_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.0) 
+  maturity_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.0)
+  is_active = models.IntegerField(null=True)   
  
  
  
@@ -310,6 +311,7 @@ class Personal_loan(models.Model):
     tenure = models.CharField(max_length=50)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Approved')
     created_date = models.DateTimeField(auto_now_add=True)
+    is_active = models.IntegerField(null=True)
     
 
 
@@ -337,5 +339,6 @@ class LOANEMIPayment(models.Model):
     balance = models.DecimalField(max_digits=10, decimal_places=2)
     payment_date = models.DateField()
     status = models.CharField(max_length=50, default='pending')
+    # is_active = models.IntegerField()
     
     

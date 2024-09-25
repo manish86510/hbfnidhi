@@ -29,10 +29,10 @@ urlpatterns = [
     path('send-email/', send_email_view, name='send_email'),
     # path('matured/', withdraw_fd, name='withdraw_fd'),
     path('withdraw_fd/<int:fd_id>/', withdraw_fd, name='withdraw_fd'),
-    path('home/', fd_home, name='fd_home'),
+    path('fd_home/', fd_home, name='fd_home'),
     path('rd_home/', rd_home, name='rd_home'),
     path('emii/<int:loan_id>/',loan_emipay, name='loan_emipay'),
-    # path('celery/',add_view,name='celery'),
+    path('celery/',add_view,name='celery'),
     path('rd/deposit/<int:rd_id>/', mark_next_payment_completed, name='mark_next_payment_completed'),
 ]
 

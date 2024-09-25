@@ -24,13 +24,17 @@
                           <div class="rd-account-card">
                               <h4>RD Account Details</h4>
                               <div class="account-info">
-                                  <p><strong>Account Number:</strong> {{ item.rd_account.account_number }}</p>
+                                <p><strong>Account Number:</strong> {{ item.rd_account.account_number }}</p>
+                                {% if item.status_message %}
+                                <p class="status-message">{{ item.status_message }}</p>
+                                {%else%}
                                   <p><strong>Interest Rate:</strong> {{ item.interest_rate }}</p>
                                   <p><strong>Start Date:</strong> {{ item.rd_account.start_date }}</p>
                                   <p><strong>Maturity Date:</strong> {{ item.rd_account.maturity_date }}</p>
                                   <p><strong>Monthly Installment:</strong> {{ item.rd_account.monthly_installment }}</p>
                                   <p><strong>Next Payment Date:</strong> {{ item.next_payment_date }}</p>
                                   <p><strong>Maturity Amount:</strong> {{ item.maturity_amount}}</p>
+                                {% endif %}
                               </div>
                               <div style="text-align: right; margin-right:5%;">
                                  <a href="{% url 'mark_next_payment_completed' item.rd_account.id %}" 
