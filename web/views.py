@@ -145,6 +145,15 @@ def create_account(self):
         d = datetime.datetime.strptime(date_of_birth, "%Y-%m-%d").date()
         today = datetime.date.today()
         age = today.year - d.year - ((today.month, today.day) < (d.month, d.day))
+        
+        if Customer.objects.filter(email=self.POST.get('email')).exists():
+            message = "This email is already registered!"
+            return render(self, 'web/registration.html', {'message': message})
+
+        if Customer.objects.filter(mobile=self.POST.get('mobile')).exists():
+            message = "This mobile number is already registered!"
+            return render(self, 'web/registration.html', {'message': message})
+
         try:
             Customer.objects.exclude(email=self.POST.get('email'), mobile=self.POST.get('mobile'))
             

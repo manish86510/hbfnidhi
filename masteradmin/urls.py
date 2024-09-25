@@ -43,7 +43,7 @@ urlpatterns = [
     path('rd_account/edit_rd/<str:account>/', Dashboard.edit_rd),
     path('loans/', Dashboard.loan),
     path('loans/edit_loan/<str:account>/', Dashboard.edit_loan),
-   
+    
 ]
 
 if settings.DEBUG:

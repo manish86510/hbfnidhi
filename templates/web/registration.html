@@ -158,7 +158,7 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
     </div>
   <div class="container">
   <div class="container mt-3">
-      <h2 align="center"><span>HBF Nidhi</span> User Registration</h2>
+    <h2 align="center"><span>HBF Nidhi</span> User Registration</h2>
           <br>
       {% if message != null %}
           <div class="alert-success">
@@ -243,7 +243,7 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                                 </div>
                                 <div class="col-lg-6 form-group" style="margin-bottom: 10px">
                                     <label for="po">Post Office: </label>
-                                    <input type="text" name="po" class="form-control" id="po" placeholder="Post Office" required>
+                                    <input type="text" name="po" class="form-control" id="po" placeholder="Post Office">
                                 </div>
                                 <div class="col-lg-6 form-group" style="margin-bottom: 10px">
                                     <label for="current_address">Current Address: </label>
@@ -262,12 +262,12 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                                     <input type="text" name="landmark" class="form-control" placeholder="Landmark">
                                 </div>
                                 <div class="col-lg-6 form-group" style="margin-bottom: 10px">
-                                    <label for="pincode">Pincode: </label>
-                                    <input type="text" name="pincode" class="form-control" placeholder="Pincode" required>
+                                    <label for="">Pincode: </label>
+                                    <input type="text" name="pincode"  id="pincode"class="form-control" placeholder="Pincode" >
                                 </div>
                                 <div class="col-lg-6 form-group" style="margin-bottom: 10px">
                                     <label for="email">Email Id: </label>
-                                    <input type="text" name="email" class="form-control" placeholder="Email Id" required>
+                                    <input type="text" name="email" class="form-control" id="email" placeholder="Email Id" required>
                                 </div>
                                 <div class="col-lg-6 form-group" style="margin-bottom: 10px">
                                     <label for="mobile">Mobile: </label>
@@ -362,11 +362,11 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
                                     <label for="guardian_aadhar">Guardian Aadhar: </label>
-                                    <input type="text" placeholder="Guardian Aadhar" class="form-control" name="guardian_aadhar">
+                                    <input type="text" placeholder="Guardian Aadhar" class="form-control" id="aadhar_no" name="guardian_aadhar">
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
                                     <label for="guardian_pan">Guardian Pan: </label>
-                                    <input type="text" placeholder="Guardian Pan" class="form-control" name="guardian_pan">
+                                    <input type="text" placeholder="Guardian Pan" class="form-control" name="guardian_pan" id="pan_no">
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
                                     <label for="guardian_id">Guardian ID: </label>
@@ -378,7 +378,7 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
               <div class="row">
                   <div class="form-group col-lg-12 col-md-12" style="margin-bottom: 10px">
                                     <label for="pan">Pan: </label>
-                                    <input type="text" placeholder="Pan number" class="form-control" name="pan_no">
+                                    <input type="text" id="pan_no" placeholder="Pan number" class="form-control" name="pan_no" >
                                     <input type="file" class="form-control" placeholder="Pan Doc" name="pan_doc" style="border:0px">
                                 </div>
                                 <div class="form-group col-lg-12 col-md-12" style="margin-bottom: 10px">
@@ -388,7 +388,7 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                                 </div>
                                 <div class="form-group col-lg-12 col-md-12" style="margin-bottom: 10px">
                                     <label for="aadhar_no">Aadhar Number: </label>
-                                    <input type="text" placeholder="Aadhar number" class="form-control" name="aadhar_no">
+                                    <input type="text" id="aadhar_no" placeholder="Aadhar number" class="form-control" name="aadhar_no">
                                     <input type="file" class="form-control" placeholder="Aadhar doc" name="aadhar_doc" style="border:0px">
                                 </div>
                                 <div class="form-group col-lg-12 col-md-12" style="margin-bottom: 10px">
@@ -664,26 +664,120 @@ MEMBERSHIP Conditions
  ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src={% static "web/js/bootstrap.js" %}></script>
-
+ 
     <script>
-
-        
-
         const form = document.getElementById('myRegisterForm');
             form.addEventListener('submit', (e) => {
-
+                console.log("a")
                 e.preventDefault();
                 let phone = document.getElementById('mobile').value.trim();
                 console.log(phone); 
                 let phoneregex = /^[6-9]\d{9}$/;
                 if (!phoneregex.test(phone)) {
                     alert("Insert a valid phone number");
+                    e.preventDefault(); 
+                    return;
+                    
                 }
+
+                let pincode = document.getElementById('pincode').value.trim();
+                
+                let pinCodeRegex = /^\d{6}$/;
+                if (!pinCodeRegex.test(pincode)) {
+                    alert("Insert a valid 6-digit pin code code");
+                    e.preventDefault();  
+                    return;
+                     // Prevent form submission if post code is invalid
+                }
+
+                        // Aadhar number validation
+                let aadhar = document.getElementById('aadhar_no').value.trim();   
+                if (aadhar.length !== 12) {
+                        alert("Aadhar number must be exactly 12 digits long");
+                        return false;  // Return false if validation fails
+                    }               
+                let aadharRegex = /^\d{12}$/;  // Regex to check for exactly 12 digits
+                if (!aadharRegex.test(aadhar)) {                      
+                    alert("Insert a valid 12-digit Aadhar number");                      
+                    e.preventDefault();                      
+                    return;                        
+                }  
+
+
+
+
+                        // PAN number validation
+                let pan = document.getElementById('pan_no').value.trim();                  
+                let panRegex = /^[A-Z]{5}\d{4}[A-Z]$/; // Regex to check for PAN format
+                if (!panRegex.test(pan)) {                      
+                    alert("Insert a valid PAN number (Format: AAAAA9999A)");                      
+                    e.preventDefault();                      
+                    return;                        
+                }  
+
+
+                        // Email validation
+                let email = document.getElementById('email').value.trim();                  
+                let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // Basic email regex
+                if (!emailRegex.test(email)) {                      
+                    alert("Insert a valid email address");                      
+                    e.preventDefault();                      
+                    return;                        
+                }  
+                
+
+                
                 console.log('Form submission prevented.');
+                form.submit();
+                console.log("submitted");
             });
+    </script> 
+ 
 
-    </script>
 
+
+    <!-- <script>
+        // Validation function
+        function validateForm() {
+            // Mobile number validation
+            let phone = document.getElementById('mobile').value.trim();
+            let phoneregex = /^[6-9]\d{9}$/;
+            if (!phoneregex.test(phone)) {
+                alert("Insert a valid phone number");
+                e.preventDefault();
+                return;  // Return false if validation fails
+            }
+    
+            // Pincode validation
+            let pincode = document.getElementById('pincode').value.trim();
+            let pinCodeRegex = /^\d{6}$/;
+            if (!pinCodeRegex.test(pincode)) {
+                alert("Insert a valid 6-digit pin code");
+                e.preventDefault();
+                return ;  // Return false if validation fails
+            }
+    
+            // If all validations pass
+            
+        }
+    
+        // Event listener for form submission
+        const form = document.getElementById('myRegisterForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();  // Prevent form submission to handle validation first
+            console.log("HJHJHJ")
+    
+            // Call the validateForm function
+            if (validateForm()) {
+                console.log('Form is valid and will be submitted.');
+                
+                form.submit();  // If valid, submit the form
+            } else {
+                console.log('Form submission prevented due to validation failure.');
+            }
+        });
+    </script> -->
+ 
 
 </body>
 </html>
