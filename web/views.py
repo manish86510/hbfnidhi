@@ -136,7 +136,6 @@ def loanagainstdepositreceipt(self):
     return render(self, 'web/deposit-receipt.html')
 
 
-
 def create_account(self):
     if self.method == 'POST':
         
@@ -199,7 +198,7 @@ def create_account(self):
             )
             customer.save()
             message = "Form submitted successfully !"
-            # return render(self, 'web/registration.html', {'message': message})
+            return render(self, 'web/registration.html', {'message': message})
         except :
             customer = None
 
@@ -242,6 +241,7 @@ def create_account(self):
                 guardian_id=self.POST.get('guardian_id'),
             )
             family.save()
+            return render(self, 'web/registration.html', {'message': message})
             message = "Form submitted successfully !"
         except :
             print("Error saving  family:")

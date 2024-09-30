@@ -25,7 +25,7 @@ urlpatterns = [
     path('create_fd_account/', Dashboard.create_fd_account),
     path('rd_account/', Dashboard.rd_account),
     path('fd_account/', Dashboard.fd_account),
-    # path('add_member/', Dashboard.member_form),
+    path('add_member/', Dashboard.member_form),
     path('fd/active/<int:active>/<str:account>/', Dashboard.active_fd),
     path('rd/active/<int:active>/<str:account>/', Dashboard.active_rd),
     path('loans/active/<int:active>/<str:account>/', Dashboard.active_loan),
