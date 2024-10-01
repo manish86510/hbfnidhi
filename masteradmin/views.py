@@ -15,7 +15,7 @@ from datetime import datetime
      
      
      
-     
+import ipdb   
 
 class Dashboard:
     def index(self):
@@ -588,5 +588,47 @@ class Dashboard:
         else:
             interest_rates = FD_scheme.objects.values_list('interest_rate', flat=True)
             return render(self, 'admin/create_fd.html', {'interest_rates': interest_rates})
+
+
+
+    def create_loan_account(self):
+        ipdb.set_trace()
+        if self.method == 'POST':
+            try:
+                user = self.POST.get('user_id')
+                tenure = self.POST.get('tenure')
+                amount = self.POST.get('amount')
+                interest_rate = self.POST.get('interest_rate')
+
+                try:
+                    customer = Customer.objects.get(member=user)
+                    print(customer)
+                    print(user)
+                    print(customer.member)
+                    print(customer.member) 
+                except Customer.DoesNotExist:
+                    message = "Invalid Member ID!"
+                    return render(request, 'admin/create_loan.html', {'message': message})
+
+                # If customer exists, create the loan
+                loan = Personal_loan(
+                    user=customer,
+                    tenure=tenure,
+                    amount=amount,
+                    interest_rate=interest_rate,
+                )
+                loan.save()  # Save the loan to the database
+                
+            
+                message = f"Loan created successfully! "
+                return render(self, 'admin/create_loan.html', {'message': message})
+                
+                
+            except Exception as e:
+                message = f"An error occurred: {str(e)}"
+                return render(self, 'admin/create_loan.html', {'message': message})
+
+        return render(self, 'admin/create_loan.html')
+
 
 

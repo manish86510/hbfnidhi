@@ -42,8 +42,8 @@ urlpatterns = [
     path('fd_account/edit_fd/<str:account>/', Dashboard.edit_fd),
     path('rd_account/edit_rd/<str:account>/', Dashboard.edit_rd),
     path('loans/', Dashboard.loan),
+    path('create_loan/', Dashboard.create_loan_account),
     path('loans/edit_loan/<str:account>/', Dashboard.edit_loan),
-    
 ]
 
 if settings.DEBUG:
