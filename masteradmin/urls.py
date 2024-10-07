@@ -12,7 +12,7 @@ urlpatterns = [
     path('login/', Dashboard.login),
     path('logout/', Dashboard.logout),
     path('members/', Dashboard.members),
-    path('customers/', Dashboard.customers),
+    # path('customers/', Dashboard.customers),
     path('profile/<str:member>/', Dashboard.view_customers),
     path('verify/<int:verify>/<str:member>/', Dashboard.verify_cust),
     path('active/<int:active>/<str:member>/', Dashboard.active_cust),

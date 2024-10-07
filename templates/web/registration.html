@@ -195,7 +195,7 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                                 <div class="col-lg-6 col-md-6" style="margin-bottom: 10px">&nbsp;</div>
                                 <div class="col-lg-6 col-md-6" style="margin-bottom: 10px">&nbsp;</div>
                                 <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
-                                    <label for="first_name">First Name: </label>
+                                    <label for="first_name" >First Name: </label>
                                     <!-- <label for="password">Password: </label> -->
                                     <select name="title" class="form-control" required>
                                         <option value="Mr.">Mr.</option>
@@ -203,24 +203,24 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                                         <option value="Miss.">Miss.</option>
                                         <option value="Dr.">Dr.</option>
                                     </select>&nbsp;
-                                    <input type="text" placeholder="First Name" class="form-control" name="first_name" required>
+                                    <input type="text" placeholder="First Name" class="form-control" name="first_name" id="name" required>
                                     <!-- <input type="text" placeholder="Password" class="form-control" name="password" required> -->
                                   </div>
                                 <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
                                     <label for="last_name">Last Name: </label>
-                                    <input type="text" name="last_name" class="form-control" placeholder="Last Name" id="last_name" required>
+                                    <input type="text" name="last_name" class="form-control" placeholder="Last Name" id="lname" required>
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
                                     <label for="father_name">Father Name: </label>
-                                    <input type="text" name="father_name" class="form-control" placeholder="Father Name" id="father_name">
+                                    <input type="text" name="father_name" class="form-control" placeholder="Father Name" id="fname">
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
                                     <label for="mother_name">Mother Name: </label>
-                                    <input type="text" name="mother_name" class="form-control" placeholder="Mother Name" id="mother_name">
+                                    <input type="text" name="mother_name" class="form-control" placeholder="Mother Name" id="mname">
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6" style="margin-bottom: 10px">
                                     <label for="husband_name">Husband Name: </label>
-                                    <input type="text" name="husband_name" class="form-control" id="husband_name" placeholder="Husband Name">
+                                    <input type="text" name="husband_name" class="form-control" id="hname" placeholder="Husband Name">
                                 </div>
                                 <div class="col-lg-6 form-group" style="margin-bottom: 10px">
                                     <label for="dob">Date of Birth: </label>
@@ -704,8 +704,6 @@ MEMBERSHIP Conditions
                 }  
 
 
-
-
                         // PAN number validation
                 let pan = document.getElementById('pan_no').value.trim();                  
                 let panRegex = /^[A-Z]{5}\d{4}[A-Z]$/; // Regex to check for PAN format
@@ -726,7 +724,82 @@ MEMBERSHIP Conditions
                 }  
                 
 
-                
+                //first name validation
+                let Name = document.getElementById('name').value.trim();
+                let nameRegex = /^[a-zA-Z]+$/; // Regular expression for only letters (uppercase and lowercase)
+                if (!nameRegex.test(Name)) {
+                    alert("Please enter a valid first name (letters only, no numbers or special characters).");
+                    e.preventDefault();
+                    return;
+                }
+
+
+                //last name validation
+                let LastName = document.getElementById('lname').value.trim();
+                let nameRegexx = /^[a-zA-Z]+$/; // Regular expression for only letters (uppercase and lowercase)
+                if (!nameRegexx.test(LastName)) {
+                    alert("Please enter a valid Last Name (letters only, no numbers or special characters).");
+                    e.preventDefault();
+                    return;
+                }
+
+
+                //Father name validation
+                let FatherName = document.getElementById('fname').value.trim();
+                let nameRegexxx = /^[a-zA-Z]+$/; // Regular expression for only letters (uppercase and lowercase)
+                if (!nameRegexxx.test(FatherName)) {
+                    alert("Please enter a valid Father name (letters only, no numbers or special characters).");
+                    e.preventDefault();
+                    return;
+                }
+
+                //Mother name validation
+                let MotherName = document.getElementById('mname').value.trim();
+                let nameRegexxxx = /^[a-zA-Z]+$/; // Regular expression for only letters (uppercase and lowercase)
+                if (!nameRegexxxx.test(MotherName)) {
+                    alert("Please enter a valid Mother name (letters only, no numbers or special characters).");
+                    e.preventDefault();
+                    return;
+                }
+
+                //Husband name validation
+                let HusbandName = document.getElementById('hname').value.trim();
+                let nameRe = /^[a-zA-Z]+$/; // Regular expression for only letters (uppercase and lowercase)
+                if (!nameRe.test(HusbandName)) {
+                    alert("Please enter a valid Husband name (letters only, no numbers or special characters).");
+                    e.preventDefault();
+                    return;
+                }
+
+                // Post Office Validation
+                let post=document.getElementById('po').value.trim();
+                let postRegex = /^[0-9]+$/;
+                if(!postRegex.test(post)){
+                    alert("Please enter a valid Post Office");
+                    e.preventDefault();
+                    return;
+                }
+
+                // City Validation
+                let city=document.getElementById('city').value.trim()
+                let cityRegex = /^[a-zA-Z]+$/;
+                if(!cityRegex.test(city)){
+                    alert("Please enter a valid city");
+                    e.preventDefault();
+                    return;
+                }
+
+
+                //state Validation
+                let state=document.getElementById('state').value.trim()
+                let stateRegex = /^[a-zA-Z]+$/;
+                if(!stateRegex.test(state)){
+                    alert("Please enter a valid state");
+                    e.preventDefault();
+                    return;
+                }
+
+
                 console.log('Form submission prevented.');
                 form.submit();
                 console.log("submitted");

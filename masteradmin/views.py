@@ -15,7 +15,7 @@ from datetime import datetime
      
      
      
-import ipdb   
+ 
 
 class Dashboard:
     def index(self):
@@ -592,7 +592,6 @@ class Dashboard:
 
 
     def create_loan_account(self):
-        ipdb.set_trace()
         if self.method == 'POST':
             try:
                 user = self.POST.get('user_id')
@@ -602,10 +601,6 @@ class Dashboard:
 
                 try:
                     customer = Customer.objects.get(member=user)
-                    print(customer)
-                    print(user)
-                    print(customer.member)
-                    print(customer.member) 
                 except Customer.DoesNotExist:
                     message = "Invalid Member ID!"
                     return render(request, 'admin/create_loan.html', {'message': message})

@@ -56,10 +56,10 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
-    "http://192.168.1.32:8000",
+    "http://192.168.1.121:8000",
 ]
 
-CORS_ALLOW_ALL_ORIGINS=False
+CORS_ALLOW_ALL_ORIGINS=True
 
 ROOT_URLCONF = 'hbfnidhi.urls'
 
@@ -91,16 +91,16 @@ DATABASES = {
     #     # 'ENGINE': 'django.db.backends.sqlite3',
     #     # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
-    #      'ENGINE': 'django.db.backends.postgresql',
-    #      'OPTIONS': {
-    #          'options': '-c search_path=general',
-    #      },
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     # 'OPTIONS': {
+    #     #      'options': '-c search_path=general',
+    #     #  },
     #     'NAME': 'hbfnidhi',
-    #     'USER': 'admin_user',
-    #     'PASSWORD': 'Password@123',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'Password@1234',
     #     'HOST': '44.220.239.211',
     #     'PORT': '5432',
-    #  },
+    #  }
     'default': {
        
         'ENGINE': 'django.db.backends.mysql',
@@ -188,8 +188,6 @@ CACHES = {
         'LOCATION': 'redis://localhost:6379/1',
     }
 }
-
-
 
 
 # settings.py

@@ -4,7 +4,6 @@ import random
 from django.contrib.auth.hashers import make_password
 from django.forms import forms
 from django.shortcuts import render, redirect
-# from customer.tasks import enable_next_payment
 from masteradmin.models import *
 from django.http import HttpResponse, JsonResponse
 import datetime
@@ -47,13 +46,12 @@ def add_view(request):
     # Call the 'add' task asynchronously
     # result=add.delay(4, 5)
     result = add.apply_async((2, 3), countdown=5)
-   
     # return HttpResponse("Result": {result})
     return HttpResponse(result)
     # return HttpResponse(f"Task completed! Result: {value}")
 
-
 def Customer_Login(request):
+
     
     if request.method == 'POST':
         enter_email = request.POST.get('username')
@@ -75,6 +73,7 @@ def Customer_Login(request):
                     request.session['branch_name'] = saving_account.branch_name
                     request.session['branch_code'] = saving_account.branch_code
                     request.session['ifsc'] = saving_account.ifsc
+                    
                     # request.session['account_balance'] = saving_account.account_balance
                     request.session['account_balance'] = str(saving_account.account_balance)  # Convert Decimal to string
                 except SavingAccount.DoesNotExist:
@@ -84,7 +83,8 @@ def Customer_Login(request):
                     request.session['branch_code'] = None
                     request.session['ifsc']=None
                     request.session['account_balance']='None'
-                
+
+               
                 return render(request, 'Customer/Home.html', {'customer_id': customer.member, 'customer_name': customer.first_name})
             else:
                 message = "Account not verified by admin"
@@ -94,6 +94,9 @@ def Customer_Login(request):
             return render(request, 'Customer/login.html', {'message': message})
     else:
         return render(request, 'Customer/login.html')
+
+
+
 
 
 def customer_account(request, account_no):
@@ -159,6 +162,13 @@ def customer_account(request, account_no):
     }
 
     return render(request, 'Customer/Accounts.html', context)
+
+
+
+
+
+
+
 
 
 #Accounts Statement download transaction
@@ -344,15 +354,7 @@ def withdraw_fd(request, fd_id):
 
     # Update FD status to matured
     fd.status = 'Matured'
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     fd.save()
     
     
@@ -383,74 +385,21 @@ def withdraw_fd(request, fd_id):
 #     return render(request, 'Customer/fd_matured.html')
 
 
-# def fd_home(request): 
-#     member_id = request.session.get('customer_id')
-#     customer = get_object_or_404(Customer, member=member_id)
-#     fd_accounts = FixedDeposit.objects.filter(customer=customer)
-#     if not fd_accounts.exists():
-#         # No FD accounts found, render fd_Home.html
-#         return render(request, 'Customer/fd_Home.html')
-#     fd_with_details = []    
-#     for fd in fd_accounts:
-#         if fd.is_active == 1: 
-            
-#             # for maturity amount calculation
-#             interest_rate = Decimal(fd.interest_rate.interest_rate.strip('%')) / 100
-#             time_in_years = (fd.maturity_date - fd.start_date).days / 365
-#             maturity_amount =  fd.total_amount*(1 + interest_rate) ** Decimal(time_in_years)
-#             fd.maturity_amount = maturity_amount
-#             fd.save() 
-#             fd_with_details.append({
-#                 'fd_account': fd,
-#                 'interest_rate': fd.interest_rate.interest_rate, 
-#                 'start_date': fd.start_date,
-#                 'maturity_date': fd.maturity_date,
-#                 'total_amount':fd.total_amount,
-#                 'maturity_amount': maturity_amount,
-#                 'account_number': fd.account_number,
-#             })
-#         else:
-#             fd_with_details.append({
-#                 'fd_account': fd,
-#                 'status_message': 'Not active FD by admin',
-#             })
-            
-#     context = {
-#         'fd_accounts': fd_with_details
-#         }
-     
-     
-        
-#     fd_status = fd_accounts.values_list('status', flat=True).distinct()
-    
-#     if 'Matured' in fd_status:
-#         # If any FD status is 'Matured', render fd_matured.html
-#         return render(request, 'Customer/fd_matured.html', {'fd_accounts': fd_accounts})
-#     elif 'Active' in fd_status:
-#         # If any FD status is 'Active', render FD.html
-#         context = {'fd_accounts': fd_accounts}
-#         return render(request, 'Customer/FD.html', context)
-#     else:
-#         # Default case if no specific FD status is found
-#         return render(request, 'Customer/fd_Home.html')
-    
-
 def fd_home(request): 
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
     fd_accounts = FixedDeposit.objects.filter(customer=customer)
-
     if not fd_accounts.exists():
         # No FD accounts found, render fd_Home.html
         return render(request, 'Customer/fd_Home.html')
-
     fd_with_details = []    
     for fd in fd_accounts:
         if fd.is_active == 1: 
-            # For maturity amount calculation
+            
+            # for maturity amount calculation
             interest_rate = Decimal(fd.interest_rate.interest_rate.strip('%')) / 100
             time_in_years = (fd.maturity_date - fd.start_date).days / 365
-            maturity_amount = fd.total_amount * (1 + interest_rate) ** Decimal(time_in_years)
+            maturity_amount =  fd.total_amount*(1 + interest_rate) ** Decimal(time_in_years)
             fd.maturity_amount = maturity_amount
             fd.save() 
             fd_with_details.append({
@@ -458,117 +407,35 @@ def fd_home(request):
                 'interest_rate': fd.interest_rate.interest_rate, 
                 'start_date': fd.start_date,
                 'maturity_date': fd.maturity_date,
-                'total_amount': fd.total_amount,
+                'total_amount':fd.total_amount,
                 'maturity_amount': maturity_amount,
                 'account_number': fd.account_number,
             })
         else:
-            # FD not active
             fd_with_details.append({
                 'fd_account': fd,
-                'status_message': 'FD is not active by admin',
+                'status_message': 'Not active FD by admin',
             })
-
+            
     context = {
         'fd_accounts': fd_with_details
-    }
-
+        }
+     
+     
+        
     fd_status = fd_accounts.values_list('status', flat=True).distinct()
-
+    
     if 'Matured' in fd_status:
         # If any FD status is 'Matured', render fd_matured.html
         return render(request, 'Customer/fd_matured.html', {'fd_accounts': fd_accounts})
     elif 'Active' in fd_status:
         # If any FD status is 'Active', render FD.html
+        context = {'fd_accounts': fd_accounts}
         return render(request, 'Customer/FD.html', context)
     else:
         # Default case if no specific FD status is found
         return render(request, 'Customer/fd_Home.html')
-    
-    
- 
-# def rd_home(request):
-#     member_id = request.session.get('customer_id')
-#     customer = get_object_or_404(Customer, member=member_id)
-#     rd_accounts = RecurringDeposit.objects.filter(customer=customer)
-#     rd_with_next_payment = []
-    
-#     start_date = None
-#     end_date = None
-#     filtered_payments = None
-    
-#     for rd in rd_accounts:
-#         if rd.is_active == 1: 
-#             last_payment = PaymentSchedule.objects.filter(
-#                 rd_account=rd,
-#                 status='pending'
-#                 ).first()
-            
-#             if last_payment:
-#                 next_payment_date = last_payment.payment_date 
-#                 # Get current payment details
-#                 current_payments = PaymentSchedule.objects.filter(
-#                     rd_account=rd
-#                     ).order_by('-payment_date')
-#                 maturity_amount = calculate_rd_maturity_amount(rd)
-#                 rd.maturity_amount = maturity_amount
-#                 rd.save()
-#                 rd_with_next_payment.append({     
-#                     'rd_account': rd,
-#                     'next_payment_date': next_payment_date,
-#                     'current_payments': current_payments,
-#                     'interest_rate': rd.interest_rate.interest_rate,
-#                     'maturity_amount': maturity_amount
-#                 })
-#                 start_date = request.GET.get('startDate')
-#                 end_date = request.GET.get('endDate')
-#                 if start_date and end_date:
-#                     start_date = parse_date(start_date)
-#                     end_date = parse_date(end_date)
-            
-#                 if start_date and end_date:
-#                     end_date = datetime.combine(end_date, dt_time.max)
-#                     # payment = PaymentSchedule.objects.filter(rd_account__in=rd_accounts, payment_date__range=(start_date, end_date))
-#                     filtered_payments = PaymentSchedule.objects.filter(rd_account__in=rd_accounts, payment_date__range=(start_date, end_date))
-                
-#             paginator = Paginator(rd_with_next_payment, 10)  # Show 10 items per page
-#             page_number = request.GET.get('page')
-#             page_obj = paginator.get_page(page_number)
-                    
-#         else:
-#             # FD not active
-#             rd_with_next_payment.append({
-#                 'rd_account': rd,
-#                 'status_message': 'RD is not active by admin',
-#             })
-                
-                    
-       
-    
-#     context = {
-#         'rd_with_next_payment': rd_with_next_payment,
-#         # 'start_date': start_date or '',
-#         # 'end_date': end_date or '',
-#         'filtered_payments': filtered_payments,  # Safe because initialized
-#         'start_date': start_date or '',  # Default to an empty string if not set
-#         'end_date': end_date or '', 
-        
-        
-#         # 'filtered_payments': filtered_payments if start_date and end_date else None,  
-#         # 'start_date': request.GET.get('startDate', ''),
-#         # 'end_date': request.GET.get('endDate', ''),
-#         'page_obj': page_obj,
 
-#     }
-    
-#     rd_status = rd_accounts.values_list('status', flat=True).distinct()
-    
-#     if 'Matured' in rd_status:
-#         return render(request, 'Customer/rd_matured.html', {'rd_accounts': rd_accounts})
-#     elif 'Active' in rd_status:
-#         return render(request, 'Customer/RD.html', context)
-#     else:
-#         return render(request, 'Customer/rd_Home.html')
 
 def rd_home(request):
     member_id = request.session.get('customer_id')
@@ -579,6 +446,7 @@ def rd_home(request):
     end_date = None
     filtered_payments = None
     page_obj = None 
+    total_amount_paid = 0  # Variable to store total paid amount
 
     for rd in rd_accounts:
         if rd.is_active == 1: 
@@ -586,6 +454,16 @@ def rd_home(request):
                 rd_account=rd,
                 status='pending'
             ).first()
+
+
+            # Calculate total amount paid for each RD account
+            completed_payments = PaymentSchedule.objects.filter(
+                rd_account=rd,
+                status='completed'
+            )
+            total_paid_for_rd = completed_payments.aggregate(total_paid=Sum('amount'))['total_paid'] or 0
+            total_amount_paid += total_paid_for_rd  # Add to total amount paid across all RDs
+
             
             if last_payment:
                 next_payment_date = last_payment.payment_date 
@@ -601,8 +479,10 @@ def rd_home(request):
                     'next_payment_date': next_payment_date,
                     'current_payments': current_payments,
                     'interest_rate': rd.interest_rate.interest_rate,
-                    'maturity_amount': maturity_amount
+                    'maturity_amount': maturity_amount,
+                    'total_paid_for_rd': total_paid_for_rd
                 })
+                
                 start_date = request.GET.get('startDate')
                 end_date = request.GET.get('endDate')
                 if start_date and end_date:
@@ -630,6 +510,7 @@ def rd_home(request):
         'start_date': start_date or '',  # Default to an empty string if not set
         'end_date': end_date or '',  # Default to an empty string if not set
         'page_obj': page_obj,
+        'total_amount_paid': total_amount_paid 
     }
     
     rd_status = rd_accounts.values_list('status', flat=True).distinct()
@@ -746,7 +627,7 @@ def mark_next_payment_completed(request, rd_id):
    
 
     # Get the RD account
-    rd_account = get_object_or_404(Personal_loan, id=rd_id, customer=customer)
+    rd_account = get_object_or_404(RecurringDeposit, id=rd_id, customer=customer)
     
     balance = Decimal(saving_account.account_balance) 
     balance -= rd_account.monthly_installment
@@ -755,15 +636,7 @@ def mark_next_payment_completed(request, rd_id):
     
     
     
-    # if transfer_transaction:
-    #     # Access the remaining_balance from the transaction instance
-    #     balance = TransferTransactions.remaining_balance
-    #     balance -= Decimal(rd_account.monthly_installment)  # Subtract installment
-        
-        # Update saving account balance
-        # saving_account.account_balance = str(balance)
-        # saving_account.save()
-
+    
         # Get the next pending payment
     next_payment = PaymentSchedule.objects.filter(
             rd_account=rd_account,
@@ -820,8 +693,6 @@ def calculate_rd_maturity_amount(rd):
     
     return round(maturity_amount, 2)
 
-
-#new new new 
 
 def customer_rd(request):
     member_id = request.session.get('customer_id')
@@ -919,72 +790,6 @@ def calculate_amortization_schedule(amount, annual_rate, tenure_months, start_da
     return schedule
 
 
-
-# def customer_loan(request):
-#     member_id = request.session.get('customer_id')
-#     customer = get_object_or_404(Customer, member=member_id)
-    
-#     # Fetch personal loans for the customer
-#     personal_loans = Personal_loan.objects.filter(user=customer)
-    
-#     # Set the start date (assuming loan starts today)
-#     start_date = datetime.now().date()
-    
-#     for loan in personal_loans:
-#         if loan.is_active == 1:
-#             try:
-#                 loan_amount = Decimal(loan.amount)
-#                 loan_tenure = int(loan.tenure)
-#                 annual_rate = Decimal(loan.interest_rate.replace('%', '').strip())  # Strip any '%' and whitespace
-                
-#                 # Pass start_date to calculate_amortization_schedule
-#                 loan.schedule = calculate_amortization_schedule(loan_amount, annual_rate, loan_tenure, start_date)
-                
-#                 for entry in loan.schedule:
-#                     payment_date = entry['payment_date']  # Use due_date for payment_date
-                    
-#                     emi_record, created = LOANEMIPayment.objects.get_or_create(
-#                         user=customer,
-#                         loan=loan,
-#                         payment_date=payment_date,  # Ensure payment_date is provided
-#                         defaults={
-#                             'principal': entry['principal'],
-#                             'interest': entry['interest'],
-#                             'total_payment': entry['total_payment'],
-#                             'balance': entry['balance'],
-#                             'status': 'pending',  # Default status as 'pending'
-#                         }
-#                     )
-                    
-            
-#                     # Fetch status and update total_payment
-#                     emi_record = LOANEMIPayment.objects.filter(
-#                         user=customer, 
-#                         loan=loan, 
-#                         payment_date=payment_date  # Match by payment_date
-#                     ).first()
-                    
-#                     if emi_record:
-#                         entry['status'] = emi_record.status  # Fetch status from the database
-#                         loan.total_payment = LOANEMIPayment.objects.filter(user=customer, loan=loan, status='pending').first()
-                        
-#                         loan.payment_date = LOANEMIPayment.objects.filter(user=customer, loan=loan, status='pending').first()
-                    
-            
-#             except InvalidOperation:
-#                 loan.schedule = []
-                
-#         else:
-#             personal_loans.append({
-#                 'status_message': 'RD is not active by admin',
-#             })
-    
-#     context = {
-#         'customer': customer,
-#         'personal_loans': personal_loans
-#     }
-#     return render(request, 'Customer/Loan.html', context)
-
 def customer_loan(request):
     member_id = request.session.get('customer_id')
     customer = get_object_or_404(Customer, member=member_id)
@@ -1004,10 +809,14 @@ def customer_loan(request):
                 loan_amount = Decimal(loan.amount)
                 loan_tenure = int(loan.tenure)
                 annual_rate = Decimal(loan.interest_rate.replace('%', '').strip())  # Strip any '%' and whitespace
+
                 
                 # Pass start_date to calculate_amortization_schedule
                 loan.schedule = calculate_amortization_schedule(loan_amount, annual_rate, loan_tenure, start_date)
                 
+
+                total_completed_payment = Decimal(0) 
+
                 for entry in loan.schedule:
                     payment_date = entry['payment_date']  # Use due_date for payment_date
                     
@@ -1033,6 +842,19 @@ def customer_loan(request):
                     
                     if emi_record:
                         entry['status'] = emi_record.status  # Fetch status from the database
+
+
+                        
+                        # Add total payment for completed payments
+                        if emi_record.status == 'Completed':
+                            total_completed_payment += emi_record.total_payment
+                            
+                        loan.total_completed_payment = total_completed_payment
+
+                        
+
+
+
                         loan.total_payment = LOANEMIPayment.objects.filter(user=customer, loan=loan, status='pending').first()
                         loan.payment_date = LOANEMIPayment.objects.filter(user=customer, loan=loan, status='pending').first()
                 
@@ -1055,101 +877,6 @@ def customer_loan(request):
     return render(request, 'Customer/Loan.html', context)
 
 
-
-# def calculate_amortization_schedule(amount, annual_rate, tenure_months, start_date):
-#     # Convert annual rate percentage to a decimal and calculate monthly rate
-#     monthly_rate = Decimal(annual_rate) / Decimal(12 * 100)  # Convert annual rate to monthly rate
-#     tenure_months = Decimal(tenure_months)
-    
-#     # Avoid division by zero
-#     if monthly_rate == 0:
-#         monthly_payment = amount / tenure_months
-#     else:
-#         # Calculate monthly payment
-#         numerator = monthly_rate * (Decimal(1) + monthly_rate) ** tenure_months
-#         denominator = (Decimal(1) + monthly_rate) ** tenure_months - 1
-#         monthly_payment = amount * numerator / denominator
-    
-#     schedule = []
-#     balance = Decimal(amount)
-#     current_date = start_date
-
-#     for month in range(1, int(tenure_months) + 1):
-#         interest = balance * monthly_rate
-#         principal = monthly_payment - interest
-#         balance -= principal
-        
-#         # Increment the current date by 30 days
-#         due_date = current_date
-#         current_date += timedelta(days=30)  # Increment date by 30 days
-
-#         # Append schedule entry with month and due_date
-#         schedule.append({
-#             'month': month,  # Keep month as a fallback or placeholder
-#             'due_date': due_date.strftime('%Y-%m-%d'),  # Format date to YYYY-MM-DD
-#             'principal': round(principal, 2),
-#             'interest': round(interest, 2),
-#             'total_payment': round(monthly_payment, 2),
-#             'balance': round(balance, 2) if balance > 0 else 0,
-#         })
-
-#        
-#     return schedule
-
-# def customer_loan(request):
-#     member_id = request.session.get('customer_id')
-#     customer = get_object_or_404(Customer, member=member_id)
-    
-#     # Fetch personal loans for the customer
-#     personal_loans = Personal_loan.objects.filter(user=customer)
-    
-#     # Set the start date (assuming loan starts today)
-#     start_date = datetime.now().date()
-    
-#     # Calculate EMI for each loan
-#     for loan in personal_loans:
-#         try:
-#             loan_amount = Decimal(loan.amount)
-#             loan_tenure = int(loan.tenure)
-#             annual_rate = Decimal(loan.interest_rate.replace('%', '').strip())  # Strip any '%' and whitespace
-            
-#             # Pass start_date to calculate_amortization_schedule
-#             loan.schedule = calculate_amortization_schedule(loan_amount, annual_rate, loan_tenure, start_date)
-            
-#             for entry in loan.schedule:
-#                 emi_record, created = LOANEMISchedule.objects.get_or_create(
-#                     user=customer,
-#                     loan=loan,
-#                     month=entry['month'],  # Placeholder value for month
-#                     payment_date=entry['due_date'],  # Store the due date
-#                     defaults={
-#                         'principal': entry['principal'],
-#                         'interest': entry['interest'],
-#                         'total_payment': entry['total_payment'],
-#                         'balance': entry['balance'],
-#                         'status': 'pending',  # Default status as 'pending'
-#                     }
-#                 )
-                
-#                 # Fetch status and update total_payment
-#                 emi_record = LOANEMISchedule.objects.filter(
-#                     user=customer, 
-#                     loan=loan, 
-#                     payment_date=entry['due_date']  # Match by due date
-#                 ).first()
-                
-#                 if emi_record:
-#                     entry['status'] = emi_record.status  # Fetch status from the database
-#                     loan.total_payment = LOANEMISchedule.objects.filter(user=customer, loan=loan, status='pending').first()
-        
-#         except InvalidOperation:
-#             loan.schedule = []
-    
-#     context = {
-#         'customer': customer,
-#         'personal_loans': personal_loans
-#     }
-#     return render(request, 'Customer/Loan.html', context)
 
 
 
@@ -1285,8 +1012,8 @@ def calculate_emi(amount, interest_rate, tenure):
     emi = (amount * r * (1 + r) ** n) / ((1 + r) ** n - 1)
     return emi
 
-
 def customer_funds(request):
+
   
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
@@ -1369,18 +1096,136 @@ def customer_funds(request):
 
 
 
-def customer_home(request):
+
+
+
+
+def customer_home(request, account_no):
     member_id = request.session.get('customer_id')
     member = get_object_or_404(Customer, member=member_id)
     customer_name = member.first_name 
     user_name=request.session['customer_name']
     member_id=request.session['customer_id']
+
+    total_rd_paid = 0  
+    total_completed_loan_payments = Decimal(0)
     
     
     if user_name and member_id:
-         return render(request,'Customer/Home.html',{ 'customer_name': customer_name})
-    else:
-        return render(request, 'Customer/login.html')
+        try:
+            saving_account = SavingAccount.objects.get(member=member_id, account_no=account_no)
+            current_balance = Decimal(saving_account.account_balance)
+        except SavingAccount.DoesNotExist:
+            saving_account = None
+            current_balance = Decimal(0)
+
+
+        # Fetch only transfer transactions related to the account number
+        transfer_transactions = TransferTransactions.objects.filter(
+            from_account_no__account_no=account_no
+        )
+        
+        TransferTransactions.objects.filter(
+            from_account_no__account_no=account_no
+        )
+                
+    
+    start_date = request.GET.get('startDate')
+    end_date = request.GET.get('endDate')
+
+
+     
+    if start_date and end_date:
+        start_date = parse_date(start_date)
+        end_date = parse_date(end_date)
+        if start_date and end_date:
+            # Adjust end_date to include the entire end day
+            end_date = datetime.combine(end_date, dt_time.max)
+            transfer_transactions = transfer_transactions.filter(transfer_date__range=(start_date, end_date))
+
+    balances = []
+    running_balance = current_balance
+    for transfer in transfer_transactions:
+        # Update the balance based on the transfer transaction
+        if transfer.from_account_no.account_no == account_no:
+            running_balance = Decimal(transfer.remaining_balance)
+            balances.append(running_balance)
+
+    # Pair transactions with their respective balances
+    transactions_and_balances = list(zip(transfer_transactions, balances))
+    
+        
+    paginator = Paginator(transactions_and_balances, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+
+    rd_accounts = RecurringDeposit.objects.filter(customer=member)
+
+    # Calculate total amount paid for all RD accounts
+    for rd in rd_accounts:
+        completed_payments = PaymentSchedule.objects.filter(
+            rd_account=rd,
+            status='completed'
+        )
+        total_paid_for_rd = completed_payments.aggregate(total_paid=Sum('amount'))['total_paid'] or 0
+        total_rd_paid += total_paid_for_rd  # Add to the total amount paid
+
+   
+
+    loans = Personal_loan.objects.filter(user=member)
+   
+        # Calculate total completed loan payments
+    for loan in loans:
+
+        completed_payments = LOANEMIPayment.objects.filter(
+            loan=loan,
+            status='Completed'
+        )
+        
+        
+        total_completed_loan_payments += completed_payments.aggregate(total_paid=Sum('total_payment'))['total_paid'] or 0
+
+        
+
+
+    # Fetch FD accounts related to the customer
+    fd_accounts = FixedDeposit.objects.filter(customer=member)
+    fd_details = []
+   
+    for fd in fd_accounts:
+
+        fd_details.append({
+   # Example field
+            'total_amount': fd.total_amount,
+        })
+ 
+
+
+    form = BankStatementForm()
+    
+    context = {
+        'page_obj': page_obj,
+        'saving_account': saving_account,
+        'form': form,
+        'start_date': request.GET.get('startDate', ''),
+        'end_date': request.GET.get('endDate', ''),
+        'customer_name': customer_name,
+        'current_balance':current_balance,
+        'fd_details': fd_details,
+        'total_rd_paid': total_rd_paid,
+        'total_completed_loan_payments': total_completed_loan_payments,
+    }
+
+
+    
+    return render(request,'Customer/Home.html', context)
+    # else:
+    #     return render(request, 'Customer/login.html')
+
+
+
+
 
 def customer_invest(self):
     return render(self,'Customer/Invest.html')

@@ -4,14 +4,15 @@ from customer.views import *
 
 urlpatterns = [
     path('', Dashboard.index),
-    path('home',customer_home, name='customer_home'),
+    path('home/<str:account_no>/',customer_home, name='customer_home'),
     path('account/<str:account_no>/', customer_account, name='customer_account'),
+    # path('home/<str:account_no>/', customer_dashboard, name='customer_dashboard'),
     path('download/', download_transactions,name='download_transactions'),    
     path('funds/', customer_funds, name='customer_funds'),
     path('bill/',customer_bill,name='customer_bill' ),
     path('services',customer_services),
     path('invest',customer_invest),
-    path('customer',Customer_Login),
+    path('customer',Customer_Login, name='customer_login'),
     path('profile',customer_profile, name='profile'),
     path('profile',customer_edit,name='customer_edit'),
     path('setting',customer_setting),
