@@ -115,10 +115,6 @@ def loans(self):
     return render(self, 'web/loans.html')
 
 
-# def lockers(self):
-#     return render(self, 'web/lockers.html')
-
-
 def contact(self):
     return render(self, 'web/contact.html')
 
@@ -136,15 +132,25 @@ def loanagainstdepositreceipt(self):
     return render(self, 'web/deposit-receipt.html')
 
 
+
+import ipdb
 def create_account(self):
+    ipdb.set_trace()  # Debugging point
+
     if self.method == 'POST':
-        
-        first_name = self.POST.get('title')+ ' ' + self.POST.get('first_name')
+        # Retrieve and process form fields
+        first_name = self.POST.get('title') + ' ' + self.POST.get('first_name')
         date_of_birth = self.POST.get('dob')
-        d = datetime.datetime.strptime(date_of_birth, "%Y-%m-%d").date()
-        today = datetime.date.today()
-        age = today.year - d.year - ((today.month, today.day) < (d.month, d.day))
-        
+
+        try:
+            d = datetime.datetime.strptime(date_of_birth, "%Y-%m-%d").date()
+            today = datetime.date.today()
+            age = today.year - d.year - ((today.month, today.day) < (d.month, d.day))
+        except ValueError:
+            message = "Invalid Date of Birth format."
+            return render(self, 'web/registration.html', {'message': message})
+
+        # Check if email or mobile already exists
         if Customer.objects.filter(email=self.POST.get('email')).exists():
             message = "This email is already registered!"
             return render(self, 'web/registration.html', {'message': message})
@@ -154,24 +160,26 @@ def create_account(self):
             return render(self, 'web/registration.html', {'message': message})
 
         try:
+            # Exclude customers with same email or mobile (not sure why exclude is used here)
             Customer.objects.exclude(email=self.POST.get('email'), mobile=self.POST.get('mobile'))
-            
-        except:
-            message = "Email and Contact details already exists !"
+        except Exception as e:
+            message = f"Error in checking email and mobile uniqueness: {e}"
             return render(self, 'web/registration.html', {'message': message})
 
+        # Generate member number
         try:
             rend_num = random.randint(1111111, 9999999)
-            Customer.objects.exclude(member="MA"+str(rend_num))
-        except:
+            Customer.objects.exclude(member="MA" + str(rend_num))
+        except Exception as e:
             rend_num = random.randint(1111111, 9999999)
+            print(f"Error generating member number: {e}")
 
+        # Create Customer
         try:
             customer = Customer.objects.create(
                 first_name=first_name,
                 last_name=self.POST.get('last_name'),
-                member="MA"+str(rend_num),
-                
+                member="MA" + str(rend_num),
                 role=UserRole.objects.last(),
                 father_name=self.POST.get('father_name'),
                 mother_name=self.POST.get('mother_name'),
@@ -197,12 +205,13 @@ def create_account(self):
                 registration_date=models.DateTimeField(auto_now_add=True),
             )
             customer.save()
-            message = "Form submitted successfully !"
+            print("Customer created successfully.")
+        except Exception as e:
+            print(f"Error creating customer: {e}")
+            message = "Error creating customer."
             return render(self, 'web/registration.html', {'message': message})
-        except :
-            customer = None
 
-            
+        # Create Payment record
         try:
             payment = UserPayment.objects.create(
                 user=Customer.objects.last(),
@@ -221,11 +230,14 @@ def create_account(self):
                 dd_branch_name=self.POST.get('dd_branch_name'),
                 dd_branch_ifsc=self.POST.get('dd_branch_ifsc'),
             )
-         
             payment.save()
-            message = "Form submitted successfully !"
-        except :
-            print("Error saving payment")
+            print("Payment created successfully.")
+        except Exception as e:
+            print(f"Error saving payment: {e}")
+            message = "Error saving payment."
+            return render(self, 'web/registration.html', {'message': message})
+
+        # Create UserFamily
         try:
             family = UserFamily.objects.create(
                 user=Customer.objects.last(),
@@ -234,50 +246,52 @@ def create_account(self):
                 nominee_dob=self.POST.get('ndob'),
                 guardian_name=self.POST.get('guardian_name'),
                 guardian_relation=self.POST.get('guardian_relationship'),
-                guardian_dob=self.POST.get('guardian_address'),
-                guardian_address=self.POST.get('cheque_bank_name'),
+                guardian_dob=self.POST.get('guardian_dob'),
+                guardian_address=self.POST.get('guardian_address'),
                 guardian_aadhar=self.POST.get('guardian_aadhar'),
                 guardian_pan=self.POST.get('guardian_pan'),
                 guardian_id=self.POST.get('guardian_id'),
+                guardian_id_doc=self.POST.get('guardian_id_doc'),
+                guardian_aadhar_doc=self.POST.get('guardian_aadhar_doc'),
+                guardian_pan_doc=self.POST.get('guardian_pan_doc'),
             )
             family.save()
+            print("Family details saved successfully.")
+        except Exception as e:
+            print(f"Error saving family: {e}")
+            message = "Error saving family details."
             return render(self, 'web/registration.html', {'message': message})
-            message = "Form submitted successfully !"
-        except :
-            print("Error saving  family:")
+
+        # Handle file uploads and save UserDocument and UserOther
         try:
-            if self.FILES['aadhar_doc']:
-                aadhardoc = self.FILES['aadhar_doc']
-                fs = FileSystemStorage()
+            fs = FileSystemStorage()
+            aadhardoc = self.FILES.get('aadhar_doc')
+            iddoc = self.FILES.get('id_proof_doc')
+            pandoc = self.FILES.get('pan_doc')
+            otherdoc = self.FILES.get('other_proof_doc')
+
+            if aadhardoc:
                 filename = fs.save(aadhardoc.name, aadhardoc)
-                uploaded_file_url = fs.url(filename)
-            if self.FILES['id_proof_doc']:
-                iddoc = self.FILES['id_proof_doc']
-                fs = FileSystemStorage()
+            if iddoc:
                 filename = fs.save(iddoc.name, iddoc)
-                uploaded_file_url = fs.url(filename)
-            if self.FILES['pan_doc']:
-                pandoc = self.FILES['pan_doc']
-                fs = FileSystemStorage()
+            if pandoc:
                 filename = fs.save(pandoc.name, pandoc)
-                uploaded_file_url = fs.url(filename)
-            if self.FILES['other_proof_doc']:
-                otherdoc = self.FILES['other_proof_doc']
-                fs = FileSystemStorage()
+            if otherdoc:
                 filename = fs.save(otherdoc.name, otherdoc)
-                uploaded_file_url = fs.url(filename)
+
             document = UserDocument(
                 user=Customer.objects.last(),
                 aadhar=self.POST.get('aadhar_no'),
                 pan=self.POST.get('pan_no'),
                 id_proof=self.POST.get('id_proof'),
-                id_doc=iddoc.name,
-                aadhar_doc=aadhardoc.name,
-                pan_doc=pandoc.name,
+                id_doc=iddoc.name if iddoc else '',
+                aadhar_doc=aadhardoc.name if aadhardoc else '',
+                pan_doc=pandoc.name if pandoc else '',
                 other_id=self.POST.get('other_proof'),
-                other_id_doc=otherdoc.name,
+                other_id_doc=otherdoc.name if otherdoc else '',
             )
             document.save()
+
             other = UserOther.objects.create(
                 user=Customer.objects.last(),
                 qualification=self.POST.get('qualification'),
@@ -293,13 +307,11 @@ def create_account(self):
                 mutual_fund=self.POST.get('mutual_fund'),
             )
             other.save()
-            message = "Form Submitted Successfully !"
-        except Exception:
-            other = None
-        message = "Form submitted successfully !"
+            message = "Form Submitted Successfully!"
+        except Exception as e:
+            print(f"Error saving documents or other details: {e}")
+            message = "Error saving document or other details."
+
         return render(self, 'web/registration.html', {'message': message})
     else:
         return render(self, 'web/registration.html')
-
-
-

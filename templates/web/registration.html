@@ -90,7 +90,7 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                 <div class="nav-top-left">
                     <ul>
                         <li>
-                            <a href="/customer/" class="log" >Login</a>
+                            <a href="/customer/" class="log" >Logn</a>
                         </li>
                         <li>
                             <a href="/registration/" class="log">Register</a>
@@ -677,7 +677,6 @@ MEMBERSHIP Conditions
                     alert("Insert a valid phone number");
                     e.preventDefault(); 
                     return;
-                    
                 }
 
                 let pincode = document.getElementById('pincode').value.trim();
@@ -808,49 +807,6 @@ MEMBERSHIP Conditions
  
 
 
-
-    <!-- <script>
-        // Validation function
-        function validateForm() {
-            // Mobile number validation
-            let phone = document.getElementById('mobile').value.trim();
-            let phoneregex = /^[6-9]\d{9}$/;
-            if (!phoneregex.test(phone)) {
-                alert("Insert a valid phone number");
-                e.preventDefault();
-                return;  // Return false if validation fails
-            }
-    
-            // Pincode validation
-            let pincode = document.getElementById('pincode').value.trim();
-            let pinCodeRegex = /^\d{6}$/;
-            if (!pinCodeRegex.test(pincode)) {
-                alert("Insert a valid 6-digit pin code");
-                e.preventDefault();
-                return ;  // Return false if validation fails
-            }
-    
-            // If all validations pass
-            
-        }
-    
-        // Event listener for form submission
-        const form = document.getElementById('myRegisterForm');
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();  // Prevent form submission to handle validation first
-            console.log("HJHJHJ")
-    
-            // Call the validateForm function
-            if (validateForm()) {
-                console.log('Form is valid and will be submitted.');
-                
-                form.submit();  // If valid, submit the form
-            } else {
-                console.log('Form submission prevented due to validation failure.');
-            }
-        });
-    </script> -->
- 
 
 </body>
 </html>
