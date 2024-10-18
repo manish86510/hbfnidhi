@@ -307,25 +307,20 @@ class Dashboard:
             
    
    
+
     def next_payment_date(request, rd_account):
         rd_account = RecurringDeposit.objects.get(id=rd_account)
-        
-        
+    
         last_payment = PaymentSchedule.objects.filter(
         rd_account=rd_account,
         status='Completed'
     ).order_by('-payment_date').first()
-        
-        
-        
+       
         if last_payment:
             next_payment_date = last_payment.payment_date + timedelta(days=30)  # Assuming monthly payments
         else:
             next_payment_date = rd_account.start_date + timedelta(days=30)
-            
-            
-        
-        
+       
         next_payment = PaymentSchedule.objects.filter(
             rd_account=rd_account,
             payment_date=next_payment_date,
@@ -336,9 +331,7 @@ class Dashboard:
             print(f"No PaymentSchedule found for rd_account: {rd_account} on date: {next_payment_date} with status: 'Pending'")
         else:
             print(f"Next Payment: {next_payment}")
-            
-            
-                 
+               
         context = {
         'payment': next_payment,
         'next_payment_date': next_payment_date
@@ -452,9 +445,7 @@ class Dashboard:
 
 
     def rd_account(self):
-        # specific_account_number = 'FD8512473318' 
         rd_data = RecurringDeposit.objects.all()
-        # fd_data = FixedDeposit.objects.filter(account_number=specific_account_number)
         for obj in rd_data: 
             return render(self, 'admin/rd_account.html', {'rd_data': rd_data})
         
@@ -468,8 +459,7 @@ class Dashboard:
         
      
     def fd_account(self):
-        fd_data = FixedDeposit.objects.all()
-        # fd_data = FixedDeposit.objects.filter(account_number=specific_account_number)
+        fd_data = FixedDeposit.objects.all()  
         for obj in fd_data:
             return render(self, 'admin/fd_account.html', {'fd_data': fd_data})
     
@@ -519,16 +509,6 @@ class Dashboard:
      
     
     
-    # def sactive(self, active, member):
-    #     if active == 0:
-    #         SavingAccount.objects.filter(member=member).update(is_active=1)
-    #     else:
-    #         SavingAccount.objects.filter(member=member).update(is_active=0)
-    #     member = SavingAccount.objects.all().order_by('-id')
-    #     return render(self, 'admin/saving_account.html', {'member': member})
-    
-    # def edit_fd(self):
-    #     return render(self,'admin/edit_fd.html')
     
    
     def edit_fd(request,account):

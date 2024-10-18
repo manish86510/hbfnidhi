@@ -17,15 +17,12 @@ urlpatterns = [
     path('loans/', views.loans),
     path('monthly-income-plan/',views.monthlyincome),
     path('registration/', views.registration),
-    # path('lockers/', views.lockers),
     path('contact/', views.contact),
     path('gold-loan/',views.goldloan),
     path('loan-against-insurance-policy/',views.loanagainstinsurancepolicy),
     path('loan-against-govt-bond/',views.loanagainstgovtbond),
     path('deposit-receipt/',views.loanagainstdepositreceipt),
     path('create_account/', views.create_account),
-    # path('doorstep/', views.doorstap),
-    # path(''/,)
 ]
 
 

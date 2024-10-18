@@ -26,93 +26,6 @@
         </div>
     </div>
 
-    <!-- Date Filter Form -->
-
-    <style>
-        .site_title {
-            position: relative;
-            padding: 10px 20px;
-            border-radius: 5px;
-            color: #fff;
-            background-color: #51a9b5;
-            font-size: 1.5em;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-    
-        .site_title .form-data {
-            display: flex;
-            align-items: center;
-        }
-    
-        .site_title .form-data form {
-            display: flex;
-            align-items: center;
-        }
-    
-        .site_title .form-data .form-group {
-            margin-right: 15px;
-        }
-    
-        .site_title .form-data .form-control {
-            border-radius: 20px;
-            padding: 8px 15px;
-            border: 1px solid #ccc;
-            margin-top: 5px;
-        }
-    
-        .site_title .form-data .btn-primary {
-            background-color: #81b6eb;
-            border: none;
-            border-radius: 10px;
-        }
-    
-        .site_title .form-data .btn-primary:hover {
-            background-color: #51a9b5;
-        }
-    
-        .site_title .bi-download {
-            font-size: 1.5em;
-            color: #fff;
-            cursor: pointer;
-        }
-    
-        .tile-stats {
-            padding: 20px;
-            border-radius: 10px;
-        }
-    
-        .table thead {
-            background-color: #e3f0f4;
-            color: black;
-        }
-    
-        .table th, .table td {
-            text-align: center;
-        }
-    
-        .pagination {
-            margin: 20px 0;
-            text-align: center;
-        }
-    
-        .pagination a {
-            color: #004d99;
-            text-decoration: none;
-            margin: 0 5px;
-        }
-    
-        .pagination a:hover {
-            text-decoration: underline;
-        }
-    
-        .pagination .current {
-            font-weight: bold;
-            color: #004d99;
-        }
-    </style>
-    
     <div>
         <div class="row top_tiles">
             
@@ -172,19 +85,6 @@
                                             N/A
                                         {% endif %}
                                     </td>
-                                    
-                                    <!-- <td> 
-                                        {% if transaction.description == 'Fund Transfer' or transaction.description == 'Withdrawn amount from FD account'%}
-                                            {% if transaction.description == 'Fund Transfer' %}
-                                            {{ transaction.to_account_no.account_no }}
-                                            
-                                            {% else %}
-                                            FD
-                                            {% endif %}
-                                        {% else %}
-                                            N/A
-                                        {% endif %}
-                                    </td> -->
                                     <td>{{ transaction.amount  }}</td>
                                     <td>{{ balance }}</td>
                                     <td>{{ transaction.transfer_date }}</td>
@@ -213,4 +113,92 @@
         </div>
     </div>    
 </div>
+
+  <!-- Date Filter Form -->
+
+  <style>
+    .site_title {
+        position: relative;
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: #fff;
+        background-color: #51a9b5;
+        font-size: 1.5em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .site_title .form-data {
+        display: flex;
+        align-items: center;
+    }
+
+    .site_title .form-data form {
+        display: flex;
+        align-items: center;
+    }
+
+    .site_title .form-data .form-group {
+        margin-right: 15px;
+    }
+
+    .site_title .form-data .form-control {
+        border-radius: 20px;
+        padding: 8px 15px;
+        border: 1px solid #ccc;
+        margin-top: 5px;
+    }
+
+    .site_title .form-data .btn-primary {
+        background-color: #81b6eb;
+        border: none;
+        border-radius: 10px;
+    }
+
+    .site_title .form-data .btn-primary:hover {
+        background-color: #51a9b5;
+    }
+
+    .site_title .bi-download {
+        font-size: 1.5em;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .tile-stats {
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .table thead {
+        background-color: #e3f0f4;
+        color: black;
+    }
+
+    .table th, .table td {
+        text-align: center;
+    }
+
+    .pagination {
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .pagination a {
+        color: #004d99;
+        text-decoration: none;
+        margin: 0 5px;
+    }
+
+    .pagination a:hover {
+        text-decoration: underline;
+    }
+
+    .pagination .current {
+        font-weight: bold;
+        color: #004d99;
+    }
+</style>
+
 {% endblock content %}

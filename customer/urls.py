@@ -31,10 +31,6 @@ urlpatterns = [
     path('emii/<int:loan_id>/',loan_emipay, name='loan_emipay'),
     path('rate', interest_rate, name='rate'),
     # path('customer/fd/<int:fd_id>/withdraw/', withdraw_fd, name='withdraw_fd'),
-    # path('send-email/', send_email_view, name='send_email'),
-    # path('matured/', withdraw_fd, name='withdraw_fd'),
-    # path('celery/',add_view,name='celery'),
-   
 ]
 
 

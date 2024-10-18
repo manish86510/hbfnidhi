@@ -9,31 +9,6 @@ from web.forms import *
 import socket
 socket.getaddrinfo('localhost', 8000)
 
-# def contact_view(request):
-#     if request.method == 'POST':
-#         form = ContactForm(request.POST)
-#         if form.is_valid():
-#             name = form.cleaned_data['Name']
-#             email = form.cleaned_data['Email']
-#             message = form.cleaned_data['message']
-            
-#             send_mail(
-#                 subject=name,
-#                 message=message,
-#                 from_email=email,
-#                 # recipient_list=['priyalsinghal11@gmail.com']
-#                 recipient_list = ['info@hbfnidhi.com']
-#             )
-
-            
-           
-#     else:
-#         form = ContactForm()
-
-#     return render(request, 'web/index.html', {'form': form})
-
-#     # return render(request, 'Customer/Accounts.html', context)
-
 
 
 def contact_view(request):
@@ -85,9 +60,6 @@ def shareholder(self):
     return render(self, 'web/shareholder.html')
 
 
-# def doorstap(self):
-#     return render(self, 'web/doorstep-services.html')
-
 
 def enquiry(self):
     return render(self, 'web/enquiry.html')
@@ -133,10 +105,8 @@ def loanagainstdepositreceipt(self):
 
 
 
-import ipdb
-def create_account(self):
-    ipdb.set_trace()  # Debugging point
 
+def create_account(self):
     if self.method == 'POST':
         # Retrieve and process form fields
         first_name = self.POST.get('title') + ' ' + self.POST.get('first_name')
@@ -205,7 +175,6 @@ def create_account(self):
                 registration_date=models.DateTimeField(auto_now_add=True),
             )
             customer.save()
-            print("Customer created successfully.")
         except Exception as e:
             print(f"Error creating customer: {e}")
             message = "Error creating customer."
@@ -231,7 +200,7 @@ def create_account(self):
                 dd_branch_ifsc=self.POST.get('dd_branch_ifsc'),
             )
             payment.save()
-            print("Payment created successfully.")
+
         except Exception as e:
             print(f"Error saving payment: {e}")
             message = "Error saving payment."
@@ -256,7 +225,6 @@ def create_account(self):
                 guardian_pan_doc=self.POST.get('guardian_pan_doc'),
             )
             family.save()
-            print("Family details saved successfully.")
         except Exception as e:
             print(f"Error saving family: {e}")
             message = "Error saving family details."
