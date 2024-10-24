@@ -25,9 +25,10 @@ urlpatterns = [
     path('create_fd_account/', Dashboard.create_fd_account),
     path('rd_account/', Dashboard.rd_account),
     path('fd_account/', Dashboard.fd_account),
-    # path('add_member/', Dashboard.member_form),
+    path('add_member/', Dashboard.member_form),
     path('fd/active/<int:active>/<str:account>/', Dashboard.active_fd),
-    # path('rd/active/<int:active>/<str:account>/', Dashboard.active_rd),
+    path('rd/active/<int:active>/<str:account>/', Dashboard.active_rd),
+    path('loans/active/<int:active>/<str:account>/', Dashboard.active_loan),
     # path('fd_info/<str:account_number>/<str:associated_member>/', Dashboard.fd_info),
     # path('rd_info/<str:account_number>/<str:associated_member>/', Dashboard.rd_info),
     # path('transfer/', Dashboard.transfer),
@@ -35,14 +36,13 @@ urlpatterns = [
 #     path('saving_info/<str:member>/<str:account>/', Dashboard.saving_info),
     path('fd_plans/', Dashboard.fd_plan),
     path('rd_plans/', Dashboard.rd_plan),
-    path('next-payment-date/<int:rd_account>/', Dashboard.next_payment_date),
-    path('all_fd_scheme', Dashboard.all_fd_plans),
+    # path('all_fd_scheme', Dashboard.all_fd_plans),
     # path('all_rd_scheme', Dashboard.all_rd_plans),
     path('fd_account/edit_fd/<str:account>/', Dashboard.edit_fd),
     path('rd_account/edit_rd/<str:account>/', Dashboard.edit_rd),
     path('loans/', Dashboard.loan),
+    path('create_loan/', Dashboard.create_loan_account),
     path('loans/edit_loan/<str:account>/', Dashboard.edit_loan),
-   
 ]
 
 if settings.DEBUG:

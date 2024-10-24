@@ -188,6 +188,7 @@ html , body{
     max-height: 66px;
     max-width: 180px;
 }
+
 .nav-sm .main_container .top_nav {
     display: block;
     margin-left: 70px;
@@ -824,9 +825,9 @@ a:focus {
     display: block;
     height: 55px;
     margin: 0;
-    padding-left: 10px;
-    
+    padding-left: 10px; 
 }
+
 .site_title:hover,
 .site_title:focus {
     text-decoration: none

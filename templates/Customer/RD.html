@@ -13,13 +13,10 @@
               </div>
             </div>
 
-
-
-
             <div class="rd-details">
                 <div style="text-align: right; margin-right:5%; margin-top:1%;">
-                    <a href="create_rd" class="btn btn-primary">Apply for RD</a>
-                  </div> 
+                    <a href="{% url 'create_rd' %}" class="btn btn-primary">Apply for RD</a>
+                  </div>
               
               {% if rd_with_next_payment %}
                   <div class="rd-accounts-container">
@@ -27,22 +24,29 @@
                           <div class="rd-account-card">
                               <h4>RD Account Details</h4>
                               <div class="account-info">
-                                  <p><strong>Account Number:</strong> {{ item.rd_account.account_number }}</p>
+                                <p><strong>Account Number:</strong> {{ item.rd_account.account_number }}</p>
+                                {% if item.status_message %}
+                                <p class="status-message">{{ item.status_message }}</p>
+                                {%else%}
                                   <p><strong>Interest Rate:</strong> {{ item.interest_rate }}</p>
                                   <p><strong>Start Date:</strong> {{ item.rd_account.start_date }}</p>
                                   <p><strong>Maturity Date:</strong> {{ item.rd_account.maturity_date }}</p>
                                   <p><strong>Monthly Installment:</strong> {{ item.rd_account.monthly_installment }}</p>
                                   <p><strong>Next Payment Date:</strong> {{ item.next_payment_date }}</p>
                                   <p><strong>Maturity Amount:</strong> {{ item.maturity_amount}}</p>
+                                {% endif %}
                               </div>
                               <div style="text-align: right; margin-right:5%;">
-                                <a href="#" class="btn btn-primary">Deposit</a>
+                                 <a href="{% url 'mark_next_payment_completed' item.rd_account.id %}" 
+                                 class="btn btn-primary" 
+                                 onclick="return confirm('Are you sure you want to deposit the next installment for Account Number {{ item.rd_account.account_number }}');">
+                                 Deposit</a>
                               </div>
                           </div>
                       {% endfor %}
                   </div>
               {% else %}
-                  <p>No RD accounts found.</p>
+                  <p>No RD accounts found.</p>3
               {% endif %}
             </div>
             
@@ -208,7 +212,8 @@
                                         <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
                                     </form>
                                     
-                                    <a href="{% url 'download_payment' %}" class="bi-download"></a>
+                                    <a href="{% url 'rd_download_payment' %}?startDate={{ start_date }}&endDate={{ end_date}}" class="bi-download"></a>
+                                    
                                 </div>
                               </h2>
                           </div>
@@ -224,6 +229,18 @@
                                   </tr>
                               </thead>
                               <tbody>
+
+
+                                {% if filtered_payments %}
+                                {% for payment in filtered_payments %}
+                                <tr>
+                                    <td>{{ payment.id }}</td>
+                                    <td>{{ payment.payment_date }}</td>
+                                    <td>{{ payment.amount }}</td>
+                                    <td>{{ payment.status }}</td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
                                 {% for rd in rd_with_next_payment %}
                                 {% for payment in rd.current_payments %}
                                 <tr>
@@ -235,6 +252,7 @@
                                 </tr>
                                 {% endfor %}
                                 {% endfor %}
+                                {% endif %}
                             </tbody>
                             
                           </table>
@@ -257,132 +275,6 @@
                   </div>
               </div>
           </div>   
-
-
-
-
-
-
-<!-- NEW NEW CODE  -->
-            <!-- <div class="rd-details">
-              
-              {% if rd_with_next_payment %}
-                  <ul>
-                      {% for item in rd_with_next_payment %}
-                          <li>
-                              <strong>Account Number:</strong> {{ item.rd_account.account_number }}<br>
-                              <strong>Interest Rate:</strong> {{ item.rd_account.interest_rate }}<br>
-                              <strong>Start Date:</strong> {{ item.rd_account.start_date }}<br>
-                              <strong>Maturity Date:</strong> {{ item.rd_account.maturity_date }}<br>
-                              <strong>Monthly Installment:</strong> {{ item.rd_account.monthly_installment }}<br>
-                              <strong>Next Payment Date:</strong> {{ item.next_payment_date }}<br>
-                          </li>
-                      {% endfor %}
-                  </ul>
-              {% else %}
-                  <p>No RD accounts found.</p>
-              {% endif %}
-            </div> -->
-            <!--  NEW NEW CODE -->
-
-
-
-
-
-
-
-
-            <!-- new code -->
-<!-- 
-            <div class="rd-details">
-              
-              {% if rd_accounts %}
-                  <ul>
-                      {% for rd in rd_accounts %}
-                          <li>
-                              <strong>Account Number:</strong> {{ rd.account_number }}<br>
-                              <strong>Interest Rate:</strong> {{ rd.interest_rate }}<br>
-                              <strong>Start Date:</strong> {{ rd.start_date }}<br>
-                              <strong>Maturity Date:</strong> {{ rd.maturity_date }}<br>
-                              <strong>Monthly Installment:</strong> {{ rd.monthly_installment }}<br>
-                          </li>
-                      {% endfor %}
-                  </ul>
-              {% else %}
-                  <p>No RD accounts found.</p>
-              {% endif %}
-          </div> -->
-<!-- new code end  -->
-
-
-             <!-- <div class="row">
-              <div class="col-md-1 col-sm-1 col-xs-2">
-              </div>
-              <div class="col-md-10 col-sm-10 col-xs-7">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Apply for RD</h2>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <br />
-                    <form class="form-horizontal form-label-left input_mask"  method="POST" action="Rd">
-                            {% csrf_token %}
-                    <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Amount : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text"  id="amount" name="amount" class="form-control">
-                        </div>
-                    </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Account No :</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text"  id="account" name="account" value="{{ acc_num.account_no }}" class="form-control" readonly="readonly" placeholder="Read-Only Input" >
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Tenure(Months):</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text"  id="tenure" name="tenure" value="" class="form-control">
-                        </div>
-                      </div>
-
-                      <div class="form-group " >
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Rate of interest : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="intrest_rate" name="intrest_rate" value="8" class="form-control" readonly>
-                        </div>
-                      </div>
-
-                       <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4 col-xs-12">Maturity Amount : </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="maturity" name="maturity" class="form-control"  readonly>
-                            <h5 onclick="maturity();" style="cursor: pointer">Check Maturity Amount</h5>
-                        </div>
-                      </div>
-
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                          {{ message }}
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                          <button type="submit" class="btn btn-success" >Submit</button>
-                        </div>
-                      </div>
-                 </form>
-                  </div>
-                </div>
-              </div>
-             </div> -->
-          
-          
-          
             </div>
           </div>
 

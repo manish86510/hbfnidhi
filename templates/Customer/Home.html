@@ -5,54 +5,48 @@
           <div class="">
             <div class="row top_tiles">
               <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12" >
-                   <div class="tile-stats" style="background-color: #003b4e; color: #0b2e13 ;">
-                     <a class="site_title" style="background-color: #51a9b5;" > What would you like to do today?</a>
-                </div>
+                 
               </div>
             </div>
 
             <div class="row top_tiles">
-              <div class="animated flipInY col-lg-1 col-md-1 col-sm-6 col-xs-12">
-
-              </div>
-              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin-left: 30px;">
+             
+              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin-left: 3px;">
                 <div class="tile-stats" style="background-color: #0a6aa1; color: #0b2e13 ;">
-                     <a class="site_title" ><i class="fa fa-file-text-o"></i> Account Summary</a>
+                    <a class="" style="color:white" > Accounts Balance: {{ current_balance }}</a>
+                   
                 </div>
               </div>
-              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin-left: 20px;">
-                 <div class="tile-stats" style="background-color: #0a6aa1; color: #0b2e13">
-                     <a class="site_title" ><i class="fa fa-inr"></i> Funds Transfer</a>
-                </div>
-              </div>
-              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin-left: 20px;">
-               <div class="tile-stats" style="background-color: #0a6aa1; color: #0b2e13">
-                     <a class="site_title" ><i class="fa fa-rocket"></i> Pay Bills</a>
-                </div>
-              </div>
-               <div class="animated flipInY col-lg-2 col-md-2 col-sm-6 col-xs-12">
 
+              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin-left: 5px;">
+                <div class="tile-stats" style="background-color: #0a6aa1; color: #0b2e13;">
+                    <a class="" style="color:white" >
+                    {% for fd in fd_details %}
+                        <p>FD Amount Paid : {{ fd.total_amount}}</p>
+                    {% endfor %}
+                </a>
+                </div>
+            </div>
+    
+              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin-left: 5px;">
+                 <div class="tile-stats" style="background-color: #0a6aa1; color: #0b2e13">
+                     <a class="" style="color:white" >RD paid till now : {{total_rd_paid}}</a>
+                </div>
               </div>
+
+              <div class="animated flipInY col-lg-2 col-md-3 col-sm-6 col-xs-12" style="margin-left: 2px;">
+               <div class="tile-stats" style="background-color: #0a6aa1; color: #0b2e13">
+                     <a class="" style="color:white">Loan : {{total_completed_loan_payments}}</a>
+                </div>
+              </div>
+            
             </div>
             <div class="row top_tiles">
               <div class="animated flipInY col-lg-1 col-md-1 col-sm-6 col-xs-12" >
-
               </div>
-              <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin-left: 30px;">
-                 <div class="tile-stats" style="background-color: #0a6aa1; color: #0b2e13">
-                     <a class="site_title" ><i class="fa fa-file-text"></i> Open Online FD</a>
-                </div>
+             
               </div>
-                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" style="margin-left: 20px;">
-                 <div class="tile-stats" style="background-color: #0a6aa1; color: #0b2e13">
-                     <a class="site_title" ><i class="fa fa-gift"></i> Online Gift Cards</a>
-                </div>
-              </div>
-                <div class="animated flipInY col-lg-3 col-md-4 col-sm-3 col-xs-12" style="margin-left: 20px;">
-                 <div class="tile-stats" style="background-color: #0a6aa1; color: #0b2e13">
-                     <a class="site_title" ><i class="fa fa-book"></i> Request Check Book</a>
-                </div>
-              </div>
+               
             </div>
             <br/>
             <div class="row">
@@ -60,58 +54,189 @@
                 <div class="x_panel">
                     <div class="filter">
                       <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                        <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                      </div>
+                       </div>
                     </div>
                   <div class="x_title">
-                      <h2>Account Balance Summery</h2>
+                      <h4>Account Balance Statement</h4>
                       <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">
-                    <table id="datatable-buttons" class="table table-striped table-bordered">
-                      <thead>
-                       <tr>
-                           <th>Serial No.</th>
-                           <th>Account Type</th>
-                           <th>Account Number</th>
-                           <th>Transaction Date</th>
-                           <th>Credit Amount</th>
-                           <th>Debit Amount</th>
-                           <th>Total Balance</th>
-                       </tr>
-                      </thead>
-                          <tbody>
-                           <tr>
-                                <td>1</td>
-                                <td>current</td>
-                                <td>0000000011111111</td>
-                                <td>2011/04/25</td>
-                                <td>320,800</td>
-                                <td>320,000</td>
-                                <td>800</td>
-                           </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Saving</td>
-                                <td>0000000011111111</td>
-                                <td>2011/04/25</td>
-                                <td>320,800</td>
-                                <td>320,000</td>
-                                <td>800</td>
-                           </tr>
-                           <tr>
-                                <td>3</td>
-                                <td>Saving</td>
-                                <td>0000000011111111</td>
-                                <td>2011/04/25</td>
-                                <td>320,800</td>
-                                <td>320,000</td>
-                                <td>800</td>
-                           </tr>
-                          </tbody>
-                    </table>
-                  </div>
+                
+                  <!-- Date Filter Form -->
+
+ <style>
+  .site_title {
+      position: relative;
+      padding: 10px 20px;
+      border-radius: 5px;
+      color: #fff;
+      background-color: #51a9b5;
+      font-size: 1.5em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+
+  .site_title .form-data {
+      display: flex;
+      align-items: center;
+  }
+
+  .site_title .form-data form {
+      display: flex;
+      align-items: center;
+  }
+
+  .site_title .form-data .form-group {
+      margin-right: 15px;
+  }
+
+  .site_title .form-data .form-control {
+      border-radius: 20px;
+      padding: 8px 15px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+  }
+
+  .site_title .form-data .btn-primary {
+      background-color: #81b6eb;
+      border: none;
+      border-radius: 10px;
+  }
+
+  .site_title .form-data .btn-primary:hover {
+      background-color: #51a9b5;
+  }
+
+  .site_title .bi-download {
+      font-size: 1.5em;
+      color: #fff;
+      cursor: pointer;
+  }
+
+  .tile-stats {
+      padding: 20px;
+      border-radius: 10px;
+  }
+
+  .table thead {
+      background-color: #e3f0f4;
+      color: black;
+  }
+
+  .table th, .table td {
+      text-align: center;
+  }
+
+  .pagination {
+      margin: 20px 0;
+      text-align: center;
+  }
+
+  .pagination a {
+      color: #004d99;
+      text-decoration: none;
+      margin: 0 5px;
+  }
+
+  .pagination a:hover {
+      text-decoration: underline;
+  }
+
+  .pagination .current {
+      font-weight: bold;
+      color: #004d99;
+  }
+</style>
+
+
+                  <div>
+                    <div class="row top_tiles">
+                        
+                        <div class="animated flipInY col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="tile-stats" style="background-color: #e3f0f4; color: #0b2e13;">
+                                 <div> 
+                                    <div class="form-data">
+                                        <div>
+                                            <h2 class="site_title">
+                                                Statements
+                                                <div class="form-data">
+                                                   
+                                                  <form method="get" action="" >
+                                                      <div class="form-group">
+                                                          <input type="date" name="startDate" id="startDate" value="{{ start_date }}" class="form-control">
+                                                      </div>
+                                                      <div class="form-group">
+                                                          <input type="date" name="endDate" id="endDate" value="{{ end_date }}" class="form-control">
+                                                      </div>
+                                                      <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+                                                    <a href="{% url 'download_transactions' %}?startDate={{ start_date }}&endDate={{ end_date}}" class="bi-download"></a>
+                                          
+                                                    </form>
+                                              </div>
+                                            </h2>
+                                        </div>
+            
+                                </div>
+                
+                                <table class="table table-striped" id="dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Transaction ID</th>
+                                            <th>Beneficiary</th>
+                                            <th>Amount</th>
+                                            <th>Balance After Transaction</th>
+                                            <th>Date</th>
+                                            <th>Type</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for transaction, balance in page_obj %}
+                                            <tr>
+                                                <td>{{ transaction.transfer_id }}</td>
+                                                <td> 
+                                                    {% if transaction.description == 'Fund Transfer' or transaction.description == 'Withdrawn amount from FD account' or transaction.description == 'hello' or transaction.description == 'EMI LOAN'%}
+                                                        {% if transaction.description == 'Fund Transfer' %}
+                                                        {{ transaction.to_account_no.account_no }}
+                                                        {% elif transaction.description == 'hello' %}
+                                                        rd
+                                                        {% elif transaction.description == 'EMI LOAN' %}
+                                                        LOAN
+                                                        {% else %}
+                                                        FD
+                                                        {% endif %}
+                                                    {% else %}
+                                                        N/A
+                                                    {% endif %}
+                                                </td>
+                                                
+                                                <td>{{ transaction.amount  }}</td>
+                                                <td>{{ balance }}</td>
+                                                <td>{{ transaction.transfer_date }}</td>
+                                                <td>{{ transaction.description }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div class="pagination">
+                                    <span class="step-links">
+                                        {% if page_obj.has_previous %}
+                                            <a href="?page=1&startDate={{ start_date }}&endDate={{ end_date }}">&laquo; First</a>
+                                            <a href="?page={{ page_obj.previous_page_number }}&startDate={{ start_date }}&endDate={{ end_date }}">Previous</a>
+                                        {% endif %}
+                                        <span class="current">
+                                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                                        </span>
+                                        {% if page_obj.has_next %}
+                                            <a href="?page={{ page_obj.next_page_number }}&startDate={{ start_date }}&endDate={{ end_date }}">Next</a>
+                                            <a href="?page={{ page_obj.paginator.num_pages }}&startDate={{ start_date }}&endDate={{ end_date }}">Last &raquo;</a>
+                                        {% endif %}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
 
 
                   </div>

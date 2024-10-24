@@ -25,7 +25,8 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form class="form-horizontal form-label-left input_mask" method="POST" action="profile">
+                        <!-- <form name="myForm" action="/create_account/" method="post" enctype="multipart/form-data" class="form-inline contact-form" onsubmit=" validateForm"  id="myRegisterForm"> -->
+                        <form class="form-horizontal form-label-left input_mask" method="POST" action="profile" id="myRegisterForm">
                             {% csrf_token %}
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">Member ID :</label>
@@ -37,21 +38,21 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">First Name :</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" value="{{ result.first_name }}" id="first-name" name="first-name" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                    <input type="text" value="{{ result.first_name }}" id="name" name="first-name" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">Last Name :</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" value="{{ result.last_name }}" id="last-name" name="last-name" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                    <input type="text" value="{{ result.last_name }}" id="lname" name="last-name" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">S/o / D/o :</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" value="{{ result.father_name }}" id="father_name" name="father_name" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
+                                    <input type="text" value="{{ result.father_name }}" id="fname" name="father_name" class="form-control" {% if not edit_mode %}disabled="disabled"{% endif %} placeholder="Input">
                                 </div>
                             </div>
 
@@ -208,7 +209,8 @@
 <script>
     function toggleEdit() {
         // Assuming you have some logic to toggle `edit_mode`
-        var isEditing = document.getElementById('first-name').disabled;
+        // var isEditing = document.getElementById('first-name').disabled;
+        var isEditing = document.getElementById('name').disabled;
         var inputs = document.querySelectorAll('.form-control');
         var saveButton = document.querySelector('button[type="submit"]');
         inputs.forEach(function(input) {
@@ -216,6 +218,84 @@
         });
         saveButton.disabled = !isEditing;
     }
+
+    const form = document.getElementById('myRegisterForm');
+
+    form.addEventListener('submit', (e) => {
+        let isValid = true;
+
+        // Phone number validation
+        let phone = document.getElementById('mobile').value.trim();
+        let phoneregex = /^[6-9]\d{9}$/;
+        if (!phoneregex.test(phone)) {
+            alert("Insert a valid phone number");
+            isValid = false; // Mark form as invalid
+        }
+
+        // Name validation (Only alphabets)
+        let name = document.getElementById('name').value.trim();
+        let nameRegex = /^[a-zA-Z\s.]+$/;  // Allowing only characters and spaces
+        if (!nameRegex.test(name)) {
+            alert(" First Name must contain only alphabets");
+            e.preventDefault();
+            return;
+        }
+        
+
+        // Last Name validation (Only alphabets)
+        let lname = document.getElementById('lname').value.trim();
+        let nameRege = /^[a-zA-Z\s]+$/;  // Allowing only characters and spaces
+        if (!nameRege.test(lname)) {
+            alert("Last Name must contain only alphabets");
+            e.preventDefault();
+            return;
+        }
+
+
+        //state Validation
+        let state=document.getElementById('state').value.trim()
+        let stateRegex = /^[a-zA-Z\s]+$/;
+        if(!stateRegex.test(state)){
+            alert("Please enter a valid state");
+            e.preventDefault();
+            return;
+        }
+
+
+        // City Validation
+        let city=document.getElementById('city').value.trim()
+        let cityRegex = /^[a-zA-Z]+$/;
+            if(!cityRegex.test(city)){
+                alert("Please enter a valid city");
+                e.preventDefault();
+                return;
+        }
+
+        // Gender Validation
+        let gender = document.getElementById('gender').value.trim();
+        let validGenders = ["Male", "Female", "Other"];
+        if (!validGenders.includes(gender)) {
+            alert("Please enter a valid gender (Male, Female, or Other)");
+            e.preventDefault();
+            return;
+        }
+
+        // Email validation
+        let email = document.getElementById('email').value.trim();                  
+        let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // Basic email regex
+            if (!emailRegex.test(email)) {                      
+                alert("Insert a valid email address");                      
+                e.preventDefault();                      
+                return;                        
+        }  
+        // Prevent form submission if any validation fails
+        if (!isValid) {
+            e.preventDefault(); // Stop form submission
+        }
+    });
+
+
 </script>
+
 
 {% endblock %}

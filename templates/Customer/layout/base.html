@@ -74,10 +74,10 @@
               <div class="menu_section">
          
                 <ul class="nav side-menu">
-                  <li><a href="{%url 'customer_home' %}"><i class="fa fa-home"></i> Home </a>
+                  <li><a href="{%url 'customer_home' request.session.account_no %}"><i class="fa fa-home"></i> Home </a>
 
                   </li>
-                  <li><a href="{% url 'customer_account' request.session.account_no %}"><i class="fa fa-edit"></i> Accounts <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="{% url 'customer_account' request.session.account_no %}"><i class="fa fa-edit"></i> Accounts<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                     </ul>
                   </li>
@@ -165,7 +165,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="profile"> Profile</a></li>
+                    <li><a href="{% url 'profile' %}"> Profile</a></li>
                     <li>
                       <a href="setting">
                         <span>Settings</span>
