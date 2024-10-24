@@ -87,30 +87,30 @@ WSGI_APPLICATION = 'hbfnidhi.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    #  'default': {
-    #     # 'ENGINE': 'django.db.backends.sqlite3',
-    #     # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+     'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     # 'OPTIONS': {
-    #     #      'options': '-c search_path=general',
-    #     #  },
-    #     'NAME': 'hbfnidhi',
-    #     'USER': 'postgres',
-    #     'PASSWORD': 'Password@1234',
-    #     'HOST': '44.220.239.211',
-    #     'PORT': '5432',
-    #  }
-    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        # 'OPTIONS': {
+        #      'options': '-c search_path=general',
+        #  },
+        'NAME': 'hbfnidhi',
+        'USER': 'postgres',
+        'PASSWORD': 'Password@1234',
+        'HOST': '44.220.239.211',
+        'PORT': '5432',
+     }
+    # 'default': {
        
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Banking Portal',
-        'USER': 'root',
-        'PASSWORD': '987654321',
-        'HOST': 'localhost',
-        'PORT': '3306',
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'Banking Portal',
+    #     'USER': 'root',
+    #     'PASSWORD': '987654321',
+    #     'HOST': 'localhost',
+    #     'PORT': '3306',
     
-    }
+    # }
 }
 
 # Password validation
