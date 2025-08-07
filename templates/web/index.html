@@ -208,7 +208,7 @@
     <!-- banner -->
     <div class="banner">
         <div class="banner-right">
-            <img src={% static "web/images/new.png" %} alt="" class="img-responsive" />
+            <img src={% static "web/images/new5.png" %} alt="" class="img-responsive" />
         </div>
         <div class="banner-text">
             <div id="top" class="callbacks_container">
@@ -223,7 +223,7 @@
                     </li>
                     <li>
                         <div class="banner-textagileinfo">
-                            <h6>Welcome to HBF Nidhi</h6>
+                            <h6>Welcome to HBF NIDHI</h6>
                             <h3>Your trusted partner in financial security and growth</h3>
                             
 
@@ -231,7 +231,7 @@
                     </li>
                     <li>
                         <div class="banner-textagileinfo">
-                            <h6>Welcome to HBF Nidhi</h6>
+                            <h6>Welcome to HBF NIDHI</h6>
                             <h3>Savings-driven solutions for your financial aspiration</h3>
                             
 
@@ -541,42 +541,131 @@
 
 
 
-   <!-- Team -->
-    <div class="team section" id="team">
-        <div class="container">
-            <h3 class="title-txt">
-                <span>T</span>eam</h3>
-            <div class="new-agileinfo">
-                <div class="col-md-4 col-xs-5 team-left">
-                    <ul id="demo1_thumbs" class="list-inline">
-                        <li>
-                            <a href={% static "web/images/t20.jpg" %}>
-                                <img src={% static "web/images/t20.jpg" %} alt="" data-desoslide-caption="<h3>Founder</h3>She is the Founder of HBF Nidhi Business accounting and running the company with copious knowledge, vigor and enthusiasm are among her many specialties.
-                                Anshika has a specialized expertise and education background in the field of accounting and holds a Master’s degree of Commerce. She had been pursuing Chartered Accountancy under ICAI before having to take a maternity break.">
-                                <div class="team-w3text"> <br> <br> <br>
-                                    <h4>Anshika Verma</h4> 
-                                    <p>Founder</p>
-                                </div>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href={% static "web/images/t11.jpg" %}>
-                                <img src={% static "web/images/t11.jpg" %} alt="" data-desoslide-caption="<h3>Human Resources</h3>  Visionary Human Resource leader with 10+ years of strong experience across all verticals of Human Resources in diverse industries. Silver Medalist in Human Resources Management with a positive and proactive attitude. Creative, practical & articulate communicator with proven results in solving difficult business problems. Demonstrated experience includes: Organizational effectiveness, Compensation Analysis, Leadership & employee development, Team building, Performance management, Positive employee relations, Training, Recruitment/Retention, Negotiation Skill, Culture change.">
-                                <div class="team-w3text">  <br> <br> <br>
-                                    <h4>Leena Sharma</h4>
-                                    <p>Human Resources</p>
-                                </div>
-                            </a>
-                        </li>
-                        
-                    </ul>
+<!-- Team -->
+<div class="container-fluid px-2 px-md-4 py-5 mx-auto" id="team">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 col-lg-12 col-xl-8">
+            <h3 class="title-txt text-center text-white mb-4">
+                <span class="text-primary">T</span>eam
+            </h3> 
+            <div class="card card-main border-0">
+                
+                <!-- Team Member 1 -->
+                <div class="card border-0 card-0 mb-5">
+                    <div class="card profile py-3 px-4">
+                        <div class="text-center">
+                            <img src="{% static 'web/images/t20.jpg' %}" class="img-fluid profile-pic">
+                        </div>
+                        <h6 class="mb-0 mt-2 text-center">Anshika Verma</h6>
+                        <small class="text-center d-block">Founder</small>
+                    </div>
+                    <p class="content mb-0 text-white text-center">With a Master's in Commerce and Chartered Accountancy background, she leads the company with knowledge, vigor, and enthusiasm as the Founder of HBF Nidhi Business.</p>
                 </div>
-                <div id="demo1_main_image" class="col-md-6 col-xs-7 team-right"></div>
-                <div class="clearfix"> </div>
+                
+                <!-- Team Member 2 -->
+                <div class="card border-0 card-0">
+                    <div class="card profile py-3 px-4">
+                        <div class="text-center">
+                            <img src="{% static 'web/images/t11.jpg' %}" class="img-fluid profile-pic">
+                        </div>
+                        <h6 class="mb-0 mt-2 text-center">Leena Sharma</h6>
+                        <small class="text-center d-block">Human Resources</small>
+                    </div>
+                    <p class="content mb-0 text-white text-center">Visionary HR leader with 10+ years of experience. Expertise in team building, recruitment, employee development, and performance management across diverse industries.</p>
+                </div>
             </div>
         </div>
     </div>
+</div>
+
+<style>
+    #team {
+        background: linear-gradient(#01579B, #03A9F4);
+        background-repeat: no-repeat;
+    }
+
+    .card-main {
+        padding: 50px;
+        border-radius: 10px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+        background-color: white;
+    }
+
+    .card-0 {
+        color: #fff;
+        background-color: #536DFE;
+        position: relative;
+        margin-left: 70px;
+        border-radius: 10px;
+        min-height: 312px;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .profile {
+        color: #000;
+        background-color: #FFD54F;
+        position: absolute;
+        left: -70px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 8px;
+        border-top-left-radius: 0px; 
+        border-bottom-right-radius: 0px; 
+        width: 140px;
+    }
+
+    .profile-pic {
+        width: 120px;
+        height: 120px;
+        border-bottom-left-radius: 10px;
+        border-top-right-radius: 10px;
+        object-fit: cover;
+    }
+
+    .content {
+        margin-left: 150px;
+        margin-right: 80px;
+        font-size: 2rem;
+        line-height: 1.6;
+        padding: 20px;
+        color:#f9f9f9;
+    }
+
+    @media screen and (max-width: 600px) {
+        .card-main {
+            padding: 30px 15px;
+        }
+
+        .card-0 {
+            min-height: 350px;
+            margin-left: 50px;
+        }
+
+        .profile {
+            left: -50px;
+            width: 120px;
+        }
+
+        .profile-pic {
+            width: 90px;
+            height: 90px;
+        }
+
+        .content {
+            margin-left: 100px;
+            margin-right: 30px;
+            font-size: 1rem;
+            padding: 15px;
+        }
+    }
+</style>
+
+
     <!-- Team  -->
 
 
