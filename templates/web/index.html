@@ -911,7 +911,7 @@
                                     </li>
                                     <li>
                                         <span class="fa fa-map-marker" aria-hidden="true"></span> HBF NIDHI LIMITED <br>
-                                        148-149, 1st floor , Tower B , I-Thum ,Noida sector 62 ,201309
+                                        910-911, Tower C, Iconic Corenthum, Sector 62, Noida, 201309, UP, India 
                                     </li>
                                     
                                     
@@ -952,11 +952,13 @@
 	<!---728x90--->
 
     <!-- copy right -->
-    <p class="footer-class">© 2019 HBF Nidhi Ltd. All Rights Reserved | Design by
-        <a href="https:\\www.techlopers.com" target="_blank">Techlopers Solution Pvt. Ltd.</a>
+    <p class="footer-class">© <span id="curr_year"></span> HBF Nidhi Ltd. All Rights Reserved | Design by
+        <a href="https://enorvision.com/" target="_blank">Enovision AIML  Pvt. Ltd.</a>
     </p>
     <!-- //copy right -->
-   
+    <script>
+        document.getElementById('curr_year').textContent = new Date().getFullYear();
+    </script>
 
     <!-- js -->
     <script src={% static "web/js/jquery-2.2.3.min.js" %}></script>

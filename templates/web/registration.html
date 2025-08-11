@@ -528,9 +528,12 @@ MEMBERSHIP Conditions
         </div>
     <p>&nbsp;</p>
  <!-- copy right -->
-    <p class="footer-class">© 2019 HBF Nidhi Ltd. All Rights Reserved | Design by
-        <a href="https:\\www.techlopers.com" target="_blank">Techlopers Solution Pvt. Ltd.</a>
+    <p class="footer-class">© <span id="curr_year"></span> HBF Nidhi Ltd. All Rights Reserved | Design by
+        <a href="https://enorvision.com/" target="_blank">Enovision AIML  Pvt. Ltd.</a>
     </p>
+    <script>
+        document.getElementById('curr_year').textContent = new Date().getFullYear();
+    </script>
     <script src={% static "web/js/jquery-2.2.3.min.js" %}></script>
     <script src={% static "web/js/numscroller-1.0.js" %}></script>
     <script src="js/responsiveslides.min.js"></script>

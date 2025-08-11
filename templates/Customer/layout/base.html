@@ -254,12 +254,16 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-               <p>Copyright © 2019 HBF NIDHI. All rights reserved.</p>
+               <p>Copyright © <span id="curr_year"></span> HBF NIDHI. All rights reserved.</p>
           </div>
           <div class="clearfix"></div>
         </footer>
       </div>
     </div>
+<script>
+  document.getElementById('curr_year').textContent = new Date().getFullYear();
+</script>
+
   </body>
     <script src="{% static "customer/js/Customer_dashboard/jquery.js" %}"></script>
     <script src="{% static "customer/js/Customer_dashboard/bootstrap.js" %}"></script>
